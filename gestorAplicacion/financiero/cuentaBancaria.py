@@ -11,6 +11,9 @@ class CuentaBancaria:
         self.bolsillo_establecimientos = bolsillo_establecimientos
         self.bolsillo_pago_credito = bolsillo_pago_credito
         self.saldo = saldo_inicial
+        self.credito = []
+        self.interes = 0
+        self.cobroAdicional = 0
 
         if banco:
             self.establecer_valores(banco)
@@ -22,15 +25,135 @@ class CuentaBancaria:
 
         CuentaBancaria.cuentas.append(self)
         self.credito = []
-
-    def depositar(self, monto):
-        self.saldo += monto
-
-    def retirar(self, monto):
-        if monto <= self.saldo:
-            self.saldo -= monto
-            #terminar el else
     
+    def establecer_valores(self, banco):
+            banco = self.banco
+            banco1 = Banco[banco]
+            self.interes = Banco.banco1.INTERES
+            self.cobroAdicional = Banco.banco1.COBRO_ADICIONAL
+
+    def depositar(self, cantidad, tipo):
+        if(tipo == "saldo"):
+            if (cantidad > 0):
+                self.saldo += cantidad
+
+        elif(tipo == "bolsilloTrabajadores"):
+            if (cantidad > 0):
+                self.bolsilloTrabajadores += cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+            
+        elif(tipo == "bolsilloInventario"):
+            if (cantidad > 0):
+                self.bolsilloInventario += cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        
+        elif(tipo == "bolsilloTransporte"):
+    	    if (cantidad > 0):
+                self.bolsilloTransporte += cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        
+        elif(tipo == "bolsilloEstablecimientos"):
+    	    if (cantidad > 0):
+                self.bolsilloEstablecimientos += cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        
+        elif(tipo == "bolsilloPagoCredito"):
+    	    if (cantidad > 0):
+                self.bolsilloPagoCredito += cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+    
+    def retirar(self, cantidad, tipo):
+        if(tipo == "saldo"):
+     	    if (cantidad <= saldo):
+                self.saldo -= cantidad;
+           
+        elif(tipo == "bolsilloTrabajadores"):
+       	    if (cantidad <= bolsilloTrabajadores):
+                self.bolsilloTrabajadores -= cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        elif(tipo == "bolsilloInventario"):
+       	    if (cantidad <= bolsilloInventario):
+                self.bolsilloInventario -= cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        elif(tipo == "bolsilloTransporte"):
+       	    if (cantidad <= bolsilloTransporte):
+                self.bolsilloTransporte -= cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        elif(tipo == "bolsilloEstablecimientos"):
+       	    if (cantidad <= bolsilloEstablecimientos):
+                self.bolsilloEstablecimientos -= cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+        elif (tipo == "bolsilloPagoCredito"):
+    	    if (cantidad <= bolsilloPagoCredito):
+                self.bolsilloPagoCredito -= cantidad
+                self.saldo = bolsilloTrabajadores + bolsilloTransporte + bolsilloInventario + bolsilloEstablecimientos + bolsilloPagoCredito
+      
+
+    def infoCredito(self, credito):
+        creditos = self.getCredito()
+        if creditos.size() > 0:
+             return """ID: {}
+             Precio: {}
+             Porcentaje por pagar: {}""".format(
+             creditos.get(credito).getID(), creditos.get(credito).getPrecio(), creditos.get(credito).getPorcentajeCreditoPorPagar())
+        else:
+            return "No hay credito activo con ese indice"   
+    
+    def transaccionCuentaAhorros(self, valor, cuentaAhorros):
+        if self.getBanco() == cuentaAhorros.getBanco():
+            saldo = self.saldo - valor
+            self.setSaldo(saldo)
+        else:
+            cobroAdicional = self.getCobroAdicional()
+            saldo = self.saldo - (valor + cobroAdicional)
+            self.setSaldo(saldo)
+    
+        saldoCuentaAhorros = cuentaAhorros.saldo + valor
+        cuentaAhorros.setSaldo(saldoCuentaAhorros)
+    
+        porcentajeInteres = self.getInteres()
+        interes = cuentaAhorros.obtenerSaldo() * porcentajeInteres
+        saldoFinal = cuentaAhorros.obtenerSaldo() - interes
+        cuentaAhorros.setSaldo(saldoFinal)
+
+    def transaccion(self, valor, cuentaCorriente, tipo):
+        if self.getBanco() == cuentaCorriente.getBanco():
+            if tipo == "saldo":
+                saldo = self.saldo - valor
+                self.setSaldo(saldo)
+            elif tipo == "bolsilloTrabajadores":
+                saldo1 = self.bolsilloTrabajadores - valor
+                self.setBolsilloTrabajadores(saldo1)
+            elif tipo == "bolsilloInventario":
+                saldo2 = self.bolsilloInventario - valor
+                self.setBolsilloInventario(saldo2)
+            elif tipo == "bolsilloTransporte":
+                saldo3 = self.bolsilloTransporte - valor
+                self.setBolsilloTransporte(saldo3)
+            elif tipo == "bolsilloEstablecimientos":
+                saldo4 = self.bolsilloEstablecimientos - valor
+                self.setBolsilloEstablecimientos(saldo4)
+        else:
+            cobroAdicional = self.getCobroAdicional()
+            if tipo == "saldo":
+                saldo = self.saldo - (valor + cobroAdicional)
+                self.setSaldo(saldo)
+            elif tipo == "bolsilloTrabajadores":
+                saldo = self.bolsilloTrabajadores - (valor + cobroAdicional)
+                self.setBolsilloTrabajadores(saldo)
+            elif tipo == "bolsilloInventario":
+                saldo = self.bolsilloInventario - (valor + cobroAdicional)
+                self.setBolsilloInventario(saldo)
+            elif tipo == "bolsilloTransporte":
+                saldo = self.bolsilloTransporte - (valor + cobroAdicional)
+                self.setBolsilloTransporte(saldo)
+            elif tipo == "bolsilloEstablecimientos":
+                saldo = self.bolsilloEstablecimientos - (valor + cobroAdicional)
+                self.setBolsilloEstablecimientos(saldo)
+    
+        saldoCuenta = cuentaCorriente.saldo + valor
+        cuentaCorriente.setSaldo(saldoCuenta)
+
     # Getters
     def getNumeroCuenta(self):
         return self.numero_cuenta
@@ -61,6 +184,12 @@ class CuentaBancaria:
 
     def getCredito(self):
         return self.credito
+    
+    def getInteres(self):
+        return self.interes
+    
+    def getCobroAdicional(self):
+        return self.cobroAdicional
 
     # Setters
     def setNumeroCuenta(self, numero_cuenta):
@@ -97,6 +226,12 @@ class CuentaBancaria:
 
     def setCredito(self, credito):
         self.credito = credito
+    
+    def setInteres(self, interes):
+        self.interes = interes
+    
+    def setCobroAdicional(self, cobroAdicional):
+        self.cobroAdicional = cobroAdicional
 
     def actualizarSaldo(self):
         self.saldo = (self.bolsillo_trabajadores + self.bolsillo_inventario +
