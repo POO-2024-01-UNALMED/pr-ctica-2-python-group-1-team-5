@@ -1,0 +1,47 @@
+from gestorAplicacion.personas import Cliente
+from gestorAplicacion.establecimientos import Crematorio
+from gestorAplicacion.establecimientos import Cementerio
+from gestorAplicacion.establecimientos import Establecimiento
+from datetime import time
+
+class Producto():
+    
+    _productos=[]
+
+    def __init__(self, nombre: str, precio: float, cantidad: int, cantidadVendida: int = 0, establecimiento = None, vehiculo = None, urna = None, tumba = None):
+        self._nombre = nombre
+        self._precio = precio
+        self._cantidad = cantidad
+        self._cantidadVendida = cantidadVendida
+        self._establecimiento = establecimiento
+        self._vehiculo = vehiculo
+        self._urna = urna
+        self._tumba = tumba
+        Producto._productos.append(self)
+    
+    def evento(self, cliente: 'Cliente') -> str:
+        concepto = None
+        hora = self._establecimiento.getHoraEvento() if self._establecimiento else time(0, 0)
+        nombreIglesia = self._establecimiento.getIglesia().getNombre() if self._establecimiento and self._establecimiento.getIglesia() else ''
+        familiares = ""
+        
+        if isinstance(self._establecimiento, Crematorio):
+            concepto = "Cremación"
+        elif isinstance(self._establecimiento, Cementerio):
+            cementerio = self._establecimiento
+            if cementerio.getTipo() == "cuerpos":
+                concepto = "Entierro"
+        else:
+            concepto = "Entierro de cenizas"
+        
+        for familiar in cliente.getFamiliares():
+            familiares += str(familiar) + "\n"
+        
+        evento = (
+            f"Asunto: Invitación a la Ceremonia de {concepto} de {cliente}\n"
+            f"Invita\n{familiares}\n"
+            f"Hora de la Ceremonia: {hora}\n"
+            f"Lugar de {concepto}: {self._establecimiento.getNombre() if self._establecimiento else ''}\n"
+            f"Centro religioso: {nombreIglesia}"
+        )
+        return evento
