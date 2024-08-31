@@ -99,7 +99,7 @@ class Funeraria(Establecimiento):
     def buscarTipoVehiculo(self, tipoVehiculo: TipoVehiculo) -> Optional[Vehiculo]:
         for vehiculo in self._vehiculos:
             if vehiculo.isEstado() and vehiculo.getTipoVehiculo() == tipoVehiculo:
-                vehiculo.setEstado() = False
+                vehiculo.setEstado(False)
                 return vehiculo
         return None
 
