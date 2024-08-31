@@ -2,10 +2,10 @@ from typing import List
 from enum import Enum
 from gestorAplicacion import Inventario
 
-from establecimientos import Establecimiento
-from establecimientos import Iglesia
-from gestorAplicacion import Inventario
-from gestorAplicacion import Urna
+from gestorAplicacion.establecimientos.establecimiento import Establecimiento
+from gestorAplicacion.establecimientos.iglesia import Iglesia
+from gestorAplicacion.inventario.inventario import Inventario
+from gestorAplicacion.inventario.urna import Urna
 
 class Cementerio(Establecimiento):
     cementerios= []

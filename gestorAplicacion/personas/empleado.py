@@ -1,5 +1,5 @@
-from gestorAplicacion.personas import Persona
-from gestorAplicacion.establecimientos import Funeraria
+from gestorAplicacion.personas.persona import Persona
+from gestorAplicacion.establecimientos.funeraria import Funeraria
 
 class Empleado(Persona):
 

@@ -1,5 +1,5 @@
 import random
-from gestorAplicacion import Inventario
+from gestorAplicacion.inventario.inventario import Inventario
 
 class Urna(Inventario):
     def __init__(self, nombre, cementerio, peso, categoria, tipo):

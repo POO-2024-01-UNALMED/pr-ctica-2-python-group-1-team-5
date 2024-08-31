@@ -2,11 +2,11 @@ import random
 from typing import List, Optional
 from datetime import time
 
-from gestorAplicacion import Funeraria
-from gestorAplicacion import Cementerio
-from gestorAplicacion import Crematorio
-from personas import Cliente
-from personas import Empleado
+from gestorAplicacion.establecimientos.funeraria import Funeraria
+from gestorAplicacion.establecimientos.cementerio import Cementerio
+from gestorAplicacion.establecimientos.crematorio import Crematorio
+from gestorAplicacion.personas.cliente import Cliente
+from gestorAplicacion.personas.empleado import Empleado
 from personas import Persona
 
 class Establecimiento:
