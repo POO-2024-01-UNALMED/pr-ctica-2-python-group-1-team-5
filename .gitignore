@@ -1,0 +1,7 @@
+echo "# pr-ctica-2-python-group-1-team-5" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/POO-2024-01-UNALMED/pr-ctica-2-python-group-1-team-5.git
+git push -u origin main
