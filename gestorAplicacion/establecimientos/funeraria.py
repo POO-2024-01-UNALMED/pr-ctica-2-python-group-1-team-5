@@ -102,6 +102,39 @@ class Funeraria(Establecimiento):
                 vehiculo.setEstado(False)
                 return vehiculo
         return None
+    
+    def identificar_productos_faltantes(funeraria):
+        productos_vendidos = Funeraria.calcular_productos_vendidos(funeraria)
+        productos_faltantes = []
+
+        for producto in productos_vendidos:
+            if producto.getCantidadVendida() < 10:
+               productos_faltantes.append(producto)
+
+        return productos_faltantes
+    
+    def calcular_productos_vendidos(funeraria):
+        productos_vendidos = []
+        for factura in funeraria.getListadoFacturas():
+            for producto in factura.getListaProductos():
+                if producto not in productos_vendidos:
+                   productos_vendidos.append(producto)
+        return productos_vendidos
+    
+    def agregar_producto(productos_vendidos, nuevo_producto):
+    # Recorre la lista de productos vendidos para encontrar si el producto ya existe
+        for producto in productos_vendidos:
+        # Compara el nombre del producto existente con el nuevo producto
+            if producto.getNombre() == nuevo_producto.getNombre():
+            # Si el producto ya existe, actualiza la cantidad vendida
+               cantidad_actual = producto.getCantidadVendida()
+               producto.setCantidadVendida(cantidad_actual + nuevo_producto.getCantidadVendida())
+               return productos_vendidos
+    
+    # Si el producto no existe en la lista, se añade al final de la lista
+        productos_vendidos.append(nuevo_producto)
+        return productos_vendidos
+
 
     def agregarVehiculo(self, vehiculo: Vehiculo) -> None:
         self._vehiculos.append(vehiculo)

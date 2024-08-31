@@ -143,6 +143,12 @@ class Establecimiento:
     def eliminarHorario(self, hora):
         self.horarioEventos.remove(hora)
 
+    def tiene_producto(self, nombre_producto):
+        for producto in self._productos:
+            if producto.get_nombre() == nombre_producto:
+               return True
+        return False
+
 
     def __str__(self):
         return self._nombre

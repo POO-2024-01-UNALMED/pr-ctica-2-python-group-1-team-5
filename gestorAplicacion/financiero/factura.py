@@ -31,7 +31,7 @@ class Factura():
         Factura.facturas.append(self)
     #calcula el total del precio de la factura
     def total_factura(self):
-        self.total = sum(producto.precio * producto.cantidad for producto in self.lista_productos)
+        self.total = sum(producto.getPrecio() * producto.getCantidad() for producto in self.lista_productos)
         return self.total
     
     def aplicar_descuento(self, porcentaje):
@@ -40,6 +40,11 @@ class Factura():
     #aplica el iva al precio total
     def calcular_total(self):
         self.total = self.precio + (self.precio * self.IVA)
+
+    def agregar_producto(self, producto):
+        self.lista_productos.append(producto)
+        self.precio += producto.getPrecio() * producto.getCantidad()
+        self.calcular_total()
 
     
     # Getters para atributos de clase
