@@ -1,7 +1,7 @@
-from gestorAplicacion.personas import Cliente
-from gestorAplicacion.establecimientos import Crematorio
-from gestorAplicacion.establecimientos import Cementerio
-from gestorAplicacion.establecimientos import Establecimiento
+from gestorAplicacion.personas.cliente import Cliente
+from gestorAplicacion.establecimientos.crematorio import Crematorio
+from gestorAplicacion.establecimientos.cementerio import Cementerio
+from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 from datetime import time
 
 class Producto():

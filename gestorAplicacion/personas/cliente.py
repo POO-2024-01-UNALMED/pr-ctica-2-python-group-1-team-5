@@ -1,9 +1,9 @@
 
-from gestorAplicacion.personas import Persona
-from gestorAplicacion.personas import Familiar
-from gestorAplicacion.inventario import Producto
-from gestorAplicacion.inventario import Inventario
-from gestorAplicacion import Factura
+from gestorAplicacion.personas.persona import Persona
+from gestorAplicacion.personas.familiar import Familiar
+from gestorAplicacion.inventario.producto import Producto
+from gestorAplicacion.inventario.inventario import Inventario
+from gestorAplicacion.financiero.factura import Factura
 
 class Cliente(Persona):
  

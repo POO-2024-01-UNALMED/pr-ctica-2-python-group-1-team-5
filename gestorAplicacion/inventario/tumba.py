@@ -1,7 +1,7 @@
 import random
 from typing import List
 
-from gestorAplicacion.inventario import Inventario
+from gestorAplicacion.inventario.inventario import Inventario
 
 class Tumba(Inventario):
     def __init__(self, nombre, cementerio, tamaño, categoria):

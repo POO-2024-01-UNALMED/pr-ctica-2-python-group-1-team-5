@@ -1,14 +1,14 @@
 from typing import List, Optional
 from datetime import time
-from gestorAplicacion.establecimientos import Establecimiento
-from gestorAplicacion.personas import Empleado
-from gestorAplicacion.personas import Cliente
-from gestorAplicacion.inventario import Vehiculo
-from gestorAplicacion.financiero import CuentaBancaria
-from gestorAplicacion.establecimientos import Cementerio
-from gestorAplicacion.financiero import Factura
-from gestorAplicacion.inventario import TipoVehiculo
-from gestorAplicacion.inventario import Tumba
+from gestorAplicacion.establecimientos.establecimiento import Establecimiento
+from gestorAplicacion.personas.empleado import Empleado
+from gestorAplicacion.personas.cliente import Cliente
+from gestorAplicacion.inventario.vehiculo import Vehiculo
+from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
+from gestorAplicacion.establecimientos.cementerio import Cementerio
+from gestorAplicacion.financiero.factura import Factura
+from gestorAplicacion.inventario.tipoVehiculo import TipoVehiculo
+from gestorAplicacion.inventario.tumba import Tumba
 
 class Funeraria(Establecimiento):
     _cuentaAhorros: Optional[CuentaBancaria] = None

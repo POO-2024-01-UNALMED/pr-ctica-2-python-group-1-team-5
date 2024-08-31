@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from gestorAplicacion import Cliente
+from gestorAplicacion.personas.cliente import Cliente
 
 class Inventario(ABC):
     precioFlores = 35000
