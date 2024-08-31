@@ -45,3 +45,63 @@ class Producto():
             f"Centro religioso: {nombreIglesia}"
         )
         return evento
+    
+    # Getters para atributos de instancia
+    def getNombre(self):
+        return self._nombre
+
+    def getPrecio(self):
+        return self._precio
+
+    def getCantidad(self):
+        return self._cantidad
+
+    def getCantidadVendida(self):
+        return self._cantidadVendida
+
+    def getEstablecimiento(self):
+        return self._establecimiento
+
+    def getVehiculo(self):
+        return self._vehiculo
+
+    def getUrna(self):
+        return self._urna
+
+    def getTumba(self):
+        return self._tumba
+
+    # Setters para atributos de instancia
+    def setNombre(self, nombre):
+        self._nombre = nombre
+
+    def setPrecio(self, precio):
+        self._precio = precio
+
+    def setCantidad(self, cantidad):
+        self._cantidad = cantidad
+
+    def setCantidadVendida(self, cantidadVendida):
+        self._cantidadVendida = cantidadVendida
+
+    def setEstablecimiento(self, establecimiento):
+        self._establecimiento = establecimiento
+
+    def setVehiculo(self, vehiculo):
+        self._vehiculo = vehiculo
+
+    def setUrna(self, urna):
+        self._urna = urna
+
+    def setTumba(self, tumba):
+        self._tumba = tumba
+
+    # Getters para atributo de clase
+    @classmethod
+    def getProductos(cls):
+        return cls._productos
+
+    # Setters para atributo de clase
+    @classmethod
+    def setProductos(cls, productos):
+        cls._productos = productos
