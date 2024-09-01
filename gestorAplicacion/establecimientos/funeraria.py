@@ -72,9 +72,9 @@ class Funeraria(Establecimiento):
 
         return clientes
 
-    def buscarClientePorId(self, idCliente: int) :
+    def buscarClientePorId(self, idCliente) :
         for cliente in self.clientes:
-            if cliente.getCC() == idCliente:
+            if int(cliente.getCC()) == int(idCliente):
                 return cliente
         return None
     
@@ -471,9 +471,9 @@ class Funeraria(Establecimiento):
 
 
     def getClientes(self):
-        return self._empleados
+        return self.clientes
     def setClientes(self, clientes):
-        self._empleados=clientes
+        self.clientes=clientes
 
     def gestionEntierro(self, cliente, iglesia, estatura: float) -> List['Establecimiento']:
         # Busca cementerios con el tipo "cuerpos" para el cliente dado

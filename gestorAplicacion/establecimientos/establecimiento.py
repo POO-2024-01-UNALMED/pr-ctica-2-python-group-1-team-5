@@ -36,7 +36,7 @@ class Establecimiento:
         Establecimiento._establecimientos.append(self)
 
     @staticmethod
-    def filtrarEstablecimiento(cls, tipo):
+    def filtrarEstablecimiento(tipo):
         filtrados = []
         for establecimiento in Establecimiento._establecimientos:
             if tipo == "cementerio" and isinstance(establecimiento, establecimientos.cementerio.Cementerio):
