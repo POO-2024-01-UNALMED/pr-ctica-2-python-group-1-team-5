@@ -1,7 +1,6 @@
-from gestorAplicacion.personas.cliente import Cliente
+
 from gestorAplicacion.personas.persona import Persona
-from gestorAplicacion.personas.empleado import Empleado
-from gestorAplicacion.personas.familiar import Familiar
+
 
 class Familiar(Persona):
     def __init__(self, nombre, cc=0, edad=0, cuentaBancaria=None, 

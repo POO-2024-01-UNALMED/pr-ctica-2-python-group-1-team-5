@@ -1,4 +1,4 @@
-from gestorAplicacion.inventario import *
+#from gestorAplicacion.inventario.inventario import *
 class Persona:
     _personas = []
     auxCC: int = 1000

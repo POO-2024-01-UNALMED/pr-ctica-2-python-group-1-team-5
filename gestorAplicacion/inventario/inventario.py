@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from gestorAplicacion.personas.cliente import Cliente
+#from gestorAplicacion.personas.cliente import Cliente
 
 class Inventario(ABC):
     precioFlores = 35000
@@ -152,7 +152,7 @@ class Inventario(ABC):
     def setNombre(self, nombre):
         self._nombre = nombre
 
-    def setCliente(self, cliente: Cliente):
+    def setCliente(self, cliente):
         self._cliente = cliente
 
     def setFloresSeleccionadas(self, floresSeleccionadas):

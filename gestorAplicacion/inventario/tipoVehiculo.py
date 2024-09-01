@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TipoVehiculo():
+class TipoVehiculo(Enum):
     BERLINA = (4, False, True, 70000)
     CARROZA = (6, True, False, 150000)
     FAETON = (4, False, True, 120000)

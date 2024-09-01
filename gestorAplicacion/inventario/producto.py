@@ -1,7 +1,7 @@
-from gestorAplicacion.personas.cliente import Cliente
+#from gestorAplicacion.personas.cliente import Cliente
 from gestorAplicacion.establecimientos.crematorio import Crematorio
 from gestorAplicacion.establecimientos.cementerio import Cementerio
-from gestorAplicacion.establecimientos.establecimiento import Establecimiento
+#from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 from datetime import time
 
 class Producto():
@@ -19,7 +19,7 @@ class Producto():
         self._tumba = tumba
         Producto._productos.append(self)
     
-    def evento(self, cliente: 'Cliente') -> str:
+    def evento(self, cliente) :
         concepto = None
         hora = self._establecimiento.getHoraEvento() if self._establecimiento else time(0, 0)
         nombreIglesia = self._establecimiento.getIglesia().getNombre() if self._establecimiento and self._establecimiento.getIglesia() else ''
