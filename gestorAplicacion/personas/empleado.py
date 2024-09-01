@@ -3,9 +3,9 @@ from gestorAplicacion.personas.persona import Persona
 
 class Empleado(Persona):
 
-    def __init__(self, nombre, cuentaBancaria, jornada, cargo, salario=0, 
+    def __init__(self, nombre, CC,edad,cuentaBancaria, jornada, cargo, salario=0, 
                  experiencia=0, trabajosHechos=0, funeraria=None):
-        super().__init__(nombre, 0, cuentaBancaria)
+        super().__init__(nombre, CC, edad,cuentaBancaria)
         self._jornada = jornada
         self._cargo = cargo
         self._salario = salario

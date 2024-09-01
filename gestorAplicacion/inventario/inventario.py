@@ -9,7 +9,7 @@ class Inventario(ABC):
     flores = ["Rosas", "Lirios", "Claveles", "Orquídeas", "Peonías"]
     material = ["Madera", "Metal", "Cerámica", "Vidrio", "Bambu", "Piedra"]
 
-    inventarioTotal= []
+    _inventarioTotal= []
 
     def __init__(self, nombre, cementerio, tamaño, categoria):
         self._nombre = nombre

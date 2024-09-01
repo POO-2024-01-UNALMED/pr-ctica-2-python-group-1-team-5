@@ -1,10 +1,10 @@
 from typing import List
 from enum import Enum
-from gestorAplicacion import Inventario
+
 
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 from gestorAplicacion.establecimientos.iglesia import Iglesia
-#from gestorAplicacion.inventario.inventario import Inventario
+from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
 
 class Cementerio(Establecimiento):
@@ -65,7 +65,7 @@ class Cementerio(Establecimiento):
         else:
             return self._inventario
     
-    def inventarioDefault(self) -> List[Inventario]:
+    def inventarioDefault(self) :
         porDefecto = []
         auxInventario = self.urnasPorTipo("fija") if self.tipo == "cenizas" else self._inventario
         for item in auxInventario:
@@ -105,7 +105,7 @@ class Cementerio(Establecimiento):
         return organizacion
 
     def agregarInventario(self, inventario: Inventario):
-        self.inventario.append(inventario)
+        self._inventario.append(inventario)
 
     def getTipo(self):
         return self._tipo
