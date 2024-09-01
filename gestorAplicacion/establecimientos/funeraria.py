@@ -1,29 +1,29 @@
 from typing import List, Optional
 from datetime import time
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
-from gestorAplicacion.personas.empleado import Empleado
-from gestorAplicacion.personas.cliente import Cliente
-from gestorAplicacion.inventario.vehiculo import Vehiculo
-from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
+#from gestorAplicacion.personas.empleado import Empleado
+#from gestorAplicacion.personas.cliente import Cliente
+#from gestorAplicacion.inventario.vehiculo import Vehiculo
+#from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
 from gestorAplicacion.establecimientos.cementerio import Cementerio
 from gestorAplicacion.financiero.factura import Factura
 from gestorAplicacion.inventario.tipoVehiculo import TipoVehiculo
 from gestorAplicacion.inventario.tumba import Tumba
-
+from gestorAplicacion.personas.familiar import Familiar
 class Funeraria(Establecimiento):
-    _cuentaAhorros: Optional[CuentaBancaria] = None
+    _cuentaAhorros = None
     
   
     
     
 
-    def __init__(self, nombre: str, cuentaCorriente: CuentaBancaria, cuentaAhorros: CuentaBancaria):
+    def __init__(self, nombre: str, cuentaCorriente, cuentaAhorros):
         super().__init__(nombre, cuentaCorriente)
         Funeraria._cuentaAhorros = cuentaAhorros
         _empleados = []
         _vehiculos = []
 
-    def buscarEstablecimientos(self, tipoEstablecimiento: str, cliente: Cliente) -> List[Establecimiento]:
+    def buscarEstablecimientos(self, tipoEstablecimiento: str, cliente):
         establecimientosEvaluar = Establecimiento.buscarPorFuneraria(self, tipoEstablecimiento)
         establecimientosDisponibles = []
 
@@ -34,12 +34,12 @@ class Funeraria(Establecimiento):
 
         return establecimientosDisponibles
 
-    def buscarCementerios(self, tipoCementerio: str, cliente: Cliente) -> List[Establecimiento]:
+    def buscarCementerios(self, tipoCementerio: str, cliente) -> List[Establecimiento]:
         cementerios = self.buscarEstablecimientos("cementerio", cliente)
         cementeriosDisponibles = Cementerio.cementerioPorTipo(cementerios, tipoCementerio)
         return cementeriosDisponibles
 
-    def buscarEmpleados(self, jornada: str, cargo: str) -> List[Empleado]:
+    def buscarEmpleados(self, jornada: str, cargo: str) :
         disponibles = []
 
         for empleado in self._empleados:
@@ -48,7 +48,7 @@ class Funeraria(Establecimiento):
 
         return disponibles
 
-    def buscarEmpleadosPorHoras(self, horas: time, cargo: str) -> List[Empleado]:
+    def buscarEmpleadosPorHoras(self, horas: time, cargo: str) :
         if 6 <= horas.hour <= 14:
             jornada = "mañana"
         elif 15 <= horas.hour <= 22:
@@ -61,7 +61,7 @@ class Funeraria(Establecimiento):
   
 
 
-    def buscarCliente(self, tipoCementerio: str, adultoNino: str) -> List[Cliente]:
+    def buscarCliente(self, tipoCementerio: str, adultoNino: str) :
         clientes = []
         cementerios = Cementerio.cementerioPorTipo(
             Establecimiento.buscarPorFuneraria(self, "cementerio"), tipoCementerio)
@@ -72,7 +72,7 @@ class Funeraria(Establecimiento):
 
         return clientes
 
-    def buscarClientePorId(self, idCliente: int) -> Optional[Cliente]:
+    def buscarClientePorId(self, idCliente: int) :
         for cliente in self.clientes:
             if cliente.getCC() == idCliente:
                 return cliente
@@ -266,31 +266,31 @@ class Funeraria(Establecimiento):
         if inventario_max == 0:
             resultado += "No hubo Funerarias que necesitaran un reajuste de dinero para inventario\n"
         else:
-            cuenta_ahorros.transaccion(1000000, inventario.cuenta_corriente, "bolsilloInventario")
+            Funeraria._cuentaAhorros.transaccion(1000000, inventario.cuenta_corriente, "bolsilloInventario")
             resultado += f"La funeraria: {inventario.nombre} requiere mayor cantidad de dinero para actualizar el inventario, por lo que se le ha transferido 1000000\n"
 
         if transporte_max == 0:
             resultado += "No hubo Funerarias que necesitaran un reajuste de dinero para transportes\n"
         else:
-            cuenta_ahorros.transaccion(1000000, transporte.cuenta_corriente, "bolsilloTransporte")
+            Funeraria._cuentaAhorros.transaccion(1000000, transporte.cuenta_corriente, "bolsilloTransporte")
             resultado += f"La funeraria: {transporte.nombre} requiere mayor cantidad de dinero para la compra y la gestion de vehiculos, por lo que se le ha transferido 1000000\n"
 
         if establecimiento_max == 0:
             resultado += "No hubo Funerarias que necesitaran un reajuste de dinero para establecimientos\n"
         else:
-            cuenta_ahorros.transaccion(1000000, establecimiento.cuenta_corriente, "bolsilloEstablecimientos")
+            Funeraria._cuentaAhorros.transaccion(1000000, establecimiento.cuenta_corriente, "bolsilloEstablecimientos")
             resultado += f"La funeraria: {establecimiento.nombre} requiere mayor cantidad de dinero para el pago a los establecimientos, por lo que se le ha transferido 1000000\n"
 
         if trabajadores_max == 0:
             resultado += "No hubo Funerarias que necesitaran un reajuste de dinero para trabajadores\n"
         else:
-            cuenta_ahorros.transaccion(1000000, trabajadores.cuenta_corriente, "bolsilloTrabajadores")
+            Funeraria._cuentaAhorros.transaccion(1000000, trabajadores.cuenta_corriente, "bolsilloTrabajadores")
             resultado += f"La funeraria: {trabajadores.nombre} requiere mayor cantidad de dinero para la contratacion y el pago de los empleados, por lo que se le ha transferido 1000000\n"
 
         if credito_max == 0:
             resultado += "No hubo Funerarias que necesitaran un reajuste de dinero para credito\n"
         else:
-            cuenta_ahorros.transaccion(1000000, credito.cuenta_corriente, "bolsilloPagoCredito")
+            Funeraria._cuentaAhorros.transaccion(1000000, credito.cuenta_corriente, "bolsilloPagoCredito")
             resultado += f"La funeraria: {credito.nombre} requiere mayor cantidad de dinero para el pago de su credito, por lo que se le ha transferido 1000000"
 
         return resultado
@@ -404,7 +404,7 @@ class Funeraria(Establecimiento):
             credito.porcentaje_credito_por_pagar = nuevo_porcentaje_faltante
             credito.precio = nuevo_valor_faltante
     
-    def asignarVehiculo(self) -> Optional[str]:
+    def asignarVehiculo(self) :
         vehiculosDisponibles = ""
         tipoVehiculos = []
 
@@ -422,7 +422,7 @@ class Funeraria(Establecimiento):
             return None
         return vehiculosDisponibles 
 
-    def buscarTipoVehiculo(self, tipoVehiculo: TipoVehiculo) -> Optional[Vehiculo]:
+    def buscarTipoVehiculo(self, tipoVehiculo):
         for vehiculo in self._vehiculos:
             if vehiculo.isEstado() and vehiculo.getTipoVehiculo() == tipoVehiculo:
                 vehiculo.setEstado(False)
@@ -462,10 +462,10 @@ class Funeraria(Establecimiento):
         return productos_vendidos
 
 
-    def agregarVehiculo(self, vehiculo: Vehiculo) -> None:
+    def agregarVehiculo(self, vehiculo):
         self._vehiculos.append(vehiculo)
 
-    def agregarEmpleado(self, empleado: Empleado) -> None:
+    def agregarEmpleado(self, empleado):
         self._empleados.append(empleado)
 
 
@@ -508,7 +508,7 @@ class Funeraria(Establecimiento):
 
         return cementeriosFiltrados
     
-    def gestionarTransporte(self, cliente, vehiculos: List['Vehiculo'], hora: time) -> str: 
+    def gestionarTransporte(self, cliente, vehiculos, hora: time) -> str: 
         familiares = list(cliente.getFamiliares()) 
         conductores = self.buscarEmpleadosPorHoras(hora, "conductor")
         gestionTransporte = f"Resumen de su transporte - Hora de llegada transporte: {hora}\n"

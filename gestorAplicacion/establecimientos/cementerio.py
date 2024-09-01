@@ -4,7 +4,7 @@ from gestorAplicacion import Inventario
 
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 from gestorAplicacion.establecimientos.iglesia import Iglesia
-from gestorAplicacion.inventario.inventario import Inventario
+#from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
 
 class Cementerio(Establecimiento):
@@ -24,7 +24,7 @@ class Cementerio(Establecimiento):
                 cementeriosDisponibles.append(c)
         return cementeriosDisponibles
 
-    def disponibilidadInventario(self, urnaTumba, tamaño, edad) -> List[Inventario]:
+    def disponibilidadInventario(self, urnaTumba, tamaño, edad):
         inventarioDisponible = []
         auxInventario=[]
 
@@ -67,7 +67,7 @@ class Cementerio(Establecimiento):
     
     def inventarioDefault(self) -> List[Inventario]:
         porDefecto = []
-        auxInventario = self.urnasPorTipo("fija") if self.tipo == "cenizas" else self.inventario
+        auxInventario = self.urnasPorTipo("fija") if self.tipo == "cenizas" else self._inventario
         for item in auxInventario:
             if item.getNombre() == "default" and item.getCliente() is not None:
                 porDefecto.append(item)

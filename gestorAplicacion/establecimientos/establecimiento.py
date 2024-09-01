@@ -1,13 +1,13 @@
 import random
 from typing import List, Optional
 from datetime import time
-
-from gestorAplicacion.establecimientos.funeraria import Funeraria
-from gestorAplicacion.establecimientos.cementerio import Cementerio
-from gestorAplicacion.establecimientos.crematorio import Crematorio
-from gestorAplicacion.personas.cliente import Cliente
-from gestorAplicacion.personas.empleado import Empleado
-from personas import Persona
+from gestorAplicacion import establecimientos
+#from gestorAplicacion.establecimientos.funeraria import Funeraria
+#from gestorAplicacion.establecimientos.cementerio import Cementerio
+#from gestorAplicacion.establecimientos.crematorio import Crematorio
+#from gestorAplicacion.personas.cliente import Cliente
+#from gestorAplicacion.personas.empleado import Empleado
+#from personas import Persona
 
 class Establecimiento:
     _establecimientos = []
@@ -33,17 +33,17 @@ class Establecimiento:
         self._productos = []
         self._listadoProveedores = []
 
-        Establecimiento.establecimientos.append(self)
+        Establecimiento._establecimientos.append(self)
 
     @staticmethod
     def filtrarEstablecimiento(cls, tipo):
         filtrados = []
         for establecimiento in Establecimiento._establecimientos:
-            if tipo == "cementerio" and isinstance(establecimiento, Cementerio):
+            if tipo == "cementerio" and isinstance(establecimiento, establecimientos.cementerio.Cementerio):
                 filtrados.append(establecimiento)
-            elif tipo == "crematorio" and isinstance(establecimiento, Crematorio):
+            elif tipo == "crematorio" and isinstance(establecimiento, establecimientos.crematorio.Crematorio):
                 filtrados.append(establecimiento)
-            elif tipo == "funeraria" and isinstance(establecimiento, Funeraria):
+            elif tipo == "funeraria" and isinstance(establecimiento, establecimientos.funeraria.Funeraria):
                 filtrados.append(establecimiento)
         return filtrados
 
@@ -57,7 +57,7 @@ class Establecimiento:
         return establecimientosFuneraria
 
 
-    def buscarCliente(self, adultoNino) -> List['Cliente']:
+    def buscarCliente(self, adultoNino):
         clientesEdad = []
         if adultoNino == "adulto":
             for cliente in self.clientes:
@@ -106,9 +106,9 @@ class Establecimiento:
             horaMin = 0
             horaMax = 0
 
-            if isinstance(self, Crematorio):
+            if isinstance(self, establecimientos.crematorio.Crematorio):
                 cargo = "cremador"
-            elif isinstance(self, Cementerio):
+            elif isinstance(self, establecimientos.cementerio.Cementerio):
                 cargo = "sepulturero"
 
             if self._funeraria.buscarEmpleados("mañana", cargo):

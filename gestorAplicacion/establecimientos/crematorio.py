@@ -3,7 +3,7 @@ from datetime import time
 import time
 
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
-from gestorAplicacion.establecimientos.cementerio import Cementerio
+#from gestorAplicacion.establecimientos.cementerio import Cementerio
 
 class Crematorio(Establecimiento):
     def __init__(self, nombre, capacidad, cuenta_corriente, afiliacion, empleado, funeraria):
