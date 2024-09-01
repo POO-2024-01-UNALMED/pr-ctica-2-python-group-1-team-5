@@ -1,7 +1,9 @@
+from gestorAplicacion.financiero.banco import Banco
+
 class CuentaBancaria:
     cuentas = []
 
-    def __init__(self, numero_cuenta, titular, saldo_inicial=0.0, banco=None,bolsilloTrabajadores=0.0, bolsilloInventario=0.0, bolsilloTransporte=0.0, bolsilloEstablecimientos=0.0, bolsilloPagoCredito=0.0):
+    def __init__(self, numero_cuenta, titular,banco, saldo_inicial=0.0,bolsilloTrabajadores=0.0, bolsilloInventario=0.0, bolsilloTransporte=0.0, bolsilloEstablecimientos=0.0, bolsilloPagoCredito=0.0):
         self._numero_cuenta = numero_cuenta
         self._titular = titular
         self._banco = banco
@@ -19,18 +21,16 @@ class CuentaBancaria:
             self.establecerValores(banco)
 
         # Calcula el saldo si se pasan valores específicos de bolsillo
-        if _bolsilloTrabajadores or _bolsilloInventario or _bolsilloTransporte or _bolsilloEstablecimientos or _bolsilloPagoCredito:
-            self._saldo = (_bolsilloTrabajadores + _bolsilloInventario + 
-                          _bolsilloTransporte + _bolsilloEstablecimientos + _bolsilloPagoCredito)
+        if bolsilloTrabajadores or bolsilloInventario or bolsilloTransporte or bolsilloEstablecimientos or bolsilloPagoCredito:
+            self._saldo = (bolsilloTrabajadores + bolsilloInventario + 
+                          bolsilloTransporte + bolsilloEstablecimientos + bolsilloPagoCredito)
 
         CuentaBancaria.cuentas.append(self)
         self.credito = []
     
     def establecerValores(self, banco):
-            banco = self._banco
-            banco1 = Banco[banco]
-            self._interes = Banco.banco1.INTERES
-            self._cobroAdicional = Banco.banco1.COBROADICIONAL
+            self._interes = banco.value[1]
+            self._cobroAdicional = banco.value[2]
 
     def depositar(self, cantidad, tipo):
         if(tipo == "saldo"):
