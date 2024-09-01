@@ -9,18 +9,18 @@ class Factura():
 
     def __init__(self, producto=None, precio=0, fecha=None, cliente=None, entidad=None, servicio="Inventario", lista_productos=None):
         # Atributos de instancia
-        self.ID = Factura.facturas_creadas + 1
+        self._ID = Factura.facturas_creadas + 1
         Factura.facturas_creadas = self.ID
-        self.producto = producto
-        self.precio = precio
-        self.total = 0
-        self.cliente = cliente
-        self.entidad = entidad
-        self.fecha = fecha 
-        self.precio_final = 0
-        self.lista_productos = lista_productos if lista_productos else []
-        self.porcentaje_credito_por_pagar = 1.0
-        self.servicio = servicio
+        self._producto = producto
+        self._precio = precio
+        self._total = 0
+        self._cliente = cliente
+        self._entidad = entidad
+        self._fecha = fecha 
+        self._precioFinal = 0
+        self._listaProductos = lista_productos if lista_productos else []
+        self._porcentajeCreditoPorPagar = 1.0
+        self._servicio = servicio
         
         if not lista_productos:
             self.calcular_total()
@@ -74,6 +74,9 @@ class Factura():
         cls.facturas = facturas
     
     # Getters
+    def getID(self):
+        return self._ID
+        
     def getProducto(self):
         return self.producto
 
