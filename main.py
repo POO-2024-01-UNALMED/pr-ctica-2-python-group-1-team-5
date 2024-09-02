@@ -13,6 +13,10 @@ from gestorAplicacion.inventario.tumba import Tumba
 
 def funcionalidadCrematorio():
 
+    #Cliente
+    cliente=None
+    crematorio=None
+
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
     print("Seleccione la funeraria correspondiente")
     indice = 0
@@ -33,16 +37,60 @@ def funcionalidadCrematorio():
     indiceCliente = int(input("Ingrese el índice correspondiente: "))
 
     if indiceCliente == 1:
-        idCliente = input("Ingrese el CC del cliente: ")
-        cliente = funeraria.buscarClientePorId(idCliente)
-        # Validar CC correcto
-        while cliente is None:
-            idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
+        print("[1] Buscar cliente por su CC")
+        print("[2] Buscar cliente por funeraria") 
+        #Indice cliente
+        indiceCliente = int(input("Ingrese el índice correspondiente: "))
+        if indiceCliente==1:
+            idCliente = input("Ingrese el CC del cliente: ")
             cliente = funeraria.buscarClientePorId(idCliente)
+            # Validar CC correcto
+            while cliente is None:
+                idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
+                cliente = funeraria.buscarClientePorId(idCliente)
+        elif indiceCliente==2:
+            indice=1
+            for auxCliente in funeraria.buscarCliente("adulto"):
+                print("["+str(indice)+"] "+str(auxCliente))
+                indice+=1
+            indice=int(input("Ingrese el índice del cliente: "))
+            cliente= funeraria.buscarCliente("adulto")[indice-1]
+
+    elif indiceCliente == 2:
+        indice=1
+        for auxCliente in funeraria.buscarCliente("niño"):
+            print("["+str(indice)+"] "+str(auxCliente))
+            indice+=1
+        indice=int(input("Ingrese el índice del cliente: "))   
+        cliente= funeraria.buscarCliente("niño")[indice-1]
+    #Cliente establecido
+    print(cliente)
+
+    # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
+    crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
+
+    if len(crematorios) != 0:
+        print(f"Su afiliación es de tipo {cliente.getAfiliacion()}")
+        print(f"Los crematorios disponibles para la afiliación {cliente.getAfiliacion()} son:")
+
+        indice=1
+        for auxCrematorio in crematorios:
+            print(f"[{indice}] {auxCrematorio}")
+            indice+=1
+
+    
+        indice = int(input("Ingrese el índice del crematorio deseado: "))
+        # Asignación de crematorio
+        crematorio=crematorios[indice-1]
+        
+    print(crematorio)
+        
+
+    
 
 if __name__ == "__main__":
     
-    #Funeraria
+    #Funerarias
     funeraria1= Funeraria("Eterna Paz",None,None)
     funeraria2= Funeraria("Caminos de Luz",None,None)
     funeraria3= Funeraria("Recuerdos Eternos",None,None)
@@ -57,10 +105,10 @@ if __name__ == "__main__":
 	
 		
 	#Clientes F1 - Menores de edad
-    clienteF17 = Cliente("Javier Gómez",5,"oro",None)
-    clienteF18 = Cliente("Sofía Martínez",17,"oro",None)
-    clienteF19 = Cliente("Carolina López",15,"plata",None)
-    clienteF110= Cliente("Manuel López",13,"plata",None)
+    clienteF17 = Cliente("Javier Gómez",0,5,None,"oro",None)
+    clienteF18 = Cliente("Sofía Martínez",0,17,None,"oro",None)
+    clienteF19 = Cliente("Carolina López",0,15,None,"plata",None)
+    clienteF110= Cliente("Manuel López",0,13,None,"plata",None)
 		
 	
 	#AgregarClientes

@@ -61,7 +61,7 @@ class Funeraria(Establecimiento):
   
 
 
-    def buscarCliente(self, tipoCementerio: str, adultoNino: str) :
+    def buscarClienteCementerio(self, tipoCementerio: str, adultoNino: str) :
         clientes = []
         cementerios = Cementerio.cementerioPorTipo(
             Establecimiento.buscarPorFuneraria(self, "cementerio"), tipoCementerio)
@@ -207,7 +207,7 @@ class Funeraria(Establecimiento):
                 f"Gastos inventario: {bolsilloInventario}\n"
                 f"Facturas transporte: {facturasTransporte}\n"
                 f"Gastos transporte: {bolsilloTransporte}\n"
-                f"Facturas establecimientos: {facturasEStablecimientos}\n"
+                #f"Facturas establecimientos: {facturasEStablecimientos}\n"
                 f"Gastos establecimientos: {bolsilloEstablecimientos}\n"
                 f"Facturas trabajadores: {facturasTrabajadores}\n"
                 f"Gastos trabajadores: {bolsilloTrabajadores}\n"
@@ -248,7 +248,7 @@ class Funeraria(Establecimiento):
                     bolsilloPagoCredito += factura._total
 
             if bolsilloInventario > inventarioMax:
-                inventario_max = bolsillo_inventario
+                #inventario_max = bolsillo_inventario
                 inventario = funeraria
             if bolsilloTransporte > transporteMax:
                 transporteMax = bolsilloTransporte
@@ -395,7 +395,7 @@ class Funeraria(Establecimiento):
         return valorFaltante * porcentaje
 
     def actualizarCredito(self, credito, porcentajeFaltante, valorFaltante, pago):
-        nuevoPorcentajeFaltante = porcentajeFqltante - pago / valorFaltante
+        nuevoPorcentajeFaltante = porcentajeFaltante - pago / valorFaltante
         nuevoValorFaltante = valorFaltante - pago
         if nuevoPorcentajeFaltante == 0:
             self._cuentaCorriente._credito.remove(credito)
