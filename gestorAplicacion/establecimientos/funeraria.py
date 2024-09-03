@@ -207,7 +207,7 @@ class Funeraria(Establecimiento):
                 f"Gastos inventario: {bolsilloInventario}\n"
                 f"Facturas transporte: {facturasTransporte}\n"
                 f"Gastos transporte: {bolsilloTransporte}\n"
-                #f"Facturas establecimientos: {facturasEStablecimientos}\n"
+                f"Facturas establecimientos: {facturasEstablecimientos}\n"
                 f"Gastos establecimientos: {bolsilloEstablecimientos}\n"
                 f"Facturas trabajadores: {facturasTrabajadores}\n"
                 f"Gastos trabajadores: {bolsilloTrabajadores}\n"
