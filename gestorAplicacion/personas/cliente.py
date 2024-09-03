@@ -20,7 +20,7 @@ class Cliente(Persona):
         cantidadFamiliares = len(self._familiares)
         for auxFamiliar in self._familiares:
             if auxFamiliar.getCC() != 0 and isinstance(auxFamiliar, Familiar):
-                cantidad += auxFamiliar.getAcompañantes()
+                cantidadFamiliares += auxFamiliar.getAcompañantes()
         return cantidadFamiliares
 
     def designarFamiliar(self, familiares):

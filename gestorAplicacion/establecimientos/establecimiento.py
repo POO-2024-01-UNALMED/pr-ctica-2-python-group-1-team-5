@@ -48,11 +48,11 @@ class Establecimiento:
         return filtrados
 
     @staticmethod
-    def buscarPorFuneraria(funeraria, tipoEstablecimiento) -> List['Establecimiento']:
+    def buscarPorFuneraria(funeraria, tipoEstablecimiento):
         establecimientosFuneraria = []
         establecimientosEvaluar = Establecimiento.filtrarEstablecimiento(tipoEstablecimiento)
         for establecimiento in establecimientosEvaluar:
-            if establecimiento.funeraria == funeraria:
+            if establecimiento.getFuneraria() == funeraria:
                 establecimientosFuneraria.append(establecimiento)
         return establecimientosFuneraria
 
@@ -101,7 +101,7 @@ class Establecimiento:
         self.vehiculos.append(vehiculo)
 
     def generarHoras(self):
-        if not self.horarioEventos:
+        if not self.getHorarioEventos():
             cargo = None
             horaMin = 0
             horaMax = 0
@@ -111,14 +111,14 @@ class Establecimiento:
             elif isinstance(self, establecimientos.cementerio.Cementerio):
                 cargo = "sepulturero"
 
-            if self._funeraria.buscarEmpleados("mañana", cargo):
+            if self.getFuneraria().buscarEmpleados("mañana", cargo):
                 horaMin = 6
                 horaMax = 14
-            elif self.funeraria.buscarEmpleados("tarde", cargo):
+            elif self.getFuneraria().buscarEmpleados("tarde", cargo):
                 if horaMin == 0:
                     horaMin = 15
                 horaMax = 22
-            elif self._funeraria.buscarEmpleados("noche", cargo):
+            elif self.getFuneraria().buscarEmpleados("noche", cargo):
                 if horaMin == 0:
                     horaMax = 30
                     horaMin = 23

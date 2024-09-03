@@ -48,10 +48,10 @@ class Funeraria(Establecimiento):
 
         return disponibles
 
-    def buscarEmpleadosPorHoras(self, horas: time, cargo: str) :
-        if 6 <= horas.hour <= 14:
+    def buscarEmpleadosPorHoras(self, horas, cargo) :
+        if 6 <= int(horas[:2]) <= 14:
             jornada = "mañana"
-        elif 15 <= horas.hour <= 22:
+        elif 15 <= int(horas[:2]) <= 22:
             jornada = "tarde"
         else:
             jornada = "noche"

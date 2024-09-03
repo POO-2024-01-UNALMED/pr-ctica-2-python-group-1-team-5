@@ -22,7 +22,7 @@ class Familiar(Persona):
     def setParentesco(self, parentesco):
         self._parentesco = parentesco
 
-    def getAcompanantes(self):
+    def getAcompañantes(self):
         return self._acompañantes
 
     def setAcompanantes(self, acompañantes: int):

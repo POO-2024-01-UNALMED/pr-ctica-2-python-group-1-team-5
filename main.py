@@ -64,7 +64,7 @@ def funcionalidadCrematorio():
         indice=int(input("Ingrese el índice del cliente: "))   
         cliente= funeraria.buscarCliente("niño")[indice-1]
     #Cliente establecido
-    print(cliente)
+    print("Cliente seleccionado: "+str(cliente))
 
     # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
     crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
@@ -83,9 +83,37 @@ def funcionalidadCrematorio():
         # Asignación de crematorio
         crematorio=crematorios[indice-1]
         
-    print(crematorio)
-        
+    print("Crematorio seleccionado: "+str(crematorio))
 
+    print("Horarios disponibles del crematorio:")
+
+    crematorio.generarHoras()
+
+    indice = 1
+    for hora in crematorio.getHorarioEventos():
+        indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
+        horaFormateada = hora  # Formato 12-horas con AM/PM
+        print(f"[{indice}] {horaFormateada} {indicador}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice
+    indice = int(input("Ingrese el índice para escoger el horario: "))
+
+    #Se cambia el horario de crematorio
+    crematorio.setHoraEvento(crematorio.getHorarioEventos()[indice-1])
+    #Se elimina el horario de Horario eventos
+    crematorio.eliminarHorario(crematorio.getHorarioEventos()[indice-1])
+        
+    print("Empleados disponibles en la jornada seleccionada")
+    empleados =funeraria.buscarEmpleadosPorHoras(crematorio.getHoraEvento(), "cremador")
+    indice = 1
+    for auxEmpleado in empleados:
+        print(f"[{indice}] {auxEmpleado}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice del empleado deseado
+    indice = int(input("Ingrese el índice del empleado deseado: "))
+    crematorio.setEmpleado(empleados[indice-1])
     
 
 if __name__ == "__main__":
@@ -95,20 +123,55 @@ if __name__ == "__main__":
     funeraria2= Funeraria("Caminos de Luz",None,None)
     funeraria3= Funeraria("Recuerdos Eternos",None,None)
 
+    #Crematorio Funeraria 1
+    crematorioF21 = Crematorio("Crematorio del Silencio", 100, None, "oro", None, funeraria1)
+    crematorioF22 = Crematorio("Ascenso y Tranquilidad", 78, None, "oro", None, funeraria1)
+
+    crematorioF23 = Crematorio("Brasa de Paz", 78, None, "plata", None, funeraria1)
+    crematorioF24 = Crematorio("Eterna Luz Crematorio", 78, None, "plata", None, funeraria1)
+
+    crematorioF25 = Crematorio("Crematorio del Renacer", 78, None, "bronce", None, funeraria1)
+    crematorioF26 = Crematorio("Fuego y Serenidad", 78, None, "bronce", None, funeraria1)
+
+    #Empleados sepulturero
+    
+    empleadoF11S = Empleado("Adrián Vargas", None, "mañana", "sepulturero", 1000000, funeraria1)
+    empleadoF12S = Empleado("Benjamín Díaz", None, "mañana", "sepulturero", 1000000, funeraria1)
+    empleadoF13S = Empleado("Cristian Herrera", None, "tarde", "sepulturero", 1000000, funeraria1)
+    empleadoF14S = Empleado("Diana Moreno", None, "tarde", "sepulturero", 1000000, funeraria1)
+    empleadoF15S = Empleado("Gabriela Arias", None, "noche", "sepulturero", 1000000, funeraria1)
+
+    # Empleados cremador
+
+    empleadoF11C = Empleado("David Soto", None, "mañana", "cremador", 1000000, funeraria1)
+    empleadoF12C = Empleado("Esteban Cordero", None, "mañana", "cremador", 1000000, funeraria1)
+    empleadoF13C = Empleado("Federico Gil", None, "tarde", "cremador", 1000000, funeraria1)
+    empleadoF14C = Empleado("Elena Vázquez", None, "noche", "cremador", 1000000, funeraria1)
+    empleadoF15C = Empleado("Isabela López", None, "noche", "cremador", 1000000, funeraria1)
+
+    #Familiares
+    F11 = Familiar("Mario", 711, 50, None, "padre", 17)
+    F12 = Familiar("Alberto", 712, 32, None, "conyuge", 13)
+    F13 = Familiar("Carlos", 713, 37, None, "hermano", 17)
+    F14 = Familiar("Samantha", 714, 50, None, "padre", 17)
+    
+    FamiliarF11=[F11,F12,F13,F14]
+    
+    
     #Clientes de la funeraria 1 mayores de edad
-    clienteF11 = Cliente("Alejandro Rodríguez",123,30,None,"oro",None)
-    clienteF12 = Cliente("Diego Martínez",1234,25,None,"oro",None)	
-    clienteF13 = Cliente("Carlos Fernández",1235,90,None,"plata",None)
-    clienteF14 = Cliente("María González",1236,57,None,"plata",None)
-    clienteF15 = Cliente("Laura Fernández",1237,21,None,"bronce",None)
-    clienteF16 = Cliente("Isabel Rodríguez",1238,50,None,"bronce",None)
+    clienteF11 = Cliente("Alejandro Rodríguez",123,30,None,"oro",FamiliarF11)
+    clienteF12 = Cliente("Diego Martínez",1234,25,None,"oro",FamiliarF11)	
+    clienteF13 = Cliente("Carlos Fernández",1235,90,None,"plata",FamiliarF11)
+    clienteF14 = Cliente("María González",1236,57,None,"plata",FamiliarF11)
+    clienteF15 = Cliente("Laura Fernández",1237,21,None,"bronce",FamiliarF11)
+    clienteF16 = Cliente("Isabel Rodríguez",1238,50,None,"bronce",FamiliarF11)
 	
 		
 	#Clientes F1 - Menores de edad
-    clienteF17 = Cliente("Javier Gómez",0,5,None,"oro",None)
-    clienteF18 = Cliente("Sofía Martínez",0,17,None,"oro",None)
-    clienteF19 = Cliente("Carolina López",0,15,None,"plata",None)
-    clienteF110= Cliente("Manuel López",0,13,None,"plata",None)
+    clienteF17 = Cliente("Javier Gómez",0,5,None,"oro",FamiliarF11)
+    clienteF18 = Cliente("Sofía Martínez",0,17,None,"oro",FamiliarF11)
+    clienteF19 = Cliente("Carolina López",0,15,None,"plata",FamiliarF11)
+    clienteF110= Cliente("Manuel López",0,13,None,"plata",FamiliarF11)
 		
 	
 	#AgregarClientes
@@ -122,6 +185,7 @@ if __name__ == "__main__":
     funeraria1.agregarCliente(clienteF18)
     funeraria1.agregarCliente(clienteF19)
     funeraria1.agregarCliente(clienteF110)
+    
    
     funcionalidadCrematorio()
 		
