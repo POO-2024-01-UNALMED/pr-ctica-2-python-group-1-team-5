@@ -213,16 +213,22 @@ if __name__ == "__main__":
     funeraria3= Funeraria("Recuerdos Eternos",cuentaF3,cuentaF4)
 
     #Cuentas crematorio Funeraria 1
+    cuentaF1Cr1= CuentaBancaria(103435, "Crematorio del Silencio",banco5, 2030)
+    cuentaF1Cr2= CuentaBancaria(566506, "Ascenso y Tranquilidad",banco1, 20302)
+    cuentaF1Cr3= CuentaBancaria(145044, "Brasa de Paz",banco2, 20302)
+    cuentaF1Cr4= CuentaBancaria(120231, "Eterna Luz Crematorio",banco3, 20302)
+    cuentaF1Cr5= CuentaBancaria(145066, "Crematorio del Renacer",banco4, 20302)
+    cuentaF1Cr6= CuentaBancaria(156707, "Fuego y Serenidad",banco5, 20302)
 
     #Crematorio Funeraria 1
-    crematorioF21 = Crematorio("Crematorio del Silencio", 100, None, "oro", None, funeraria1)
-    crematorioF22 = Crematorio("Ascenso y Tranquilidad", 78, None, "oro", None, funeraria1)
+    crematorioF21 = Crematorio("Crematorio del Silencio", 100, cuentaF1Cr1, "oro", None, funeraria1)
+    crematorioF22 = Crematorio("Ascenso y Tranquilidad", 78, cuentaF1Cr2, "oro", None, funeraria1)
 
-    crematorioF23 = Crematorio("Brasa de Paz", 78, None, "plata", None, funeraria1)
-    crematorioF24 = Crematorio("Eterna Luz Crematorio", 78, None, "plata", None, funeraria1)
+    crematorioF23 = Crematorio("Brasa de Paz", 78, cuentaF1Cr3, "plata", None, funeraria1)
+    crematorioF24 = Crematorio("Eterna Luz Crematorio", 78, cuentaF1Cr4, "plata", None, funeraria1)
 
-    crematorioF25 = Crematorio("Crematorio del Renacer", 78, None, "bronce", None, funeraria1)
-    crematorioF26 = Crematorio("Fuego y Serenidad", 78, None, "bronce", None, funeraria1)
+    crematorioF25 = Crematorio("Crematorio del Renacer", 78, cuentaF1Cr5, "bronce", None, funeraria1)
+    crematorioF26 = Crematorio("Fuego y Serenidad", 78, cuentaF1Cr6, "bronce", None, funeraria1)
 
     #Cuentas Cementerios Funeraria 1
     cuentaF1Ce1= CuentaBancaria(104525, "Jardín de la Eternidad",banco5, 2030)
@@ -237,7 +243,8 @@ if __name__ == "__main__":
     cuentaF1Ce10= CuentaBancaria(567567, "Cementerio del Refugi",banco4, 20302)
     cuentaF1Ce11= CuentaBancaria(678866, "Paz y Esperanza",banco5, 20302)
     cuentaF1Ce12= CuentaBancaria(123423, "Sendero de la Tranquilidad",banco1, 20302)
-
+    
+    #Cementerios Funeraria 1
     # Cementerios pertenecientes a F1 --> Funeraria 1 - cenizas
     cementerioF11Ce = Cementerio("Jardín de la Eternidad", 78, cuentaF1Ce1, "oro", None, "cenizas", funeraria1)
     cementerioF12Ce = Cementerio("Colina de la Paz", 85, cuentaF1Ce2, "oro", None, "cenizas", funeraria1)
