@@ -8,7 +8,7 @@ class Producto():
     
     _productos=[]
 
-    def __init__(self, nombre: str, precio: float, cantidad: int, cantidadVendida: int = 0, establecimiento = None, vehiculo = None, urna = None, tumba = None):
+    def __init__(self, nombre="", precio=0, cantidad=0, cantidadVendida= 0, establecimiento = None, vehiculo = None, urna = None, tumba = None):
         self._nombre = nombre
         self._precio = precio
         self._cantidad = cantidad

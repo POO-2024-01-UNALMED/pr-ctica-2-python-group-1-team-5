@@ -63,6 +63,10 @@ class Iglesia(Enum):
         "religioso": "Daoist",
         "religiosoAltoRango": "Dao Shi"
     }
+
+    def duracionEvento(self,horaInicio):
+        horaFinCremacion = int(horaInicio[:2])+self.getDuracionEvento()
+        return horaFinCremacion
     
     def getNombre(self):
         return self.value.get("nombre")
@@ -73,7 +77,7 @@ class Iglesia(Enum):
     def getCremacion(self):
         return self.value.get("cremacion")
 
-    def getDuracion_evento(self):
+    def getDuracionEvento(self):
         return self.value.get("duracionEvento")
 
     def getTipoUrna(self):
