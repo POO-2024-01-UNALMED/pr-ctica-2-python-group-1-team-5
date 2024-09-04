@@ -12,7 +12,7 @@ from gestorAplicacion import establecimientos
 class Establecimiento:
     _establecimientos = []
 
-    def __init__(self, nombre, capacidad=0, cuentaCorriente=None, afiliacion=None, empleado=None, funeraria=None, calificacion= 5.0):
+    def __init__(self, nombre=None, capacidad=0, cuentaCorriente=None, afiliacion=None, empleado=None, funeraria=None, calificacion= 5.0):
         self._nombre = nombre
         self._capacidad = capacidad
         self._cuentaCorriente = cuentaCorriente

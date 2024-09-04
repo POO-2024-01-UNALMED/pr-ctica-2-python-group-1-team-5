@@ -308,6 +308,130 @@ def funcionalidadCrematorio():
 
 
 
+def funcionalidadExhumacion():
+    cliente = None
+    urnaTumba = None
+    cementerio = None
+    nuevaUrnaTumba = None
+
+    print()
+    # Breve descripción de la funcionalidad para los usuarios
+    print("La exhumación es el proceso de retirar un cuerpo de su lugar de sepultura")
+    print()
+
+    # Buscar cliente
+    print("[1] Buscar cliente por su CC")
+    print("[2] Buscar cliente por cementerio")
+
+    #Indice cliente
+    indiceCliente = int(input("Ingrese el índice correspondiente: "))
+    while(indiceCliente<1 or indiceCliente>2):
+        indiceCliente=int(input(("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: ")))
+
+    if indiceCliente==1:
+        while cliente is None:
+            cc = int(input("Ingrese CC del cliente: "))
+            # Busca al cliente en todas funerarias
+            prueba = Establecimiento("Establecimiento", None)
+            cliente = prueba.buscarCliente(cc)
+
+             # Opción en caso de no estar registrado
+            if cliente is None:
+                print("El cliente no se encuentra registrado")
+                # Puedes volver a solicitar el CC si lo necesitas
+
+            else:
+                if cliente.getInventario() is None:
+                    print("El cliente está registrado pero no es apto para la exhumación")
+                    cliente = None
+
+    else:
+        # Se escoge la funeraria con la que se va a realizar el procedimiento
+        funerarias = Establecimiento.filtrarEstablecimiento("funeraria")
+        print()
+        print("Seleccione la funeraria correspondiente")
+        indice = 0
+        for auxFuneraria in funerarias:
+            indice += 1
+            print(f"[{indice}] {auxFuneraria}")
+
+        indiceFuneraria = int(input("Ingrese el índice correspondiente: "))
+
+        # Se valida que se ingrese un índice adecuado para continuar el proceso
+        while indiceFuneraria < 1 or indiceFuneraria > len(funerarias):
+            indiceFuneraria = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+        # Se realiza especialización de tipos (Establecimiento - clase padre a Funeraria - clase hija) y se asigna la funeraria correspondiente
+        funeraria = funerarias[indiceFuneraria - 1]
+        print()
+        print("[1] Buscar cliente en cementerios de cuerpos")
+        print("[2] Buscar clientes con urna fija o tumba marcada como 'default'")
+
+        indice = int(input("Ingrese el índice correspondiente: "))
+
+        # Validación de índice
+        while indice < 1 or indice > 2:
+            indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+        if indice == 1:
+            print()
+            print("Clientes mayor de edad")
+            # Busca en la funeraria seleccionada los cementerios de cuerpos
+            clientes = funeraria.buscarCliente("cuerpos", "adulto")
+    
+            indice = 1
+            for auxCliente in clientes:
+                print(f"[{indice}] {auxCliente}")
+                indice += 1
+            print()
+            print("Clientes menor de edad")
+    
+            clientesNino = funeraria.buscarCliente("cuerpos", "niño")
+    
+            for auxCliente in clientesNino:
+                print(f"[{indice}] {auxCliente}")
+                indice += 1
+    
+            clientes.extend(clientesNino)
+    
+            indice = int(input("Ingrese el índice correspondiente: "))
+    
+            # Validación de índice
+            while indice < 1 or indice > len(clientes):
+                indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+    
+            cliente = clientes[indice - 1]
+
+        else:
+            print("[1] Buscar tumbas marcadas como 'default'")
+            print("[2] Buscar urnas marcadas como 'default']")
+
+            indice = int(input("Ingrese el índice correspondiente: "))
+
+            # Validación de índice
+            while indice < 1 or indice > 2:
+                indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+            # Se traen todos los cementerios por funeraria
+            cementeriosPorFuneraria = Establecimiento.buscarPorFuneraria(funeraria, "cementerio")
+
+        tipo = None
+        mensaje1 = None
+        mensaje2 = None
+
+        if indice == 1:
+            tipo = "cuerpos"
+            mensaje1 = "Cementerios de cuerpos"
+            mensaje2 = "Tumbas"
+        elif indice == 2:
+            tipo = "cenizas"
+            mensaje1 = "Cementerios de cenizas"
+            mensaje2 = "Urnas"
+
+
+    
+
+
     
 
 if __name__ == "__main__":
