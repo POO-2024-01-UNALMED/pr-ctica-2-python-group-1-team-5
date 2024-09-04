@@ -75,8 +75,10 @@ class Inventario(ABC):
             self._floresSeleccionadas.append(adorno)
             self._inventarioFlores.remove(adorno)
         else:
+            self._materialSeleccionado=[]
+            self._materialSeleccionado.append(adorno)
             self._inventarioMaterial.remove(adorno)
-            self._materialSeleccionado = adorno
+            
 
     def __str__(self):
         return self._nombre

@@ -12,6 +12,7 @@ from gestorAplicacion.personas.cliente import Cliente
 from gestorAplicacion.personas.empleado import Empleado
 from gestorAplicacion.personas.familiar import Familiar
 
+from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.inventario.producto import Producto
@@ -187,6 +188,126 @@ def funcionalidadCrematorio():
     cementerio.setHoraEvento(cementerio.getHorarioEventos()[indice-1])
     #Se elimina el horario de Horario eventos
     cementerio.eliminarHorario(cementerio.getHorarioEventos()[indice-1])
+
+
+    iglesia = crematorio.getIglesia()
+    tiposUrnas = iglesia.getTipoUrna()
+    
+    # Mostrar tipos de urnas
+    print("El tipo de urnas disponibles para su religión son: ")
+    for tipo in tiposUrnas:
+        print(tipo)
+    
+    # Solicitar peso del cliente
+    peso = float(input("Ingrese un número de 0 a 120 que indique el peso en kg del cliente: "))
+    
+    # Selección de categoría
+    print("Seleccione la categoría para la urna del cliente")
+    print("[0] Se puede escoger un arreglo floral")
+    print("[1] Se pueden escoger tres arreglos florales")
+    print("[2] Se pueden escoger tres arreglos florales y material para la Urna")
+    
+    while True:
+        try:
+            categoria = int(input("Indique el índice de la categoría deseada: "))
+            if 0 <= categoria <= 2:
+                break
+            else:
+                print("El índice ingresado está fuera de rango.")
+        except ValueError:
+            print("Entrada inválida. Ingrese un número válido.")
+    
+    # Filtrar urnas
+    urnas = cementerio.disponibilidadInventario("urna", peso, categoria)
+    
+    urna = None
+    
+    if not urnas:
+        print("No se encontraron urnas disponibles para el cliente, se deberá añadir una provisional")
+        tipo = tiposUrnas[0]
+        urna = Urna("default", cementerio, peso, categoria, tipo)
+        print(f"Urna {urna} añadida")
+        
+        # Agregar cliente a la urna
+        urna.agregarCliente(cliente)
+        
+    else:
+        # Mostrar urnas disponibles
+        print("Escoja la urna de su preferencia: ")
+        for idx, auxUrna in enumerate(urnas, start=1):
+            print(f"[{idx}] {auxUrna}")
+        
+        while True:
+            try:
+                indice = int(input("Indique el índice de la Urna: "))
+                if 1 <= indice <= len(urnas):
+                    break
+                else:
+                    print("El índice ingresado está fuera de rango.")
+            except ValueError:
+                print("Entrada inválida. Ingrese un número válido.")
+        
+        # Designar urna para el cliente
+        urna = urnas[indice - 1]
+        urna.agregarCliente(cliente)
+    
+    # Generar adornos
+    urna.generarAdornos("flores")
+    urna.generarAdornos("material")
+
+    # Obtener el inventario de flores y materiales disponibles
+    flores = Inventario.flores
+    materiales = Inventario.material
+
+    print("Seleccione las flores que adornarán la urna")
+
+    numero = 0
+
+    # Si la categoría es 0, solo se podrán escoger 2 flores del arreglo
+    if categoria == 0:
+        numero = 1
+    else:
+        numero = 3
+        urna.setMaterialSeleccionado(None)  # Cambiar materialSeleccionado a None
+
+    while numero > 0:
+        indice = 1
+        for flor in flores:
+            # Contar la cantidad de cada una de las flores
+            print(f"[{indice}] {flor} cantidad disponible: {urna.contarAdorno(flor, 'flores')}")
+            indice += 1
+        indice = int(input("Indique el índice de las flores que quiere agregar: "))
+
+
+        # Agregar las flores seleccionadas y eliminarlas del inventario
+        urna.agregarAdorno(flores[indice - 1], "flores")
+        numero -= 1
+
+    # Salto
+    print()
+
+    indice = 1
+    if urna.getMaterialSeleccionado() is None:
+        print("Indique el material de su preferencia")
+        for material in materiales:
+            # Contar la cantidad de cada uno de los materiales
+            print(f"[{indice}] {material} cantidad disponible: {urna.contarAdorno(material, 'material')}")
+            indice += 1
+        indice = int(input("Indique el índice del material que quiere agregar: "))
+
+    # Validación
+    while indice < 1 or indice > len(materiales):
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    # Agregar el material seleccionado y eliminarlo del inventario
+    urna.agregarAdorno(materiales[indice - 1], "material")
+
+    # Imprimir flores y material seleccionados
+    print("Flores seleccionadas:", urna.getFloresSeleccionadas())
+    print("Material seleccionado:", urna.getMaterialSeleccionado())
+
+
+
     
 
 if __name__ == "__main__":
@@ -264,6 +385,42 @@ if __name__ == "__main__":
 
     cementerioF15Cu = Cementerio("Paz y Esperanza", 78, cuentaF1Ce11, "bronce", None, "cuerpos", funeraria1)
     cementerioF16Cu = Cementerio("Sendero de la Tranquilidad", 78, cuentaF1Ce12, "bronce", None, "cuerpos", funeraria1)
+
+    # Objetos Cementerio 1 Cenizas
+    urnaF1C11 = Urna("Urnita Eterna Paz", cementerioF11Ce, 70, 1, "fija")
+    urnaF1C12 = Urna("Urnita Memoria Serene", cementerioF11Ce, 80, 0, "ordinaria")
+    urnaF1C13 = Urna("Urnita Descanso Sagrado", cementerioF11Ce, 60, 2, "ordinaria")
+    urnaF1C14 = Urna("Urnita Luz Eterna", cementerioF11Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 2 Urna Cenizas
+    urnaF1C21 = Urna("Urnita Tranquilidad Infinita", cementerioF12Ce, 70, 1, "fija")
+    urnaF1C22 = Urna("Urnita Homenaje Perpetuo", cementerioF12Ce, 80, 0, "ordinaria")
+    urnaF1C23 = Urna("Urnita Amanecer Sereno", cementerioF12Ce, 70, 2, "ordinaria")
+    urnaF1C24 = Urna("Urnita Refugio del Alma", cementerioF12Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 3 Urna Cenizas
+    urnaF1C31 = Urna("Urnita Oasis de Recuerdo", cementerioF13Ce, 70, 1, "fija")
+    urnaF1C32 = Urna("Urnita Sombra Amada", cementerioF13Ce, 80, 0, "ordinaria")
+    urnaF1C33 = Urna("Urnita Caja de la Verdad", cementerioF13Ce, 50, 2, "ordinaria")
+    urnaF1C34 = Urna("Urnita Urna de la Democracia", cementerioF13Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 4 Urna Cenizas
+    urnaF1C41 = Urna("Urnita Voz del Pueblo", cementerioF14Ce, 70, 1, "fija")
+    urnaF1C42 = Urna("Urnita Cámara de Decisiones", cementerioF14Ce, 80, 0, "ordinaria")
+    urnaF1C43 = Urna("Urnita Bóveda de Opiniones", cementerioF14Ce, 70, 0, "ordinaria")
+    urnaF1C44 = Urna("Urnita Recinto Electoral", cementerioF14Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 5 Urna Cenizas
+    urnaF1C51 = Urna("Urnita Contenedor de Voluntades", cementerioF15Ce, 70, 1, "fija")
+    urnaF1C52 = Urna("Urnita Caja de Equidad", cementerioF15Ce, 80, 0, "ordinaria")
+    urnaF1C53 = Urna("Urnita de la Justicia", cementerioF15Ce, 70, 0, "ordinaria")
+    urnaF1C54 = Urna("Urnita Escudo Electoral", cementerioF15Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 6 Urna Cenizas
+    urnaF1C61 = Urna("Urnita Cápsula de Sueños", cementerioF16Ce, 70, 1, "fija")
+    urnaF1C62 = Urna("Urnita Templo de Belleza", cementerioF16Ce, 80, 0, "ordinaria")
+    urnaF1C63 = Urna("Urnita Misterio Dorado", cementerioF16Ce, 60, 0, "ordinaria")
+    urnaF1C64 = Urna("Urnita Joyero de Recuerdos", cementerioF16Ce, 60, 1, "fija")
 
     #CuentasBancarias empleados sepulteros funeraria 1
     cuentaF1ESe1= CuentaBancaria(562344, "Adrián Vargas",banco1, 20302)

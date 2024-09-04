@@ -55,12 +55,12 @@ class Cementerio(Establecimiento):
 
 
     def tipoUrna(self):
-        iglesia = self.getIglesia()
-        if iglesia == Iglesia.Budismo or iglesia == Iglesia.Cristianismo:
+        iglesia = (self.getIglesia()).name
+        if iglesia == "BUDISMO" or iglesia == "CRISTIANISMO":
             return self._inventario
-        elif iglesia == Iglesia.Hinduismo:
+        elif iglesia == "HINDUISMO":
             return self.urnasPorTipo("ordinaria")
-        elif iglesia == Iglesia.Taoismo:
+        elif iglesia == "TAOISMO":
             return self.urnasPorTipo("fija")
         else:
             return self._inventario

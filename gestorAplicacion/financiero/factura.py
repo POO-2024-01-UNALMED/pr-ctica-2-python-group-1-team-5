@@ -1,4 +1,4 @@
-from multimethod import multimethod
+#from multimethod import multimethod
 from datetime import datetime
 from typing import List
 
@@ -8,7 +8,7 @@ class Factura():
     facturas_creadas = 0
     facturas = []
      
-    @multimethod
+    #@multimethod
     def __init__(self, producto=None, precio=0, fecha=None, cliente=None, entidad=None, servicio="Inventario", lista_productos=None):
         # Atributos de instancia
         self._ID = Factura.facturas_creadas + 1

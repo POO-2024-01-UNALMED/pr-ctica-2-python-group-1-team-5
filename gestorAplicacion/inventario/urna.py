@@ -17,7 +17,7 @@ class Urna(Inventario):
             arregloAuxiliar = floresUrnas
             validacion = len(self.getFlores()) == 0
         else:
-            arregloAuxiliar = self._tipoMaterial()
+            arregloAuxiliar = self.tipoMaterial()
             validacion = len(self.getMaterial()) == 0
 
         if validacion:
