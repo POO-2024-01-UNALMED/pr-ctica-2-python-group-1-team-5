@@ -30,7 +30,11 @@ class Inventario(ABC):
         self._cliente = cliente
         self._cementerio.getClientes().append(cliente)
         cliente.setInventario(self)
-        self._cementerio.getFuneraria().getClientes().remove(cliente)
+        try:
+            self._cementerio.getFuneraria().getClientes().remove(cliente)
+        except ValueError:
+        # Si el elemento no está en la lista, simplemente no hacer nada
+            pass
 
     def determinarCategoria(self, edad) :
         if edad < 18:

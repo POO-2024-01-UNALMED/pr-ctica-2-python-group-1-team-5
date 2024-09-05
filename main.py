@@ -333,17 +333,19 @@ def funcionalidadExhumacion():
             cc = int(input("Ingrese CC del cliente: "))
             # Busca al cliente en todas funerarias
             prueba = Establecimiento("Establecimiento", None)
-            cliente = prueba.buscarCliente(cc)
-
+            cliente = prueba.buscarClientePorCC(cc)
+            
              # Opción en caso de no estar registrado
             if cliente is None:
                 print("El cliente no se encuentra registrado")
                 # Puedes volver a solicitar el CC si lo necesitas
 
             else:
+                print("Cliente Registrado:",cliente)
                 if cliente.getInventario() is None:
                     print("El cliente está registrado pero no es apto para la exhumación")
                     cliente = None
+            
 
     else:
         # Se escoge la funeraria con la que se va a realizar el procedimiento
@@ -377,7 +379,7 @@ def funcionalidadExhumacion():
             print()
             print("Clientes mayor de edad")
             # Busca en la funeraria seleccionada los cementerios de cuerpos
-            clientes = funeraria.buscarCliente("cuerpos", "adulto")
+            clientes = funeraria.buscarClienteCementerio("cuerpos", "adulto")
     
             indice = 1
             for auxCliente in clientes:
@@ -386,7 +388,7 @@ def funcionalidadExhumacion():
             print()
             print("Clientes menor de edad")
     
-            clientesNino = funeraria.buscarCliente("cuerpos", "niño")
+            clientesNino = funeraria.buscarClienteCementerio("cuerpos", "niño")
     
             for auxCliente in clientesNino:
                 print(f"[{indice}] {auxCliente}")
@@ -625,7 +627,165 @@ if __name__ == "__main__":
     funeraria1.agregarCliente(clienteF18)
     funeraria1.agregarCliente(clienteF19)
     funeraria1.agregarCliente(clienteF110)
+
+
+
+    #Funcionalidad exhumacion
+
+    #Familiares
+    # Familiares Mujeres
+    F11 = Familiar("Mario", 711, 50, None, "padre", 17)
+    F12 = Familiar("Alberto", 712, 32, None, "conyuge", 13)
+    F13 = Familiar("Carlos", 713, 37, None, "hermano", 17)
+    F14 = Familiar("Samantha", 714, 50, None, "padre", 17)
+
+    # Familiares para todos
+    F15 = Familiar("Samuel", 715, 60, None, "padre", 17)
+    F16 = Familiar("Alma", 716, 60, None, "padre", 13)
+    F17 = Familiar("Eduardo", 717, 37, None, "hermano", 17)
+    F18 = Familiar("Maria", 0,5,None, "hermano", F17)
+
+    # Familiares Hombres
+    F19 = Familiar("Armando", 718, 50, None, "padre", 17)
+    F110 = Familiar("Catalina", 719, 32, None, "conyuge", 13)
+    F111 = Familiar("Sebastian", 7110, 37, None, "hermano", 17)
+    F112 = Familiar("Alba", 7111, 25, None, "hijo", 17)
     
-   
-    funcionalidadCrematorio()
+    #Listas de familiares A
+    familiarA=[]
+    familiarA.append(F11)
+    familiarA.append(F12)
+    familiarA.append(F13)
+    familiarA.append(F14)
+		
+    #Listas de familiares B
+    familiarB=[]
+    familiarB.append(F15)
+    familiarB.append(F16)
+    familiarB.append(F17)
+    familiarB.append(F18)
+
+    #Listas de familiares C
+    familiarC=[]
+    familiarC.append(F19)
+    familiarC.append(F110)
+    familiarC.append(F111)
+    familiarC.append(F112)
+	
+
+
+    clienteF11E = Cliente("Juan Pérez", 511, 30, None, "oro", FamiliarF11)
+    clienteF12E = Cliente("Carlos Fernández", 512, 25, None, "oro", FamiliarF11)
+
+    clienteF13E = Cliente("Miguel Rodríguez", 513, 90, None, "plata", FamiliarF11)
+    clienteF14E = Cliente("Dani Morales", 514, 57, None, "plata", FamiliarF11)
+
+    clienteF15E = Cliente("Pedro González", 515, 50, None, "bronce", FamiliarF11)
+    clienteF16E = Cliente("José Martínez", 516, 30, None, "bronce", FamiliarF11)
+
+    clienteF17E = Cliente("María López",0,5,None,"oro",familiarB)
+    clienteF18E = Cliente("Carmen García",0,17,None,"oro",familiarB)
+										
+    clienteF19E = Cliente("Ana Torres",0,15,None,"bronce",familiarB)
+    clienteF110E = Cliente("Isabel Ramírez",0,13,None,"bronce",familiarB)
+		
+    clienteF111E = Cliente("Laura Morales",5111,90,None,"plata",familiarA)
+    clienteF112E = Cliente("Robert Jones",5112,57,None,"plata",familiarC)
+								
+    clienteF113E = Cliente("Olivia Miller",5113,35,None, "bronce",familiarC)
+    clienteF114E = Cliente("Sophia Moore",5114,50,None, "bronce",familiarC)
+		
+    clienteF115E = Cliente("James Smith",0,5,None,"oro",familiarB)
+    clienteF116E = Cliente("David Brown",0,17,None,"oro",familiarB)
+										
+    clienteF117E = Cliente("John Williams",0,15,None,"bronce",familiarB)
+    clienteF118E = Cliente("Michael Johnson",0,13,None,"bronce",familiarB)
+		
+
+		
+	#Cementerio 1 Cenizas
+    urnaF1C11E=Urna("Urnita de la Esperanza",cementerioF11Ce,70,1,"fija")
+    urnaF1C12E=Urna("Urnita del Futuro",cementerioF11Ce,80,0,"fija")
+    urnaF1C13E=Urna("default",cementerioF11Ce,50,0,"fija")
+		
+    urnaF1C14E=Urna("Urnita de la Esperanza",cementerioF11Ce,70,1,"fija")
+    urnaF1C15E=Urna("Urnita del Futuro",cementerioF11Ce,80,0,"fija")
+		
+	#Cementerio 2 Cenizas
+    urnaF1C21E=Urna("Urnita de la Sabiduría",cementerioF12Ce,70,1,"fija")
+    urnaF1C22E=Urna("Urnita de la Justicia",cementerioF12Ce,80,0,"fija")
+    urnaF1C23E=Urna("default",cementerioF12Ce,90,0,"fija")
+		
+    urnaF1C24E=Urna("Urnita de la Sabiduría",cementerioF12Ce,70,1,"fija")
+    urnaF1C25E=Urna("Urnita de la Justicia",cementerioF12Ce,80,0,"fija")
+		
+	#Cementerio 3 Cenizas
+    urnaF1C31E=Urna("Urnita de la Confianza",cementerioF13Ce,70,1,"fija")
+    urnaF1C32E=Urna("Urnita del Progreso",cementerioF13Ce,80,0,"fija")
+    urnaF1C33E=Urna("default",cementerioF13Ce,90,0,"fija")
+		
+    urnaF1C34E=Urna("Urnita de la Confianza",cementerioF13Ce,70,1,"fija")
+    urnaF1C35E=Urna("Urnita del Progreso",cementerioF13Ce,80,0,"fija")
+	
+		
+	#Cementerio 4 Cenizas
+    urnaF1C41E=Urna("Urnita de la Verdadera Voz",cementerioF14Ce,70,1,"fija")
+    urnaF1C42E=Urna("Urnita de la Decisión",cementerioF14Ce,80,0,"fija")
+    urnaF1C43E=Urna("default",cementerioF14Ce,60,0,"fija")
+		
+    urnaF1C44E=Urna("Urnita de la Verdadera Voz",cementerioF14Ce,70,1,"fija")
+    urnaF1C45E=Urna("Urnita de la Decisión",cementerioF14Ce,80,0,"fija")
+		
+	#Cementerio 5 Cenizas
+    urnaF1C51E=Urna("Urnita del Cambio",cementerioF15Ce,70,1,"fija")
+    urnaF1C52E=Urna("Urnita del Pueblo",cementerioF15Ce,80,0,"fija")
+    urnaF1C53E=Urna("default",cementerioF15Ce,60,0,"ordinaria")
+		
+    urnaF1C54E=Urna("Urnita del Cambio",cementerioF15Ce,70,1,"fija")
+    urnaF1C55E=Urna("Urnita del Pueblo",cementerioF15Ce,80,0,"fija")
+	
+		
+	#Cementerio 6 Cenizas
+    urnaF1C61E=Urna("Urnita de la Transparencia",cementerioF16Ce,70,1,"fija")
+    urnaF1C62E=Urna("Urnita del Compromiso",cementerioF16Ce,80,0,"fija")
+    urnaF1C63E=Urna("default",cementerioF16Ce,60,0,"ordinaria")
+		
+    urnaF1C64E=Urna("Urnita de la Transparencia",cementerioF16Ce,70,1,"fija")
+    urnaF1C65E=Urna("Urnita del Compromiso",cementerioF16Ce,80,0,"fija")
+	
+    #Agregar clientes
+		
+    urnaF1C11E.agregarCliente(clienteF11E)
+    urnaF1C12E.agregarCliente(clienteF12E)
+    urnaF1C13E.agregarCliente(clienteF13E)
+		
+    urnaF1C21E.agregarCliente(clienteF14E)
+    urnaF1C22E.agregarCliente(clienteF15E)
+    urnaF1C23E.agregarCliente(clienteF16E)
+		
+    urnaF1C31E.agregarCliente(clienteF17E)
+    urnaF1C32E.agregarCliente(clienteF18E)
+    urnaF1C33E.agregarCliente(clienteF19E)
+		
+    urnaF1C41E.agregarCliente(clienteF110E)
+    urnaF1C42E.agregarCliente(clienteF111E)
+    urnaF1C43E.agregarCliente(clienteF112E)
+		
+    urnaF1C51E.agregarCliente(clienteF113E)
+    urnaF1C52E.agregarCliente(clienteF114E)
+    urnaF1C53E.agregarCliente(clienteF115E)
+		
+    urnaF1C61E.agregarCliente(clienteF116E)
+    urnaF1C62E.agregarCliente(clienteF117E)
+    urnaF1C63E.agregarCliente(clienteF118E)
+	
+    print(cementerioF11Ce.getClientes())
+    
+    indice= int(input("Ingrese un número: "))
+    if indice==1:
+        funcionalidadCrematorio()
+    elif indice==2:
+        funcionalidadExhumacion()
+    else:
+        pass
 		

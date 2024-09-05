@@ -80,7 +80,7 @@ class Establecimiento:
 
 
 
-    def buscarClientePorCc(self, cc):
+    def buscarClientePorCC(self, cc):
         funerarias = Establecimiento.filtrarEstablecimiento("funeraria")
         cementerios = Establecimiento.filtrarEstablecimiento("cementerio")
         cliente = None

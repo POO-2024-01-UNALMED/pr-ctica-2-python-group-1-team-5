@@ -67,7 +67,7 @@ class Funeraria(Establecimiento):
             Establecimiento.buscarPorFuneraria(self, "cementerio"), tipoCementerio)
 
         for cementerio in cementerios:
-            cementerio = Cementerio(cementerio)  # Assume Cementerio is a proper class
+            #cementerio = Cementerio(cementerio)  # Assume Cementerio is a proper class
             clientes.extend(cementerio.buscarCliente(adultoNino))
 
         return clientes
