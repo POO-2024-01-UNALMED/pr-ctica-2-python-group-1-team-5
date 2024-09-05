@@ -112,8 +112,8 @@ class CuentaBancaria:
         cuentaAhorros.setSaldo(saldoCuentaAhorros)
     
         porcentajeInteres = self.getInteres()
-        interes = cuentaAhorros.obtenerSaldo() * porcentajeInteres
-        saldoFinal = cuentaAhorros.obtenerSaldo() - interes
+        interes = cuentaAhorros.getSaldo() * porcentajeInteres
+        saldoFinal = cuentaAhorros.getSaldo() - interes
         cuentaAhorros.setSaldo(saldoFinal)
 
     def transaccion(self, valor, cuentaCorriente, tipo):
@@ -159,10 +159,10 @@ class CuentaBancaria:
         return self.numero_cuenta
 
     def getTitular(self):
-        return self.titular
+        return self._titular
 
     def getBanco(self):
-        return self.banco
+        return self._banco
 
     def getBolsilloTrabajadores(self):
         return self.bolsillo_trabajadores
@@ -180,29 +180,29 @@ class CuentaBancaria:
         return self.bolsillo_pago_credito
 
     def getSaldo(self):
-        return self.saldo
+        return self._saldo
 
     def getCredito(self):
-        return self.credito
+        return self._credito
     
     def getInteres(self):
-        return self.interes
+        return self._interes
     
     def getCobroAdicional(self):
-        return self.cobroAdicional
+        return self._cobroAdicional
 
     # Setters
     def setNumeroCuenta(self, numero_cuenta):
-        self.numero_cuenta = numero_cuenta
+        self._numero_cuenta = numero_cuenta
 
     def setTitular(self, titular):
-        self.titular = titular
+        self._titular = titular
 
     def setBanco(self, banco):
-        self.banco = banco
+        self._banco = banco
 
     def setBolsilloTrabajadores(self, bolsillo_trabajadores):
-        self.bolsillo_trabajadores = bolsillo_trabajadores
+        self._bolsillo_trabajadores = bolsillo_trabajadores
         self.actualizarSaldo()
 
     def setBolsilloInventario(self, bolsillo_inventario):

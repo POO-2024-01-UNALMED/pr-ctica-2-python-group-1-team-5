@@ -13,6 +13,64 @@ from gestorAplicacion.personas.familiar import Familiar
 from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
 
+def funcionalidadFinanzas():
+    funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
+    print("Seleccione la funeraria correspondiente")
+    indice = 0
+    for auxFuneraria in funerarias:
+        indice += 1
+        print(f"[{indice}] {auxFuneraria}")
+    #Se escoge a la funeraria deseada
+    indiceFuneraria = int(input("Ingrese el índice correspondi1ente: "))
+
+    #Definir la funeraria
+    funeraria = funerarias[indiceFuneraria-1]
+
+    print("Que proceso quiere hacer ")
+    print("[1] Cobro clientes")
+    print("[2] Pagar facturas ")
+    print("[3] Pago empleados")
+    print("[4] credito")
+    print("[5] reajuste de dinero")
+
+    indiceProceso = int(input("Ingrese el índice correspondi1ente: "))
+
+    if indiceProceso == 1:
+        
+        cementerios = funeraria.cementerios()
+        print("Seleccione el cementerio correspondiente")
+        indice1 = 0
+        for cementerio in cementerios:
+            indice1 += 1
+            print(f"[{indice1}] {cementerio}")
+    
+    #Se escoge el cementerio deseada
+    indiceCementerio = int(input("Ingrese el índice correspondi1ente: "))
+
+    #Definir el cementerio
+    cementerio = cementerios[indiceCementerio-1]
+
+    clientes = cementerio.getClientes()
+    indice1000 = 0
+
+    if(len(clientes) > 0):
+        for cliente in clientes:
+            if(len(cliente.getListadoFacturas()) > 0):
+                indice1000 += 1
+                print(f"[{indice1000}] {cliente}")
+    
+    if(indice1000 == 0):
+        print("No hay clientes con facturas por pagar")
+        
+    else:
+        indiceCliente = int(input("Ingrese el índice del cliente: "))
+        cliente = clientes[indiceCliente-1]
+        funeraria.cobroServiciosClientes(cliente)
+        print("Cobro de  facturas del cliente: "+ cliente.getNombre()+", realizado correctamente")
+
+
+
+
 if __name__ == "__main__":
 
     print("Holaaaaa")
@@ -66,5 +124,24 @@ if __name__ == "__main__":
     funeraria1.agregarCliente(clienteF18)
     funeraria1.agregarCliente(clienteF19)
     funeraria1.agregarCliente(clienteF110)
+
+    facturas1 = Factura(None, 13233)
+
+    cuentaF1Ce1= CuentaBancaria(104525, "Jardín de la Eternidad",banco5, 2030)
+    cuentaF1Ce2= CuentaBancaria(567576, "Colina de la Paz",banco1, 20302)
+    cuentaF1Ce3= CuentaBancaria(145674, "Campos de tranquilidad",banco2, 20302)
+    cuentaF1Ce4= CuentaBancaria(123424, "Valle del Silencio",banco3, 20302)
+
+    cementerioF11Ce = Cementerio("Jardín de la Eternidad", 78, cuentaF1Ce1, "oro", None, "cenizas", funeraria1)
+    cementerioF12Ce = Cementerio("Colina de la Paz", 85, cuentaF1Ce2, "oro", None, "cenizas", funeraria1)
+
+    cementerioF13Ce = Cementerio("Campos de tranquilidad", 79, cuentaF1Ce3, "plata", None, "cenizas", funeraria1)
+    cementerioF14Ce = Cementerio("Valle del Silencio", 78, cuentaF1Ce4, "plata", None, "cenizas", funeraria1)
+     
+    cliente1000 = Cliente("Alejandro Rodríguez",123,30,cuenta5,"oro",None)
+    cementerioF11Ce.getClientes().insert(0, cliente1000)
+    cliente1000.agregarFactura(facturas1)
+
+    funcionalidadFinanzas()
 
     

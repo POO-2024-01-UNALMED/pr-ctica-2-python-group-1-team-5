@@ -1,14 +1,15 @@
-#from multimethod import multimethod
+#Para que les funcione el multimethod deben poner pip install multimethod en la terminal
+from multimethod import multimethod
 from datetime import datetime
 from typing import List
 
 class Factura():
     # Atributos de clase
-    IVA = 0.19
+    _IVA = 0.19
     facturas_creadas = 0
     facturas = []
      
-    #@multimethod
+    @multimethod
     def __init__(self, producto=None, precio=0, fecha=None, cliente=None, entidad=None, servicio="Inventario", lista_productos=None):
         # Atributos de instancia
         self._ID = Factura.facturas_creadas + 1
@@ -33,15 +34,15 @@ class Factura():
         Factura.facturas.append(self)
     #calcula el total del precio de la factura
     def total_factura(self):
-        self.total = sum(producto.getPrecio() * producto.getCantidad() for producto in self.lista_productos)
-        return self.total
+        self._total = sum(producto.getPrecio() * producto.getCantidad() for producto in self.lista_productos)
+        return self._total
     
     def aplicar_descuento(self, porcentaje):
         if 0 < porcentaje <= 100:
-            self.precio -= self.precio * (porcentaje / 100)
+            self._precio -= self._precio * (porcentaje / 100)
     #aplica el iva al precio total
     def calcular_total(self):
-        self.total = self.precio + (self.precio * self.IVA)
+        self._total = self._precio + (self._precio * self._IVA)
 
     def agregar_producto(self, producto):
         self.lista_productos.append(producto)

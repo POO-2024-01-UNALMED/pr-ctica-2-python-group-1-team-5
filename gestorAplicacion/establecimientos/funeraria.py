@@ -78,12 +78,22 @@ class Funeraria(Establecimiento):
                 return cliente
         return None
     
-    def cobroServiciosClientes(cliente):
+    def cementerios(self):
+        todosCementerios = self.filtrarEstablecimiento("cementerio")
+        cementeriosFuneraria = []
+        for i in range(len(todosCementerios) - 1, -1, -1):
+            cementerio = todosCementerios[i]
+            if(self == cementerio.getFuneraria()):
+                cementeriosFuneraria.insert(0, cementerio)
+        
+        return cementeriosFuneraria
+
+    def cobroServiciosClientes(self, cliente):
         for i in range(len(cliente._listadoFacturas) - 1, -1, -1):
             factura = cliente._listadoFacturas[i]
             totalFactura = factura._total
             if (cliente._cuentaBancaria is not None and
-                totalFactura <= cliente._cuentaBancaria.obtenerSaldo() and
+                totalFactura <= cliente._cuentaBancaria.getSaldo() and
                 cliente._edad >= 18):
                 cliente._cuentaBancaria.transaccionCuentaAhorros(totalFactura, Funeraria._cuentaAhorros)
                 cliente._listadoFacturas.remove(factura)
