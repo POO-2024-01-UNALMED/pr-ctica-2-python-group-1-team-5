@@ -417,18 +417,185 @@ def funcionalidadExhumacion():
             # Se traen todos los cementerios por funeraria
             cementeriosPorFuneraria = Establecimiento.buscarPorFuneraria(funeraria, "cementerio")
 
-        tipo = None
-        mensaje1 = None
-        mensaje2 = None
+            tipo = None
+            mensaje1 = None
+            mensaje2 = None
 
-        if indice == 1:
-            tipo = "cuerpos"
-            mensaje1 = "Cementerios de cuerpos"
-            mensaje2 = "Tumbas"
-        elif indice == 2:
-            tipo = "cenizas"
-            mensaje1 = "Cementerios de cenizas"
-            mensaje2 = "Urnas"
+            if indice == 1:
+                tipo = "cuerpos"
+                mensaje1 = "Cementerios de cuerpos"
+                mensaje2 = "Tumbas"
+            elif indice == 2:
+                tipo = "cenizas"
+                mensaje1 = "Cementerios de cenizas"
+                mensaje2 = "Urnas"
+
+            # Se traen todos los cementerios de la funeraria con el atributo de tipo correspondiente ("cuerpos" o "cenizas")
+            cementerios = Cementerio.cementerioPorTipo(cementeriosPorFuneraria, tipo)
+
+            print(mensaje1)
+            indice = 1
+            for auxCementerio in cementerios:
+            # Se muestran los cementerios correspondientes y se busca la cantidad que se encuentra en la lista de inventario que tiene como valor "default" en su atributo nombre
+                cantidadDefault = len((auxCementerio).inventarioDefault())
+                print(f"[{indice}] {auxCementerio} - Cantidad de {mensaje2} marcadas como default: {cantidadDefault}")
+                indice += 1
+
+            indice = int(input("Ingrese el índice correspondiente: "))
+
+            # Validación de índice
+            while indice < 1 or indice > len(cementerios):
+                indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+            # Asignación de cementerio escogido
+            cementerio = cementerios[indice - 1]
+            print(f"{mensaje2} marcadas como default")
+
+            # Búsqueda de inventario que tenga como valor "default" en su atributo nombre
+            inventarioDefault = cementerio.inventarioDefault()
+
+            indice = 1
+            for auxTumbaUrna in inventarioDefault:
+                print(f"[{indice}] {mensaje2} marcadas como {auxTumbaUrna} - Cliente: {auxTumbaUrna.getCliente()}")
+                indice += 1
+
+            indice = int(input("Ingrese el índice correspondiente: "))
+
+            #    Validación de índice
+            while indice < 1 or indice > len(inventarioDefault):
+                indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+            # Asignación del cliente
+            cliente = inventarioDefault[indice - 1].getCliente()
+            print(f"Cliente seleccionado: {cliente} desde cementerio {tipo}: {cementerio} ")
+
+
+    #Se asigna el objeto de tipo Urna o Tumba que tenga agregado el cliente
+    urnaTumba=cliente.getInventario()
+    #Asignar cementerio
+    cementerio=cliente.getInventario().getCementerio()
+    # Proceso de exhumación del cuerpo
+
+    # Datos para la exhumación
+    pesoEstatura = 0.0
+    edad = 0
+    tipo1 = None
+    tipo2 = None
+
+    # Iglesias disponibles
+    iglesias = []
+
+    print()
+    print(f"Opciones para la exhumación del cuerpo del cliente {cliente.getNombre()}")
+
+    maxOpcion = 1
+    print("[1] Trasladar al cliente a una Urna fija en otro cementerio de cenizas")
+    mensaje = "Urna"
+
+    # Si el cliente tiene agregado un objeto de tipo Tumba es porque está en un cementerio de cuerpos y puede ser llevado a otro,
+    # pero si tiene agregado un objeto de tipo Urna no puede ser trasladado a un cementerio de cuerpos
+    if isinstance(urnaTumba, Tumba):
+        print("[2] Trasladar al cliente a una Tumba en otro cementerio de cuerpos")
+        mensaje = "Tumba"
+        maxOpcion = 2
+
+    indice = int(input("Ingrese el índice correspondiente: "))
+
+    # Validación de índice
+    while indice < 1 or indice > maxOpcion:
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    if indice == 1:
+        pesoEstatura = float(input("Ingrese el peso del cliente: "))
+        tipo1 = "cenizas"
+        tipo2 = "urna"
+
+        # Establecer iglesia para determinar religión del cliente 
+        print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
+        indice = 1
+        max_opcion = 0
+        iglesias = []
+        for auxIglesia in Iglesia:
+            # Se imprimen y añaden a la lista solo las iglesias que permiten la cremación como acto final de la vida
+            if auxIglesia.getCremacion():
+                iglesias.append(auxIglesia)
+                print(f"[{indice}] {auxIglesia.name}")
+                indice += 1
+                max_opcion += 1
+
+    elif indice == 2:
+        pesoEstatura = float(input("Ingrese la estatura del cliente: "))
+        tipo1 = "cuerpos"
+        tipo2 = "urna"
+
+        # Establecer iglesia para determinar religión del cliente 
+        print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
+        indice = 1
+        max_opcion = 0
+        iglesias = []
+        for auxIglesia in Iglesia:
+            print(f"[{indice}] {auxIglesia.name}")
+            iglesias.append(auxIglesia)
+            indice += 1
+            max_opcion += 1
+
+    # Fin del switch principal
+
+    print("Indique el índice de la religión escogida: ")
+    indice = int(input())
+
+    # Validación del índice
+    while indice < 1 or indice > max_opcion:
+        print("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: ")
+        indice = int(input())
+
+    cementerio.setIglesia(iglesias[indice - 1])
+
+    edad = cliente.getEdad()
+
+    print(f"La afiliación del cliente es {cliente.getAfiliacion()} se buscarán cementerios {cliente.getAfiliacion()} para su traslado")
+
+    # Busco los cementerios del tipo solicitado en la funeraria que cumplan con las restricciones solicitadas 
+    cementeriosPorTipo = cementerio.getFuneraria().buscarCementerios(tipo1, cliente)
+    
+    # Elimino el cementerio en el que actualmente está el cliente
+    try:
+        cementeriosPorTipo.remove(cementerio)
+    except:
+        pass
+
+    cementerios = []
+
+    for auxCementerio in cementeriosPorTipo:
+        auxCementerio2 = auxCementerio
+        if len(auxCementerio2.disponibilidadInventario(tipo2, pesoEstatura, edad)) != 0:
+            cementerios.append(auxCementerio2)
+
+    print()
+
+    if len(cementerios) == 0:
+        print("No se encontró inventario disponible")
+        print("Se deberá añadir inventario tipo default")
+        for auxCementerio in cementeriosPorTipo:
+            if tipo1 == "cenizas":
+                Urna("default", auxCementerio, pesoEstatura, edad, "fija")
+            else:
+                Tumba("default", auxCementerio, pesoEstatura, edad)
+            cementerios.append(auxCementerio)
+
+    # print("cementerios: ", cementerios)
+
+    indice = 1
+    for auxCementerio in cementerios:
+        auxCementerio2 = auxCementerio
+        print(f"[{indice}] {auxCementerio2} Inventario disponible: ({len(auxCementerio2.disponibilidadInventario(tipo2, pesoEstatura, edad))})")
+        indice += 1
+
+    
+    indice = int(input("Ingrese el indice del cementerio: "))
+
+    while indice < 1 or indice > len(cementerios):
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
 
 
     
@@ -778,8 +945,112 @@ if __name__ == "__main__":
     urnaF1C61E.agregarCliente(clienteF116E)
     urnaF1C62E.agregarCliente(clienteF117E)
     urnaF1C63E.agregarCliente(clienteF118E)
+
+
+    # Clientes para tumbas
+
+    clienteF11ET = Cliente("Ezequiel Andrade", 611, 30, None, "oro", familiarC)
+    clienteF12ET = Cliente("Damián Vargas", 612, 25, None, "oro", familiarC)
+
+    clienteF13ET = Cliente("Octavio Salazar", 613, 90, None, "plata", familiarB)
+    clienteF14ET = Cliente("Leonardo Paredes", 614, 57, None, "plata", familiarB)
+
+    clienteF15ET = Cliente("Ulises Ortega", 615, 21, None, "bronce", familiarC)
+    clienteF16ET = Cliente("Valeria Castro", 616, 50, None, "bronce", familiarC)
+
+    clienteF17ET = Cliente("Delfina Méndez", 0,5, None,"oro", familiarB)
+    clienteF18ET = Cliente("Mireya Delgado", 0,17,None, "oro", familiarB)
+
+    clienteF19ET = Cliente("Renata Aguirre",0, None,15, "plata", familiarB)
+    clienteF110ET = Cliente("Alma Guzmán", 0, None,13, "plata", familiarB)
+
+    clienteF111ET = Cliente("Leo Cruz", 6111, 90, None, "plata", familiarB)
+    clienteF112ET = Cliente("Luna Martínez", 6112, 57, None, "plata", familiarB)
+
+    clienteF113ET = Cliente("Lucas Moreno", 6113, 21, None, "bronce", familiarC)
+    clienteF114ET = Cliente("Sofía Rodríguez", 1238, 50, None, "bronce", familiarC)
+
+    # Clientes F1 - Menores de edad
+    clienteF115ET = Cliente("Aitana Gómez", 0,5,None, "oro", familiarB)
+    clienteF116ET = Cliente("Zoe García", 0,17, None,"oro", familiarB)
+
+    clienteF117ET = Cliente("Ethan Ortega", 0,15,None, "plata", familiarB)
+    clienteF118ET = Cliente("Dylan Mendoza", 0,13,None, "plata", familiarB)
+
+    # Cementerio 1
+    tumbaF1C11E = Tumba("Tumbita Lugar de Paz", cementerioF11Cu, 1.70, 1)
+    tumbaF1C12E = Tumba("Tumbita Descanso Eterno", cementerioF11Cu, 1.50, 0)
+    tumbaF1C13E = Tumba("default", cementerioF11Cu, 1.70, 0)
+
+    tumbaF1C15E = Tumba("Tumbita Lugar de Paz", cementerioF11Cu, 1.70, 1)
+    tumbaF1C16E = Tumba("Tumbita Descanso Eterno", cementerioF11Cu, 1.50, 0)
+
+    # Cementerio 2
+    tumbaF1C21E = Tumba("Tumbita Siempre Recordado", cementerioF12Cu, 1.70, 1)
+    tumbaF1C22E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF12Cu, 1.60, 0)
+    tumbaF1C23E = Tumba("default", cementerioF12Cu, 1.60, 0)
+
+    tumbaF1C25E = Tumba("Tumbita Siempre Recordado", cementerioF12Cu, 1.70, 1)
+    tumbaF1C26E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF12Cu, 1.60, 0)
+
+    # Cementerio 3
+    tumbaF1C31E = Tumba("Tumbita Lugar de Serenidad", cementerioF13Cu, 1.70, 1)
+    tumbaF1C32E = Tumba("Tumbita Eterna Paz", cementerioF13Cu, 1.65, 0)
+    tumbaF1C33E = Tumba("default", cementerioF13Cu, 1.75, 0)
+
+    tumbaF1C34E = Tumba("Tumbita Lugar de Serenidad", cementerioF13Cu, 1.70, 1)
+    tumbaF1C35E = Tumba("Tumbita Eterna Paz", cementerioF13Cu, 1.65, 0)
+
+    # Cementerio 4
+    tumbaF1C41E = Tumba("Tumbita Un Alma Bella", cementerioF14Cu, 1.70, 1)
+    tumbaF1C42E = Tumba("Tumbita En Paz y Serenidad", cementerioF14Cu, 1.70, 0)
+    tumbaF1C43E = Tumba("default", cementerioF14Cu, 1.55, 0)
+
+    tumbaF1C44E = Tumba("Tumbita Un Alma Bella", cementerioF14Cu, 1.70, 1)
+    tumbaF1C45E = Tumba("Tumbita En Paz y Serenidad", cementerioF14Cu, 1.70, 0)
+
+    # Cementerio 5
+    tumbaF1C51E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF15Cu, 1.70, 1)
+    tumbaF1C52E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF15Cu, 1.50, 0)
+    tumbaF1C53E = Tumba("default", cementerioF15Cu, 1.55, 0)
+
+    tumbaF1C54E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF15Cu, 1.70, 1)
+    tumbaF1C55E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF15Cu, 1.50, 0)
+
+    # Cementerio 6
+    tumbaF1C61E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF16Cu, 1.70, 1)
+    tumbaF1C62E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF16Cu, 1.60, 0)
+    tumbaF1C63E = Tumba("default", cementerioF16Cu, 1.60, 0)
+
+    tumbaF1C64E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF16Cu, 1.70, 1)
+    tumbaF1C65E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF16Cu, 1.60, 0)
+
+    # Agregar clientes a tumbas
+    tumbaF1C11E.agregarCliente(clienteF11ET)
+    tumbaF1C12E.agregarCliente(clienteF12ET)
+    tumbaF1C13E.agregarCliente(clienteF13ET)
+
+    tumbaF1C21E.agregarCliente(clienteF14ET)
+    tumbaF1C22E.agregarCliente(clienteF15ET)
+    tumbaF1C23E.agregarCliente(clienteF16ET)
+
+    tumbaF1C31E.agregarCliente(clienteF17ET)
+    tumbaF1C32E.agregarCliente(clienteF18ET)
+    tumbaF1C33E.agregarCliente(clienteF19ET)
+
+    tumbaF1C41E.agregarCliente(clienteF110ET)
+    tumbaF1C42E.agregarCliente(clienteF111ET)
+    tumbaF1C43E.agregarCliente(clienteF112ET)
+
+    tumbaF1C51E.agregarCliente(clienteF113ET)
+    tumbaF1C52E.agregarCliente(clienteF114ET)
+    tumbaF1C53E.agregarCliente(clienteF115ET)
+
+    tumbaF1C61E.agregarCliente(clienteF116ET)
+    tumbaF1C62E.agregarCliente(clienteF117ET)
+    tumbaF1C63E.agregarCliente(clienteF118ET)
 	
-    print(cementerioF11Ce.getClientes())
+    
     
     indice= int(input("Ingrese un número: "))
     if indice==1:

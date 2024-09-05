@@ -67,7 +67,7 @@ class Cementerio(Establecimiento):
     
     def inventarioDefault(self) :
         porDefecto = []
-        auxInventario = self.urnasPorTipo("fija") if self.tipo == "cenizas" else self._inventario
+        auxInventario = self.urnasPorTipo("fija") if self._tipo == "cenizas" else self._inventario
         for item in auxInventario:
             if item.getNombre() == "default" and item.getCliente() is not None:
                 porDefecto.append(item)
