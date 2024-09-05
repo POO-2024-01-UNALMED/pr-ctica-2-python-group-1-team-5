@@ -24,9 +24,10 @@ frameIzquierda.pack(side="left",expand = True, fill ="both",padx=5,pady=5)
 frameDerecha=tk.Frame(ventana,bg="black")
 frameDerecha.pack(side="right",expand=True,fill="both",padx=5,pady=5)
 
+
 #Frame secundario arriba izquierda (P3)
 frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white")
-frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.4) 
+frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.67) 
 
 #Frame secundario abajo izquierda (P4)
 frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white")
