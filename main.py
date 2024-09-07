@@ -345,6 +345,8 @@ def funcionalidadExhumacion():
                 if cliente.getInventario() is None:
                     print("El cliente está registrado pero no es apto para la exhumación")
                     cliente = None
+                else:
+                    funeraria = cliente.getInventario().getCementerio().getFuneraria()
             
 
     else:
@@ -526,7 +528,7 @@ def funcionalidadExhumacion():
     elif indice == 2:
         pesoEstatura = float(input("Ingrese la estatura del cliente: "))
         tipo1 = "cuerpos"
-        tipo2 = "urna"
+        tipo2 = "tumba"
 
         # Establecer iglesia para determinar religión del cliente 
         print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
@@ -550,7 +552,9 @@ def funcionalidadExhumacion():
         indice = int(input())
 
     cementerio.setIglesia(iglesias[indice - 1])
-
+    #############################################################
+    print(f"Iglesia seleccionada: {(cementerio.getIglesia()).name}")
+#########################################################################
     edad = cliente.getEdad()
 
     print(f"La afiliación del cliente es {cliente.getAfiliacion()} se buscarán cementerios {cliente.getAfiliacion()} para su traslado")
@@ -568,6 +572,7 @@ def funcionalidadExhumacion():
 
     for auxCementerio in cementeriosPorTipo:
         auxCementerio2 = auxCementerio
+        auxCementerio.setIglesia(iglesias[indice - 1])
         if len(auxCementerio2.disponibilidadInventario(tipo2, pesoEstatura, edad)) != 0:
             cementerios.append(auxCementerio2)
 
@@ -578,9 +583,10 @@ def funcionalidadExhumacion():
         print("Se deberá añadir inventario tipo default")
         for auxCementerio in cementeriosPorTipo:
             if tipo1 == "cenizas":
-                Urna("default", auxCementerio, pesoEstatura, edad, "fija")
+                auxCementerio.agregarInventario(Urna("default", auxCementerio, pesoEstatura, edad, "fija"))
+
             else:
-                Tumba("default", auxCementerio, pesoEstatura, edad)
+                auxCementerio.agregarInventario(Tumba("default", auxCementerio, pesoEstatura, edad))
             cementerios.append(auxCementerio)
 
     # print("cementerios: ", cementerios)
@@ -596,6 +602,134 @@ def funcionalidadExhumacion():
 
     while indice < 1 or indice > len(cementerios):
         indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    # Eliminar cliente
+    cementerio.getClientes().remove(cliente)
+
+    # Obtener nuevo cementerio
+    nuevoCementerio = cementerios[indice - 1]
+
+    # Escoger opción más adecuada para cliente en cuánto a tamaño de la tumba comparado con estatura del cliente
+    print(f"[1] Opción más adecuada en cuanto a tamaño: {nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))}")
+    print("[2] Buscar entre las otras opciones")
+
+    # Ingreso del índice
+    indice = int(input("Ingrese el índice correspondiente: "))
+
+    # Validación de índice
+    while indice < 1 or indice > 2:
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    # Selección basada en el índice
+    if indice == 1:
+        nuevaUrnaTumba = nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+    elif indice == 2:
+        disponible = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
+        recomendacion = nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+        disponible.remove(recomendacion)
+    
+        # Imprimir opciones disponibles
+        for i, auxInventario in enumerate(disponible, start=1):
+            print(f"[{i}] {auxInventario}")
+    
+        # Ingreso del índice para la opción 2
+        indice = int(input("Ingrese el índice correspondiente: "))
+    
+        # Validación de índice
+        while indice < 1 or indice > len(disponible):
+            indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+    
+        nuevaUrnaTumba = disponible[indice - 1]
+
+    #Asignacion de tumba
+    nuevaUrnaTumba.agregarCliente(cliente)
+	
+    print(f"Se realizó correctamente el cambio al cementerio {nuevoCementerio}")
+    urnaTumba.setCliente(None)
+
+    nuevoCementerio.generarHoras()
+
+    indice = 1
+    for hora in nuevoCementerio.getHorarioEventos():
+        indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
+        horaFormateada = hora  # Formato 12-horas con AM/PM
+        print(f"[{indice}] {horaFormateada} {indicador}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice
+    indice = int(input("Ingrese el índice para escoger el horario: "))
+
+    #Se cambia el horario de crematorio
+    nuevoCementerio.setHoraEvento(nuevoCementerio.getHorarioEventos()[indice-1])
+    #Se elimina el horario de Horario eventos
+    nuevoCementerio.eliminarHorario(nuevoCementerio.getHorarioEventos()[indice-1])
+
+	#Seleccionar sepulturero
+	
+    print()
+    print("Se inciará con el proceso de selección de empleados")
+		
+    print()
+    print("Seleccione el empleado sepulturero disponible")
+
+    print("Empleados disponibles en la jornada seleccionada")
+    empleados =funeraria.buscarEmpleadosPorHoras(nuevoCementerio.getHoraEvento(), "sepulturero")
+    indice = 1
+    for auxEmpleado in empleados:
+        print(f"[{indice}] {auxEmpleado}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice del empleado deseado
+    indice = int(input("Ingrese el índice del empleado deseado: "))
+    nuevoCementerio.setEmpleado(empleados[indice-1])
+
+    print()
+    print("Seleccione el empleado forense disponible")
+
+    print("Empleados disponibles en la jornada seleccionada")
+    empleados =funeraria.buscarEmpleadosPorHoras(nuevoCementerio.getHoraEvento(), "forense")
+    indice = 1
+    for auxEmpleado in empleados:
+        print(f"[{indice}] {auxEmpleado}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice del empleado deseado
+    indice = int(input("Ingrese el índice del empleado deseado: "))
+    nuevoCementerio.setEmpleado(empleados[indice-1])
+	
+    #Seleccionar al padre u obispo 
+    categoria=cliente.getInventario().getCategoria()
+    empleado=None
+    if(categoria==0):
+        empleado="obispo"
+    else: 
+        empleado="padre"
+	
+    print(f"Dada la categoria [{categoria}] su ceremonia puede ser celebrada por los siguientes religiosos")
+	
+    empleados = cementerio.getFuneraria().buscarEmpleadosPorHoras(nuevoCementerio.getIglesia().duracionEvento(nuevoCementerio.getHoraEvento()), empleado)
+ 
+    indice=1
+    for auxEmpleado in empleados:
+        if(categoria==0):
+            print(f"[{indice}] {cementerio.getIglesia().getReligiosoAltoRango()} {auxEmpleado}")
+            indice+=1
+        else:
+            print(f"[{indice}] {cementerio.getIglesia().getReligioso()} {auxEmpleado}")
+            indice+=1
+		
+	
+    indice = int(input("Ingrese el índice para escoger al religioso: "))
+	
+    #Validación
+    while indice < 1 or indice > len(empleados):
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    print()
+	
+    print("Dados los datos se organizará como estarán distribuidos los familiares en la Iglesia")
+    print(nuevoCementerio.organizarIglesia(cliente))
+		
 
 
     
@@ -625,6 +759,99 @@ if __name__ == "__main__":
     funeraria1= Funeraria("Eterna Paz",cuentaF1,cuentaF4)
     funeraria2= Funeraria("Caminos de Luz",cuentaF2,cuentaF4)
     funeraria3= Funeraria("Recuerdos Eternos",cuentaF3,cuentaF4)
+
+
+    # Empleados generales
+
+    # Empleados conductor
+    empleadoC1 = Empleado("Bruno Salgado", None, "mañana", "conductor", 10000, funeraria1)
+    empleadoC2 = Empleado("Bárbara López", None, "mañana", "conductor", 10000, funeraria1)
+    empleadoC3 = Empleado("Óscar Morales", None, "tarde", "conductor", 10000, funeraria1)
+    empleadoC4 = Empleado("Dulce María Reyes", None, "tarde", "conductor", 10000, funeraria1)
+    empleadoC5 = Empleado("Evelyn Rodríguez", None, "noche", "conductor", 10000, funeraria1)
+    empleadoC6 = Empleado("Kevin Castillo", None, "noche", "conductor", 10000, funeraria1)
+
+    # Empleados forense
+    empleadoF1 = Empleado("Ana García", None, "mañana", "forense", 1000, funeraria1)
+    empleadoF2 = Empleado("Luca Rossi", None, "mañana", "forense", 1000, funeraria1)
+    empleadoF3 = Empleado("Ayesha Khan", None, "tarde", "forense", 1000, funeraria1)
+    empleadoF4 = Empleado("Jorge Martínez", None, "tarde", "forense", 1000, funeraria1)
+    empleadoF5 = Empleado("Sofia Petrov", None, "noche", "forense", 1000, funeraria1)
+    empleadoF6 = Empleado("Haruto Tanaka", None, "noche", "forense", 1000, funeraria1)
+
+    # Empleados padre
+    empleadoP1 = Empleado("Elena Ivanova", None, "mañana", "padre", 1000, funeraria1)
+    empleadoP2 = Empleado("Amir Reza", None, "mañana", "padre", 1000, funeraria1)
+    empleadoP3 = Empleado("Mia Eriksson", None, "tarde", "padre", 1000, funeraria1)
+    empleadoP4 = Empleado("Dulce María Reyes", None, "tarde", "padre", 1000, funeraria1)
+    empleadoP5 = Empleado("Nina Jovanović", None, "noche", "padre", 1000, funeraria1)
+    empleadoP6 = Empleado("Kevin Castillo", None, "noche", "padre", 1000, funeraria1)
+
+    # Empleados obispo
+    empleadoO1 = Empleado("Eli Cohen", None, "mañana", "obispo", 1000, funeraria1)
+    empleadoO2 = Empleado("Bárbara López", None, "mañana", "obispo", 1000, funeraria1)
+    empleadoO3 = Empleado("Marco Bianchi", None, "tarde", "obispo", 1000, funeraria1)
+    empleadoO4 = Empleado("Zara Ahmed", None, "tarde", "obispo", 1000, funeraria1)
+    empleadoO5 = Empleado("Evelyn Rodríguez", None, "noche", "obispo", 1000, funeraria1)
+    empleadoO6 = Empleado("Raj Patel", None, "noche", "obispo", 1000, funeraria1)
+
+    # Agregar empleados a funeraria 2
+    funeraria2.agregarEmpleado(empleadoC1)
+    funeraria2.agregarEmpleado(empleadoC2)
+    funeraria2.agregarEmpleado(empleadoC3)
+    funeraria2.agregarEmpleado(empleadoC4)
+    funeraria2.agregarEmpleado(empleadoC5)
+    funeraria2.agregarEmpleado(empleadoC6)
+
+    funeraria2.agregarEmpleado(empleadoF1)
+    funeraria2.agregarEmpleado(empleadoF2)
+    funeraria2.agregarEmpleado(empleadoF3)
+    funeraria2.agregarEmpleado(empleadoF4)
+    funeraria2.agregarEmpleado(empleadoF5)
+    funeraria2.agregarEmpleado(empleadoF6)
+
+    funeraria2.agregarEmpleado(empleadoP1)
+    funeraria2.agregarEmpleado(empleadoP2)
+    funeraria2.agregarEmpleado(empleadoP3)
+    funeraria2.agregarEmpleado(empleadoP4)
+    funeraria2.agregarEmpleado(empleadoP5)
+    funeraria2.agregarEmpleado(empleadoP6)
+
+    funeraria2.agregarEmpleado(empleadoO1)
+    funeraria2.agregarEmpleado(empleadoO2)
+    funeraria2.agregarEmpleado(empleadoO3)
+    funeraria2.agregarEmpleado(empleadoO4)
+    funeraria2.agregarEmpleado(empleadoO5)
+    funeraria2.agregarEmpleado(empleadoO6)
+
+    # Agregar empleados a funeraria 3
+    funeraria3.agregarEmpleado(empleadoC1)
+    funeraria3.agregarEmpleado(empleadoC2)
+    funeraria3.agregarEmpleado(empleadoC3)
+    funeraria3.agregarEmpleado(empleadoC4)
+    funeraria3.agregarEmpleado(empleadoC5)
+    funeraria3.agregarEmpleado(empleadoC6)
+
+    funeraria3.agregarEmpleado(empleadoF1)
+    funeraria3.agregarEmpleado(empleadoF2)
+    funeraria3.agregarEmpleado(empleadoF3)
+    funeraria3.agregarEmpleado(empleadoF4)
+    funeraria3.agregarEmpleado(empleadoF5)
+    funeraria3.agregarEmpleado(empleadoF6)
+
+    funeraria3.agregarEmpleado(empleadoP1)
+    funeraria3.agregarEmpleado(empleadoP2)
+    funeraria3.agregarEmpleado(empleadoP3)
+    funeraria3.agregarEmpleado(empleadoP4)
+    funeraria3.agregarEmpleado(empleadoP5)
+    funeraria3.agregarEmpleado(empleadoP6)
+
+    funeraria3.agregarEmpleado(empleadoO1)
+    funeraria3.agregarEmpleado(empleadoO2)
+    funeraria3.agregarEmpleado(empleadoO3)
+    funeraria3.agregarEmpleado(empleadoO4)
+    funeraria3.agregarEmpleado(empleadoO5)
+    funeraria3.agregarEmpleado(empleadoO6)
 
     #Cuentas crematorio Funeraria 1
     cuentaF1Cr1= CuentaBancaria(103435, "Crematorio del Silencio",banco5, 2030)

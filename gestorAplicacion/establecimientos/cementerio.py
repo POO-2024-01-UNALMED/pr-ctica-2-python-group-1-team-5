@@ -82,7 +82,7 @@ class Cementerio(Establecimiento):
                 urnasPorTipo.append(item)
         return urnasPorTipo
 
-    def organizarIglesia(self, cliente) -> str:
+    def organizarIglesia(self, cliente):
         familiares = cliente.getFamiliares()
         sillas = self.getIglesia().getSillas()
         organizacion = ""
