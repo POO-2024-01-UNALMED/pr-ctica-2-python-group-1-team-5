@@ -111,7 +111,62 @@ def funcionalidadFinanzas():
             indiceEmpleado = int(input("Ingrese el índice correspondiente: "))
             empleado = empleadosDispo[indiceEmpleado-1]
             print(funeraria.pagoTrabajadores(empleado))
+    
+    elif indiceProceso == 4:
+        continuar3 = True
+        while continuar3:
+            print("¿Qué proceso quiere hacer?")
+            print("[1] Pedir crédito")
+            print("[2] Pagar crédito")
+            print("[3] Ver crédito")
+            indiceCredito = int(input("Ingrese el índice correspondiente: "))
+            
+            creditos = funeraria.getCuentaCorriente().getCredito()
+            
+            if indiceCredito == 1:
+                print(funeraria.pedirCredito())
+            elif indiceCredito == 2:
+                if len(creditos) > 0:
+                    for i in range(len(creditos)):
+                        factura = creditos[i]
+                        print(f"[{i+1}] Credito con ID: {factura.getID()}")
+    
+                    indiceFactura = int(input("Ingrese el índice del credito: "))
 
+    
+                    print("Que porcentaje desea pagar ")
+                    print("[1] 100%")
+                    print("[2] 80%")
+                    print("[3] 60%")
+                    print("[4] 40%")
+                    print("[5] 20%")
+
+                    indicePorcentaje = int(input("Ingrese el índice correspondiente: "))
+
+                    if indicePorcentaje == 1:
+                        print(funeraria.pagarCredito(indiceFactura - 1, 1.0))
+
+                    elif indicePorcentaje == 2:
+                        print(funeraria.pagarCredito(indiceFactura - 1, 0.8))
+
+                    elif indicePorcentaje == 3:
+                        print(funeraria.pagarCredito(indiceFactura - 1, 0.6))
+
+                    elif indicePorcentaje == 4:
+                        print(funeraria.pagarCredito(indiceFactura - 1, 0.4))
+
+                    elif indicePorcentaje == 5:
+                        print(funeraria.pagarCredito(indiceFactura - 1, 0.19999999999999996))
+
+            elif indiceCredito == 3:
+               pass
+
+            lola = input("Desea realizar otra accion de credito? (s/n): ")
+
+            if lola == "s":
+                continuar3 = True
+            else:
+                continuar3 = False
                 
 
 
@@ -127,7 +182,7 @@ if __name__ == "__main__":
     banco4 = Banco.BANCO_BOGOTA
     banco5 = Banco.DAVIVIENDA
 
-    cuenta1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 100000, 100000, 100000, 10000,100000)
+    cuenta1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 10000000, 10000000, 10000000, 1000000,10000000)
     cuenta2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 100000, 100000, 100000, 10000, 100000)
     cuenta3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 100000, 100000, 100000, 10000, 100000)
     cuenta4= CuentaBancaria(135635, "Todas",banco4, 2030203)

@@ -345,7 +345,8 @@ class Funeraria(Establecimiento):
             return f"El trabajador ha hecho: {trabajos},\npor lo que no obtuvo una paga"
 
     def pedirCredito(self):
-        if len(self._cuentaCorriente_.credito) < 3:
+        cuentaFun = self._cuentaCorriente
+        if len(cuentaFun.getCredito()) < 3:
             if len(self._cuentaCorriente._credito) == 0 or (self._cuentaCorriente._credito[-1]._porcentajeCreditoPorPagar <= 0.5):
                 establecimientos = Funeraria.buscarPorFuneraria(self, "cementerio")
                 establecimientos += Funeraria.buscarPorFuneraria(self, "crematorio")
@@ -389,18 +390,19 @@ class Funeraria(Establecimiento):
                 valorFaltante = credito._precio
                 if porcentaje <= porcentajeFaltante:
                     pago = self.calcularPago(porcentaje, valorFaltante)
-                    if self._cuentaCorriente.bolsilloPagoCredito >= pago:
-                        self._cuenta_corriente.retirar(pago, "bolsilloPagoCredito")
+                    if self._cuentaCorriente._bolsilloPagoCredito >= pago:
+                        self._cuentaCorriente.retirar(pago, "bolsilloPagoCredito")
+                        print(f"{credito} {porcentajeFaltante} {valorFaltante} {pago}")
                         self.actualizarCredito(credito, porcentajeFaltante, valorFaltante, pago)
                         return "Pago exitoso"
                     else:
                         return "Dinero insuficiente"
                 else:
-                    return "El porcentaje es mayor a lo que falta por pagar"
+                    return f"El porcentaje es mayor a lo que falta por pagar  {porcentajeFaltante} {valorFaltante}"
             else:
                 return "Crédito no encontrado"
         else:
-            return f"Índice de crédito inválido {indiceCredito} {porcentaje}"
+            return "Índice de crédito inválido "
 
     def calcularPago(self, porcentaje, valorFaltante):
         return valorFaltante * porcentaje
@@ -410,7 +412,7 @@ class Funeraria(Establecimiento):
         nuevoValorFaltante = valorFaltante - pago
         if nuevoPorcentajeFaltante == 0:
             self._cuentaCorriente._credito.remove(credito)
-            self._listadoFacturas.append(credito)
+            self._listaFacturas.append(credito)
         else:
             credito._porcentajeCreditoPorPagar = nuevoPorcentajeFaltante
             credito._precio = nuevoValorFaltante

@@ -40,27 +40,27 @@ class CuentaBancaria:
         elif(tipo == "bolsilloTrabajadores"):
             if (cantidad > 0):
                 self._bolsilloTrabajadores += cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
             
         elif(tipo == "bolsilloInventario"):
             if (cantidad > 0):
                 self._bolsilloInventario += cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         
         elif(tipo == "bolsilloTransporte"):
     	    if (cantidad > 0):
                 self._bolsilloTransporte += cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         
         elif(tipo == "bolsilloEstablecimientos"):
     	    if (cantidad > 0):
                 self._bolsilloEstablecimientos += cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         
         elif(tipo == "bolsilloPagoCredito"):
     	    if (cantidad > 0):
                 self._bolsilloPagoCredito += cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
     
     def retirar(self, cantidad, tipo):
         if(tipo == "saldo"):
@@ -68,25 +68,25 @@ class CuentaBancaria:
                 self._saldo -= cantidad
            
         elif(tipo == "bolsilloTrabajadores"):
-       	    if (cantidad <= bolsilloTrabajadores):
+       	    if (cantidad <= self._bolsilloTrabajadores):
                 self._bolsilloTrabajadores -= cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         elif(tipo == "bolsilloInventario"):
-       	    if (cantidad <= bolsilloInventario):
+       	    if (cantidad <= self._bolsilloInventario):
                 self._bolsilloInventario -= cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         elif(tipo == "bolsilloTransporte"):
-       	    if (cantidad <= bolsilloTransporte):
+       	    if (cantidad <= self._bolsilloTransporte):
                 self._bolsilloTransporte -= cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         elif(tipo == "bolsilloEstablecimientos"):
-       	    if (cantidad <= bolsilloEstablecimientos):
+       	    if (cantidad <= self._bolsilloEstablecimientos):
                 self._bolsilloEstablecimientos -= cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
         elif (tipo == "bolsilloPagoCredito"):
-    	    if (cantidad <= bolsilloPagoCredito):
+    	    if (cantidad <= self._bolsilloPagoCredito):
                 self._bolsilloPagoCredito -= cantidad
-                self._saldo = _bolsilloTrabajadores + _bolsilloTransporte + _bolsilloInventario + _bolsilloEstablecimientos + _bolsilloPagoCredito
+                self._saldo = self._bolsilloTrabajadores + self._bolsilloTransporte + self._bolsilloInventario + self._bolsilloEstablecimientos + self._bolsilloPagoCredito
       
 
     def infoCredito(self, credito):
