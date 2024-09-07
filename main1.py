@@ -19,6 +19,7 @@ from gestorAplicacion.inventario.producto import Producto
 
 from iuMain.funcionalidades import cremacion
 from iuMain.funcionalidades import exhumacion
+from iuMain import ventanaInicio
 
 
 
@@ -1291,4 +1292,8 @@ if __name__ == "__main__":
         exhumacion.funcionalidadExhumacion()
     else:
         pass
+
+    ventanaInicio.ventanaInicio()
+
+
 		
