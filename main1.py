@@ -17,7 +17,12 @@ from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.inventario.producto import Producto
 
-def funcionalidadCrematorio():
+from iuMain.funcionalidades import cremacion
+from iuMain.funcionalidades import exhumacion
+
+
+
+"""def funcionalidadCrematorio():
 
     #Cliente
     cliente=None
@@ -304,11 +309,11 @@ def funcionalidadCrematorio():
 
     # Imprimir flores y material seleccionados
     print("Flores seleccionadas:", urna.getFloresSeleccionadas())
-    print("Material seleccionado:", urna.getMaterialSeleccionado())
+    print("Material seleccionado:", urna.getMaterialSeleccionado()) """
 
 
 
-def funcionalidadExhumacion():
+"""def funcionalidadExhumacion():
     cliente = None
     urnaTumba = None
     cementerio = None
@@ -728,7 +733,7 @@ def funcionalidadExhumacion():
     print()
 	
     print("Dados los datos se organizará como estarán distribuidos los familiares en la Iglesia")
-    print(nuevoCementerio.organizarIglesia(cliente))
+    print(nuevoCementerio.organizarIglesia(cliente))"""
 		
 
 
@@ -1281,9 +1286,9 @@ if __name__ == "__main__":
     
     indice= int(input("Ingrese un número: "))
     if indice==1:
-        funcionalidadCrematorio()
+        cremacion.funcionalidadCrematorio()
     elif indice==2:
-        funcionalidadExhumacion()
+        exhumacion.funcionalidadExhumacion()
     else:
         pass
 		
