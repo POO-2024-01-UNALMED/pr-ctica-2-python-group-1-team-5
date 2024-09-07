@@ -31,3 +31,23 @@ class Empleado(Persona):
     
     def setJornada(self, jornada):
         self._jornada = jornada
+
+    def getCalificacion(self):
+        return self._calificacion
+
+    def setCalificacion(self, calificacion):
+        self._calificacion = calificacion
+
+    def getTrabajosHechos(self):
+        return self._trabajosHechos
+
+    def setTrabajosHechos(self,trabajosHechos):
+        self._trabajosHechos = trabajosHechos
+
+    def isDisponible(self):
+        return self._disponible
+
+    def setDisponible(self,disponible):
+        if(not self._disponible and disponible):
+            self._trabajosHechos += 1
+        self._disponible = disponible
