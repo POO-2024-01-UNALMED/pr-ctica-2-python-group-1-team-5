@@ -12,6 +12,7 @@ from gestorAplicacion.personas.empleado import Empleado
 from gestorAplicacion.personas.familiar import Familiar
 from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
+from gestorAplicacion.inventario.producto import Producto
 
 def funcionalidadFinanzas():
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
@@ -44,29 +45,74 @@ def funcionalidadFinanzas():
             indice1 += 1
             print(f"[{indice1}] {cementerio}")
     
-    #Se escoge el cementerio deseada
-    indiceCementerio = int(input("Ingrese el índice correspondi1ente: "))
+        #Se escoge el cementerio deseada
+        indiceCementerio = int(input("Ingrese el índice correspondiente: "))
 
-    #Definir el cementerio
-    cementerio = cementerios[indiceCementerio-1]
+        #Definir el cementerio
+        cementerio = cementerios[indiceCementerio-1]
 
-    clientes = cementerio.getClientes()
-    indice1000 = 0
+        clientes = cementerio.getClientes()
+        indice1000 = 0
 
-    if(len(clientes) > 0):
-        for cliente in clientes:
-            if(len(cliente.getListadoFacturas()) > 0):
-                indice1000 += 1
-                print(f"[{indice1000}] {cliente}")
+        if(len(clientes) > 0):
+            for cliente in clientes:
+                if(len(cliente.getListadoFacturas()) > 0):
+                    indice1000 += 1
+                    print(f"[{indice1000}] {cliente}")
     
-    if(indice1000 == 0):
-        print("No hay clientes con facturas por pagar")
+        if(indice1000 == 0):
+            print("No hay clientes con facturas por pagar")
         
-    else:
-        indiceCliente = int(input("Ingrese el índice del cliente: "))
-        cliente = clientes[indiceCliente-1]
-        funeraria.cobroServiciosClientes(cliente)
-        print("Cobro de  facturas del cliente: "+ cliente.getNombre()+", realizado correctamente")
+        else:
+            indiceCliente = int(input("Ingrese el índice del cliente: "))
+            cliente = clientes[indiceCliente-1]
+            funeraria.cobroServiciosClientes(cliente)
+            print("Cobro de  facturas del cliente: "+ cliente.getNombre()+", realizado correctamente")
+    
+    elif indiceProceso == 2:
+        continuar = True
+        while continuar:
+            facturas = funeraria.getFacturasPorPagar()
+         
+            if(len(facturas) > 0):
+                for i, factura in enumerate(facturas):
+                    print(f"[{i+1}] Factura con ID: {factura.getID()}")
+            
+                indiceFactura = int(input("Ingrese el índice de la factura"))
+                factura1 = facturas[indiceFactura-1]
+                print(funeraria.cobroFacturas(factura1))
+            else:
+                print("No hay facturas disponibles")
+            
+            continuar1 = input("Desea pagar otra factura(s/n)")
+            if continuar1.lower() == "s":
+                continuar = True
+            else:
+                continuar = False 
+        
+    elif indiceProceso == 3:
+        empleados = funeraria.getEmpleados()
+        empleadosDispo = []
+        hayEmpleadosDispo = False
+        indice4 = 0
+
+        for i in range(len(empleados)):
+            empleado = empleados[i]
+            if(empleado.getTrabajosHechos() > 0):
+                indice4 += 1
+                empleadosDispo.insert(0, empleado)
+                print(f"[{indice4}]{empleados[i].getNombre()}")
+                hayEmpleadosDispo = True
+
+        if not hayEmpleadosDispo:
+            print("No hay empleados disponibles a los que pagar")
+        
+        else:
+            indiceEmpleado = int(input("Ingrese el índice correspondiente: "))
+            empleado = empleadosDispo[indiceEmpleado-1]
+            print(funeraria.pagoTrabajadores(empleado))
+
+                
 
 
 
@@ -81,9 +127,9 @@ if __name__ == "__main__":
     banco4 = Banco.BANCO_BOGOTA
     banco5 = Banco.DAVIVIENDA
 
-    cuenta1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 100000, 100000, 100000, 10000)
-    cuenta2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 100000, 100000, 100000, 10000)
-    cuenta3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 100000, 100000, 100000, 10000)
+    cuenta1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 100000, 100000, 100000, 10000,100000)
+    cuenta2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 100000, 100000, 100000, 10000, 100000)
+    cuenta3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 100000, 100000, 100000, 10000, 100000)
     cuenta4= CuentaBancaria(135635, "Todas",banco4, 2030203)
     cuenta5= CuentaBancaria(104525, "Alejandro Rodríguez",banco5, 2030203)
     cuenta6= CuentaBancaria(567576, "Diego Martínez",banco1, 2030203)
@@ -141,6 +187,27 @@ if __name__ == "__main__":
     cliente1000 = Cliente("Alejandro Rodríguez",123,30,cuenta5,"oro",None)
     cementerioF11Ce.getClientes().insert(0, cliente1000)
     cliente1000.agregarFactura(facturas1)
+    cuentaLocal1 = CuentaBancaria(135635, "local1",banco4, 2030203)
+    local1 = Establecimiento("D1", 500, cuentaLocal1,None, None, None, 5)
+    producto1 = Producto("Urna", 1000, 2,0,local1)
+    producto2 = Producto("Urna", 1000, 2,0, local1)
+    urnas = [producto1, producto2]
+    facturas2 = Factura(None, 13233, None, None, None, "vehiculo",urnas)
+    facturas3 = Factura(None, 13233, None, None, None, "inventario",urnas)
+    facturas4 = Factura(None, 13233, None, None, None, "empleado",urnas)
+    facturas5 = Factura(None, 13233, None, None, None, "establecimiento",urnas)
+    funeraria1.getFacturasPorPagar().insert(0, facturas2)
+    funeraria1.getFacturasPorPagar().insert(0, facturas3)
+    funeraria1.getFacturasPorPagar().insert(0, facturas4)
+    funeraria1.getFacturasPorPagar().insert(0, facturas5)
+    cuentaEmpleado1 = CuentaBancaria(135635, "pepe",banco4, 2030203)
+    cuentaEmpleado2 = CuentaBancaria(135635, "rosa",banco4, 2030203)
+    cuentaEmpleado3 = CuentaBancaria(135635, "camilo",banco4, 2030203)
+    empleado1 = Empleado("pepe", cuentaEmpleado1, "noche","sepultero",10000,funeraria1,5,6)
+    empleado2 = Empleado("rosa", cuentaEmpleado2, "noche","sepultero",10000,funeraria1,4,0)
+    empleado3 = Empleado("camilo", cuentaEmpleado3, "noche","sepultero",10000,funeraria1,4,3)
+    empleados = [empleado1, empleado2, empleado3]
+    funeraria1.setEmpleados(empleados)
 
     funcionalidadFinanzas()
 

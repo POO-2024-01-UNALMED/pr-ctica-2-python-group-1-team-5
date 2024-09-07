@@ -22,8 +22,8 @@ class CuentaBancaria:
 
         # Calcula el saldo si se pasan valores específicos de bolsillo
         if bolsilloTrabajadores or bolsilloInventario or bolsilloTransporte or bolsilloEstablecimientos or bolsilloPagoCredito:
-            self._saldo = (bolsilloTrabajadores + bolsilloInventario + 
-                          bolsilloTransporte + bolsilloEstablecimientos + bolsilloPagoCredito)
+            self._saldo = (self._bolsilloTrabajadores + self._bolsilloInventario + 
+                          self._bolsilloTransporte + self._bolsilloEstablecimientos + self._bolsilloPagoCredito)
 
         CuentaBancaria.cuentas.append(self)
         self.credito = []
@@ -165,19 +165,19 @@ class CuentaBancaria:
         return self._banco
 
     def getBolsilloTrabajadores(self):
-        return self.bolsillo_trabajadores
+        return self._bolsilloTrabajadores
 
     def getBolsilloInventario(self):
-        return self.bolsillo_inventario
+        return self._bolsilloInventario
 
     def getBolsilloTransporte(self):
-        return self.bolsillo_transporte
+        return self._bolsilloTransporte
 
     def getBolsilloEstablecimientos(self):
-        return self.bolsillo_establecimientos
+        return self._bolsilloEstablecimientos
 
     def getBolsilloPagoCredito(self):
-        return self.bolsillo_pago_credito
+        return self._bolsilloPagoCredito
 
     def getSaldo(self):
         return self._saldo
@@ -202,40 +202,40 @@ class CuentaBancaria:
         self._banco = banco
 
     def setBolsilloTrabajadores(self, bolsillo_trabajadores):
-        self._bolsillo_trabajadores = bolsillo_trabajadores
+        self._bolsilloTrabajadores = bolsillo_trabajadores
         self.actualizarSaldo()
 
     def setBolsilloInventario(self, bolsillo_inventario):
-        self.bolsillo_inventario = bolsillo_inventario
+        self._bolsilloInventario = bolsillo_inventario
         self.actualizarSaldo()
 
     def setBolsilloTransporte(self, bolsillo_transporte):
-        self.bolsillo_transporte = bolsillo_transporte
+        self._bolsilloTransporte = bolsillo_transporte
         self.actualizarSaldo()
 
     def setBolsilloEstablecimientos(self, bolsillo_establecimientos):
-        self.bolsillo_establecimientos = bolsillo_establecimientos
+        self._bolsilloEstablecimientos = bolsillo_establecimientos
         self.actualizarSaldo()
 
     def setBolsilloPagoCredito(self, bolsillo_pago_credito):
-        self.bolsillo_pago_credito = bolsillo_pago_credito
+        self._bolsilloPagoCredito = bolsillo_pago_credito
         self.actualizarSaldo()
 
     def setSaldo(self, saldo):
-        self.saldo = saldo
+        self._saldo = saldo
 
     def setCredito(self, credito):
-        self.credito = credito
+        self._credito = credito
     
     def setInteres(self, interes):
-        self.interes = interes
+        self._interes = interes
     
     def setCobroAdicional(self, cobroAdicional):
-        self.cobroAdicional = cobroAdicional
+        self._cobroAdicional = cobroAdicional
 
     def actualizarSaldo(self):
-        self.saldo = (self.bolsillo_trabajadores + self.bolsillo_inventario +
-                      self.bolsillo_transporte + self.bolsillo_establecimientos +
-                      self.bolsillo_pago_credito)
+        self._saldo = (self._bolsilloTrabajadores + self._bolsilloInventario +
+                      self._bolsilloTransporte + self._bolsilloEstablecimientos +
+                      self._bolsilloPagoCredito)
 
     

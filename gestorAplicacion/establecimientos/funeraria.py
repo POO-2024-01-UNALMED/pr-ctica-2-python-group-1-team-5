@@ -13,15 +13,13 @@ from gestorAplicacion.personas.familiar import Familiar
 class Funeraria(Establecimiento):
     _cuentaAhorros = None
     
-  
-    
-    
-
     def __init__(self, nombre, cuentaCorriente, cuentaAhorros):
-        super().__init__(nombre, cuentaCorriente)
+        super().__init__(nombre,0, cuentaCorriente)
         Funeraria._cuentaAhorros = cuentaAhorros
         _empleados = []
         _vehiculos = []
+        self._listaFacturasPorPagar = []
+        self._listaFacturas = []
 
     def buscarEstablecimientos(self, tipoEstablecimiento: str, cliente):
         establecimientosEvaluar = Establecimiento.buscarPorFuneraria(self, tipoEstablecimiento)
@@ -129,6 +127,7 @@ class Funeraria(Establecimiento):
         tipoServicio = factura._servicio
         totalFactura = factura._total
         resultado = ""
+        cuentaFuneraria = self._cuentaCorriente
         val = 0
     
         if tipoServicio == "vehiculo":
@@ -136,55 +135,56 @@ class Funeraria(Establecimiento):
                 producto = factura._listaProductos[0]
                 establecimiento = producto._establecimiento
                 self._cuentaCorriente.transaccion(totalFactura, establecimiento._cuentaCorriente, "bolsilloTransporte")
-                self._listadoFacturas.insert(0, factura)
-                self._listadoFacturasPorPagar.remove(factura)
+                self._listaFacturas.insert(0, factura)
+                self._listaFacturasPorPagar.remove(factura)
                 val += 1
-                resultado = f"Factura con ID: {factura._ID} pagada con éxito"
+                resultado = f"Factura con ID: {factura.getID()} pagada con éxito"
             else:
                 val += 1
-                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura._ID}"
+                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID()}"
     
         elif tipoServicio == "establecimiento":
             if totalFactura <= self._cuentaCorriente._bolsilloEstablecimientos:
                 producto = factura._listaProductos[0]
                 establecimiento = producto._establecimiento
                 self._cuentaCorriente.transaccion(totalFactura, establecimiento._cuentaCorriente, "bolsilloEstablecimientos")
-                self._listadoFacturas.append(factura)
-                self._listadoFacturasPorPagar.remove(factura)
+                self._listaFacturas.insert(0, factura)
+                self._listaFacturasPorPagar.remove(factura)
                 val += 1
-                resultado = f"Factura con ID: {factura.getID} pagada con éxito"
+                resultado = f"Factura con ID: {factura.getID()} pagada con éxito"
             else:
                 val += 1
-                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID}"
+                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID()}"
     
         elif tipoServicio == "empleado":
             if totalFactura <= self._cuentaCorriente._bolsilloTrabajadores:
                producto = factura._listaProductos[0]
                establecimiento = producto._establecimiento
                self._cuentaCorriente.transaccion(totalFactura, establecimiento._cuentaCorriente, "bolsilloTrabajadores")
-               self._listadoFacturasPorPagar.remove(factura)
+               self._listaFacturas.insert(0, factura)
+               self._listaFacturasPorPagar.remove(factura)
                val += 1
-               resultado = f"Factura con ID: {factura.getID} pagada con éxito"
+               resultado = f"Factura con ID: {factura.getID()} pagada con éxito"
             else:
                val += 1
-               resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID}"
+               resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID()}"
     
         elif tipoServicio == "inventario":
-            if totalFactura <= self._cuentaCorriente._bolsilloInventario:
-                producto = factura._listaProductos[0]
-                establecimiento = producto._establecimiento
-                self._cuentaCorriente.transaccion(totalFactura, establecimiento._cuentacorriente, "bolsilloInventario")
-                self._listadoFacturas.append(factura)
-                self._listadoFacturasPorPagar.remove(factura)
+            if totalFactura <= cuentaFuneraria.getBolsilloInventario():
+                producto = factura.getListaProductos()[0]
+                establecimiento = producto.getEstablecimiento()
+                self._cuentaCorriente.transaccion(totalFactura, establecimiento._cuentaCorriente, "bolsilloInventario")
+                self._listaFacturas.append(factura)
+                self._listaFacturasPorPagar.remove(factura)
                 val += 1
-                resultado = f"Factura con ID: {factura.getID} pagada con éxito"
+                resultado = f"Factura con ID: {factura.getID()} pagada con éxito"
             else:
                 val += 1
-                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID}"
+                resultado = f"No hay dinero suficiente para pagar la factura con ID: {factura.getID()}"
     
         return resultado
 
-    def informe_gastos_facturas(self):
+    def informeGastosFacturas(self):
         bolsilloInventario = 0
         facturasInventario = 0
         bolsilloTransporte = 0
@@ -225,7 +225,7 @@ class Funeraria(Establecimiento):
                 f"Facturas pago credito: {facturasPagoCredito}\n"
                 f"Gastos credito: {bolsilloPagoCredito}")
 
-    def reajuste_dinero(self):
+    def reajusteDinero(self):
         funerarias = Establecimiento.filtrarEstablecimiento("funeraria")
         inventarioMax = 0
         resultado = ""
@@ -306,7 +306,7 @@ class Funeraria(Establecimiento):
 
         return resultado
 
-    def pago_trabajadores(self, empleado):
+    def pagoTrabajadores(self, empleado):
         trabajos = empleado._trabajosHechos
         calificacion = empleado._calificacion
         paga = empleado._salario
@@ -317,7 +317,7 @@ class Funeraria(Establecimiento):
                 paga += paga * 0.05
             self._cuentaCorriente.transaccion(paga, empleado._cuentaBancaria, "bolsilloTrabajadores")
             empleado._trabajosHechos = 0
-            self._listadoFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
+            self._listaFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
             return (f"El trabajador ha hecho: {trabajos} trabajos,\n"
                     f"Y tiene una calificacion de: {calificacion}\n"
                     f"por lo que obtuvo una paga de: {paga}")
@@ -327,7 +327,7 @@ class Funeraria(Establecimiento):
                 paga += paga * 0.05
             self._cuentaCorriente.transaccion(paga, empleado._cuentaBancaria, "bolsilloTrabajadores")
             empleado._trabajosHechos = 0
-            self._listadoFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
+            self._listaFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
             return (f"El trabajador ha hecho: {trabajos} trabajos,\n"
                     f"Y tiene una calificacion de: {calificacion}\n"
                     f"por lo que obtuvo una paga de: {paga}")
@@ -337,14 +337,14 @@ class Funeraria(Establecimiento):
                 paga += paga * 0.05
             self._cuentaCorriente.transaccion(paga, empleado._cuentaBancaria, "bolsilloTrabajadores")
             empleado._trabajosHechos = 0
-            self._listadoFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
+            self._listaFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
             return (f"El trabajador ha hecho: {trabajos} trabajos,\n"
                     f"Y tiene una calificacion de: {calificacion}\n"
                     f"por lo que obtuvo una paga de: {paga}")
         else:
             return f"El trabajador ha hecho: {trabajos},\npor lo que no obtuvo una paga"
 
-    def pedir_credito(self):
+    def pedirCredito(self):
         if len(self._cuentaCorriente_.credito) < 3:
             if len(self._cuentaCorriente._credito) == 0 or (self._cuentaCorriente._credito[-1]._porcentajeCreditoPorPagar <= 0.5):
                 establecimientos = Funeraria.buscarPorFuneraria(self, "cementerio")
@@ -554,4 +554,11 @@ class Funeraria(Establecimiento):
         return self._vehiculos
     def setVehiculos(self,vehiculos):
         self._vehiculos=vehiculos
-    
+    def getFacturasPorPagar(self):
+        return self._listaFacturasPorPagar
+    def setFacturasPorPagar(self,facturasPorPagar):
+        self._listaFacturasPorPagar = facturasPorPagar
+    def getListadoFacturas(self):
+        return self._listaFacturas
+    def setListadoFacturas(self, listaFacturas):
+        self._listaFacturas = listaFacturas
