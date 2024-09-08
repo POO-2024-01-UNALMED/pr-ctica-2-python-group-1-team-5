@@ -196,7 +196,7 @@ class Funeraria(Establecimiento):
         bolsilloTrabajadores = 0
         facturasTrabajadores = 0
 
-        for factura in self._listadoFacturas:
+        for factura in self._listaFacturas:
             if factura._servicio == "inventario":
                 bolsilloInventario += factura._total
                 facturasInventario += 1
@@ -246,7 +246,7 @@ class Funeraria(Establecimiento):
             bolsilloPagoCredito = 0
             bolsilloTrabajadores = 0
 
-            for factura in funeraria._listadoFacturas:
+            for factura in funeraria._listaFacturas:
                 if factura._servicio == "inventario":
                     bolsilloInventario += factura._total
                 elif factura._servicio == "vehiculo":
@@ -385,37 +385,38 @@ class Funeraria(Establecimiento):
     def pagarCredito(self, indiceCredito, porcentaje):
         if 0 <= indiceCredito < len(self._cuentaCorriente._credito):
             credito = self._cuentaCorriente._credito[indiceCredito]
+
             if credito:
                 porcentajeFaltante = credito._porcentajeCreditoPorPagar
-                valorFaltante = credito._precio
+                valorFaltante = credito._total
+                valorInicial = credito._valorInicial
                 if porcentaje <= porcentajeFaltante:
-                    pago = self.calcularPago(porcentaje, valorFaltante)
+                    pago = self.calcularPago(porcentaje, valorInicial)
                     if self._cuentaCorriente._bolsilloPagoCredito >= pago:
                         self._cuentaCorriente.retirar(pago, "bolsilloPagoCredito")
-                        print(f"{credito} {porcentajeFaltante} {valorFaltante} {pago}")
-                        self.actualizarCredito(credito, porcentajeFaltante, valorFaltante, pago)
+                        self.actualizarCredito(credito, porcentajeFaltante, valorFaltante, valorInicial, pago)
                         return "Pago exitoso"
                     else:
                         return "Dinero insuficiente"
                 else:
-                    return f"El porcentaje es mayor a lo que falta por pagar  {porcentajeFaltante} {valorFaltante}"
+                    return "El porcentaje es mayor a lo que falta por pagar"
             else:
                 return "Crédito no encontrado"
         else:
             return "Índice de crédito inválido "
 
-    def calcularPago(self, porcentaje, valorFaltante):
-        return valorFaltante * porcentaje
+    def calcularPago(self, porcentaje, valorInicial):
+        return valorInicial * porcentaje
 
-    def actualizarCredito(self, credito, porcentajeFaltante, valorFaltante, pago):
-        nuevoPorcentajeFaltante = porcentajeFaltante - pago / valorFaltante
-        nuevoValorFaltante = valorFaltante - pago
+    def actualizarCredito(self, credito, porcentajeFaltante, valorFaltante, valorInicial, pago):
+        nuevoValorFaltante = round(valorFaltante - pago,1)
+        nuevoPorcentajeFaltante = round(nuevoValorFaltante / valorInicial, 1)
         if nuevoPorcentajeFaltante == 0:
             self._cuentaCorriente._credito.remove(credito)
             self._listaFacturas.append(credito)
         else:
             credito._porcentajeCreditoPorPagar = nuevoPorcentajeFaltante
-            credito._precio = nuevoValorFaltante
+            credito._total = nuevoValorFaltante
     
     def asignarVehiculo(self) :
         vehiculosDisponibles = ""

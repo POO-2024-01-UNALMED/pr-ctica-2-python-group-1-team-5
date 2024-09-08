@@ -91,11 +91,12 @@ class CuentaBancaria:
 
     def infoCredito(self, credito):
         creditos = self.getCredito()
-        if creditos.size() > 0:
-             return """ID: {}
-             Precio: {}
-             Porcentaje por pagar: {}""".format(
-             creditos.get(credito).getID(), creditos.get(credito).getPrecio(), creditos.get(credito).getPorcentajeCreditoPorPagar())
+        if len(creditos) > 0:
+            credito = creditos[credito]
+            return """ID: {}
+Precio: {}
+Porcentaje por pagar: {}""".format(
+            credito.getID(), credito.getPrecio(), credito.getPorcentajeCreditoPorPagar())
         else:
             return "No hay credito activo con ese indice"   
     

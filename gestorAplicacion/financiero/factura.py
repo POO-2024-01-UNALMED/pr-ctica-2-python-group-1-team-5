@@ -27,8 +27,10 @@ class Factura():
         
         if not lista_productos:
             self.calcularTotal()
+            self._valorInicial = self._total
         else:
             self.totalFactura()
+            self._valorInicial = self._total
 
         Factura.facturas.append(self)
     #calcula el total del precio de la factura
@@ -108,6 +110,9 @@ class Factura():
 
     def getServicio(self):
         return self._servicio
+    
+    def getValorInicial(self):
+        return self._valorInicial
 
     # Setters
     def setProducto(self, producto):
@@ -139,3 +144,6 @@ class Factura():
 
     def setServicio(self, servicio):
         self._servicio = servicio
+    
+    def setValorInicial(self, valorInicial):
+        self._valorInicial = valorInicial

@@ -34,7 +34,7 @@ def funcionalidadFinanzas():
     print("[4] credito")
     print("[5] reajuste de dinero")
 
-    indiceProceso = int(input("Ingrese el índice correspondi1ente: "))
+    indiceProceso = int(input("Ingrese el índice correspondiente: "))
 
     if indiceProceso == 1:
         
@@ -156,10 +156,17 @@ def funcionalidadFinanzas():
                         print(funeraria.pagarCredito(indiceFactura - 1, 0.4))
 
                     elif indicePorcentaje == 5:
-                        print(funeraria.pagarCredito(indiceFactura - 1, 0.19999999999999996))
+                        print(funeraria.pagarCredito(indiceFactura - 1, 0.2))
 
             elif indiceCredito == 3:
-               pass
+                if len(creditos)  > 0:
+                    for i in range(len(creditos)):
+                        factura12 = creditos[i]
+                        print(f"[{i+1}] Credito con ID: {factura12.getID()}")
+                    
+                    indiceCredito12 = int(input("Ingrese el índice del credito: "))
+
+                    print(funeraria.getCuentaCorriente().infoCredito(indiceCredito12 - 1))
 
             lola = input("Desea realizar otra accion de credito? (s/n): ")
 
@@ -168,9 +175,28 @@ def funcionalidadFinanzas():
             else:
                 continuar3 = False
                 
+    elif indiceProceso == 5:
+        continuarH = True
+        while continuarH:
+            print("Que proceso quiere hacer ")
+            print("[1] Ver informe gastos")
+            print("[2] Reajuste")
 
+            indiceAjuste = int(input("Ingrese el índice correspondiente: "))
 
+            if indiceAjuste == 1:
+                print(funeraria.informeGastosFacturas())
 
+            elif indiceAjuste == 2:
+                print(funeraria.reajusteDinero())
+
+            indiceMe = input("Desea realizar otra accion en reajuste? (s/n): ")
+
+            if indiceMe == "s":
+                continuarH = True
+
+            else:
+                continuarH = False
 
 if __name__ == "__main__":
 
