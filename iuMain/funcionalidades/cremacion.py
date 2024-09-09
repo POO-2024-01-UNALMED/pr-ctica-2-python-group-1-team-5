@@ -16,8 +16,22 @@ from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
 #from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.inventario.producto import Producto
+import tkinter as tk
+from iuMain.frame import frame1
 
-def funcionalidadCrematorio():
+# Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
+def titulo(frame):
+    # Limpia el frame
+    for item in frame.winfo_children():
+        item.destroy()
+
+    # Imprime el titulo
+    titulo = tk.Label(frame, text="Servicio Cremación", bg="white", font=("Helvetica", 16, "bold"))
+    titulo.pack(pady=20)
+
+def funcionalidadCrematorio(frame):
+
+    titulo(frame)
 
     #Cliente
     cliente=None
@@ -41,7 +55,13 @@ def funcionalidadCrematorio():
     print("[2] Buscar cliente menor de edad")    
     #Indice cliente
     indiceCliente = int(input("Ingrese el índice correspondiente: "))
-
+    listaCliente=["Mayor de edad","Menor de edad"]
+##########################################################################################################
+    valores = (frame1(frame,["Funeraria: ","Cliente: "],[funerarias,listaCliente])) #.valoresIndices()
+##########################################################################################################
+    #funeraria= funerarias[valores[0]]
+    #indiceCliente = valores[1]
+    
     if indiceCliente == 1:
         print("[1] Buscar cliente por su CC")
         print("[2] Buscar cliente por funeraria") 

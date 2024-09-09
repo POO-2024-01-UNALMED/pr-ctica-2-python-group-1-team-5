@@ -1,5 +1,6 @@
 import tkinter as tk
 from iuMain import ventanaInicio
+from iuMain.funcionalidades import cremacion
 
 #Regresar a la ventana de inicio
 def irVentanaInicio():
@@ -49,6 +50,11 @@ def ventanaPrincipal():
     #Frame 2 - Zona 1 - Menus
     zona1=tk.Frame(ventana)
     zona1.pack(side="top",fill="x",anchor="nw",padx=2,pady=2)
+
+    # Implementacion de las funcionalidades (Zona 2)
+    zona2 = tk.Frame(ventana)
+    zona2.pack(fill=tk.BOTH, expand=True)
+    zona2.configure(bg="white")
     
     #MenuPrincipal
     menuPrincipal = tk.Menu(ventana)
@@ -67,11 +73,14 @@ def ventanaPrincipal():
     procesos=tk.Menu(menuPrincipal,tearoff=0)
 
     menuPrincipal.add_cascade(label="Procesos y consultas",menu=procesos)
+    procesos.add_command(label="Cremación",command=lambda:cremacion.funcionalidadCrematorio(zona2))
 
     #Menú ayuda
     ayuda=tk.Menu(menuPrincipal,tearoff=0)
 
     menuPrincipal.add_cascade(label="Ayuda",menu=ayuda)
+
+
     
 
 
