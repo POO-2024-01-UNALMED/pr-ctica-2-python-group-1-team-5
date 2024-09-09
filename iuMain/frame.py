@@ -21,9 +21,10 @@ class frame1(Frame):
     def continuar(self):
         seleccionados = all(combobox.get() for combobox in self.opcionesAlmacenadas)
         if seleccionados:
-            pass
+            return True
         else:
             ErrorAplicacion("Debes completar todos los campos para poder continuar")
+            return False
 
     def widget(self):
         for i,etiquetaFor in enumerate(self.etiquetas):
@@ -34,14 +35,15 @@ class frame1(Frame):
             opciones.grid(row=i,column=1,padx=5,pady=5,sticky="w")
             self.opcionesAlmacenadas.append(opciones)
             
-        btnContinuar=Button(self.secundario,text="Continuar", command=self.continuar)
-        btnContinuar.grid(row=i+1,column=2,columnspan=2)
+        #btnContinuar=Button(self.secundario,text="Continuar", command=self.continuar)
+        #btnContinuar.grid(row=i+1,column=2,columnspan=2)
    
-    def valoresIndices(self):
+    def getValores(self):
         listaIndices =[]
-        for opcionSeleccionada in (self.opcionesAlmacenadas):
-            eleccion = opcionSeleccionada.get()
-            listaIndices.append(self.opciones.index(eleccion))
+        if self.continuar():
+            for i,opcionSeleccionada in enumerate(self.opcionesAlmacenadas):
+                eleccion = opcionSeleccionada.current()
+                listaIndices.append(eleccion)
         return listaIndices
     
 

@@ -9,3 +9,10 @@ class ErrorAplicacion(Exception):
 
     def enviarMensaje(self):
         messagebox.showerror("Error", self._mensaje)
+
+class CamposIncompletos(ErrorAplicacion):
+    def __init__(self, mensaje):
+        super().__init__(self._mensaje)
+    
+    def validacion():
+        return False

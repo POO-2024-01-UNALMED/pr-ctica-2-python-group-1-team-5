@@ -17,6 +17,7 @@ from gestorAplicacion.inventario.urna import Urna
 #from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.inventario.producto import Producto
 import tkinter as tk
+
 from iuMain.frame import frame1
 
 # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
@@ -29,68 +30,58 @@ def titulo(frame):
     titulo = tk.Label(frame, text="Servicio Cremación", bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 
+
+
 def funcionalidadCrematorio(frame):
 
     titulo(frame)
 
-    #Cliente
-    cliente=None
-    crematorio=None
-
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
-    print("Seleccione la funeraria correspondiente")
-    indice = 0
-    for auxFuneraria in funerarias:
-        indice += 1
-        print(f"[{indice}] {auxFuneraria}")
-    #Se escoge a la funeraria deseada
-    indiceFuneraria = int(input("Ingrese el índice correspondi1ente: "))
 
-    #Definir la funeraria
-    funeraria=funerarias[indiceFuneraria-1]
-
-    #Escoger al cliente
-
-    print("[1] Buscar cliente mayor de edad")
-    print("[2] Buscar cliente menor de edad")    
-    #Indice cliente
-    indiceCliente = int(input("Ingrese el índice correspondiente: "))
     listaCliente=["Mayor de edad","Menor de edad"]
 ##########################################################################################################
-    valores = (frame1(frame,["Funeraria: ","Cliente: "],[funerarias,listaCliente])) #.valoresIndices()
+    valores = frame1(frame,["Funeraria: ","Cliente: "],[funerarias,listaCliente])
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:seleccionCliente(frame,valores))
+    btnContinuar.pack(side="top", pady=5)
 ##########################################################################################################
-    #funeraria= funerarias[valores[0]]
-    #indiceCliente = valores[1]
-    
-    if indiceCliente == 1:
-        print("[1] Buscar cliente por su CC")
-        print("[2] Buscar cliente por funeraria") 
-        #Indice cliente
-        indiceCliente = int(input("Ingrese el índice correspondiente: "))
-        if indiceCliente==1:
-            idCliente = input("Ingrese el CC del cliente: ")
-            cliente = funeraria.buscarClientePorId(idCliente)
-            # Validar CC correcto
-            while cliente is None:
-                idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
+def seleccionCliente(frame,valores):
+    if valores.continuar():
+        funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
+
+        funeraria= funerarias[(valores.getValores())[0]]
+        indiceCliente =valores.getValores()[1]
+
+        opcionesCliente=[]
+        if indiceCliente == 0:
+            opcionesCliente=["Buscar cliente por su CC","Buscar cliente por funeraria"]
+            etiqueta=["Buscar por: "]
+            frame1(frame,etiqueta,opcionesCliente)
+            #Indice cliente
+            indiceCliente = int(input("Ingrese el índice correspondiente: "))
+            if indiceCliente==1:
+                idCliente = input("Ingrese el CC del cliente: ")
                 cliente = funeraria.buscarClientePorId(idCliente)
-        elif indiceCliente==2:
+                # Validar CC correcto
+                while cliente is None:
+                    idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
+                    cliente = funeraria.buscarClientePorId(idCliente)
+            elif indiceCliente==2:
+                indice=1
+                for auxCliente in funeraria.buscarCliente("adulto"):
+                    print("["+str(indice)+"] "+str(auxCliente))
+                    indice+=1
+                indice=int(input("Ingrese el índice del cliente: "))
+                cliente= funeraria.buscarCliente("adulto")[indice-1]
+
+        elif indiceCliente == 1:
             indice=1
-            for auxCliente in funeraria.buscarCliente("adulto"):
+            for auxCliente in funeraria.buscarCliente("niño"):
                 print("["+str(indice)+"] "+str(auxCliente))
                 indice+=1
-            indice=int(input("Ingrese el índice del cliente: "))
-            cliente= funeraria.buscarCliente("adulto")[indice-1]
-
-    elif indiceCliente == 2:
-        indice=1
-        for auxCliente in funeraria.buscarCliente("niño"):
-            print("["+str(indice)+"] "+str(auxCliente))
-            indice+=1
-        indice=int(input("Ingrese el índice del cliente: "))   
-        cliente= funeraria.buscarCliente("niño")[indice-1]
-    #Cliente establecido
-    print("Cliente seleccionado: "+str(cliente))
+            indice=int(input("Ingrese el índice del cliente: "))   
+            cliente= funeraria.buscarCliente("niño")[indice-1]
+        #Cliente establecido
+        print("Cliente seleccionado: "+str(cliente))
 
     # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
     crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
