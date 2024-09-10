@@ -50,38 +50,42 @@ def seleccionCliente(frame,valores):
 
         funeraria= funerarias[(valores.getValores())[0]]
         indiceCliente =valores.getValores()[1]
-
-        opcionesCliente=[]
+        etiquetaCliente=[]
         if indiceCliente == 0:
-            opcionesCliente=["Buscar cliente por su CC","Buscar cliente por funeraria"]
-            etiqueta=["Buscar por: "]
-            frame1(frame,etiqueta,opcionesCliente)
+            etiquetaCliente=["Clientes mayor de edad"]
+            opcionesCliente=[funeraria.buscarCliente("adulto")]
+          
             #Indice cliente
-            indiceCliente = int(input("Ingrese el índice correspondiente: "))
-            if indiceCliente==1:
-                idCliente = input("Ingrese el CC del cliente: ")
-                cliente = funeraria.buscarClientePorId(idCliente)
+            #indiceCliente = int(input("Ingrese el índice correspondiente: "))
+            #if indiceCliente==1:
+                #idCliente = input("Ingrese el CC del cliente: ")
+                #cliente = funeraria.buscarClientePorId(idCliente)
                 # Validar CC correcto
-                while cliente is None:
-                    idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
-                    cliente = funeraria.buscarClientePorId(idCliente)
-            elif indiceCliente==2:
-                indice=1
-                for auxCliente in funeraria.buscarCliente("adulto"):
-                    print("["+str(indice)+"] "+str(auxCliente))
-                    indice+=1
-                indice=int(input("Ingrese el índice del cliente: "))
-                cliente= funeraria.buscarCliente("adulto")[indice-1]
+                #while cliente is None:
+                    #idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
+                    #cliente = funeraria.buscarClientePorId(idCliente)
+        elif indiceCliente==1:    
+            etiquetaCliente=["Clientes menor de edad"]
+            opcionesCliente=[funeraria.buscarCliente("niño")]
+           
+            #for auxCliente in funeraria.buscarCliente("adulto"):
+                    #print("["+str(indice)+"] "+str(auxCliente))
+                    #indice+=1
+                #indice=int(input("Ingrese el índice del cliente: "))
+                #cliente= funeraria.buscarCliente("adulto")[indice-1]
 
-        elif indiceCliente == 1:
-            indice=1
-            for auxCliente in funeraria.buscarCliente("niño"):
-                print("["+str(indice)+"] "+str(auxCliente))
-                indice+=1
-            indice=int(input("Ingrese el índice del cliente: "))   
-            cliente= funeraria.buscarCliente("niño")[indice-1]
+        #elif indiceCliente == 1:
+            #indice=1
+            #for auxCliente in funeraria.buscarCliente("niño"):
+                #print("["+str(indice)+"] "+str(auxCliente))
+                #indice+=1
+            #indice=int(input("Ingrese el índice del cliente: "))   
+            #cliente= funeraria.buscarCliente("niño")[indice-1]
         #Cliente establecido
-        print("Cliente seleccionado: "+str(cliente))
+        #print("Cliente seleccionado: "+str(cliente))
+        valorCliente = frame1(frame,etiquetaCliente,opcionesCliente)
+        if valorCliente.continuar():
+            cliente=etiquetaCliente[(valorCliente.getValores())[0]]
 
     # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
     crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
