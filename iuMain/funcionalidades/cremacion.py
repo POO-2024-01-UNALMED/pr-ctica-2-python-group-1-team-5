@@ -20,6 +20,8 @@ import tkinter as tk
 
 from iuMain.frame import frame1
 from iuMain.frame import tablas
+from iuMain.frame import FieldFrame
+from iuMain.manejoErrores.errorAplicacion import errorNumeros
 
 current_frame = None
 separador = None
@@ -119,6 +121,7 @@ def seleccionCliente(frame,valores):
         # Iglesias disponibles
         iglesiasNombre = []
         iglesiasReligion=[]
+        iglesias=[]
 
 
         for auxIglesia in Iglesia:
@@ -126,11 +129,35 @@ def seleccionCliente(frame,valores):
             if auxIglesia.getCremacion():
                 iglesiasNombre.append(auxIglesia.getNombre())
                 iglesiasReligion.append(auxIglesia.name)
+                iglesias.append(auxIglesia)
 
         texto= tk.Label(frame,text="Iglesias disponibles: ")
         texto.pack(side="top",pady=5)
         valoresFilasColumnas= tablas(frame,["Religión","Nombre Iglesia","ID"],[iglesiasReligion,iglesiasNombre,list(map(lambda x: x, range(1, len(iglesiasNombre)+1)))])
         
+        valorIglesia=FieldFrame(frame,[],["Indique el ID de la iglesia"])
+
+        def datosCrematorio():
+            if valoresCrematorio.continuar() and valorIglesia.continuar():
+                crematorio=crematorios[(valoresCrematorio.getValores())[0]]
+                print(crematorio)
+                print(int(valorIglesia.getValores()[0])-1)
+                print(iglesias)
+                try:
+                    iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
+                    cementerios(frame,crematorio,iglesia)
+                except:
+                    errorNumeros(valorIglesia.getValores()[0],"El ID ingresado no es correcto")
+                    valorIglesia.borrar()
+                    
+
+        btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
+        btnContinuar.place(rely=65,relx=80)
+
+
+    def cementerios(frame,crematorio,iglesia):
+        titulo(frame,"Organizacion Cementerio")
+
 
     if len(crematorios) != 0:
         print(f"Su afiliación es de tipo {cliente.getAfiliacion()}")
@@ -181,20 +208,10 @@ def seleccionCliente(frame,valores):
     print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
     
     # Iglesias disponibles
-    iglesias = []
+    #iglesias = []
     indice = 1
 
-    for auxIglesia in Iglesia:
-        # Se imprimen y añaden a la lista solo las iglesias que permiten la cremación como acto final de la vida
-        if auxIglesia.getCremacion():
-            iglesias.append(auxIglesia)
-            print(f"[{indice}] {auxIglesia.name}")
-            indice += 1
 
-    indice = int(input("Indique el índice de la religión escogida: "))
-
-
-    iglesia=iglesias[indice-1]
 				
 	#Se asigna la iglesia en el atributo iglesia en el crematorio designado para trabajar con este atributo el resto de la funcionalidad
     crematorio.setIglesia(iglesia)

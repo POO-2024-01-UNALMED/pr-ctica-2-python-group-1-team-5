@@ -16,3 +16,11 @@ class CamposIncompletos(ErrorAplicacion):
     
     def validacion():
         return False
+    
+class errorNumeros(ErrorAplicacion):
+    def __init__(self, valor,mensaje):
+        self.valor=valor
+        if valor.isdigit():
+            super().__init__(mensaje)
+        else:
+             messagebox.showerror("Error", "Debes ingresar un dígito")

@@ -1,5 +1,76 @@
-from tkinter import ttk, Label, Frame, Button
+from tkinter import ttk, Label, Frame, Button, Entry
+import tkinter as tk
 from iuMain.manejoErrores.errorAplicacion import ErrorAplicacion
+
+
+class FieldFrame(Frame):
+    def __init__(self, master, nombresEtiquetas, etiquetas,valores=None, editables=None):
+        super().__init__(master)
+        self.frame = Frame(master)
+        self.pack()
+        self.nombresEtiquetas=nombresEtiquetas
+        self.etiquetas=etiquetas
+        self.valores=valores
+        self.editables=editables
+
+        # Asegurar que default_values, editables, y criteria_names sean listas
+        if self.valores is None:
+            self.valores = [''] * len(self.etiquetas)
+        if self.editables is None:
+            self.editables = [True] * len(self.etiquetas)
+
+        self.entries = []
+        self.secundario=Frame(self)
+        self.secundario.pack()
+
+        self.widget()
+
+
+    def widget(self):
+
+        # Crear etiquetas y cajas de texto
+        for etiqueta, valor, editable in zip(self.etiquetas, self.valores, self.editables):
+            entrada = Frame(self.secundario)
+            label = Label(entrada, text=etiqueta)
+            entry = Entry(entrada)
+            
+            # Configurar el valor por defecto
+            entry.insert(0, valor)
+            
+            # Configurar si es editable o no
+            entry.config(state=tk.NORMAL if editable else tk.DISABLED)
+            
+            # Organizar los widgets
+            label.pack(side=tk.LEFT)
+            entry.pack(side=tk.LEFT)
+            
+            # Añadir al contenedor de entradas
+            self.entries.append(entry)
+            
+            # Empaquetar el frame de cada entrada
+            entrada.pack(padx=5, pady=5, fill=tk.X)
+        
+        btnBorrar = tk.Button(self.secundario, text="Borrar", command=self.borrar)
+        btnBorrar.pack(side=tk.LEFT, padx=5)
+        
+        #button_frame.pack(pady=(5, 10))
+    
+    def getValores(self):
+        return [entrada.get() for entrada in self.entries]
+    
+    def borrar(self):
+        for entrada, valor in zip(self.entries, self.valores):
+            entrada.config(state=tk.NORMAL)
+            entrada.delete(0, tk.END)
+            entrada.insert(0, valor)
+            entrada.config(state=tk.NORMAL if entrada.cget('state') == tk.NORMAL else tk.DISABLED)
+    def continuar(self):
+        # Verifica que todos los campos no estén vacíos
+        for entrada in self.entries:
+            if entrada.get().strip() == '':
+                ErrorAplicacion("Debes completar todos los campos para poder continuar")
+                return False
+        return True
 
 
 class frame1(Frame):
