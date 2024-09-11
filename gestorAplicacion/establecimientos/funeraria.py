@@ -16,8 +16,8 @@ class Funeraria(Establecimiento):
     def __init__(self, nombre, cuentaCorriente, cuentaAhorros):
         super().__init__(nombre,0, cuentaCorriente)
         Funeraria._cuentaAhorros = cuentaAhorros
-        _empleados = []
-        _vehiculos = []
+        self._empleados = []
+        self._vehiculos = []
         self._listaFacturasPorPagar = []
         self._listaFacturas = []
 
