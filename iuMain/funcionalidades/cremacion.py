@@ -19,22 +19,25 @@ from gestorAplicacion.inventario.producto import Producto
 import tkinter as tk
 
 from iuMain.frame import frame1
+from iuMain.frame import tablas
 
+current_frame = None
+separador = None
 # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
-def titulo(frame):
+def titulo(frame,titulo):
     # Limpia el frame
     for item in frame.winfo_children():
         item.destroy()
 
     # Imprime el titulo
-    titulo = tk.Label(frame, text="Servicio Cremación", bg="white", font=("Helvetica", 16, "bold"))
+    titulo = tk.Label(frame, text=titulo, bg="white", font=("Helvetica", 16, "bold"))
     titulo.pack(pady=20)
 
 
 
 def funcionalidadCrematorio(frame):
 
-    titulo(frame)
+    titulo(frame,"Servicio de Cremación")
 
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
 
@@ -42,57 +45,96 @@ def funcionalidadCrematorio(frame):
 ##########################################################################################################
     valores = frame1(frame,["Funeraria: ","Cliente: "],[funerarias,listaCliente])
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda:seleccionCliente(frame,valores))
-    btnContinuar.pack(side="top", pady=5)
+    btnContinuar.pack(side="top",pady=10)
 ##########################################################################################################
 def seleccionCliente(frame,valores):
+    cliente=None
+    crematorio=None
+    crematorios=None
     if valores.continuar():
         funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
-
+        #Funeraria seleccionada
         funeraria= funerarias[(valores.getValores())[0]]
         indiceCliente =valores.getValores()[1]
         etiquetaCliente=[]
+
         if indiceCliente == 0:
             etiquetaCliente=["Clientes mayor de edad"]
-            opcionesCliente=[funeraria.buscarCliente("adulto")]
+            listaClientes=funeraria.buscarCliente("adulto")
+            opcionesCliente=[listaClientes]
           
-            #Indice cliente
-            #indiceCliente = int(input("Ingrese el índice correspondiente: "))
-            #if indiceCliente==1:
-                #idCliente = input("Ingrese el CC del cliente: ")
-                #cliente = funeraria.buscarClientePorId(idCliente)
-                # Validar CC correcto
-                #while cliente is None:
-                    #idCliente = input("Número de CC incorrecto. Vuelve a ingresar CC del cliente: ")
-                    #cliente = funeraria.buscarClientePorId(idCliente)
         elif indiceCliente==1:    
             etiquetaCliente=["Clientes menor de edad"]
-            opcionesCliente=[funeraria.buscarCliente("niño")]
-           
-            #for auxCliente in funeraria.buscarCliente("adulto"):
-                    #print("["+str(indice)+"] "+str(auxCliente))
-                    #indice+=1
-                #indice=int(input("Ingrese el índice del cliente: "))
-                #cliente= funeraria.buscarCliente("adulto")[indice-1]
+            listaClientes=funeraria.buscarCliente("niño")
+            opcionesCliente=[listaClientes]
 
-        #elif indiceCliente == 1:
-            #indice=1
-            #for auxCliente in funeraria.buscarCliente("niño"):
-                #print("["+str(indice)+"] "+str(auxCliente))
-                #indice+=1
-            #indice=int(input("Ingrese el índice del cliente: "))   
-            #cliente= funeraria.buscarCliente("niño")[indice-1]
-        #Cliente establecido
-        #print("Cliente seleccionado: "+str(cliente))
+        global current_frame,separador
+        if current_frame:
+            current_frame.destroy()
+        if separador:
+            separador.destroy()
+
+        frameSeparador=tk.Frame(frame)
+        frameSeparador.pack(pady=25)
         valorCliente = frame1(frame,etiquetaCliente,opcionesCliente)
-        if valorCliente.continuar():
-            cliente=etiquetaCliente[(valorCliente.getValores())[0]]
 
-    # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
-    crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
+          
+        def datosCliente():
+            if valorCliente.continuar():
+                print(valorCliente.getValores()[0])
+                print(listaClientes)
+                
+                cliente=listaClientes[(valorCliente.getValores())[0]]
+                print(cliente.getNombre())
+                texto=f"Has seleccionado al cliente {cliente} \n ¿Deseas continuar?"
+                result = tk.messagebox.askyesno("Confirmar Datos",texto)
+                
+                if result:
+                    organizacionCrematorio(frame,funeraria,cliente)
+                else:
+                    tk.messagebox.showinfo("", "No es posible continuar con el proceso sin asignar un Cliente")
+                    current_frame.destroy()
+                    separador.destroy()
+                    funcionalidadCrematorio()
+
+
+        btnContinuar= tk.Button(valorCliente,text="Continuar", command=lambda:datosCliente())
+        btnContinuar.grid(row=1, column=2)
+        
+        current_frame = valorCliente
+        separador=frameSeparador
+
+    def organizacionCrematorio(frame,funeraria,cliente):
+
+        titulo(frame,"Organizacion Crematorio")
+        #texto inicial
+        texto= tk.Label(frame,text=f"Los crematorios disponibles para la afiliación {cliente.getAfiliacion()} son:")
+        texto.pack(side="top",pady=5)
+        # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
+        crematorios = funeraria.buscarEstablecimientos("crematorio", cliente)
+        valoresCrematorio=frame1(frame,["Crematorios"],[crematorios])
+        frameSeparador=tk.Frame(frame)
+        frameSeparador.pack(pady=10)
+        
+        # Iglesias disponibles
+        iglesiasNombre = []
+        iglesiasReligion=[]
+
+
+        for auxIglesia in Iglesia:
+            # Se imprimen y añaden a la lista solo las iglesias que permiten la cremación como acto final de la vida
+            if auxIglesia.getCremacion():
+                iglesiasNombre.append(auxIglesia.getNombre())
+                iglesiasReligion.append(auxIglesia.name)
+
+        texto= tk.Label(frame,text="Iglesias disponibles: ")
+        texto.pack(side="top",pady=5)
+        valoresFilasColumnas= tablas(frame,["Religión","Nombre Iglesia","ID"],[iglesiasReligion,iglesiasNombre,list(map(lambda x: x, range(1, len(iglesiasNombre)+1)))])
+        
 
     if len(crematorios) != 0:
         print(f"Su afiliación es de tipo {cliente.getAfiliacion()}")
-        print(f"Los crematorios disponibles para la afiliación {cliente.getAfiliacion()} son:")
+       
 
         indice=1
         for auxCrematorio in crematorios:

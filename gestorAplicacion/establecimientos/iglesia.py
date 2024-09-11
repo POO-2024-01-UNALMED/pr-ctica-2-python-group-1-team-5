@@ -25,7 +25,7 @@ class Iglesia(Enum):
     }
 
     CRISTIANISMO = {
-        "nombre": "Iglesia de la Sagrada Familia",
+        "nombre": "Sagrada Familia",
         "sillas": 5,
         "cremacion": True,
         "duracionEvento": 1,
@@ -35,7 +35,7 @@ class Iglesia(Enum):
     }
 
     ISLAM = {
-        "nombre": "Mezquita del Profeta",
+        "nombre": "Mezquita",
         "sillas": 6,
         "cremacion": False,
         "duracionEvento": 0,
@@ -45,7 +45,7 @@ class Iglesia(Enum):
     }
 
     JUDAISMO = {
-        "nombre": "Sinagoga de la Rua",
+        "nombre": "Sinagoga",
         "sillas": 8,
         "cremacion": False,
         "duracionEvento": 0,
@@ -55,7 +55,7 @@ class Iglesia(Enum):
     }
 
     TAOISMO = {
-        "nombre": "Templo del Valle del Jade",
+        "nombre": "Valle del Jade",
         "sillas": 3,
         "cremacion": True,
         "duracionEvento": 2,

@@ -46,5 +46,27 @@ class frame1(Frame):
                 listaIndices.append(eleccion)
         return listaIndices
     
+class tablas(Frame):
+    def __init__(self,master,etiquetas, valores):
+        super().__init__(master)
+        self.pack()
+        self.etiquetas=etiquetas
+        self.valores=valores
 
-   
+        self.secundario = Frame(self)
+        self.secundario.grid(row=0, column=0)
+        self.widget()
+    
+    def widget(self):
+        # Crear encabezados de columna
+        for i, c in enumerate(self.etiquetas):
+            etiqueta = Label(self.secundario, text=c,borderwidth=2, relief="solid", width=13, height=2, bg="lightgray", font=('Helvetica', 11, 'bold'))
+            etiqueta.grid(row=i,column=0,padx=2,pady=3)
+
+        # Crear filas de valores
+        for a, fila in enumerate(self.valores):
+            for i, valor in enumerate(fila):
+                valor_label = Label(self.secundario, text=valor, borderwidth=1, relief="solid", width=15, height=2)
+                valor_label.grid(row=a, column=i+1, padx=2, pady=1)
+
+ 
