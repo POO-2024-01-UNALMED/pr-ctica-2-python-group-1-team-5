@@ -12,6 +12,7 @@ class FieldFrame(Frame):
         self.etiquetas=etiquetas
         self.valores=valores
         self.editables=editables
+        self.btnBorrar=None
 
         # Asegurar que default_values, editables, y criteria_names sean listas
         if self.valores is None:
@@ -50,10 +51,16 @@ class FieldFrame(Frame):
             # Empaquetar el frame de cada entrada
             entrada.pack(padx=5, pady=5, fill=tk.X)
         
-        btnBorrar = tk.Button(self.secundario, text="Borrar", command=self.borrar)
-        btnBorrar.pack(side=tk.LEFT, padx=5)
+        self.btnBorrar = tk.Button(self.secundario, text="Borrar", command=self.borrar)
+        self.btnBorrar.pack(side=tk.LEFT, padx=5)
         
         #button_frame.pack(pady=(5, 10))
+    
+    def bloquear(self):
+        # Cambiar el estado de todas las entradas a 'disabled'
+        for entrada in self.entries:
+            entrada.config(state=tk.DISABLED)
+        self.btnBorrar.destroy()
     
     def getValores(self):
         return [entrada.get() for entrada in self.entries]

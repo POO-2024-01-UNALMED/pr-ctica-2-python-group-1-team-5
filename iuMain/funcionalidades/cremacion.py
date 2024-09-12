@@ -214,6 +214,7 @@ def cementerios(frame,crematorio,iglesia,cliente):
                 if horas.continuar():
                     horaEscogida=cementerio.getHorarioEventos()[(horas.getValores())[0]]
                     cementerio.setHoraEvento(horaEscogida)
+                    cementerio.setIglesia(iglesia)
                     ventanaHoras.destroy()
                     btnContinuar.destroy()
                     urnas(frame,cementerio,crematorio,cliente,valores)
@@ -252,7 +253,7 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
     #titulo(frame,"")
     valores.bloquearOpciones()
     frameSeparador=tk.Frame(frame)
-    frame.pack(pady=20)
+    frameSeparador.pack(pady=20)
     valoresUrna=FieldFrame(frame,["Datos Urna","Valores"],["Categoria urna (0-2)","Peso cliente (0-120)"],[0,0])
     categoria =((valoresUrna.getValores())[0])
     peso = ((valoresUrna.getValores())[1])
@@ -261,12 +262,14 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
         if valoresUrna.continuar():
             try:
                 int(categoria)
-                int(peso)
+                float(peso)
                 num=1
             except:
                 errorNumeros(categoria,"La categoria ingresada no es correcta")
                 errorNumeros(peso,"El peso ingresado no es correcto")
         if num==1:
+            valoresUrna.bloquear()
+            btnContinuar.destroy()
             tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso)
     
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda: validarUrnas())
@@ -277,36 +280,64 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
 def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
     #titulo(frame,"")
     valores.bloquearOpciones()
+    
+    iglesia = cementerio.getIglesia()
+    tiposUrnas = iglesia.getTipoUrna()
+    
+    etiqueta = tk.Label(frame, text="Urnas disponibles para su religión: " + ", ".join(tiposUrnas))
+    etiqueta.pack(pady=5)
 
-    etiqueta=tk.Label(frame,text="Urnas disponibles")
-    etiqueta.pack()
+    urnas = cementerio.disponibilidadInventario("urna", float(peso), int(categoria))
+    if not urnas:
+        etiqueta1=tk.Label(frame,text="")
+        etiqueta1.pack(pady=5)
+        tk.messagebox.showerror("Error", "No se encontraron urnas disponibles para el cliente, \nse deberá añadir una urna default.")
+        tipo = tiposUrnas[0]
+        urna = Urna("default", cementerio, float(peso), int(categoria), tipo)
+        producto(frame,cliente, urna, crematorio)
 
-    urnas = cementerio.disponibilidadInventario("urna", peso, categoria)
-    cementerios= list(map(lambda p: p.getNombre(), urnas))
-    IDs=list(p for p in range(1,len(urnas)+1))
-    tablas(frame,["Urna","Cementerio","ID"],[urnas,cementerios,IDs])
+    else:
+        cementerios= list(map(lambda p: p.getCementerio().getNombre(), urnas))
+        tipos = list(map(lambda e: e.getTipo(),urnas))
+        IDs=list(p for p in range(1,len(urnas)+1))
+        tablas(frame,["Urnita","Cementerio","Tipo","ID"],[urnas,cementerios,tipos,IDs])
 
-    entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
+        entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
 
     def datosCrematorio():
 
         if entradaUrna.continuar():
-            
+            num=0
             try:
                 urna=urnas[int(entradaUrna.getValores()[0])-1]  
-                producto()
+                print(urna)
+                print(urnas)
+                num=1
             except:
                 errorNumeros(entradaUrna.getValores()[0],"El ID ingresado no es correcto")
                 entradaUrna.borrar()
+            if num==1:
+                producto(frame,cliente,urna,crematorio)
     
     btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
     btnContinuar.pack(pady=5,padx=10)
 
 
-def producto():
-    print("Yes")   
+def producto(frame, cliente, urna,crematorio):
+    titulo(frame,"Invitación a la ceremonia") 
+    # Agregar cliente a la urna
+    urna.agregarCliente(cliente)
+    productoCrematorio= Producto()
+    productoCrematorio.setEstablecimiento(crematorio)
+   
+    frameApoyo = tk.Frame(frame, bg="#772d2d")
+    frameApoyo.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+    invitacion = tk.Label(frameApoyo, text=productoCrematorio.evento(cliente),font=("Comic Sans MS", 14, "italic"), bg="white")
+    invitacion.pack(pady=50)
 
-
+    from iuMain.ventanaPrincipal import framePrincipal
+    boton_regresar = tk.Button(frameApoyo, text="Regresar", command=lambda: framePrincipal(frame))
+    boton_regresar.pack()
 
     """indice = 1
     for auxEmpleado in empleados:

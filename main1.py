@@ -913,40 +913,40 @@ if __name__ == "__main__":
     cementerioF16Cu = Cementerio("Sendero de la Tranquilidad", 78, cuentaF1Ce12, "bronce", None, "cuerpos", funeraria1)
 
     # Objetos Cementerio 1 Cenizas
-    urnaF1C11 = Urna("Urnita Eterna Paz", cementerioF11Ce, 70, 1, "fija")
-    urnaF1C12 = Urna("Urnita Memoria Serene", cementerioF11Ce, 80, 0, "ordinaria")
-    urnaF1C13 = Urna("Urnita Descanso Sagrado", cementerioF11Ce, 60, 2, "ordinaria")
-    urnaF1C14 = Urna("Urnita Luz Eterna", cementerioF11Ce, 60, 1, "fija")
+    urnaF1C11 = Urna("Eterna Paz", cementerioF11Ce, 70, 1, "fija")
+    urnaF1C12 = Urna("Memoria Serene", cementerioF11Ce, 80, 0, "ordinaria")
+    urnaF1C13 = Urna("Descanso Sagrado", cementerioF11Ce, 60, 2, "ordinaria")
+    urnaF1C14 = Urna("Luz Eterna", cementerioF11Ce, 60, 1, "fija")
 
     # Objetos Cementerio 2 Urna Cenizas
-    urnaF1C21 = Urna("Urnita Tranquilidad Infinita", cementerioF12Ce, 70, 1, "fija")
-    urnaF1C22 = Urna("Urnita Homenaje Perpetuo", cementerioF12Ce, 80, 0, "ordinaria")
-    urnaF1C23 = Urna("Urnita Amanecer Sereno", cementerioF12Ce, 70, 2, "ordinaria")
-    urnaF1C24 = Urna("Urnita Refugio del Alma", cementerioF12Ce, 60, 1, "fija")
+    urnaF1C21 = Urna("Tranquilidad Infinita", cementerioF12Ce, 70, 1, "fija")
+    urnaF1C22 = Urna("Homenaje Perpetuo", cementerioF12Ce, 80, 0, "ordinaria")
+    urnaF1C23 = Urna("Amanecer Sereno", cementerioF12Ce, 70, 2, "ordinaria")
+    urnaF1C24 = Urna("Refugio del Alma", cementerioF12Ce, 60, 1, "fija")
 
     # Objetos Cementerio 3 Urna Cenizas
-    urnaF1C31 = Urna("Urnita Oasis de Recuerdo", cementerioF13Ce, 70, 1, "fija")
-    urnaF1C32 = Urna("Urnita Sombra Amada", cementerioF13Ce, 80, 0, "ordinaria")
-    urnaF1C33 = Urna("Urnita Caja de la Verdad", cementerioF13Ce, 50, 2, "ordinaria")
-    urnaF1C34 = Urna("Urnita Urna de la Democracia", cementerioF13Ce, 60, 1, "fija")
+    urnaF1C31 = Urna("Oasis de Recuerdo", cementerioF13Ce, 70, 1, "fija")
+    urnaF1C32 = Urna("Sombra Amada", cementerioF13Ce, 80, 0, "ordinaria")
+    urnaF1C33 = Urna("Caja de la Verdad", cementerioF13Ce, 50, 2, "ordinaria")
+    urnaF1C34 = Urna("Urna Democracia", cementerioF13Ce, 60, 1, "fija")
 
     # Objetos Cementerio 4 Urna Cenizas
-    urnaF1C41 = Urna("Urnita Voz del Pueblo", cementerioF14Ce, 70, 1, "fija")
-    urnaF1C42 = Urna("Urnita Cámara de Decisiones", cementerioF14Ce, 80, 0, "ordinaria")
-    urnaF1C43 = Urna("Urnita Bóveda de Opiniones", cementerioF14Ce, 70, 0, "ordinaria")
-    urnaF1C44 = Urna("Urnita Recinto Electoral", cementerioF14Ce, 60, 1, "fija")
+    urnaF1C41 = Urna("Voz del Pueblo", cementerioF14Ce, 70, 1, "fija")
+    urnaF1C42 = Urna("Cámara Decisiones", cementerioF14Ce, 80, 0, "ordinaria")
+    urnaF1C43 = Urna("Bóveda Opiniones", cementerioF14Ce, 70, 0, "ordinaria")
+    urnaF1C44 = Urna("Recinto Electoral", cementerioF14Ce, 60, 1, "fija")
 
     # Objetos Cementerio 5 Urna Cenizas
-    urnaF1C51 = Urna("Urnita Contenedor de Voluntades", cementerioF15Ce, 70, 1, "fija")
-    urnaF1C52 = Urna("Urnita Caja de Equidad", cementerioF15Ce, 80, 0, "ordinaria")
-    urnaF1C53 = Urna("Urnita de la Justicia", cementerioF15Ce, 70, 0, "ordinaria")
-    urnaF1C54 = Urna("Urnita Escudo Electoral", cementerioF15Ce, 60, 1, "fija")
+    urnaF1C51 = Urna("Contenedor Voluntades", cementerioF15Ce, 70, 1, "fija")
+    urnaF1C52 = Urna("Caja de Equidad", cementerioF15Ce, 80, 0, "ordinaria")
+    urnaF1C53 = Urna("Justicia", cementerioF15Ce, 70, 0, "ordinaria")
+    urnaF1C54 = Urna("Escudo Electoral", cementerioF15Ce, 60, 1, "fija")
 
     # Objetos Cementerio 6 Urna Cenizas
-    urnaF1C61 = Urna("Urnita Cápsula de Sueños", cementerioF16Ce, 70, 1, "fija")
-    urnaF1C62 = Urna("Urnita Templo de Belleza", cementerioF16Ce, 80, 0, "ordinaria")
-    urnaF1C63 = Urna("Urnita Misterio Dorado", cementerioF16Ce, 60, 0, "ordinaria")
-    urnaF1C64 = Urna("Urnita Joyero de Recuerdos", cementerioF16Ce, 60, 1, "fija")
+    urnaF1C61 = Urna("Cápsula de Sueños", cementerioF16Ce, 70, 1, "fija")
+    urnaF1C62 = Urna("Templo Belleza", cementerioF16Ce, 80, 0, "ordinaria")
+    urnaF1C63 = Urna("Misterio Dorado", cementerioF16Ce, 60, 0, "ordinaria")
+    urnaF1C64 = Urna("Joyero Recuerdos", cementerioF16Ce, 60, 1, "fija")
 
     #CuentasBancarias empleados sepulteros funeraria 1
     cuentaF1ESe1= CuentaBancaria(562344, "Adrián Vargas",banco1, 20302)
@@ -1104,54 +1104,54 @@ if __name__ == "__main__":
 
 		
 	#Cementerio 1 Cenizas
-    urnaF1C11E=Urna("Urnita de la Esperanza",cementerioF11Ce,70,1,"fija")
-    urnaF1C12E=Urna("Urnita del Futuro",cementerioF11Ce,80,0,"fija")
+    urnaF1C11E=Urna("Esperanza",cementerioF11Ce,70,1,"fija")
+    urnaF1C12E=Urna("Futuro",cementerioF11Ce,80,0,"fija")
     urnaF1C13E=Urna("default",cementerioF11Ce,50,0,"fija")
 		
-    urnaF1C14E=Urna("Urnita de la Esperanza",cementerioF11Ce,70,1,"fija")
-    urnaF1C15E=Urna("Urnita del Futuro",cementerioF11Ce,80,0,"fija")
+    urnaF1C14E=Urna("Esperanza",cementerioF11Ce,70,1,"fija")
+    urnaF1C15E=Urna("Futuro",cementerioF11Ce,80,0,"fija")
 		
 	#Cementerio 2 Cenizas
-    urnaF1C21E=Urna("Urnita de la Sabiduría",cementerioF12Ce,70,1,"fija")
-    urnaF1C22E=Urna("Urnita de la Justicia",cementerioF12Ce,80,0,"fija")
+    urnaF1C21E=Urna("Sabiduría",cementerioF12Ce,70,1,"fija")
+    urnaF1C22E=Urna("Justicia",cementerioF12Ce,80,0,"fija")
     urnaF1C23E=Urna("default",cementerioF12Ce,90,0,"fija")
 		
-    urnaF1C24E=Urna("Urnita de la Sabiduría",cementerioF12Ce,70,1,"fija")
-    urnaF1C25E=Urna("Urnita de la Justicia",cementerioF12Ce,80,0,"fija")
+    urnaF1C24E=Urna("Sabiduría",cementerioF12Ce,70,1,"fija")
+    urnaF1C25E=Urna("Justicia",cementerioF12Ce,80,0,"fija")
 		
 	#Cementerio 3 Cenizas
-    urnaF1C31E=Urna("Urnita de la Confianza",cementerioF13Ce,70,1,"fija")
-    urnaF1C32E=Urna("Urnita del Progreso",cementerioF13Ce,80,0,"fija")
+    urnaF1C31E=Urna("Confianza",cementerioF13Ce,70,1,"fija")
+    urnaF1C32E=Urna("Progreso",cementerioF13Ce,80,0,"fija")
     urnaF1C33E=Urna("default",cementerioF13Ce,90,0,"fija")
 		
-    urnaF1C34E=Urna("Urnita de la Confianza",cementerioF13Ce,70,1,"fija")
-    urnaF1C35E=Urna("Urnita del Progreso",cementerioF13Ce,80,0,"fija")
+    urnaF1C34E=Urna("Confianza",cementerioF13Ce,70,1,"fija")
+    urnaF1C35E=Urna("Progreso",cementerioF13Ce,80,0,"fija")
 	
 		
 	#Cementerio 4 Cenizas
-    urnaF1C41E=Urna("Urnita de la Verdadera Voz",cementerioF14Ce,70,1,"fija")
-    urnaF1C42E=Urna("Urnita de la Decisión",cementerioF14Ce,80,0,"fija")
+    urnaF1C41E=Urna("Verdadera Voz",cementerioF14Ce,70,1,"fija")
+    urnaF1C42E=Urna("Decisión",cementerioF14Ce,80,0,"fija")
     urnaF1C43E=Urna("default",cementerioF14Ce,60,0,"fija")
 		
-    urnaF1C44E=Urna("Urnita de la Verdadera Voz",cementerioF14Ce,70,1,"fija")
-    urnaF1C45E=Urna("Urnita de la Decisión",cementerioF14Ce,80,0,"fija")
+    urnaF1C44E=Urna("Verdadera Voz",cementerioF14Ce,70,1,"fija")
+    urnaF1C45E=Urna("Decisión",cementerioF14Ce,80,0,"fija")
 		
 	#Cementerio 5 Cenizas
-    urnaF1C51E=Urna("Urnita del Cambio",cementerioF15Ce,70,1,"fija")
-    urnaF1C52E=Urna("Urnita del Pueblo",cementerioF15Ce,80,0,"fija")
+    urnaF1C51E=Urna("Cambio",cementerioF15Ce,70,1,"fija")
+    urnaF1C52E=Urna("Pueblo",cementerioF15Ce,80,0,"fija")
     urnaF1C53E=Urna("default",cementerioF15Ce,60,0,"ordinaria")
 		
-    urnaF1C54E=Urna("Urnita del Cambio",cementerioF15Ce,70,1,"fija")
-    urnaF1C55E=Urna("Urnita del Pueblo",cementerioF15Ce,80,0,"fija")
+    urnaF1C54E=Urna("Cambio",cementerioF15Ce,70,1,"fija")
+    urnaF1C55E=Urna("Pueblo",cementerioF15Ce,80,0,"fija")
 	
 		
 	#Cementerio 6 Cenizas
-    urnaF1C61E=Urna("Urnita de la Transparencia",cementerioF16Ce,70,1,"fija")
-    urnaF1C62E=Urna("Urnita del Compromiso",cementerioF16Ce,80,0,"fija")
+    urnaF1C61E=Urna("Transparencia",cementerioF16Ce,70,1,"fija")
+    urnaF1C62E=Urna("Compromiso",cementerioF16Ce,80,0,"fija")
     urnaF1C63E=Urna("default",cementerioF16Ce,60,0,"ordinaria")
 		
-    urnaF1C64E=Urna("Urnita de la Transparencia",cementerioF16Ce,70,1,"fija")
-    urnaF1C65E=Urna("Urnita del Compromiso",cementerioF16Ce,80,0,"fija")
+    urnaF1C64E=Urna("Transparencia",cementerioF16Ce,70,1,"fija")
+    urnaF1C65E=Urna("Compromiso",cementerioF16Ce,80,0,"fija")
 	
     #Agregar clientes
 		

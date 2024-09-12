@@ -7,6 +7,14 @@ def irVentanaInicio():
     ventana.withdraw()
     ventanaInicio.ventanaInicio()
 
+
+def framePrincipal(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+    
+    etiquetaInicial = tk.Label(frame,text="Inicio aplicación")
+    etiquetaInicial.pack(pady=20)
+
 #Aplicacion
 def aplicacion():
     ventanaDescripcion = tk.Toplevel()
@@ -79,6 +87,8 @@ def ventanaPrincipal():
     ayuda=tk.Menu(menuPrincipal,tearoff=0)
 
     menuPrincipal.add_cascade(label="Ayuda",menu=ayuda)
+
+    framePrincipal(zona2)
 
 
     
