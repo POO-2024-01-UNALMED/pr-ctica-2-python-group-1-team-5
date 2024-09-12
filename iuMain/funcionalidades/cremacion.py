@@ -137,45 +137,64 @@ def seleccionCliente(frame,valores):
         
         valorIglesia=FieldFrame(frame,[],["Indique el ID de la iglesia"])
 
+
         def datosCrematorio():
+
             if valoresCrematorio.continuar() and valorIglesia.continuar():
                 crematorio=crematorios[(valoresCrematorio.getValores())[0]]
                 print(crematorio)
                 print(int(valorIglesia.getValores()[0])-1)
                 print(iglesias)
+
+                def cambiarHoras(horas):
+                    if horas.continuar():
+                        horaEscogida=crematorio.getHorarioEventos()[(horas.getValores())[0]]
+                        crematorio.setHoraEvento(horaEscogida)
+                        ventanaHoras.destroy()
+                        cementerios(frame,crematorio,iglesia)
                 try:
                     iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
-                    cementerios(frame,crematorio,iglesia)
+                    #Crear ventana para determinar la hora del crematorio
+                    ventanaHoras = tk.Toplevel()
+                    ventanaHoras.title("Funeraria Rosario")
+                    ventanaHoras.geometry("400x200")
+                    label = tk.Label(ventanaHoras, text=f"Crematorio {crematorio.getNombre()}", padx=10, anchor="w", wraplength=480)
+                    label.pack(pady=2)
+                    crematorio.generarHoras()
+                    print(crematorio.generarHoras())
+                    horarios = crematorio.getHorarioEventos()
+                    print(horarios)
+                    horasGenereadas= lambda horarios: [f"{hora} {'Pm' if int(hora[:2]) >= 12 else 'Am'}"for i, hora in enumerate(horarios)]
+                    horariosFormateados = horasGenereadas(horarios)
+                    print(horariosFormateados)
+                    horas = frame1(ventanaHoras,[f"Horarios disponibles:"],[horariosFormateados])
+                    
+                    print(horas)
+                    btnContinuar = tk.Button(ventanaHoras, text="Continuar",command=lambda: cambiarHoras(horas))
+                    btnContinuar.pack(pady=20)
+
+                    ventanaHoras.mainloop()    
+                    
                 except:
                     errorNumeros(valorIglesia.getValores()[0],"El ID ingresado no es correcto")
                     valorIglesia.borrar()
+        
+        btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
+        btnContinuar.pack(pady=5,padx=10)
+        
+                
                     
 
-        btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
-        btnContinuar.place(rely=65,relx=80)
-
-
-    def cementerios(frame,crematorio,iglesia):
-        titulo(frame,"Organizacion Cementerio")
-
-
-    if len(crematorios) != 0:
-        print(f"Su afiliación es de tipo {cliente.getAfiliacion()}")
-       
-
-        indice=1
-        for auxCrematorio in crematorios:
-            print(f"[{indice}] {auxCrematorio}")
-            indice+=1
-
-    
-        indice = int(input("Ingrese el índice del crematorio deseado: "))
-        # Asignación de crematorio
-        crematorio=crematorios[indice-1]
         
-    print("Crematorio seleccionado: "+str(crematorio))
 
-    print("Horarios disponibles del crematorio:")
+def cementerios(frame,crematorio,iglesia):
+    funeraria=None
+    crematorio=None
+    cliente=None
+    titulo(frame,"Organizacion Cementerio")
+
+    texto= tk.Label(frame,text="Horarios disponibles del crematorio:")
+    texto.pack(side="top",pady=5)
 
     crematorio.generarHoras()
 

@@ -1285,13 +1285,7 @@ if __name__ == "__main__":
 	
     
     
-    indice= int(input("Ingrese un número: "))
-    if indice==1:
-        cremacion.funcionalidadCrematorio()
-    elif indice==2:
-        exhumacion.funcionalidadExhumacion()
-    else:
-        pass
+    
 
     ventanaInicio.ventanaInicio()
 
