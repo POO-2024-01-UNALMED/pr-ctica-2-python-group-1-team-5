@@ -30,31 +30,31 @@ def ventanaInicio():
 
     #Generacion de los contenedores principales 
     #Frame principal izquierda (P1)
-    frameIzquierda=tk.Frame(ventana, bg="black",bd=2,relief="solid")
-    frameIzquierda.pack(side="left",expand = True, fill ="both",padx=5,pady=5)
+    frameIzquierda=tk.Frame(ventana, bg="#9fd5d1",bd=5,relief="ridge")
+    frameIzquierda.pack(side="left",expand = True, fill ="both",padx=10,pady=10)
     #Frame principal izquierda (P2)
-    frameDerecha=tk.Frame(ventana,bg="black")
+    frameDerecha=tk.Frame(ventana,bg="#9fd5d1",bd=5)
     frameDerecha.pack(side="right",expand=True,fill="both",padx=5,pady=5)
 
 
     #Frame secundario arriba izquierda (P3)
-    frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white")
+    frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
     frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.67) 
 
     #Frame secundario abajo izquierda (P4)
-    frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white")
+    frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
     frameAbajoIzquierda.place(relx=0.05,rely=0.75,relwidth=0.9,relheight=0.2)
     btnPrincipal=tk.Button(frameAbajoIzquierda, text="Iniciar Aplicación", command=irVentanaPrincipal)
     btnPrincipal.pack(expand=True)
 
     #Frame secundario arriba derecha (P5)
-    frameArribaDerecha=tk.Frame(frameDerecha,bg="white")
+    frameArribaDerecha=tk.Frame(frameDerecha,bg="white",bd=2, relief="groove")
     frameArribaDerecha.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.4) 
     button100 = tk.Button(frameArribaDerecha, bg= "white", text="Hojas de vida de los desarrolladores", font=("Arial",8), wraplength=200,justify="center",anchor="center",command=cambiarHojaVidaeImagenes)
     button100.pack(expand= True, fill= "both", padx=5,pady=5)
 
     #Frame secundario abajo derecha (P6)
-    frameAbajoDerecha=tk.Frame(frameDerecha,bg="white")
+    frameAbajoDerecha=tk.Frame(frameDerecha,bg="white",bd=2, relief="groove")
     frameAbajoDerecha.place(relx=0.05,rely=0.47,relwidth=0.9,relheight=0.5) 
 
     #Configuración del frame en cuadrícula 
