@@ -3,8 +3,8 @@ from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
 from gestorAplicacion.financiero.factura import Factura
 from gestorAplicacion.inventario.vehiculo import Vehiculo
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
-from gestorAplicacion.establecimientos.cementerio import Cementerio
-from gestorAplicacion.establecimientos.crematorio import Crematorio
+#from gestorAplicacion.establecimientos.cementerio import Cementerio
+#from gestorAplicacion.establecimientos.crematorio import Crematorio
 from gestorAplicacion.establecimientos.funeraria import Funeraria
 from gestorAplicacion.personas.persona import Persona
 from gestorAplicacion.personas.cliente import Cliente
@@ -360,7 +360,43 @@ def comprarProductos(funeraria, productos_faltantes):
     else:
         print("Selección de establecimiento inválida.")
 
-def comprar_vehiculos(funeraria):
+def contratarEmpleados(funeraria):
+    print("Establecimientos disponibles para contratación de empleados:")
+
+    establecimientos = funeraria.getListadoProveedoresEmpleados()
+    for i, establecimiento in enumerate(establecimientos):
+        print(f"{i + 1}. {establecimiento.getNombre()} (Calificación: {establecimiento.getCalificacion()})")
+
+    # Seleccionar establecimiento
+    print("Seleccione el establecimiento para ver sus empleados:")
+    seleccionEstablecimiento = int(input()) - 1
+
+    if 0 <= seleccionEstablecimiento < len(establecimientos):
+        estSeleccionado = establecimientos[seleccionEstablecimiento]
+        empleadosContratados = []
+
+        # Mostrar empleados disponibles para contratación
+        print(f"Empleados disponibles en {estSeleccionado.getNombre()}:")
+        for empleado in estSeleccionado.getEmpleados():
+            print(f"  Empleado: {empleado.getNombre()}, Cargo: {empleado.getCargo()}, Experiencia: {empleado.getExperiencia()} años, Edad: {empleado.getEdad()}")
+            print("¿Desea contratar este empleado? (S/N)")
+            respuesta = input().strip().lower()
+            if respuesta == 's':
+                funeraria.agregarEmpleado(empleado)
+                empleadosContratados.append(empleado)
+                print(f"Empleado {empleado.getNombre()} contratado exitosamente.")
+
+        # Mostrar resumen de la contratación
+        if empleadosContratados:
+            print("Resumen de la contratación de empleados:")
+            for empleado in empleadosContratados:
+                print(f"  Empleado: {empleado.getNombre()}, Cargo: {empleado.getCargo()}, Experiencia: {empleado.getExperiencia()} años, Edad: {empleado.getEdad()}")
+        else:
+            print("No se contrataron empleados.")
+    else:
+        print("Selección inválida.")
+
+def comprarVehiculos(funeraria):
     print("Establecimientos disponibles para compra de vehículos:")
 
     establecimientos = funeraria.listadoProveedoresVehiculos()
@@ -396,7 +432,7 @@ def comprar_vehiculos(funeraria):
     else:
         print("Selección inválida.")
 
-def realizar_encuesta(funeraria):
+def realizarEncuesta(funeraria):
     print("Realizando encuesta de desempeño...")
 
     # Encuesta para el proceso en general
@@ -404,8 +440,8 @@ def realizar_encuesta(funeraria):
     descripcion = input("Ingrese una descripción opcional sobre el desempeño del proceso: ")
 
     # Guardar la calificación y descripción en la funeraria
-    funeraria.calificacion = calificacion
-    funeraria.descripcion_calificacion = descripcion
+    funeraria.getCalificacion() = calificacion
+    funeraria.getDescripcionCalificacion() = descripcion
 
     print(f"Calificación del proceso guardada: {calificacion}")
     if descripcion:
@@ -439,16 +475,16 @@ def asignarRecursos(funeraria):
     print("Resumen de recursos asignados:")
     print("Empleados:")
     for empleado in empleados_seleccionados:
-        print(f"- {empleado.nombre} ({empleado.cargo})")
+        print(f"- {empleado.getNombre()} ({empleado.getCargo()})")
 
     print("Vehículos:")
     for vehiculo in vehiculos_seleccionados:
-        print(f"- {vehiculo.tipo_vehiculo}")
-        if vehiculo.conductor:
-            print(f"  Conductor: {vehiculo.conductor.nombre}")
+        print(f"- {vehiculo.getTipoVehiculo()}")
+        if vehiculo.getConductor():
+            print(f"  Conductor: {vehiculo.getConductor().getNombre()}")
         else:
             print("  Conductor: No asignado")
 
     print("Productos:")
     for producto in productos_seleccionados:
-        print(f"- {producto.nombre}: {producto.cantidad} unidades")
+        print(f"- {producto.getNombre()}: {producto.getCantidad()} unidades")

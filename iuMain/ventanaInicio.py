@@ -1,5 +1,6 @@
 import tkinter as tk
 from iuMain import ventanaPrincipal
+from PIL import Image,ImageTk
 #Para cambiar entre ventanas
 
 
@@ -11,7 +12,7 @@ def irVentanaPrincipal():
 def ventanaInicio():
 
     #Objeto tipo ventana
-    global ventana , indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11
+    global ventana , indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11, indiceImagenes
     ventana = tk.Tk()
     ventana.geometry("600x400")
     #Objeto de menú
@@ -29,31 +30,31 @@ def ventanaInicio():
 
     #Generacion de los contenedores principales 
     #Frame principal izquierda (P1)
-    frameIzquierda=tk.Frame(ventana, bg="black",bd=2,relief="solid")
-    frameIzquierda.pack(side="left",expand = True, fill ="both",padx=5,pady=5)
+    frameIzquierda=tk.Frame(ventana, bg="#9fd5d1",bd=5,relief="ridge")
+    frameIzquierda.pack(side="left",expand = True, fill ="both",padx=10,pady=10)
     #Frame principal izquierda (P2)
-    frameDerecha=tk.Frame(ventana,bg="black")
+    frameDerecha=tk.Frame(ventana,bg="#9fd5d1",bd=5)
     frameDerecha.pack(side="right",expand=True,fill="both",padx=5,pady=5)
 
 
     #Frame secundario arriba izquierda (P3)
-    frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white")
+    frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
     frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.67) 
 
     #Frame secundario abajo izquierda (P4)
-    frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white")
+    frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
     frameAbajoIzquierda.place(relx=0.05,rely=0.75,relwidth=0.9,relheight=0.2)
     btnPrincipal=tk.Button(frameAbajoIzquierda, text="Iniciar Aplicación", command=irVentanaPrincipal)
     btnPrincipal.pack(expand=True)
 
     #Frame secundario arriba derecha (P5)
-    frameArribaDerecha=tk.Frame(frameDerecha,bg="white")
+    frameArribaDerecha=tk.Frame(frameDerecha,bg="white",bd=2, relief="groove")
     frameArribaDerecha.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.4) 
     button100 = tk.Button(frameArribaDerecha, bg= "white", text="Hojas de vida de los desarrolladores", font=("Arial",8), wraplength=200,justify="center",anchor="center",command=cambiarHojaVidaeImagenes)
     button100.pack(expand= True, fill= "both", padx=5,pady=5)
 
     #Frame secundario abajo derecha (P6)
-    frameAbajoDerecha=tk.Frame(frameDerecha,bg="white")
+    frameAbajoDerecha=tk.Frame(frameDerecha,bg="white",bd=2, relief="groove")
     frameAbajoDerecha.place(relx=0.05,rely=0.47,relwidth=0.9,relheight=0.5) 
 
     #Configuración del frame en cuadrícula 
@@ -86,30 +87,43 @@ def ventanaInicio():
     label11 = tk.Label(frame11)
     label11.pack(fill="both", expand=True)
 
-    imagen1 = tk.PhotoImage(file="iuMain/imagenes/violeta1.png")  
-    imagen1 = imagen1.subsample(6,6)
-    imagen2 = tk.PhotoImage(file="iuMain/imagenes/violeta2.png")  
-    imagen2 = imagen2.subsample(6,6)
-    imagen3 = tk.PhotoImage(file="iuMain/imagenes/violeta3.png")
-    imagen3 = imagen3.subsample(6,6)
-    imagen4 = tk.PhotoImage(file="iuMain/imagenes/violeta4.png")  
-    imagen4 = imagen4.subsample(6,6)
-    
     hojaVida1 = "Soy Violeta, una estudiante de Ingeniería de Sistemas de 19 años, apasionada por la tecnología y el desarrollo de software. Me interesa aprender y crecer en el campo de la informática. Disfruto de actividades que me permitan mejorar mis habilidades técnicas."
     hojaVida2 = "Sebastian"
     hojaVida3 = "Andrés"
     hojasVida = [hojaVida1, hojaVida2, hojaVida3]
-    imagenes = [imagen1,imagen2,imagen3,imagen4]
+    imagenes = ["iuMain/imagenes/imagen1.png","iuMain/imagenes/imagen2.png","iuMain/imagenes/imagen3.png","iuMain/imagenes/imagen4.png","iuMain/imagenes/imagen5.png","iuMain/imagenes/imagen6.png","iuMain/imagenes/imagen7.png","iuMain/imagenes/imagen8.png","iuMain/imagenes/imagen9.png","iuMain/imagenes/imagen10.png","iuMain/imagenes/imagen11.png","iuMain/imagenes/imagen12.png"]
     indiceValor = 0
+    indiceImagenes = 0
     ventana.mainloop()
 
 def cambiarHojaVidaeImagenes():
-    global indiceValor,button100, imagenes, hojasVida, label00, label01,label10,label11
+    global indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11,indiceImagenes
     button100.config(text=hojasVida[indiceValor])
 
-    label00.config(image=imagenes[indiceValor])
-    label01.config(image=imagenes[(indiceValor+1) % len(imagenes)])
-    label10.config(image=imagenes[(indiceValor+2) % len(imagenes)])
-    label11.config(image=imagenes[(indiceValor+3) % len(imagenes)])
+    ancho = label00.winfo_width()
+    alto = label00.winfo_height()
 
-    indiceValor = (indiceValor +1) % len(hojasVida)
+    # Redimensionar las imágenes según el tamaño de los labels
+    imagen00 = Image.open(imagenes[indiceImagenes]).resize((ancho, alto))
+    imagen00 = ImageTk.PhotoImage(imagen00)
+    label00.config(image=imagen00)
+    label00.image = imagen00
+
+    imagen01 = Image.open(imagenes[(indiceImagenes+1) % len(imagenes)]).resize((ancho, alto))
+    imagen01 = ImageTk.PhotoImage(imagen01)
+    label01.config(image=imagen01)
+    label01.image = imagen01
+
+    imagen10 = Image.open(imagenes[(indiceImagenes+2) % len(imagenes)]).resize((ancho, alto))
+    imagen10 = ImageTk.PhotoImage(imagen10)
+    label10.config(image=imagen10)
+    label10.image = imagen10
+
+    imagen11 = Image.open(imagenes[(indiceImagenes+3) % len(imagenes)]).resize((ancho, alto))
+    imagen11 = ImageTk.PhotoImage(imagen11)
+    label11.config(image=imagen11)
+    label11.image = imagen11
+
+    # Actualizar los índices
+    indiceValor = (indiceValor+1) % len(hojasVida)
+    indiceImagenes = (indiceImagenes+4) % len(imagenes)
