@@ -117,6 +117,10 @@ class frame1(Frame):
                 listaIndices.append(eleccion)
         return listaIndices
     
+    def bloquearOpciones(self):
+        for opcion in self.opcionesAlmacenadas:
+            opcion.config(state='disabled')
+    
 class tablas(Frame):
     def __init__(self,master,etiquetas, valores):
         super().__init__(master)

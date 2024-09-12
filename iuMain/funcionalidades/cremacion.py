@@ -50,9 +50,7 @@ def funcionalidadCrematorio(frame):
     btnContinuar.pack(side="top",pady=10)
 ##########################################################################################################
 def seleccionCliente(frame,valores):
-    cliente=None
-    crematorio=None
-    crematorios=None
+ 
     if valores.continuar():
         funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
         #Funeraria seleccionada
@@ -150,8 +148,9 @@ def seleccionCliente(frame,valores):
                     if horas.continuar():
                         horaEscogida=crematorio.getHorarioEventos()[(horas.getValores())[0]]
                         crematorio.setHoraEvento(horaEscogida)
+                        crematorio.setIglesia(iglesia)
                         ventanaHoras.destroy()
-                        cementerios(frame,crematorio,iglesia)
+                        cementerios(frame,crematorio,iglesia,cliente)
                 try:
                     iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
                     #Crear ventana para determinar la hora del crematorio
@@ -182,92 +181,179 @@ def seleccionCliente(frame,valores):
         btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
         btnContinuar.pack(pady=5,padx=10)
         
-                
-                    
-
         
 
-def cementerios(frame,crematorio,iglesia):
-    funeraria=None
-    crematorio=None
-    cliente=None
+def cementerios(frame,crematorio,iglesia,cliente):
+    #funeraria=None
+    #crematorio=None
+    #cliente=None
     titulo(frame,"Organizacion Cementerio")
 
-    texto= tk.Label(frame,text="Horarios disponibles del crematorio:")
+    texto= tk.Label(frame,text="Seleccione los siguientes datos:")
     texto.pack(side="top",pady=5)
+    
+    #Empleados disponibles según la hora
+    empleados =(crematorio.getFuneraria()).buscarEmpleadosPorHoras(crematorio.getHoraEvento(), "cremador")
+    # Definir el cementerio, de acuerdo a la hora fin del evento de cremación, afiliación del cliente y el cementerio debe tener como atributo tipo el valor "cenizas"
+    cementerios = (crematorio.getFuneraria()).buscarCementerios("cenizas", cliente)
+    # Se establecen los horarios del cementerio de acuerdo a la finalización de ceremonia de cremación
+    crematorio.cambiarHorarios(cementerios)
 
-    crematorio.generarHoras()
+    valores= frame1(frame,["Empleados:","Cementerios cenizas"],[empleados,cementerios])
 
-    indice = 1
-    for hora in crematorio.getHorarioEventos():
-        indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
-        horaFormateada = hora  # Formato 12-horas con AM/PM
-        print(f"[{indice}] {horaFormateada} {indicador}")
-        indice += 1
+    def datosCementerio(valores):
 
-    # Solicitar al usuario que ingrese el índice
-    indice = int(input("Ingrese el índice para escoger el horario: "))
+        if valores.continuar():
+    
+            cementerio=cementerios[(valores.getValores())[1]]
+            print(cementerio.getNombre())
+            empleado=empleados[(valores.getValores())[0]]
+            print(empleado)
 
-    #Se cambia el horario de crematorio
-    crematorio.setHoraEvento(crematorio.getHorarioEventos()[indice-1])
-    #Se elimina el horario de Horario eventos
-    crematorio.eliminarHorario(crematorio.getHorarioEventos()[indice-1])
-        
-    print("Empleados disponibles en la jornada seleccionada")
-    empleados =funeraria.buscarEmpleadosPorHoras(crematorio.getHoraEvento(), "cremador")
-    indice = 1
+            def cambiarHoras(horas):
+                if horas.continuar():
+                    horaEscogida=cementerio.getHorarioEventos()[(horas.getValores())[0]]
+                    cementerio.setHoraEvento(horaEscogida)
+                    ventanaHoras.destroy()
+                    btnContinuar.destroy()
+                    urnas(frame,cementerio,crematorio,cliente,valores)
+                    
+                
+            #iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
+            #Crear ventana para determinar la hora del crematorio
+            texto=f"El cementerio {cementerio} cuenta con {len(cementerio.getHorarioEventos())}\n ¿Deseas continuar?"
+            result = tk.messagebox.askyesno("Confirmar Datos",texto)
+            if result:
+                ventanaHoras = tk.Toplevel()
+                ventanaHoras.title("Funeraria Rosario")
+                ventanaHoras.geometry("400x200")
+                label = tk.Label(ventanaHoras, text=f"Cementerio {cementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
+                label.pack(pady=2)
+                #crematorio.generarHoras()
+                #print(crematorio.generarHoras())
+                horarios = cementerio.getHorarioEventos()
+                print(horarios)
+                horasGenereadas= lambda horarios: [f"{hora} {'Pm' if int(hora[:2]) >= 12 else 'Am'}"for i, hora in enumerate(horarios)]
+                horariosFormateados = horasGenereadas(horarios)
+                print(horariosFormateados)
+                horas = frame1(ventanaHoras,[f"Horarios disponibles:"],[horariosFormateados])
+                
+                print(horas)
+                btnContinuar1 = tk.Button(ventanaHoras, text="Continuar",command=lambda: cambiarHoras(horas))
+                btnContinuar1.pack(pady=20)
+
+                ventanaHoras.mainloop()    
+                    
+
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:datosCementerio(valores))
+    btnContinuar.pack(side="top",pady=10)
+
+def urnas(frame,cementerio,crematorio,cliente,valores):
+    #titulo(frame,"")
+    valores.bloquearOpciones()
+    frameSeparador=tk.Frame(frame)
+    frame.pack(pady=20)
+    valoresUrna=FieldFrame(frame,["Datos Urna","Valores"],["Categoria urna (0-2)","Peso cliente (0-120)"],[0,0])
+    categoria =((valoresUrna.getValores())[0])
+    peso = ((valoresUrna.getValores())[1])
+    num=0
+    def validarUrnas():
+        if valoresUrna.continuar():
+            try:
+                int(categoria)
+                int(peso)
+                num=1
+            except:
+                errorNumeros(categoria,"La categoria ingresada no es correcta")
+                errorNumeros(peso,"El peso ingresado no es correcto")
+        if num==1:
+            tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso)
+    
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda: validarUrnas())
+    btnContinuar.pack(side="top",pady=10)
+
+#___________________________________________________________________________________________________________________
+
+def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
+    #titulo(frame,"")
+    valores.bloquearOpciones()
+
+    etiqueta=tk.Label(frame,text="Urnas disponibles")
+    etiqueta.pack()
+
+    urnas = cementerio.disponibilidadInventario("urna", peso, categoria)
+    cementerios= list(map(lambda p: p.getNombre(), urnas))
+    IDs=list(p for p in range(1,len(urnas)+1))
+    tablas(frame,["Urna","Cementerio","ID"],[urnas,cementerios,IDs])
+
+    entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
+
+    def datosCrematorio():
+
+        if entradaUrna.continuar():
+            
+            try:
+                urna=urnas[int(entradaUrna.getValores()[0])-1]  
+                producto()
+            except:
+                errorNumeros(entradaUrna.getValores()[0],"El ID ingresado no es correcto")
+                entradaUrna.borrar()
+    
+    btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
+    btnContinuar.pack(pady=5,padx=10)
+
+
+def producto():
+    print("Yes")   
+
+
+
+    """indice = 1
     for auxEmpleado in empleados:
         print(f"[{indice}] {auxEmpleado}")
         indice += 1
 
+ 
+
     # Solicitar al usuario que ingrese el índice del empleado deseado
     indice = int(input("Ingrese el índice del empleado deseado: "))
-    crematorio.setEmpleado(empleados[indice-1])
+    crematorio.setEmpleado(empleados[indice-1])"""
 
-    print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
-    
-    # Iglesias disponibles
-    #iglesias = []
-    indice = 1
-
-
-				
-	#Se asigna la iglesia en el atributo iglesia en el crematorio designado para trabajar con este atributo el resto de la funcionalidad
-    crematorio.setIglesia(iglesia)
+#_________________________________________________________________________________________________
 				
 	#se crea el productoCrematorio para guardar registro de lo que se debe cobrar en la clase Factura respecto a crematorio 
     productoCrematorio= Producto()
-    productoCrematorio.setEstablecimiento(crematorio)
-	#Se guardarán todos los productos que se empleen para organizar las facturas
+    #productoCrematorio.setEstablecimiento(crematorio)
+	
+   # _____________________________________________________________________________________________
+    
+    #Se guardarán todos los productos que se empleen para organizar las facturas
 	#productos.add(productoCrematorio);
 				
 	#Se imprimirá la invitación del evento
-    print(productoCrematorio.evento(cliente))
+    #print(productoCrematorio.evento(cliente))
+
+#_________________________________________________________________________________________________
 
 
-    # Definir el cementerio, de acuerdo a la hora fin del evento de cremación, afiliación del cliente y el cementerio debe tener como atributo tipo el valor "cenizas"
-    cementerios = funeraria.buscarCementerios("cenizas", cliente)
-    # Se establecen los horarios del cementerio de acuerdo a la finalización de ceremonia de cremación
-    crematorio.cambiarHorarios(cementerios)
-
-    indice = 1
+    #indice = 1
     # Se imprimen los cementerios
-    print("Cementerios disponibles")
+    #print("Cementerios disponibles")
 
-    for auxCementerio in cementerios:
-        print(f"[{indice}] {auxCementerio} - Horarios disponibles {len(auxCementerio.getHorarioEventos())}")
-        indice += 1
+    #for auxCementerio in cementerios:
+        #print(f"[{indice}] {auxCementerio} - Horarios disponibles {len(auxCementerio.getHorarioEventos())}")
+        #indice += 1
 
-    indice = int(input("Indique el índice del cementerio: "))
+    #indice = int(input("Indique el índice del cementerio: "))
 
     # Se agrega el cementerio seleccionado
-    cementerio = cementerios[indice - 1]
+    #cementerio = cementerios[indice - 1]
     # Se añade la iglesia seleccionada al cementerio
-    cementerio.setIglesia(iglesia)
+    #cementerio.setIglesia(iglesia)
 
     # Escoger horario para el cementerio
 
-    indice = 1
+    """indice = 1
     for hora in cementerio.getHorarioEventos():
         indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
         horaFormateada = hora  # Formato 12-horas con AM/PM
@@ -397,4 +483,4 @@ def cementerios(frame,crematorio,iglesia):
 
     # Imprimir flores y material seleccionados
     print("Flores seleccionadas:", urna.getFloresSeleccionadas())
-    print("Material seleccionado:", urna.getMaterialSeleccionado())
+    print("Material seleccionado:", urna.getMaterialSeleccionado())"""

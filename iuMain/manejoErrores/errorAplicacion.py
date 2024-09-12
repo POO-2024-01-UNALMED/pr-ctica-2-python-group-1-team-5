@@ -18,9 +18,16 @@ class CamposIncompletos(ErrorAplicacion):
         return False
     
 class errorNumeros(ErrorAplicacion):
-    def __init__(self, valor,mensaje):
+    def __init__(self, valor,mensaje,valMin=None,valMax=None):
         self.valor=valor
+        self.vaMin=valMin
+        self.valMax=valMax
+        if valMin !=None and valMax !=None:
+            self.topes()
         if valor.isdigit():
             super().__init__(mensaje)
         else:
              messagebox.showerror("Error", "Debes ingresar un dígito")
+    
+    def topes(self):
+        pass
