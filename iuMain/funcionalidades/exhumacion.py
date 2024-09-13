@@ -4,17 +4,95 @@ from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 from gestorAplicacion.establecimientos.cementerio import Cementerio
 from gestorAplicacion.establecimientos.iglesia import Iglesia
 
-def funcionalidadExhumacion():
+import tkinter as tk
+from iuMain.frame import frame1
+from iuMain.frame import FieldFrame
+# Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
+
+def titulo(frame,titulo):
+    # Limpia el frame
+    for item in frame.winfo_children():
+        item.destroy()
+
+    # Imprime el titulo
+    titulo = tk.Label(frame, text=titulo, bg="white", font=("Helvetica", 16, "bold"))
+    titulo.pack(pady=20)
+
+def funcionalidadExhumacion(frame):
     cliente = None
     urnaTumba = None
     cementerio = None
     nuevaUrnaTumba = None
 
-    print()
+    titulo(frame,"Servicio de Exhumación")
+    
     # Breve descripción de la funcionalidad para los usuarios
-    print("La exhumación es el proceso de retirar un cuerpo de su lugar de sepultura")
-    print()
+    etiqueta = tk.Label(frame, text="La exhumación es el proceso de retirar un cuerpo de su lugar de sepultura")
+    etiqueta.pack(pady=2)
+    etiqueta1 = tk.Label(frame, text="Ingrese los siguientes datos para la búsqueda del Cliente")
+    etiqueta1.pack(pady=4)
+    funerarias = Establecimiento.filtrarEstablecimiento("funeraria")
+    listaCliente=["Mayor de edad","Menor de edad"]
+    listaBuscar=["Cementerios de cuerpos","Urna default","Tumba default"]
+   
+    datoInicio = frame1(frame,["Seleccione la funeraria: ","Buscar Cliente en: ","Cliente: "],[funerarias,listaBuscar,listaCliente])
 
+    def datosInicio():
+        if datoInicio.continuar():
+            funeraria=funerarias[(datoInicio.getValores())[0]]
+            print(funeraria)
+            buscar=listaBuscar[(datoInicio.getValores())[1]]
+            print(buscar)
+            tipoCliente=listaCliente[(datoInicio.getValores())[2]]
+            print(tipoCliente)
+            datoInicio.bloquearOpciones()
+            btnContinuar.destroy()
+            seleccionCliente(frame,funeraria,buscar,tipoCliente)
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:datosInicio())
+    btnContinuar.pack(side="top",pady=10)
+
+
+def seleccionCliente(frame,funeraria,buscar,tipoCliente):
+    print("yes")
+    separador=tk.Label(frame)
+    separador.pack(pady=10)
+
+    clientes=[]
+    tipo = None
+    mensaje1 = None
+    mensaje2 = None
+    
+    if buscar == "Cementerios de cuerpos":
+        if tipoCliente == "Mayor de edad":
+            clientes = funeraria.buscarClienteCementerio("cuerpos", "adulto")
+        else:
+            clientes = funeraria.buscarClienteCementerio("cuerpos", "niño")
+        cliente=frame1(frame,[f"Clientes {tipoCliente}"],[clientes])
+    else:
+
+        if buscar =="Urna default":
+            tipo = "cenizas"
+            mensaje1 = "Cementerios de cenizas"
+            mensaje2 = "Urnas"
+        else:
+            tipo = "cuerpos"
+            mensaje1 = "Cementerios de cuerpos"
+            mensaje2 = "Tumbas"
+                
+        # Se traen todos los cementerios por funeraria
+        cementeriosPorFuneraria = Establecimiento.buscarPorFuneraria(funeraria, "cementerio")
+        # Se traen todos los cementerios de la funeraria con el atributo de tipo correspondiente ("cuerpos" o "cenizas")
+        cementerios = Cementerio.cementerioPorTipo(cementeriosPorFuneraria, tipo)
+
+        cementerio=frame1(frame,[f"Cementerios {tipo}"],[cementerios])
+        
+
+
+           
+
+
+
+    """
     # Buscar cliente
     print("[1] Buscar cliente por su CC")
     print("[2] Buscar cliente por cementerio")
@@ -104,7 +182,7 @@ def funcionalidadExhumacion():
 
         else:
             print("[1] Buscar tumbas marcadas como 'default'")
-            print("[2] Buscar urnas marcadas como 'default']")
+            print("[2] Buscar urnas marcadas como 'default'")
 
             indice = int(input("Ingrese el índice correspondiente: "))
 
@@ -127,9 +205,10 @@ def funcionalidadExhumacion():
                 tipo = "cenizas"
                 mensaje1 = "Cementerios de cenizas"
                 mensaje2 = "Urnas"
-
+            
             # Se traen todos los cementerios de la funeraria con el atributo de tipo correspondiente ("cuerpos" o "cenizas")
             cementerios = Cementerio.cementerioPorTipo(cementeriosPorFuneraria, tipo)
+
 
             print(mensaje1)
             indice = 1
@@ -425,3 +504,5 @@ def funcionalidadExhumacion():
 	
     print("Dados los datos se organizará como estarán distribuidos los familiares en la Iglesia")
     print(nuevoCementerio.organizarIglesia(cliente))
+
+    """
