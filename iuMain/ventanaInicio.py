@@ -12,7 +12,7 @@ def irVentanaPrincipal():
 def ventanaInicio():
 
     #Objeto tipo ventana
-    global ventana , indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11, indiceImagenes
+    global ventana , indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11, indiceImagenes, imagenesProyecto, indiceImagenP4, labelP4
     ventana = tk.Tk()
     ventana.geometry("600x400")
     #Objeto de menú
@@ -39,13 +39,22 @@ def ventanaInicio():
 
     #Frame secundario arriba izquierda (P3)
     frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
-    frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.67) 
+    frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.4) 
 
     #Frame secundario abajo izquierda (P4)
+    imagenesProyecto = ["iuMain/imagenes/imagen1F.png","iuMain/imagenes/imagen2F.png","iuMain/imagenes/imagen3F.png"]
+    indiceImagenP4 = 0
+    imagen1 = Image.open(imagenesProyecto[0])
+    imagen1 = ImageTk.PhotoImage(imagen1)
     frameAbajoIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
-    frameAbajoIzquierda.place(relx=0.05,rely=0.75,relwidth=0.9,relheight=0.2)
+    frameAbajoIzquierda.place(relx=0.05,rely=0.47,relwidth=0.9,relheight=0.5)
+    frameArribaAbajoIzquierda=tk.Frame(frameAbajoIzquierda,bg="white")
+    frameArribaAbajoIzquierda.place(relx=0.04,rely=0.04,relwidth=0.9,relheight=0.8)
+    labelP4 = tk.Label(frameArribaAbajoIzquierda,image=imagen1, bg="white")
+    labelP4.pack(expand=True,padx=5,pady=5,fill="both")
+    labelP4.bind("<Leave>", cambiarImagenP4)
     btnPrincipal=tk.Button(frameAbajoIzquierda, text="Iniciar Aplicación", command=irVentanaPrincipal)
-    btnPrincipal.pack(expand=True)
+    btnPrincipal.pack(expand=True,anchor="s",padx=5,pady=5)
 
     #Frame secundario arriba derecha (P5)
     frameArribaDerecha=tk.Frame(frameDerecha,bg="white",bd=2, relief="groove")
@@ -127,3 +136,13 @@ def cambiarHojaVidaeImagenes():
     # Actualizar los índices
     indiceValor = (indiceValor+1) % len(hojasVida)
     indiceImagenes = (indiceImagenes+4) % len(imagenes)
+
+def cambiarImagenP4(event):
+    global indiceImagenP4, imagenesProyecto,labelP4
+    ancho1 = labelP4.winfo_width()
+    alto1 = labelP4.winfo_height()
+    indiceImagenP4 = (indiceImagenP4+1) % len(imagenesProyecto)
+    imagenP4 = Image.open(imagenesProyecto[indiceImagenP4]).resize((ancho1, alto1))
+    imagenP4 = ImageTk.PhotoImage(imagenP4)
+    labelP4.config(image=imagenP4)
+    labelP4.image = imagenP4
