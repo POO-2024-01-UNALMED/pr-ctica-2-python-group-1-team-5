@@ -127,6 +127,10 @@ class frame1(Frame):
     def bloquearOpciones(self):
         for opcion in self.opcionesAlmacenadas:
             opcion.config(state='disabled')
+
+    def desbloquearOpciones(self):
+        for opcion in self.opcionesAlmacenadas:
+            opcion.config(state="normal")
     
 class tablas(Frame):
     def __init__(self,master,etiquetas, valores):
