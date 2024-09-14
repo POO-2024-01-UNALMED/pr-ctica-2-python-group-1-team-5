@@ -7,6 +7,8 @@ from gestorAplicacion.establecimientos.iglesia import Iglesia
 import tkinter as tk
 from iuMain.frame import frame1
 from iuMain.frame import FieldFrame
+from iuMain.frame import tablas
+from iuMain.manejoErrores.errorAplicacion import errorNumeros
 # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
 
 def titulo(frame,titulo):
@@ -54,7 +56,7 @@ def funcionalidadExhumacion(frame):
 
 def seleccionCliente(frame,funeraria,buscar,tipoCliente):
     print("yes")
-    separador=tk.Label(frame)
+    separador=tk.Frame(frame)
     separador.pack(pady=10)
 
     clientes=[]
@@ -65,26 +67,158 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
     if buscar == "Cementerios de cuerpos":
         if tipoCliente == "Mayor de edad":
             clientes = funeraria.buscarClienteCementerio("cuerpos", "adulto")
+            
         else:
             clientes = funeraria.buscarClienteCementerio("cuerpos", "niño")
-        cliente=frame1(frame,[f"Clientes {tipoCliente}"],[clientes])
+            
+        frameCliente=frame1(frame,[f"Clientes {tipoCliente}"],[clientes])
     else:
 
         if buscar =="Urna default":
             tipo = "cenizas"
             mensaje1 = "Cementerios de cenizas"
-            mensaje2 = "Urnas"
+            mensaje2 = "Urnitas"
         else:
             tipo = "cuerpos"
             mensaje1 = "Cementerios de cuerpos"
-            mensaje2 = "Tumbas"
+            mensaje2 = "Tumbitas"
                 
         # Se traen todos los cementerios por funeraria
         cementeriosPorFuneraria = Establecimiento.buscarPorFuneraria(funeraria, "cementerio")
         # Se traen todos los cementerios de la funeraria con el atributo de tipo correspondiente ("cuerpos" o "cenizas")
         cementerios = Cementerio.cementerioPorTipo(cementeriosPorFuneraria, tipo)
 
-        cementerio=frame1(frame,[f"Cementerios {tipo}"],[cementerios])
+        frameCementerios=frame1(frame,[f"Cementerios {tipo}"],[cementerios])
+    
+    def porInventario(entradaInventario,inventarioDefault):
+        if entradaInventario.continuar():
+            num=0
+            try:
+                
+                cliente=inventarioDefault[int(entradaInventario.getValores()[0])]
+                num=1
+
+            except:
+                errorNumeros(entradaInventario.getValores()[0],"El ID ingresado no es correcto")
+                entradaInventario.borrar()
+            if num==1:
+                texto=f"Has seleccionado al cliente {cliente}\n ¿Deseas continuar?"
+                result = tk.messagebox.askyesno("Confirmar Datos",texto)
+                if result:
+                    siguiente(frame,cliente)
+                else:
+                    tk.messagebox.showinfo("", "No es posible continuar con el proceso sin asignar un Cliente")
+                    seleccionCliente(frame,funeraria,buscar,tipoCliente)
+                
+    def establecerCliente():
+        if buscar=="Cementerios de cuerpos":
+            if frameCliente.continuar():
+                frameCliente.bloquearOpciones()
+                cliente=clientes[(frameCliente.getValores())[0]]
+                texto=f"Has seleccionado al cliente {cliente} desde cementerio {tipo}: {cementerio}\n ¿Deseas continuar?"
+                result = tk.messagebox.askyesno("Confirmar Datos",texto)
+                if result:
+                    siguiente(frame,cliente)
+                else:
+                    tk.messagebox.showinfo("", "No es posible continuar con el proceso sin asignar un Cliente")
+                    seleccionCliente(frame,funeraria,buscar,tipoCliente)
+        else:
+            if frameCementerios.continuar():
+                ##Poner un mesageBox 
+                frameCementerios.bloquearOpciones()
+                btnContinuar.destroy()
+                cementerio=cementerios[(frameCementerios.getValores())[0]]
+                inventarioDefault = cementerio.inventarioDefault()
+                nombres=list(map(lambda e: e.getNombre(),inventarioDefault))
+                print(nombres)
+                clientesInventario=list(map(lambda e: e.getCliente(),inventarioDefault))
+                IDs=list(a for a in range(len(inventarioDefault)))
+                separador = tk.Frame(frame)
+                separador.pack(pady=2)
+                if buscar=="Urna default":
+                    tipos=list(map(lambda e: e.getTipo(),inventarioDefault))
+                    tablas(frame,[mensaje2,"Cliente","Tipo","ID"],[nombres,clientesInventario,tipos,IDs])
+                else:
+                    tablas(frame,[mensaje2,"Cliente","ID"],[nombres,clientesInventario,IDs])
+                entradaInventario=FieldFrame(frame,[],[f"Indique el ID de la {mensaje2}"])
+                btnContinuar1= tk.Button(frame,text="Continuar", command=lambda:porInventario(entradaInventario,inventarioDefault))
+                btnContinuar1.pack(side="top",pady=10)
+
+
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:establecerCliente())
+    btnContinuar.pack(side="top",pady=10)
+
+
+def siguiente(frame, cliente):
+    titulo(frame,"Organización del traslado")
+    print("yes")
+
+    #Se asigna el objeto de tipo Urna o Tumba que tenga agregado el cliente
+    urnaTumba=cliente.getInventario()
+    #Asignar cementerio
+    cementerio=cliente.getInventario().getCementerio()
+    # Proceso de exhumación del cuerpo
+
+    # Datos para la exhumación
+    pesoEstatura = 0.0
+    edad = 0
+    tipo1 = None
+    tipo2 = None
+
+    # Iglesias disponibles
+    iglesias = []
+
+    print()
+    
+    maxOpcion = 1
+    pesoEstatura=""
+    opciones=["Trasladar a una Urna fija"]
+    mensaje = "Urna"
+    
+    # Si el cliente tiene agregado un objeto de tipo Tumba es porque está en un cementerio de cuerpos y puede ser llevado a otro,
+    # pero si tiene agregado un objeto de tipo Urna no puede ser trasladado a un cementerio de cuerpos
+    if isinstance(urnaTumba, Tumba):
+        opciones.append("Trasladar a una Tumba")
+        mensaje = "Tumba"
+        maxOpcion = 2
+    datosOrganizacion=FieldFrame(frame,["Opciones Exhumacion"],[opciones])
+
+    if maxOpcion == 1:
+        pesoEstatura = "Ingrese el peso del cliente: "
+        tipo1 = "cenizas"
+        tipo2 = "urna"
+
+        # Establecer iglesia para determinar religión del cliente 
+        tk.Label(frame,text="Seleccione la religión con la que se va a realizar la ceremonia del cliente").pack(pady=2)
+        indice = 1
+        maxIglesia = 0
+        iglesias = []
+        for auxIglesia in Iglesia:
+            # Se imprimen y añaden a la lista solo las iglesias que permiten la cremación como acto final de la vida
+            if auxIglesia.getCremacion():
+                iglesias.append(auxIglesia)
+                
+                indice += 1
+                maxIglesia += 1
+
+    elif indice == 2:
+        pesoEstatura = "Ingrese la estatura del cliente: "
+        tipo1 = "cuerpos"
+        tipo2 = "tumba"
+
+        # Establecer iglesia para determinar religión del cliente 
+        print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
+        indice = 1
+        maxIglesia = 0
+        iglesias = []
+        for auxIglesia in Iglesia:
+            iglesias.append(auxIglesia)
+            indice += 1
+            maxIglesia += 1
+
+    # Fin del switch principal
+
+
         
 
 

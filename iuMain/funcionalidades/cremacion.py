@@ -299,7 +299,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
     else:
         cementerios= list(map(lambda p: p.getCementerio().getNombre(), urnas))
         tipos = list(map(lambda e: e.getTipo(),urnas))
-        IDs=list(p for p in range(1,len(urnas)+1))
+        IDs=list(p for p in range(1,len(urnas)))
         tablas(frame,["Urnita","Cementerio","Tipo","ID"],[urnas,cementerios,tipos,IDs])
 
         entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
