@@ -95,7 +95,8 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
             num=0
             try:
                 
-                cliente=inventarioDefault[int(entradaInventario.getValores()[0])]
+                urnaTumba=inventarioDefault[int(entradaInventario.getValores()[0])]
+                cliente=urnaTumba.getCliente()
                 num=1
 
             except:
@@ -115,7 +116,7 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
             if frameCliente.continuar():
                 frameCliente.bloquearOpciones()
                 cliente=clientes[(frameCliente.getValores())[0]]
-                texto=f"Has seleccionado al cliente {cliente} desde cementerio {tipo}: {cementerio}\n ¿Deseas continuar?"
+                texto=f"Has seleccionado al cliente {cliente} desde cementerio {tipo}: {(cliente.getInventario()).getCementerio()}\n ¿Deseas continuar?"
                 result = tk.messagebox.askyesno("Confirmar Datos",texto)
                 if result:
                     siguiente(frame,cliente)
@@ -160,15 +161,17 @@ def siguiente(frame, cliente):
     # Proceso de exhumación del cuerpo
 
     # Datos para la exhumación
-    pesoEstatura = 0.0
+    
     edad = 0
     tipo1 = None
     tipo2 = None
 
     # Iglesias disponibles
     iglesias = []
+    iglesiasNombre=[]
+    iglesiasReligion=[]
 
-    print()
+    
     
     maxOpcion = 1
     pesoEstatura=""
@@ -181,15 +184,14 @@ def siguiente(frame, cliente):
         opciones.append("Trasladar a una Tumba")
         mensaje = "Tumba"
         maxOpcion = 2
-    datosOrganizacion=FieldFrame(frame,["Opciones Exhumacion"],[opciones])
+    
 
     if maxOpcion == 1:
-        pesoEstatura = "Ingrese el peso del cliente: "
+        pesoEstatura = "Ingrese el peso del cliente (0-120)kg : "
         tipo1 = "cenizas"
         tipo2 = "urna"
 
         # Establecer iglesia para determinar religión del cliente 
-        tk.Label(frame,text="Seleccione la religión con la que se va a realizar la ceremonia del cliente").pack(pady=2)
         indice = 1
         maxIglesia = 0
         iglesias = []
@@ -197,28 +199,243 @@ def siguiente(frame, cliente):
             # Se imprimen y añaden a la lista solo las iglesias que permiten la cremación como acto final de la vida
             if auxIglesia.getCremacion():
                 iglesias.append(auxIglesia)
-                
+                iglesiasNombre.append(auxIglesia.getNombre())
+                iglesiasReligion.append(auxIglesia.name)
                 indice += 1
                 maxIglesia += 1
 
-    elif indice == 2:
-        pesoEstatura = "Ingrese la estatura del cliente: "
+    elif maxOpcion == 2:
+        pesoEstatura = "Ingrese la estatura del cliente (0-2)m: "
         tipo1 = "cuerpos"
         tipo2 = "tumba"
 
         # Establecer iglesia para determinar religión del cliente 
         print("Seleccione la religión con la que se va a realizar la ceremonia del cliente")
-        indice = 1
         maxIglesia = 0
         iglesias = []
         for auxIglesia in Iglesia:
             iglesias.append(auxIglesia)
-            indice += 1
+            iglesiasNombre.append(auxIglesia.getNombre())
+            iglesiasReligion.append(auxIglesia.name)
             maxIglesia += 1
 
-    # Fin del switch principal
+    #Opciones exhumacion
+    datosOpciones=frame1(frame,["Opciones Exhumacion"],[opciones])
+    #Peso - estatura
+    datosPesoEstatura= FieldFrame(frame,[],[pesoEstatura])
+    tk.Label(frame,text="Seleccione la religión con la que se va a realizar la ceremonia del cliente").pack(side="top",pady=5)
+    tablas(frame,["Religión","Nombre Iglesia","ID"],[iglesiasReligion,iglesiasNombre,list(map(lambda x: x, range(1, len(iglesiasNombre)+1)))])
+    valorIglesia=FieldFrame(frame,[],["Indique el ID de la iglesia"])
+
+    
+    def organizacion():
+        if datosOpciones.continuar() and datosPesoEstatura.continuar() and valorIglesia.continuar():
+            opcion=opciones[datosOpciones.getValores()[0]]
+            num=0
+            try:
+                pesoEstatura1=float(datosPesoEstatura.getValores()[0])
+                num=1
+            except:
+                errorNumeros(datosPesoEstatura.getValores()[0],f"{pesoEstatura} tiene un valor inválido")
+            num=0
+            try: 
+                print(iglesias)
+                print((valorIglesia.getValores()[0]))
+                print("a")
+                iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
+                
+                num=1
+            except:
+                errorNumeros(valorIglesia.getValores()[0],"El ID ingresado no es válido")
+           # if opcion=="Trasladar a una Urna fija":
+            #    tipo=tipo1
+             #   tipoUrnaTumba=tipo2
+            #else:
+             #   tipo=tipo1
+              #  tipoUrnaTumba=tipo2
+            if num==1:
+                nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura1)
+            
+        
+    
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizacion())
+    btnContinuar.pack(side="top",pady=10)
 
 
+def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
+    titulo(frame,"Organización traslado")
+    urnaTumba= cliente.getInventario()
+    cementerio=urnaTumba.getCementerio()
+    cementerio.setIglesia(iglesia)
+    edad=cliente.getEdad()
+
+    tk.Label(frame,text=f"El cliente {cliente} cuenta con una afiliación {cliente.getAfiliacion()}")
+
+    cementeriosPorTipo = cementerio.getFuneraria().buscarCementerios(tipo1, cliente)
+
+    # Elimino el cementerio en el que actualmente está el cliente
+    try:
+        cementeriosPorTipo.remove(cementerio)
+    except:
+        pass
+
+    cementerios = []
+
+    for auxCementerio in cementeriosPorTipo:
+        auxCementerio2 = auxCementerio
+        auxCementerio.setIglesia(iglesia)
+        if len(auxCementerio2.disponibilidadInventario(tipo2, pesoEstatura, edad)) != 0:
+            cementerios.append(auxCementerio2)
+
+
+    if len(cementerios) == 0:
+
+        tk.messagebox.showinfo("Inventario disponible", "No se encontró inventario disponible para el cliente \n se deberá añadir inventario default")
+        for auxCementerio in cementeriosPorTipo:
+            if tipo1 == "cenizas":
+                auxCementerio.agregarInventario(Urna("default", auxCementerio, pesoEstatura, edad, "fija"))
+
+            else:
+                auxCementerio.agregarInventario(Tumba("default", auxCementerio, pesoEstatura, edad))
+            cementerios.append(auxCementerio)
+
+    inventarioDisponible= list(len(a.disponibilidadInventario(tipo2,pesoEstatura,edad)) for a in cementerios)
+    IDs= list(map(lambda x: x, range(0, len(cementerios))))
+    tablas(frame,["Cementerio","Inventario dispo","ID"],[cementerios,inventarioDisponible,IDs])
+    valorCementerio=FieldFrame(frame,[],["Indique el ID del Cementerio"])
+
+     # Eliminar cliente
+    cementerio.getClientes().remove(cliente)
+    ###########################################################################
+   
+    
+   
+"""
+    # Obtener nuevo cementerio
+    nuevoCementerio = cementerios[indice - 1]
+
+    # Escoger opción más adecuada para cliente en cuánto a tamaño de la tumba comparado con estatura del cliente
+    print(f"[1] Opción más adecuada en cuanto a tamaño: {nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))}")
+    print("[2] Buscar entre las otras opciones")
+
+    # Ingreso del índice
+    indice = int(input("Ingrese el índice correspondiente: "))
+
+    # Validación de índice
+    while indice < 1 or indice > 2:
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    # Selección basada en el índice
+    if indice == 1:
+        nuevaUrnaTumba = nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+    elif indice == 2:
+        disponible = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
+        recomendacion = nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+        disponible.remove(recomendacion)
+    
+        # Imprimir opciones disponibles
+        for i, auxInventario in enumerate(disponible, start=1):
+            print(f"[{i}] {auxInventario}")
+    
+        # Ingreso del índice para la opción 2
+        indice = int(input("Ingrese el índice correspondiente: "))
+    
+        # Validación de índice
+        while indice < 1 or indice > len(disponible):
+            indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+    
+        nuevaUrnaTumba = disponible[indice - 1]
+
+    #Asignacion de tumba
+    nuevaUrnaTumba.agregarCliente(cliente)
+	
+    print(f"Se realizó correctamente el cambio al cementerio {nuevoCementerio}")
+    urnaTumba.setCliente(None)
+
+    nuevoCementerio.generarHoras()
+
+    indice = 1
+    for hora in nuevoCementerio.getHorarioEventos():
+        indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
+        horaFormateada = hora  # Formato 12-horas con AM/PM
+        print(f"[{indice}] {horaFormateada} {indicador}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice
+    indice = int(input("Ingrese el índice para escoger el horario: "))
+
+    #Se cambia el horario de crematorio
+    nuevoCementerio.setHoraEvento(nuevoCementerio.getHorarioEventos()[indice-1])
+    #Se elimina el horario de Horario eventos
+    nuevoCementerio.eliminarHorario(nuevoCementerio.getHorarioEventos()[indice-1])
+
+	#Seleccionar sepulturero
+	
+    print()
+    print("Se inciará con el proceso de selección de empleados")
+		
+    print()
+    print("Seleccione el empleado sepulturero disponible")
+
+    print("Empleados disponibles en la jornada seleccionada")
+    empleados =funeraria.buscarEmpleadosPorHoras(nuevoCementerio.getHoraEvento(), "sepulturero")
+    indice = 1
+    for auxEmpleado in empleados:
+        print(f"[{indice}] {auxEmpleado}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice del empleado deseado
+    indice = int(input("Ingrese el índice del empleado deseado: "))
+    nuevoCementerio.setEmpleado(empleados[indice-1])
+
+    print()
+    print("Seleccione el empleado forense disponible")
+
+    print("Empleados disponibles en la jornada seleccionada")
+    empleados =funeraria.buscarEmpleadosPorHoras(nuevoCementerio.getHoraEvento(), "forense")
+    indice = 1
+    for auxEmpleado in empleados:
+        print(f"[{indice}] {auxEmpleado}")
+        indice += 1
+
+    # Solicitar al usuario que ingrese el índice del empleado deseado
+    indice = int(input("Ingrese el índice del empleado deseado: "))
+    nuevoCementerio.setEmpleado(empleados[indice-1])
+	
+    #Seleccionar al padre u obispo 
+    categoria=cliente.getInventario().getCategoria()
+    empleado=None
+    if(categoria==0):
+        empleado="obispo"
+    else: 
+        empleado="padre"
+	
+    print(f"Dada la categoria [{categoria}] su ceremonia puede ser celebrada por los siguientes religiosos")
+	
+    empleados = cementerio.getFuneraria().buscarEmpleadosPorHoras(nuevoCementerio.getIglesia().duracionEvento(nuevoCementerio.getHoraEvento()), empleado)
+ 
+    indice=1
+    for auxEmpleado in empleados:
+        if(categoria==0):
+            print(f"[{indice}] {cementerio.getIglesia().getReligiosoAltoRango()} {auxEmpleado}")
+            indice+=1
+        else:
+            print(f"[{indice}] {cementerio.getIglesia().getReligioso()} {auxEmpleado}")
+            indice+=1
+		
+	
+    indice = int(input("Ingrese el índice para escoger al religioso: "))
+	
+    #Validación
+    while indice < 1 or indice > len(empleados):
+        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
+
+    print()
+	
+    print("Dados los datos se organizará como estarán distribuidos los familiares en la Iglesia")
+    print(nuevoCementerio.organizarIglesia(cliente))
+
+    """
         
 
 
@@ -226,7 +443,7 @@ def siguiente(frame, cliente):
 
 
 
-    """
+"""
     # Buscar cliente
     print("[1] Buscar cliente por su CC")
     print("[2] Buscar cliente por cementerio")
