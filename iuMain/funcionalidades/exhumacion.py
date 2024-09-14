@@ -125,7 +125,8 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
                 result = tk.messagebox.askyesno("Confirmar Datos",texto)
 
                 traslado=None
-                if (frameCliente.getValores())[1]=="cementerio cuerpos":
+                
+                if (opciones[frameCliente.getValores()[1]])=="cementerio cuerpos":
                     traslado="cuerpos" 
                 else: 
                     traslado="cenizas"
@@ -142,7 +143,7 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
 
                 #Valor de traslado
                 traslado=None
-                if (frameCementerios.getValores())[1]=="cementerio cuerpos":
+                if (opciones[frameCementerios.getValores()[1]])=="cementerio cuerpos":
                     traslado="cuerpos" 
                 else: 
                     traslado="cenizas"
@@ -175,7 +176,7 @@ def siguiente(frame, cliente,traslado):
     titulo(frame,"Organización del traslado")
     print("yes")
 
-    
+    print("Traslado",traslado)
     # Iglesias disponibles
     iglesias = []
     iglesiasNombre=[]
@@ -301,18 +302,25 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
     valorCementerio=FieldFrame(frame,[],["Indique el ID del Cementerio"])
 
 
-    def organizarDatos():
+    def organizarDatos(cementerios):
         if valorCementerio.continuar():
             num=0
+            print("valor",valorCementerio.getValores()[0])
+            print(cementerios)
             try:
-                nuevoCementerio=cementerios[valorCementerio.getValores()[0]]
+                
+                print("valor",valorCementerio.getValores()[0])
+                nuevoCementerio=cementerios[int(valorCementerio.getValores()[0])]
                 num=1
             except:
                 errorNumeros(valorCementerio.getValores()[0],"Id incorrecta")
             
             if num==1:
                 # Eliminar cliente
-                nuevoCementerio.getClientes().remove(cliente)
+                try:
+                    (nuevoCementerio.getClientes()).remove(cliente)
+                except:
+                    pass
                 if len(nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)) ==1:
                     tk.messagebox.showinfo("Inventario Disponible", f"El cementerio seleccionado solo tiene una {tipo2} disponible\n El cliente {cliente} se agregará a la {tipo2} {nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]}")
                 else:
@@ -320,30 +328,50 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
                     ventanaInventario = tk.Toplevel()
                     ventanaInventario.title("Funeraria Rosario")
                     ventanaInventario.geometry("400x200")
-                    label = tk.Label(ventanaInventario, text=f"Cementerio {cementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
+                    label = tk.Label(ventanaInventario, text=f"Cementerio {nuevoCementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
                     label.pack(pady=2)
                     if respuesta:
                         urna =nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
-                        tablas(ventanaInventario,[f"{tipo2}","Cementerio","Tipo"],[urna,urna.getCementerio(),urna.getTipo()])
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarDatos())
+                        print(urna)
+                        tablas(ventanaInventario,[f"{tipo2}","Tipo"],[[urna],[urna.getTipo()]])
+                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarIglesia(frame,nuevoCementerio,cliente))
                         btnContinuar.pack(side="top",pady=10)
                     else:
+                        dispoInventario = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
                         urna=nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
-                        (nuevoCementerio.getInventario()).remove(urna)
-                        urnas=nuevoCementerio.getInventario()
-                        cementerios= list(map(lambda p: p.getCementerio().getNombre(), urnas))
-                        tipos = list(map(lambda e: e.getTipo(),urnas))
-                        IDs=list(p for p in range(1,len(urnas)))
-                        tablas(ventanaInventario,[f"{tipo2}","Cementerio","Tipo","IDs"],[urnas,cementerios,tipos,IDs])
+                        (dispoInventario).remove(urna)
+
+                        cementerios= list(map(lambda p: p.getCementerio().getNombre(), dispoInventario))
+                        tipos = list(map(lambda e: e.getTipo(),dispoInventario))
+                        IDs=list(p for p in range(0,len(dispoInventario)))
+                        tablas(ventanaInventario,[f"{tipo2}","Tipo","IDs"],[dispoInventario,tipos,IDs])
                         
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarDatos())
+                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda: organizarIglesia(frame,nuevoCementerio,cliente))
                         btnContinuar.pack(side="top",pady=10)
                         
 
 
    
-    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizarDatos())
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizarDatos(cementerios))
     btnContinuar.pack(side="top",pady=10)
+
+
+def organizarIglesia(frame,nuevoCementerio,cliente):
+        
+    titulo(frame,"Organización de los familiares dentro de la iglesia")
+    iglesia =nuevoCementerio.organizarIglesia(cliente)
+
+    frameApoyo = tk.Frame(frame, bg="#772d2d")
+    frameApoyo.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+    invitacion = tk.Label(frameApoyo, text=iglesia,font=("Comic Sans MS", 14, "italic"), bg="white")
+    invitacion.pack(pady=50)
+
+    from iuMain.ventanaPrincipal import framePrincipal
+    boton_regresar = tk.Button(frameApoyo, text="Regresar", command=lambda: framePrincipal(frame))
+    boton_regresar.pack()
+
+    print(iglesia)
+    
 
      ###########################################################################
     

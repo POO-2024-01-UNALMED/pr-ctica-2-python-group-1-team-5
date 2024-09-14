@@ -513,6 +513,7 @@ class Funeraria(Establecimiento):
         for cementerio in cementeriosFiltrados:
             auxCementerio = cementerio
             # Asigna la primera hora de evento
+            auxCementerio.generarHoras()
             auxCementerio.setHoraEvento(auxCementerio.getHorarioEventos()[0])
             # Busca el empleado para la hora de evento
             empleado = self.buscarEmpleadosPorHoras(auxCementerio.getHoraEvento(), "sepulturero")[0]
