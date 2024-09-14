@@ -89,7 +89,7 @@ def ventanaInicio():
 
     hojaVida1 = "Soy Violeta, una estudiante de Ingeniería de Sistemas de 19 años, apasionada por la tecnología y el desarrollo de software. Me interesa aprender y crecer en el campo de la informática. Disfruto de actividades que me permitan mejorar mis habilidades técnicas."
     hojaVida2 = "Sebastian"
-    hojaVida3 = "Andrés"
+    hojaVida3 = "Soy Andrés Pérez, tengo 18 años y soy estudiante de Ingeniería de Sistemas en la Universidad Nacional de Colombia. Me gustan los videojuegos, los animales y mejorar mis habilidades en programación y tecnología"
     hojasVida = [hojaVida1, hojaVida2, hojaVida3]
     imagenes = ["iuMain/imagenes/imagen1.png","iuMain/imagenes/imagen2.png","iuMain/imagenes/imagen3.png","iuMain/imagenes/imagen4.png","iuMain/imagenes/imagen5.png","iuMain/imagenes/imagen6.png","iuMain/imagenes/imagen7.png","iuMain/imagenes/imagen8.png","iuMain/imagenes/imagen9.png","iuMain/imagenes/imagen10.png","iuMain/imagenes/imagen11.png","iuMain/imagenes/imagen12.png"]
     indiceValor = 0
