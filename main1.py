@@ -1282,10 +1282,176 @@ if __name__ == "__main__":
     tumbaF1C61E.agregarCliente(clienteF116ET)
     tumbaF1C62E.agregarCliente(clienteF117ET)
     tumbaF1C63E.agregarCliente(clienteF118ET)
+
+
+    #Funeraria 2
+    # Empleados sepultureros
+    empleadoF21S = Empleado("Guillermo Romero", None, "mañana", "sepulturero", 1000000, funeraria2)
+    empleadoF22S = Empleado("Jorge Álvarez", None, "tarde", "sepulturero", 1000000, funeraria2)
+    empleadoF23S = Empleado("Florencia Pérez", None, "tarde", "sepulturero", 1000000, funeraria2)
+    empleadoF24S = Empleado("Jazmín Navarro", None, "tarde", "sepulturero", 1000000, funeraria2)
+    empleadoF25S = Empleado("Alicia Moreno", None, "noche", "sepulturero", 1000000, funeraria2)
+
+    # Empleados cremador
+    empleadoF21C = Empleado("Marco Ruiz", None, "noche", "cremador", 1000000, funeraria2)
+    empleadoF22C = Empleado("Natalia Ortega", None, "mañana", "cremador", 1000000, funeraria2)
+    empleadoF23C = Empleado("Casey Morales", None, "tarde", "cremador", 1000000, funeraria2)
+    empleadoF24C = Empleado("Karla Soto", None, "noche", "cremador", 1000000, funeraria2)
+    empleadoF25C = Empleado("Dakota Torres", None, "noche", "cremador", 1000000, funeraria2)
 	
     
+    #Familiares
+    # Creación de instancias de Familiar
+
+    F21 = Familiar("Ophelia", 12345, 18, None, "conyugue", 17)
+    F22 = Familiar("Atticus", 12375, 70, None, "padre", 17)
+    F23 = Familiar("Lyriel", 12, "hijo", None,0,F21)
+    F24 = Familiar("Caspian", 7, "hermano", None,0,F22)
+
+    F25 = Familiar("Libia", 12345, 18, None, "conyugue", 17)
+    F26 = Familiar("Armando", 12375, 70, None, "padre", 17)
+    F27 = Familiar("Geronimo", 12, "hijo", None,0,F26)
+    F28 = Familiar("Alicia", 7, "hermano", None,0,F25)
+
+    F29 = Familiar("Andres", 12345, 18, None, "conyugue", 17)
+    F210 = Familiar("Catalina", 12375, 70, None, "padre", 17)
+    F211 = Familiar("Lucas", 12, "hijo", None,0,F29)
+    F212 = Familiar("Caspian", 7, "hermano", None,0,F210)
+
+    F213 = Familiar("Alma", 715, 60, None, "padre", 17)
+    F214 = Familiar("Mar", 716, 60, None, "padre", 13)
+    F215 = Familiar("Eduardo", 717, 37, None, "hermano", 17)
+    F216 = Familiar("Andres", 5, "hermano", None,0,F214)
+
+    F217 = Familiar("Carmen", 715, 60, None, "padre", 17)
+    F218 = Familiar("Catalina", 716, 60, None, "padre", 13)
+    F219 = Familiar("Carlos", 717, 37, None, "hermano", 17)
+    F220 = Familiar("Azul", 5, "hermano", None,0,F217)
+
+    F221 = Familiar("Pablo", 715, 60, None, "padre", 17)
+    F222 = Familiar("Sol", 716, 60, None, "padre", 13)
+    F223 = Familiar("Andres", 717, 37, None, "hermano", 17)
+    F224 = Familiar("Carlos", 5, "hermano",None,0, F221)
+
+    # Lista de familiares G
+    familiarG = [F21, F22, F23, F24]
+
+    # Lista de familiares H
+    familiarH = [F25, F26, F27, F28]
+
+    # Lista de familiares I
+    familiarI = [F29, F210, F211, F212]
+
+    # Lista de familiares J
+    familiarJ = [F213, F214, F215, F216]
+
+    # Lista de familiares K
+    familiarK = [F217, F218, F219, F220]
+
+    # Lista de familiares L
+    familiarL = [F221, F222, F223, F224]
     
-    
+    # Creación de instancias de Familiar
+    F21M = Familiar("Camila", 715, 60, None, "padre", 17)
+    F22M = Familiar("Luis", 716, 60, None, "padre", 13)
+    F23M = Familiar("Tomas", 717, 37, None, "hermano", 17)
+    F24M = Familiar("Andres", 717, 37, None, "hermano", 17)
+
+    F25M = Familiar("Vanesa", 715, 60, None, "padre", 17)
+    F26M = Familiar("Carlos", 716, 60, None, "padre", 13)
+    F27M = Familiar("Juan Jose", 717, 37, None, "hermano", 17)
+    F28M = Familiar("Nicolas", 717, 37, None, "hermano", 17)
+
+    F29M = Familiar("Mateo", 715, 60, None, "padre", 17)
+    F210M = Familiar("Mariana", 716, 60, None, "padre", 13)
+    F211M = Familiar("Esteban", 717, 37, None, "hermano", 17)
+    F212M = Familiar("David", 717, 37, None, "hermano", 17)
+
+    F213M = Familiar("Jireh", 715, 60, None, "padre", 17)
+    F214M = Familiar("Carlos", 716, 60, None, "padre", 13)
+    F215M = Familiar("Carla", 717, 37, None, "hermano", 17)
+    F216M = Familiar("Carolina", 717, 37, None, "hermano", 17)
+
+    # Lista de familiares EM
+    familiarEM = [F21M, F22M, F23M, F24M]
+
+    # Lista de familiares FM
+    familiarFM = [F25M, F26M, F27M, F28M]
+
+    # Lista de familiares GM
+    familiarGM = [F29M, F210M, F211M, F212M]
+
+    # Lista de familiares HM
+    familiarHM = [F213M, F214M, F215M, F216M]
+
+    # Supongamos que cuenta13CE, cuenta14CE, ..., cuenta24CE ya están definidos
+    cuenta13CE = "cuenta13CE"
+    cuenta14CE = "cuenta14CE"
+    cuenta15CE = "cuenta15CE"
+    cuenta16CE = "cuenta16CE"   
+    cuenta17CE = "cuenta17CE"
+    cuenta18CE = "cuenta18CE"
+    cuenta19CE = "cuenta19CE"
+    cuenta20CE = "cuenta20CE"
+    cuenta21CE = "cuenta21CE"
+    cuenta22CE = "cuenta22CE"
+    cuenta23CE = "cuenta23CE"
+    cuenta24CE = "cuenta24CE"
+
+    funeraria2 = "Funeraria 2"  # Asumiendo que el nombre o identificador es una cadena
+
+    # Cementerios pertenecientes a F2 --> Funeraria 2 - cenizas
+    cementerioF21Ce = Cementerio("Cementerio del Silencio", 78, cuenta13CE, "oro", None, "cenizas", funeraria2)
+    cementerioF22Ce = Cementerio("Campo de la Eternidad", 85, cuenta14CE, "oro", None, "cenizas", funeraria2)
+    cementerioF23Ce = Cementerio("Bosque de la Serenidad", 79, cuenta15CE, "plata", None, "cenizas", funeraria2)
+    cementerioF24Ce = Cementerio("Jardines del Descanso", 78, cuenta16CE, "plata", None, "cenizas", funeraria2)
+    cementerioF25Ce = Cementerio("Valle de la Paz Interior", 50, cuenta17CE, "bronce", None, "cenizas", funeraria2)
+    cementerioF26Ce = Cementerio("Luz del Recuerdo", 78, cuenta18CE, "bronce", None, "cenizas", funeraria2)
+
+    # Cementerios pertenecientes a F2 --> Funeraria 2 - cuerpos
+    cementerioF21Cu = Cementerio("Colinas del Reposo", 78, cuenta19CE, "oro", None, "cuerpos", funeraria2)
+    cementerioF22Cu = Cementerio("Jardín de la Eternidad", 85, cuenta20CE, "oro", None, "cuerpos", funeraria2)
+    cementerioF23Cu = Cementerio("Refugio de la Memoria", 50, cuenta21CE, "plata", None, "cuerpos", funeraria2)
+    cementerioF24Cu = Cementerio("Cementerio del Alba", 78, cuenta22CE, "plata", None, "cuerpos", funeraria2)
+    cementerioF25Cu = Cementerio("Alameda de la Paz", 78, cuenta23CE, "bronce", None, "cuerpos", funeraria2)
+    cementerioF26Cu = Cementerio("Jardín del Silencio Eterno", 78, cuenta24CE, "bronce", None, "cuerpos", funeraria2)
+
+    # Cementerio 1 Cenizas
+    urnaF2C11 = Urna("Urnita Eterna Paz", cementerioF21Ce, 70, 1, "fija")
+    urnaF2C12 = Urna("Urnita Memoria Serene", cementerioF21Ce, 80, 0, "fija")
+    urnaF2C13 = Urna("Urnita Descanso Sagrado", cementerioF21Ce, 50, 0, "ordinaria")
+    urnaF2C14 = Urna("Urnita Luz Eterna", cementerioF21Ce, 60, 1, "fija")
+
+    # Cementerio 2 Urna Cenizas
+    urnaF2C21 = Urna("Urnita Tranquilidad Infinita", cementerioF22Ce, 50, 1, "fija")
+    urnaF2C22 = Urna("Urnita Homenaje Perpetuo", cementerioF22Ce, 80, 0, "ordinaria")
+    urnaF2C23 = Urna("Urnita Amanecer Sereno", cementerioF22Ce, 70, 0, "ordinaria")
+    urnaF2C24 = Urna("Urnita Refugio del Alma", cementerioF22Ce, 60, 1, "ordinaria")
+
+    # Cementerio 3 Urna Cenizas
+    urnaF2C31 = Urna("Urnita Oasis de Recuerdo", cementerioF23Ce, 60, 1, "fija")
+    urnaF2C32 = Urna("Urnita Sombra Amada", cementerioF23Ce, 50, 0, "ordinaria")
+    urnaF2C33 = Urna("Urnita Caja de la Verdad", cementerioF23Ce, 60, 2, "ordinaria")
+    urnaF2C34 = Urna("Urnita Urna de la Democracia", cementerioF23Ce, 60, 1, "fija")
+
+    # Cementerio 4 Urna Cenizas
+    urnaF2C41 = Urna("Urnita Voz del Pueblo", cementerioF24Ce, 70, 1, "fija")
+    urnaF2C42 = Urna("Urnita Cámara de Decisiones", cementerioF24Ce, 80, 0, "ordinaria")
+    urnaF2C43 = Urna("Urnita Bóveda de Opiniones", cementerioF24Ce, 70, 0, "ordinaria")
+    urnaF2C44 = Urna("Urnita Recinto Electoral", cementerioF24Ce, 60, 1, "fija")
+
+    # Cementerio 5 Urna Cenizas
+    urnaF2C51 = Urna("Urnita Contenedor de Voluntades", cementerioF25Ce, 70, 1, "fija")
+    urnaF2C52 = Urna("Urnita Caja de Equidad", cementerioF25Ce, 80, 1, "ordinaria")
+    urnaF2C53 = Urna("Urnita de la Justicia", cementerioF25Ce, 50, 2, "ordinaria")
+    urnaF2C54 = Urna("Urnita Escudo Electoral", cementerioF25Ce, 60, 1, "fija")
+
+    # Cementerio 6 Urna Cenizas
+    urnaF2C61 = Urna("Urnita Cápsula de Sueños", cementerioF26Ce, 70, 1, "fija")
+    urnaF2C62 = Urna("Urnita Templo de Belleza", cementerioF26Ce, 80, 0, "ordinaria")
+    urnaF2C63 = Urna("Urnita Misterio Dorado", cementerioF26Ce, 40, 0, "ordinaria")
+    urnaF2C64 = Urna("Urnita Joyero de Recuerdos", cementerioF26Ce, 60, 1, "fija")
+
 
     ventanaInicio.ventanaInicio()
 
