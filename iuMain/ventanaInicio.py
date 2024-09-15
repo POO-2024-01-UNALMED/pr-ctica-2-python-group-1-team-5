@@ -1,12 +1,13 @@
 import tkinter as tk
 from iuMain import ventanaPrincipal
 from PIL import Image,ImageTk
+import random
 #Para cambiar entre ventanas
 
 
 
 def irVentanaPrincipal():
-    ventana.withdraw()
+    ventana.destroy()
     ventanaPrincipal.ventanaPrincipal()
 
 def ventanaInicio():
@@ -33,13 +34,39 @@ def ventanaInicio():
     frameIzquierda=tk.Frame(ventana, bg="#9fd5d1",bd=5,relief="ridge")
     frameIzquierda.pack(side="left",expand = True, fill ="both",padx=10,pady=10)
     #Frame principal izquierda (P2)
-    frameDerecha=tk.Frame(ventana,bg="#9fd5d1",bd=5)
+    frameDerecha=tk.Frame(ventana,bg="#9fd5d1",bd=5,relief="ridge")
     frameDerecha.pack(side="right",expand=True,fill="both",padx=5,pady=5)
 
 
     #Frame secundario arriba izquierda (P3)
     frameArribaIzquierda=tk.Frame(frameIzquierda,bg="white",bd=2, relief="groove")
     frameArribaIzquierda.place(relx=0.05,rely=0.05,relwidth=0.9,relheight=0.4) 
+
+    # Lista de mensajes de bienvenida
+    mensajes_bienvenida = [
+        "¡Bienvenido a la aplicación!",
+        "¡Hola! Esperamos que disfrutes de tu experiencia.",
+        "¡Saludos! Prepárate para explorar nuestra app.",
+        "¡Bienvenido de nuevo! Nos alegra verte.",
+    ]
+    
+    # Selecciona un mensaje aleatorio
+    mensaje_aleatorio = random.choice(mensajes_bienvenida)
+    
+    # Crear Label para mostrar el mensaje de bienvenida
+    label_bienvenida = tk.Label(
+        frameArribaIzquierda, 
+        text=mensaje_aleatorio, 
+        bg="#f0f0f0",  # Fondo claro para contraste
+        fg="#333",     # Color de texto oscuro
+        font=("Helvetica", 14, "bold"),  # Fuente más elegante
+        wraplength=250,  # Limitar el largo del texto
+        justify="center",
+        padx=30,  # Padding interno para más espacio
+        pady=30
+    )
+    label_bienvenida.pack(expand=True,fill = "both", padx=10, pady=10)
+    
 
     #Frame secundario abajo izquierda (P4)
     imagenesProyecto = ["iuMain/imagenes/imagen1F.png","iuMain/imagenes/imagen2F.png","iuMain/imagenes/imagen3F.png"]
@@ -97,7 +124,7 @@ def ventanaInicio():
     label11.pack(fill="both", expand=True)
 
     hojaVida1 = "Soy Violeta, una estudiante de Ingeniería de Sistemas de 19 años, apasionada por la tecnología y el desarrollo de software. Me interesa aprender y crecer en el campo de la informática. Disfruto de actividades que me permitan mejorar mis habilidades técnicas."
-    hojaVida2 = "Sebastian"
+    hojaVida2 = "Sebastian soy un estudiante de ingeniería de sistemas apasionado por la tecnología, los gatos, el jazz y las historias de fantasía.  Disfruta programar mientras escucha música y se sumerge en mundos imaginarios"
     hojaVida3 = "Soy Andrés Pérez, tengo 18 años y soy estudiante de Ingeniería de Sistemas en la Universidad Nacional de Colombia. Me gustan los videojuegos, los animales y mejorar mis habilidades en programación y tecnología"
     hojasVida = [hojaVida1, hojaVida2, hojaVida3]
     imagenes = ["iuMain/imagenes/imagen1.png","iuMain/imagenes/imagen2.png","iuMain/imagenes/imagen3.png","iuMain/imagenes/imagen4.png","iuMain/imagenes/imagen5.png","iuMain/imagenes/imagen6.png","iuMain/imagenes/imagen7.png","iuMain/imagenes/imagen8.png","iuMain/imagenes/imagen9.png","iuMain/imagenes/imagen10.png","iuMain/imagenes/imagen11.png","iuMain/imagenes/imagen12.png"]

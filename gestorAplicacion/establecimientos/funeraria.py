@@ -97,7 +97,7 @@ class Funeraria(Establecimiento):
                 cliente._cuentaBancaria.transaccionCuentaAhorros(totalFactura, Funeraria._cuentaAhorros)
                 cliente._listadoFacturas.remove(factura)
             else:
-                for persona in cliente.familiares:
+                for persona in cliente._familiares:
                     if isinstance(persona, Familiar):
                         familiar = persona
                         if familiar._parentesco is not None:
@@ -443,7 +443,7 @@ class Funeraria(Establecimiento):
                 return vehiculo
         return None
     
-    def identificar_productos_faltantes(funeraria):
+    def identificarProductosFaltantes(funeraria):
         productos_vendidos = Funeraria.calcular_productos_vendidos(funeraria)
         productos_faltantes = []
 
@@ -453,7 +453,7 @@ class Funeraria(Establecimiento):
 
         return productos_faltantes
     
-    def calcular_productos_vendidos(funeraria):
+    def calcularProductosVendidos(funeraria):
         productos_vendidos = []
         for factura in funeraria.getListadoFacturas():
             for producto in factura.getListaProductos():
@@ -461,7 +461,7 @@ class Funeraria(Establecimiento):
                    productos_vendidos.append(producto)
         return productos_vendidos
     
-    def agregar_producto(productos_vendidos, nuevo_producto):
+    def agregarProducto(productos_vendidos, nuevo_producto):
     # Recorre la lista de productos vendidos para encontrar si el producto ya existe
         for producto in productos_vendidos:
         # Compara el nombre del producto existente con el nuevo producto
