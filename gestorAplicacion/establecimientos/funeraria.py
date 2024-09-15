@@ -97,7 +97,7 @@ class Funeraria(Establecimiento):
                 cliente._cuentaBancaria.transaccionCuentaAhorros(totalFactura, Funeraria._cuentaAhorros)
                 cliente._listadoFacturas.remove(factura)
             else:
-                for persona in cliente.familiares:
+                for persona in cliente._familiares:
                     if isinstance(persona, Familiar):
                         familiar = persona
                         if familiar._parentesco is not None:

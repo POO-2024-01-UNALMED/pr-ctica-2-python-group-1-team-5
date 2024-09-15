@@ -73,7 +73,7 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
         datoCliente=frame1(frame,["ID Cliente"],[IDs]) 
     
 
-    datoEstatura=FieldFrame(frame,[],["Ingrese la estaura del cliente"])
+    datoEstatura=FieldFrame(frame,[],["Ingrese la estatura del cliente"])
 
     def confirmacion(datoCementerio,cementerios,estatura,cliente):
         if datoCementerio.continuar():

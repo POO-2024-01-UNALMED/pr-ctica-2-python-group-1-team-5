@@ -7,7 +7,7 @@ import random
 
 
 def irVentanaPrincipal():
-    ventana.withdraw()
+    ventana.destroy()
     ventanaPrincipal.ventanaPrincipal()
 
 def ventanaInicio():

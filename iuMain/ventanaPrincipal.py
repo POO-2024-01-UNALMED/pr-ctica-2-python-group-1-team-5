@@ -56,7 +56,7 @@ def ventanaPrincipal():
     global ventana 
     ventana = tk.Tk()
     ventana.geometry("600x400")
-    ventana.title("Funeraria Rosario, su muerte mi slario")
+    ventana.title("Funeraria Rosario, su muerte mi salario")
     #Frame 2 - Zona 1 - Menus
     zona1=tk.Frame(ventana)
     zona1.pack(side="top",fill="x",anchor="nw",padx=2,pady=2)
@@ -93,12 +93,3 @@ def ventanaPrincipal():
     menuPrincipal.add_cascade(label="Ayuda",menu=ayuda)
 
     framePrincipal(zona2)
-
-
-    
-
-
-
-    btnInicio=tk.Button(ventana,text="Regresar",command=irVentanaInicio)
-    btnInicio.pack(expand=True)
-    ventana.mainloop()
