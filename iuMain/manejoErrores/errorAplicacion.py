@@ -13,78 +13,68 @@ class ErrorAplicacion(Exception):
 class CamposIncompletos(ErrorAplicacion):
     def __init__(self, mensaje):
         self._mensaje=mensaje
-        super().__init__(self._mensaje)
+        super().__init__(f"Campos incompletos {self._mensaje}")
+
+
+
+
     
 class errorNumeros(ErrorAplicacion):
     def __init__(self, mensaje):
        
         self._mensaje = mensaje
         self._verificar = True
-        super().__init__(mensaje)
+        super().__init__(f"Error números {mensaje}")
 
     def numeroEntero(self,valor):
         try:
             int(valor)
         except ValueError:
             # Actualiza el mensaje de error y relanza la excepción
-            raise ValueError("Debes ingresar un dígito") from None
+            raise ErrorAplicacion("Debes ingresar un dígito")
+        
     
-    def numeroFloat(self,valor,mensaje):
+    def numeroFloat(self,valor):
         try:
             float(valor)
         except ValueError:
             # Actualiza el mensaje de error y relanza la excepción
-            raise ValueError("Debes ingresar un dígito") from None
+            raise ErrorAplicacion("Debes ingresar un dígito")
 
 class errorIds(errorNumeros):
-    def __init__(self, valor, mensaje=None, valMin=0, valMax=None):
+    def __init__(self, valor, mensaje=None, valMin=0, valMax=0):
         self.numeroEntero(valor)
-        super().__init__(mensaje)  # Inicializa la clase base
+          # Inicializa la clase base
           # Verifica si el valor es un número
         
         # Verifica si el valor es mayor o igual al valor mínimo
-        if int(valor) >= valMin:
-            self._mensaje = mensaje if mensaje else "El valor es válido."
+        if int(valor)<valMin:
+            raise super().__init__("El número ingresado es menor al valor mínimo")
+        elif int(valor)>valMax:
+            raise super().__init__("El número ingresado es mayor al valor máximo")
         else:
-            self._mensaje = "El número ingresado es menor al valor mínimo"
-            raise ValueError(self._mensaje)
+            super().__init__(mensaje)
+            
 
 class errorPeso(errorNumeros):
-     def __init__(self, valor):
+     def __init__(self, valor,pesoMax,pesoMin=0):
         self.numeroFloat(valor)
-        super().__init__("El valor del peso del cliente no es correcto")
+
+        # Verifica si el valor es mayor o igual al valor mínimo
+        if float(valor)<pesoMin or float(valor)>pesoMax:
+            raise super().__init__("El valor del peso del cliente no es correcto")
+
+
 
 class errorEstatura(errorNumeros):
-     def __init__(self, valor):
+     def __init__(self, valor,estaturaMax,estaturaMin=0):
         self.numeroFloat(valor)
-        super().__init__("El valor de la estatura del cliente no es correcta")
-        
+
+        # Verifica si el valor es mayor o igual al valor mínimo
+        if float(valor)<estaturaMin or float(valor)>estaturaMax:
+            raise super().__init__("El valor de la estatura del cliente no es correcta")
 
         
-"""
-class errorNumeros(ErrorAplicacion):
-    def __init__(self, valor,mensaje):
-        self._valor=valor
-        self._mensaje=mensaje
-        self._verificar=True
-        super().__init__(mensaje)
-
-    def numero(self):
-        try:
-            int(self._valor)
-        except:
-            super().__init__("Debes ingresar un dígito")
-            raise
-
-class errorIds(errorNumeros):
-    def __init__(self, valor,mensaje=None,valMin=0,valMax=0):
-        self.numero()
-        if int(valor)>=valMin:
-            super().__init__(valor,mensaje)
-        else:
-            super().__init__(valor,"El número ingresado es menor al valor mínimo")
-
-            """
 
 
     

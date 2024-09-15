@@ -81,7 +81,7 @@ def seleccionCliente(frame,valores):
 
           
         def datosCliente():
-            if valorCliente.continuar():
+            if valorCliente.continuar(etiquetaCliente[0]):
                 print(valorCliente.getValores()[0])
                 print(listaClientes)
                 
@@ -139,12 +139,12 @@ def seleccionCliente(frame,valores):
 
 
         def datosCrematorio():
-
+            valMinIglesia=1
             if valoresCrematorio.continuar() and valorIglesia.continuar():
                 crematorio=crematorios[(valoresCrematorio.getValores())[0]]
-                print(crematorio)
-                print(int(valorIglesia.getValores()[0])-1)
-                print(iglesias)
+                #print(crematorio)
+                #print(int(valorIglesia.getValores()[0])-1)
+                #print(iglesias)
 
                 def cambiarHoras(horas):
                     if horas.continuar():
@@ -158,7 +158,7 @@ def seleccionCliente(frame,valores):
                     valMin=1
                     iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
                     if int(valorIglesia.getValores()[0])<valMin:
-                        errorIds(iglesias[int(valorIglesia.getValores()[0])])
+                        errorIds(iglesias[int(valorIglesia.getValores()[0])],"El ID ingresado es incorrecto",1)
                     #Crear ventana para determinar la hora del crematorio
                     ventanaHoras = tk.Toplevel()
                     ventanaHoras.title("Funeraria Rosario")
@@ -260,29 +260,39 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
     valores.bloquearOpciones()
     frameSeparador=tk.Frame(frame)
     frameSeparador.pack(pady=20)
-    valoresUrna=FieldFrame(frame,["Datos Urna","Valores"],["Categoria urna (0-2)","Peso cliente (0-120)"],[0,0])
-    categoria =((valoresUrna.getValores())[0])
-    peso = ((valoresUrna.getValores())[1])
+    valoresUrna=FieldFrame(frame,[],["Categoria urna (0-2)","Peso cliente (0-120)kg"],[0,0])
+    
+
+    #categoria =(valoresUrna.getValores()[0])
+    #print("Categoria   eee",categoria)
+    #peso = ((valoresUrna.getValores())[1])
     num=0
-    def validarUrnas():
+    def validarUrnas(valoresUrna):
+        num=0
         if valoresUrna.continuar():
+            categoria =(valoresUrna.getValores()[0])
+            print("Categoria   eee",categoria)
+            peso = (valoresUrna.getValores()[1])
+
             try:
                 int(categoria)
                 if int(categoria)<0 or int(categoria)>2:
-                    errorIds(categoria,"La categoria ingresada no es correcta")
-                float(peso)
-                if float(peso)>=120 or float(peso)<0:
-                    errorPeso(peso)
-                num=1
+                    errorIds(int(categoria),"La categoria ingresada no es correcta",0,2)
             except:
                 errorIds(categoria,"La categoria ingresada no es correcta",0,2)
-                errorPeso(peso)
+            try:
+                float(peso)
+                if float(peso)>=120 or float(peso)<0:
+                    errorPeso(peso,120)
+                num=1
+            except:
+                errorPeso(peso,120)
         if num==1:
             valoresUrna.bloquear()
             btnContinuar.destroy()
             tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso)
     
-    btnContinuar= tk.Button(frame,text="Continuar", command=lambda: validarUrnas())
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda: validarUrnas(valoresUrna))
     btnContinuar.pack(side="top",pady=10)
 
 #___________________________________________________________________________________________________________________
@@ -309,7 +319,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
     else:
         cementerios= list(map(lambda p: p.getCementerio().getNombre(), urnas))
         tipos = list(map(lambda e: e.getTipo(),urnas))
-        IDs=list(p for p in range(1,len(urnas)))
+        IDs=list(p for p in range(0,len(urnas)))
         tablas(frame,["Urnita","Cementerio","Tipo","ID"],[urnas,cementerios,tipos,IDs])
 
         entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
@@ -319,14 +329,17 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
         if entradaUrna.continuar():
             num=0
             try:
-                urna=urnas[int(entradaUrna.getValores()[0])-1]  
+                urna=urnas[int(entradaUrna.getValores()[0])]  
+                if int(entradaUrna.getValores()[0])<0:
+                    errorIds(urnas[int(entradaUrna.getValores()[0])],"El ID ingresado es incorrecto",0)
                 print(urna)
                 print(urnas)
                 num=1
             except:
-                errorIds(entradaUrna.getValores()[0],"El ID ingresado no es correcto")
+                errorIds(entradaUrna.getValores()[0],"El ID ingresado no es correcto",0,len(urnas)-1)
                 entradaUrna.borrar()
             if num==1:
+                tk.messagebox.showinfo("Información", f"Ha seleccionado la Urna {urna}")
                 producto(frame,cliente,urna,crematorio)
     
     btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
@@ -335,6 +348,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
 
 def producto(frame, cliente, urna,crematorio):
     titulo(frame,"Invitación a la ceremonia") 
+    
     # Agregar cliente a la urna
     urna.agregarCliente(cliente)
     productoCrematorio= Producto()

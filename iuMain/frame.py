@@ -1,6 +1,6 @@
 from tkinter import ttk, Label, Frame, Button, Entry
 import tkinter as tk
-from iuMain.manejoErrores.errorAplicacion import ErrorAplicacion
+from iuMain.manejoErrores.errorAplicacion import CamposIncompletos
 
 
 class FieldFrame(Frame):
@@ -28,7 +28,7 @@ class FieldFrame(Frame):
 
 
     def widget(self):
-
+        self.entries=[]
         # Crear etiquetas y cajas de texto
         for etiqueta, valor, editable in zip(self.etiquetas, self.valores, self.editables):
             entrada = Frame(self.secundario)
@@ -36,7 +36,7 @@ class FieldFrame(Frame):
             entry = Entry(entrada)
             
             # Configurar el valor por defecto
-            entry.insert(0, valor)
+            #entry.insert(0, valor)
             
             # Configurar si es editable o no
             entry.config(state=tk.NORMAL if editable else tk.DISABLED)
@@ -47,7 +47,7 @@ class FieldFrame(Frame):
             
             # Añadir al contenedor de entradas
             self.entries.append(entry)
-            
+                        
             # Empaquetar el frame de cada entrada
             entrada.pack(padx=5, pady=5, fill=tk.X)
         
@@ -60,10 +60,14 @@ class FieldFrame(Frame):
         # Cambiar el estado de todas las entradas a 'disabled'
         for entrada in self.entries:
             entrada.config(state=tk.DISABLED)
-        self.btnBorrar.destroy()
+        if self.btnBorrar:
+            self.btnBorrar.destroy()
     
     def getValores(self):
-        return [entrada.get() for entrada in self.entries]
+
+        valores = [entrada.get() for entrada in self.entries]
+        print(f"Valores obtenidos: {valores}")
+        return valores
     
     def borrar(self):
         for entrada, valor in zip(self.entries, self.valores):
@@ -71,11 +75,11 @@ class FieldFrame(Frame):
             entrada.delete(0, tk.END)
             entrada.insert(0, valor)
             entrada.config(state=tk.NORMAL if entrada.cget('state') == tk.NORMAL else tk.DISABLED)
-    def continuar(self):
+    def continuar(self,mensaje="faltante"):
         # Verifica que todos los campos no estén vacíos
         for entrada in self.entries:
             if entrada.get().strip() == '':
-                ErrorAplicacion("Debes completar todos los campos para poder continuar")
+                CamposIncompletos(mensaje)
                 return False
         return True
 
@@ -96,12 +100,12 @@ class frame1(Frame):
 
         self.widget()
         #btnContinuar=Button()
-    def continuar(self):
+    def continuar(self,mensaje="faltante"):
         seleccionados = all(combobox.get() for combobox in self.opcionesAlmacenadas)
         if seleccionados:
             return True
         else:
-            ErrorAplicacion("Debes completar todos los campos para poder continuar")
+            CamposIncompletos(mensaje)
             return False
 
     def widget(self):

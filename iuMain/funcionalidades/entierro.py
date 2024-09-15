@@ -11,6 +11,7 @@ from iuMain.frame import frame1
 from iuMain.frame import tablas
 from iuMain.frame import FieldFrame
 from iuMain.manejoErrores.errorAplicacion import errorNumeros
+from iuMain.manejoErrores.errorAplicacion import errorEstatura
 
 def titulo(frame,titulo):
     # Limpia el frame
@@ -71,7 +72,9 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
         
         tablas(frame,["Cliente","Familiar","Parentesco","IDs"],[clientes,responsables,parentescos,IDs])
         datoCliente=frame1(frame,["ID Cliente"],[IDs]) 
-    
+
+        #Frame separador 
+        tk.Frame(frame).pack(pady=3)
 
     datoEstatura=FieldFrame(frame,[],["Ingrese la estatura del cliente"])
 
@@ -91,10 +94,13 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
             cliente=clientes[datoCliente.getValores()[0]]
             num=0
             try:
+                float(datoEstatura.getValores()[0])
                 estatura=float(datoEstatura.getValores()[0])
+                if estatura>2 or estatura <0:
+                    errorEstatura(estatura,2)
                 num=1
             except:
-                errorNumeros(float(datoEstatura.getValores()[0]),"Dato de estatura incorrecto")
+                errorEstatura((datoEstatura.getValores()[0]),2)
                 datoEstatura.borrar()
             if num==1:
                 datoCliente.bloquearOpciones()
