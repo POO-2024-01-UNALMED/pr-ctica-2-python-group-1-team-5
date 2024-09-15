@@ -6,7 +6,7 @@ from iuMain.funcionalidades import entierro
 
 #Regresar a la ventana de inicio
 def irVentanaInicio():
-    ventana.withdraw()
+    ventana.destroy()
     ventanaInicio.ventanaInicio()
 
 
@@ -99,6 +99,6 @@ def ventanaPrincipal():
 
 
 
-    #btnInicio=tk.Button(ventana,text="Regresar",command=irVentanaInicio)
-    #btnInicio.pack(expand=True)
-    #ventana.mainloop()
+    btnInicio=tk.Button(ventana,text="Regresar",command=irVentanaInicio)
+    btnInicio.pack(expand=True)
+    ventana.mainloop()
