@@ -2,6 +2,7 @@
 #from multimethod import multimethod
 from datetime import datetime
 from typing import List
+from collections import defaultdict
 
 class Factura():
     # Atributos de clase
@@ -38,6 +39,14 @@ class Factura():
         self._total = sum(producto.getPrecio() * producto.getCantidad() for producto in self._listaProductos)
         return self._total
     
+    def retornarFactura(self):
+        factura = ""
+        self.ajustarProductos()
+        for producto in self._listaProductos:
+            factura += f"Concepto: {producto.getNombre()} - Precio unitario: {producto.getPrecio()} - Cantidad: {producto.getCantidad()}\n"
+        factura += f"\n Total: {self.totalFactura()}"
+        return factura
+    
     def aplicar_descuento(self, porcentaje):
         if 0 < porcentaje <= 100:
             self._precio -= self._precio * (porcentaje / 100)
@@ -49,6 +58,24 @@ class Factura():
         self.lista_productos.append(producto)
         self.precio += producto.getPrecio() * producto.getCantidad()
         self.calcular_total()
+    
+    def ajustarProductos(self):
+        # Nueva lista de productos
+        from gestorAplicacion.inventario.producto import Producto
+        from gestorAplicacion.inventario.inventario import Inventario
+        productos = []
+
+        # Usar un diccionario para contar las ocurrencias de cada nombre
+        nameCountMap = defaultdict(int)
+        
+        for producto in self._listaProductos:
+            nombre = producto.getNombre()
+            nameCountMap[nombre] += 1
+        
+        for nombre, cantidad in nameCountMap.items():
+            productos.append(Producto(nombre, Inventario.precios(nombre), cantidad))
+        
+        self._listaProductos = productos
 
     
     # Getters para atributos de clase

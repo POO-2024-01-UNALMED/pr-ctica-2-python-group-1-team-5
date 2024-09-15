@@ -566,3 +566,5 @@ class Funeraria(Establecimiento):
         return self._listaFacturas
     def setListadoFacturas(self, listaFacturas):
         self._listaFacturas = listaFacturas
+    def getCuentaAhorros(self):
+        return self._cuentaAhorros

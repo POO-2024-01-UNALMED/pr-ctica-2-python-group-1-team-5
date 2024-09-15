@@ -56,7 +56,8 @@ class Cliente(Persona):
             arreglo = self._inventario.getInventarioMaterial()
         
         productos = [Producto(inventarioItem, Inventario.precios(inventarioItem), 1) for inventarioItem in arreglo]
-        factura = Factura(productos)
+        factura = Factura()
+        factura.setListaProductos(productos)
         total = factura.totalFactura()
         
         familiaresA = list(self._familiares)

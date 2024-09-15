@@ -21,7 +21,8 @@ import tkinter as tk
 from iuMain.frame import frame1
 from iuMain.frame import tablas
 from iuMain.frame import FieldFrame
-from iuMain.manejoErrores.errorAplicacion import errorNumeros
+from iuMain.manejoErrores.errorAplicacion import errorIds
+from iuMain.manejoErrores.errorAplicacion import errorPeso
 
 current_frame = None
 separador = None
@@ -108,6 +109,7 @@ def seleccionCliente(frame,valores):
 
         titulo(frame,"Organizacion Crematorio")
         #texto inicial
+        tk.Label(frame,text="Se debe seleccionar el crematorio y la iglesia por la que se quiere realizar la ceremonia").pack(pady=5)
         texto= tk.Label(frame,text=f"Los crematorios disponibles para la afiliación {cliente.getAfiliacion()} son:")
         texto.pack(side="top",pady=5)
         # Buscar crematorios que coincidan con la capacidad de acompañantes del cliente y con la afiliación del cliente
@@ -151,8 +153,12 @@ def seleccionCliente(frame,valores):
                         crematorio.setIglesia(iglesia)
                         ventanaHoras.destroy()
                         cementerios(frame,crematorio,iglesia,cliente)
+              
                 try:
+                    valMin=1
                     iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
+                    if int(valorIglesia.getValores()[0])<valMin:
+                        errorIds(iglesias[int(valorIglesia.getValores()[0])])
                     #Crear ventana para determinar la hora del crematorio
                     ventanaHoras = tk.Toplevel()
                     ventanaHoras.title("Funeraria Rosario")
@@ -175,7 +181,7 @@ def seleccionCliente(frame,valores):
                     ventanaHoras.mainloop()    
                     
                 except:
-                    errorNumeros(valorIglesia.getValores()[0],"El ID ingresado no es correcto")
+                    errorIds(valorIglesia.getValores()[0],"El ID ingresado no es correcto",valMin)
                     valorIglesia.borrar()
         
         btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
@@ -262,11 +268,15 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
         if valoresUrna.continuar():
             try:
                 int(categoria)
+                if int(categoria)<0 or int(categoria)>2:
+                    errorIds(categoria,"La categoria ingresada no es correcta")
                 float(peso)
+                if float(peso)>=120 or float(peso)<0:
+                    errorPeso(peso)
                 num=1
             except:
-                errorNumeros(categoria,"La categoria ingresada no es correcta")
-                errorNumeros(peso,"El peso ingresado no es correcto")
+                errorIds(categoria,"La categoria ingresada no es correcta",0,2)
+                errorPeso(peso)
         if num==1:
             valoresUrna.bloquear()
             btnContinuar.destroy()
@@ -314,7 +324,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
                 print(urnas)
                 num=1
             except:
-                errorNumeros(entradaUrna.getValores()[0],"El ID ingresado no es correcto")
+                errorIds(entradaUrna.getValores()[0],"El ID ingresado no es correcto")
                 entradaUrna.borrar()
             if num==1:
                 producto(frame,cliente,urna,crematorio)

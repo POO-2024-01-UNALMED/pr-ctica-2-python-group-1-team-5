@@ -56,7 +56,7 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
         clientes=funeraria.buscarCliente("adulto")
         datoCliente=frame1(frame,["Cliente"],[clientes])      
     else:
-        tk.Label(frame,"Se buscarán los clientes menores de edad a través de su Familiar Responsable")
+        tk.Label(frame,text="Se buscarán los clientes menores de edad a través de su Familiar Responsable").pack(pady=5)
         responsables=[]
         parentescos=[]
         IDs=[]
@@ -64,8 +64,8 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
         clientes=funeraria.buscarCliente("niño")
         for auxCliente in clientes:
             familiar=auxCliente.designarFamiliar(auxCliente.getFamiliares())
-            responsables.add(familiar)
-            parentescos.add(familiar.getParentesco())
+            responsables.append(familiar)
+            parentescos.append(familiar.getParentesco())
             IDs.append(id)
             id+=1
         
@@ -137,18 +137,19 @@ def organizacionCementerio(frame,cliente,cementerio,estatura):
     def organizacionTumba():
         titulo(frame,"Organización Tumba")
         inventarioDisponible=cementerio.disponibilidadInventario("tumba", estatura, cliente.getEdad())
-        IDs=list(a for a in range(inventarioDisponible))
+        IDs = [a for a in range(len(inventarioDisponible))]
+        print(IDs)
         tablas(frame,["Tumba","ID"],[inventarioDisponible,IDs])
         datoTumba=frame1(frame,["Seleccione el ID de la tumba:"],[IDs])
-        btnContinuar= tk.Button(frameApoyo,text="Continuar", command=lambda:agregarTumba(datoTumba,inventarioDisponible))
-        btnContinuar.pack(side="top",pady=10)
+        btnContinuar1= tk.Button(frame,text="Continuar", command=lambda:agregarTumba(datoTumba,inventarioDisponible))
+        btnContinuar1.pack(side="top",pady=10)
     
     btnContinuar= tk.Button(frameApoyo,text="Continuar", command=lambda:organizacionTumba())
     btnContinuar.pack(side="top",pady=10)
 
 def factura(cliente):
     print("Resumen de los datos de entierro")
-    print("De acuerdo a la categoria de su tumba ("+cliente.getInventario().getCategoria()+") se agregarán los adornos del cliente para el entierro")
+    #print("De acuerdo a la categoria de su tumba ("+cliente.getInventario().getCategoria()+") se agregarán los adornos del cliente para el entierro")
     print("Se generó la siguiente factura:")
     print(cliente.pagoInmediato("flores"))
 
