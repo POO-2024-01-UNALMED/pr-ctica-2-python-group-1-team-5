@@ -1909,30 +1909,30 @@ if __name__ == "__main__":
 
     #Funeraria 3
 
-    cuenta21E = ("Cuenta Empleado 21", 15000)
-    cuenta22E = ("Cuenta Empleado 22", 16000)
-    cuenta23E = ("Cuenta Empleado 23", 17000)
-    cuenta24E = ("Cuenta Empleado 24", 18000)
-    cuenta25E = ("Cuenta Empleado 25", 19000)
-    cuenta26E = ("Cuenta Empleado 26", 20000)
-    cuenta27E = ("Cuenta Empleado 27", 21000)
-    cuenta28E = ("Cuenta Empleado 28", 22000)
-    cuenta29E = ("Cuenta Empleado 29", 23000)
-    cuenta30E = ("Cuenta Empleado 30", 24000)
+    cuenta21E = CuentaBancaria(352567,"Nicolás Fernández",banco1,1273622)
+    cuenta22E = CuentaBancaria(345675,"Alex Rivera",banco2,12736)
+    cuenta23E = CuentaBancaria(456564,"Elliot Cruz",banco3,127)
+    cuenta24E = CuentaBancaria(349999,"Camila Silva",banco4,12732)
+    cuenta25E = CuentaBancaria(234545,"Harper Fernández",banco5,1273622)
+    cuenta26E = CuentaBancaria(234554,"Jesse Jiménez",banco1,12722)
+    cuenta27E = CuentaBancaria(397673,"Logan Mendoza",banco2,12722)
+    cuenta28E = CuentaBancaria(283637,"Sam Vargas",banco3,12622)
+    cuenta29E = CuentaBancaria(294758,"Karla Soto",banco4,127622)
+    cuenta30E = CuentaBancaria(385474,"Taylor López",banco5,12622)
 
     # Definir las instancias de Empleado
-    empleadoF31S = Empleado("Nicolás Fernández", cuenta21E, "mañana", "sepulturero", 1000000, funeraria3)
-    empleadoF32S = Empleado("Alex Rivera", cuenta22E, "tarde", "sepulturero", 1000000, funeraria3)
-    empleadoF33S = Empleado("Elliot Cruz", cuenta23E, "tarde", "sepulturero", 1000000, funeraria3)
-    empleadoF34S = Empleado("Camila Silva", cuenta24E, "mañana", "sepulturero", 1000000, funeraria3)
-    empleadoF35S = Empleado("Harper Fernández", cuenta25E, "noche", "sepulturero", 1000000, funeraria3)
+    empleadoF31S = Empleado("Nicolás Fernández", cuenta21E, "mañana", "sepulturero", 1000000, funeraria3,0,0)
+    empleadoF32S = Empleado("Alex Rivera", cuenta22E, "tarde", "sepulturero", 1000000, funeraria3,0,2)
+    empleadoF33S = Empleado("Elliot Cruz", cuenta23E, "tarde", "sepulturero", 1000000, funeraria3,0,4)
+    empleadoF34S = Empleado("Camila Silva", cuenta24E, "mañana", "sepulturero", 1000000, funeraria3,0,6)
+    empleadoF35S = Empleado("Harper Fernández", cuenta25E, "noche", "sepulturero", 1000000, funeraria3,0,8)
 
     # Empleados cremador
-    empleadoF31C = Empleado("Jesse Jiménez", cuenta26E, "noche", "cremador", 1000000, funeraria3)
-    empleadoF32C = Empleado("Logan Mendoza", cuenta27E, "mañana", "cremador", 1000000, funeraria3)
-    empleadoF33C = Empleado("Sam Vargas", cuenta28E, "tarde", "cremador", 1000000, funeraria3)
-    empleadoF34C = Empleado("Karla Soto", cuenta29E, "mañana", "cremador", 1000000, funeraria3)
-    empleadoF35C = Empleado("Taylor López", cuenta30E, "noche", "cremador", 1000000, funeraria3)
+    empleadoF31C = Empleado("Jesse Jiménez", cuenta26E, "noche", "cremador", 1000000, funeraria3,0,10)
+    empleadoF32C = Empleado("Logan Mendoza", cuenta27E, "mañana", "cremador", 1000000, funeraria3,0,0)
+    empleadoF33C = Empleado("Sam Vargas", cuenta28E, "tarde", "cremador", 1000000, funeraria3,0,2)
+    empleadoF34C = Empleado("Karla Soto", cuenta29E, "mañana", "cremador", 1000000, funeraria3,0,4)
+    empleadoF35C = Empleado("Taylor López", cuenta30E, "noche", "cremador", 1000000, funeraria3,0,6)
 
     #Agregar empleados a funeraria 3
     funeraria3.agregarEmpleado(empleadoC1)
@@ -1965,21 +1965,21 @@ if __name__ == "__main__":
 
     # Funeraria 3
 
-    cuenta33FA = (33, "tipo33")
-    cuenta34FA = (34, "tipo34")
-    cuenta35FA = (35, "tipo35")
-    cuenta36FA = (36, "tipo36")
-    cuenta37FA = (37, "tipo37")
-    cuenta38FA = (38, "tipo38")
-    cuenta39FA = (39, "tipo39")
-    cuenta40FA = (40, "tipo40")
-    cuenta41FA = (41, "tipo41")
-    cuenta42FA = (42, "tipo42")
-    cuenta43FA = (43, "tipo43")
-    cuenta44FA = (44, "tipo44")
-    cuenta45FA = (45, "tipo45")
-    cuenta46FA = (46, "tipo46")
-    cuenta47FA = (47, "tipo47")
+    cuenta33FA = CuentaBancaria(237376,"Vanessa",banco1,2342545)
+    cuenta34FA = CuentaBancaria(458474,"Carlos",banco2,234254)
+    cuenta35FA = CuentaBancaria(340394,"Carla",banco3,23425)
+    cuenta36FA = CuentaBancaria(230223,"Catalina",banco4,2342)
+    cuenta37FA = CuentaBancaria(232355,"David",banco5,234)
+    cuenta38FA = CuentaBancaria(256756,"Esteban",banco1,2342)
+    cuenta39FA = CuentaBancaria(567566,"Luisa",banco2,23425)
+    cuenta40FA = CuentaBancaria(365456,"Maria",banco3,234254)
+    cuenta41FA = CuentaBancaria(242455,"Eduardo",banco4,2342545)
+    cuenta42FA = CuentaBancaria(223423,"Mario",banco5,23425)
+    cuenta43FA = CuentaBancaria(212433,"Catalina",banco1,23425)
+    cuenta44FA = CuentaBancaria(124344,"Hugo",banco2,2342545)
+    cuenta45FA = CuentaBancaria(234234,"Hugo",banco3,23425)
+    cuenta46FA = CuentaBancaria(213444,"Sol",banco4,2545)
+    cuenta47FA = CuentaBancaria(232344,"Daniel",banco5,234545)
 
     # Inicializar familiares con las cuentas
     F31 = Familiar("Vanessa", 12345, 18, cuenta33FA, "conyugue", 17)
@@ -2020,25 +2020,25 @@ if __name__ == "__main__":
     familiarQ = [F317, F318, F319, F320]
     familiarR = [F321, F322, F323, F324]
 
-    cuenta76FA = (76, "FA")
-    cuenta77FA = (77, "FA")
-    cuenta78FA = (78, "FA")
-    cuenta79FA = (79, "FA")
+    cuenta76FA = CuentaBancaria(236373,"Carla",banco1,7362732)
+    cuenta77FA = CuentaBancaria(236373,"Luis",banco2,362732)
+    cuenta78FA = CuentaBancaria(236373,"Tomas",banco3,73732)
+    cuenta79FA = CuentaBancaria(236373,"Andres",banco4,732)
 
-    cuenta80FA = (80, "FA")
-    cuenta81FA = (81, "FA")
-    cuenta82FA = (82, "FA")
-    cuenta83FA = (83, "FA")
+    cuenta80FA = CuentaBancaria(236373,"Rodrigo",banco5,736232)
+    cuenta81FA = CuentaBancaria(236373,"Carlos",banco1,736232)
+    cuenta82FA = CuentaBancaria(236373,"Juan Jose",banco2,73622)
+    cuenta83FA = CuentaBancaria(236373,"Nicolas",banco3,7332)
 
-    cuenta84FA = (84, "FA")
-    cuenta85FA = (85, "FA")
-    cuenta86FA = (86, "FA")
-    cuenta87FA = (87, "FA")
+    cuenta84FA = CuentaBancaria(236373,"Jimena",banco4,73632)
+    cuenta85FA = CuentaBancaria(236373,"Maria Jose",banco5,7332)
+    cuenta86FA = CuentaBancaria(236373,"Esteban",banco1,736282)
+    cuenta87FA = CuentaBancaria(236373,"David",banco2,7732)
 
-    cuenta88FA = (88, "FA")
-    cuenta89FA = (89, "FA")
-    cuenta90FA = (90, "FA")
-    cuenta91FA = (91, "FA")
+    cuenta88FA = CuentaBancaria(236373,"David",banco3,73627)
+    cuenta89FA = CuentaBancaria(236373,"Carlos",banco4,736732)
+    cuenta90FA = CuentaBancaria(236373,"Armando",banco5,6232)
+    cuenta91FA = CuentaBancaria(236373,"Carolina",banco1,72732)
 
     # Inicializar familiares con las cuentas
     F31M = Familiar("Carla", 715, 60, cuenta76FA, "padre", 17)
@@ -2086,18 +2086,18 @@ if __name__ == "__main__":
     familiarLM.append(F316M)
 
 
-    cuenta25CE = "Cuenta_25_CE"
-    cuenta26CE = "Cuenta_26_CE"
-    cuenta27CE = "Cuenta_27_CE"
-    cuenta28CE = "Cuenta_28_CE"
-    cuenta29CE = "Cuenta_29_CE"
-    cuenta30CE = "Cuenta_30_CE"
-    cuenta31CE = "Cuenta_31_CE"
-    cuenta32CE = "Cuenta_32_CE"
-    cuenta33CE = "Cuenta_33_CE"
-    cuenta34CE = "Cuenta_34_CE"
-    cuenta35CE = "Cuenta_35_CE"
-    cuenta36CE = "Cuenta_36_CE"
+    cuenta25CE = CuentaBancaria(127635,"Jardín de los Ángeles",banco1,127837)
+    cuenta26CE = CuentaBancaria(104904,"Campo de la Tranquilidad",banco2,127837)
+    cuenta27CE = CuentaBancaria(123044,"Oasis de Paz",banco3,127837)
+    cuenta28CE = CuentaBancaria(113847,"Colinas del Recuerdo",banco4,127837)
+    cuenta29CE = CuentaBancaria(103749,"Rincón del Silencio",banco5,127837)
+    cuenta30CE = CuentaBancaria(284649,"Eterna Armonía",banco1,127837)
+    cuenta31CE = CuentaBancaria(305840,"Bosque de los Sueños",banco2,127837)
+    cuenta32CE = CuentaBancaria(450494,"Pradera del Descanso",banco3,127837)
+    cuenta33CE = CuentaBancaria(230940,"Refugio de la Memoria",banco4,127837)
+    cuenta34CE = CuentaBancaria(843847,"Sendero de la Memoria",banco5,127837)
+    cuenta35CE = CuentaBancaria(348474,"Valle del Reposo",banco1,127837)
+    cuenta36CE = CuentaBancaria(323555,"Jardines del Refugio",banco2,127837)
 
     # Objetos Cementerio
     cementerioF31Ce = Cementerio("Jardín de los Ángeles", 78, cuenta25CE, "oro", None, "cenizas", funeraria3)
@@ -2204,12 +2204,12 @@ if __name__ == "__main__":
 
 # Crematorios pertenecientes a F3 --> Funeraria 3
 
-    cuenta13CR = "valor_cuenta_13CR"
-    cuenta14CR = "valor_cuenta_14CR"
-    cuenta15CR = "valor_cuenta_15CR"
-    cuenta16CR = "valor_cuenta_16CR"
-    cuenta17CR = "valor_cuenta_17CR"
-    cuenta18CR = "valor_cuenta_18CR"
+    cuenta13CR = CuentaBancaria(162272,"Crematorio del Horizonte",banco1,234234)
+    cuenta14CR = CuentaBancaria(123544,"Cenizas de la Eternidad",banco2,234234)
+    cuenta15CR = CuentaBancaria(156758,"Refugio de la Luz",banco3,234234)
+    cuenta16CR = CuentaBancaria(123565,"Fuego de Serenidad",banco4,234234)
+    cuenta17CR = CuentaBancaria(140586,"Crematorio del Horizonte Eterno",banco5,234234)
+    cuenta18CR = CuentaBancaria(406856,"Crematorio Luz de la Eternidad",banco1,234234)
     
     crematorioF31 = Crematorio("Crematorio del Horizonte", 100, cuenta13CR, "oro", None, funeraria3)
     crematorioF32 = Crematorio("Cenizas de la Eternidad", 78, cuenta14CR, "oro", None, funeraria3)
@@ -2220,12 +2220,12 @@ if __name__ == "__main__":
     crematorioF35 = Crematorio("Crematorio del Horizonte Eterno", 78, cuenta17CR, "bronce", None, funeraria3)
     crematorioF36 = Crematorio("Crematorio Luz de la Eternidad", 78, cuenta18CR, "bronce", None, funeraria3)
 
-    cuenta13CL = "valor_cuenta_13CL"
-    cuenta14CL = "valor_cuenta_14CL"
-    cuenta15CL = "valor_cuenta_15CL"
-    cuenta16CL = "valor_cuenta_16CL"
-    cuenta17CL = "valor_cuenta_17CL"
-    cuenta18CL = "valor_cuenta_18CL"
+    cuenta13CL = CuentaBancaria(287383,"Ana Torres",banco1,12333)
+    cuenta14CL = CuentaBancaria(384743,"Beatriz Sánchez",banco2,123133)
+    cuenta15CL = CuentaBancaria(129474,"Alex Cruz",banco3,123233)
+    cuenta16CL = CuentaBancaria(192733,"Dani Morales",banco4,12333)
+    cuenta17CL = CuentaBancaria(210282,"Lucía González",banco5,123123)
+    cuenta18CL = CuentaBancaria(107292,"Jordan Silva",banco1,12333)
 
     # Inicialización de clientes mayores de edad
     clienteF31 = Cliente("Ana Torres", 3111, 30, cuenta13CL, "oro", familiarM)
@@ -2257,16 +2257,16 @@ if __name__ == "__main__":
     funeraria3.agregarCliente(clienteF310)
 
     # Inicialización de las cuentas con valores string para clientes adicionales
-    cuenta59CL = "valor_cuenta_59CL"
-    cuenta60CL = "valor_cuenta_60CL"
-    cuenta61CL = "valor_cuenta_61CL"
-    cuenta62CL = "valor_cuenta_62CL"
-    cuenta63CL = "valor_cuenta_63CL"
-    cuenta64CL = "valor_cuenta_64CL"
-    cuenta65CL = "valor_cuenta_65CL"
-    cuenta66CL = "valor_cuenta_66CL"
-    cuenta67CL = "valor_cuenta_67CL"
-    cuenta68CL = "valor_cuenta_68CL"
+    cuenta59CL = CuentaBancaria(383732,"Juan Pérez",banco1,28123712)
+    cuenta60CL = CuentaBancaria(345345,"Carlos Fernández",banco2,281232)
+    cuenta61CL = CuentaBancaria(312222,"Miguel Rodríguez",banco3,2712)
+    cuenta62CL = CuentaBancaria(312333,"Dani Morales",banco4,281712)
+    cuenta63CL = CuentaBancaria(312456,"Pedro González",banco5,2812)
+    cuenta64CL = CuentaBancaria(345666,"José Martínez",banco1,281712)
+    cuenta65CL = CuentaBancaria(234566,"Laura Morales",banco2,28712)
+    cuenta66CL = CuentaBancaria(345665,"Robert Jones",banco3,2712)
+    cuenta67CL = CuentaBancaria(456646,"Olivia Miller",banco4,28112)
+    cuenta68CL = CuentaBancaria(657577,"Sophia Moore",banco5,281212)
 
     # Inicialización de clientes mayores de edad
     clienteF31E = Cliente("Juan Pérez", 3212, 30, cuenta59CL, "oro", familiarA)
@@ -2389,26 +2389,16 @@ if __name__ == "__main__":
     urnaF3C63E.agregarCliente(clienteF318E)
 
     # Cuentas para clientes
-    cuenta59CL = "CUENTA_59_CL"
-    cuenta60CL = "CUENTA_60_CL"
-    cuenta61CL = "CUENTA_61_CL"
-    cuenta62CL = "CUENTA_62_CL"
-    cuenta63CL = "CUENTA_63_CL"
-    cuenta64CL = "CUENTA_64_CL"
-    cuenta65CL = "CUENTA_65_CL"
-    cuenta66CL = "CUENTA_66_CL"
-    cuenta67CL = "CUENTA_67_CL"
-    cuenta68CL = "CUENTA_68_CL"
-    cuenta69CL = "CUENTA_69_CL"
-    cuenta70CL = "CUENTA_70_CL"
-    cuenta71CL = "CUENTA_71_CL"
-    cuenta72CL = "CUENTA_72_CL"
-    cuenta73CL = "CUENTA_73_CL"
-    cuenta74CL = "CUENTA_74_CL"
-    cuenta75CL = "CUENTA_75_CL"
-    cuenta76CL = "CUENTA_76_CL"
-    cuenta77CL = "CUENTA_77_CL"
-    cuenta78CL = "CUENTA_78_CL"
+    cuenta69CL = CuentaBancaria(362733,"Ezequiel Andrade",banco1,7271)
+    cuenta70CL = CuentaBancaria(234234,"Damián Vargas",banco2,71277)
+    cuenta71CL = CuentaBancaria(345354,"Octavio Salazar",banco3,72277)
+    cuenta72CL = CuentaBancaria(345345,"Leonardo Paredes",banco4,271277)
+    cuenta73CL = CuentaBancaria(235246,"Ulises Ortega",banco5,71277)
+    cuenta74CL = CuentaBancaria(344564,"Valeria Castro",banco1,71277)
+    cuenta75CL = CuentaBancaria(565768,"Leo Cruz",banco2,7271277)
+    cuenta76CL = CuentaBancaria(483949,"Luna Martínez",banco3,727127)
+    cuenta77CL = CuentaBancaria(678686,"Lucas Moreno",banco4,1277)
+    cuenta78CL = CuentaBancaria(343455,"Sofía Rodríguez",banco5,7271277)
 
     clienteF31ET = Cliente("Ezequiel Andrade", 123, 30, cuenta69CL, "oro", familiarC)
     clienteF32ET = Cliente("Damián Vargas", 1234, 25, cuenta70CL, "oro", familiarC)
