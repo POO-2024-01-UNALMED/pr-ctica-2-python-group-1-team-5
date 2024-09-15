@@ -2368,11 +2368,11 @@ if __name__ == "__main__":
     clienteF35ET = Cliente("Ulises Ortega", 1237, 21, cuenta73CL, "bronce", familiarC)
     clienteF36ET = Cliente("Valeria Castro", 1238, 50, cuenta74CL, "bronce", familiarC)
 
-    clienteF37ET = Cliente("Delfina Méndez", 5, "oro", familiarB)
-    clienteF38ET = Cliente("Mireya Delgado", 17, "oro", familiarB)
+    clienteF37ET = Cliente("Delfina Méndez", 0,5,None, "oro", familiarB)
+    clienteF38ET = Cliente("Mireya Delgado", 0,17,None, "oro", familiarB)
 
-    clienteF39ET = Cliente("Renata Aguirre", 15, "plata", familiarB)
-    clienteF310ET = Cliente("Alma Guzmán", 13, "plata", familiarB)
+    clienteF39ET = Cliente("Renata Aguirre", 0,15,None, "plata", familiarB)
+    clienteF310ET = Cliente("Alma Guzmán", 0,13,None, "plata", familiarB)
 
     clienteF311ET = Cliente("Leo Cruz", 1235, 90, cuenta75CL, "plata", familiarB)
     clienteF312ET = Cliente("Luna Martínez", 1236, 57, cuenta76CL, "plata", familiarB)
@@ -2381,54 +2381,54 @@ if __name__ == "__main__":
     clienteF314ET = Cliente("Sofía Rodríguez", 1238, 50, cuenta78CL, "bronce", familiarC)
 
     # Clientes menores de edad
-    clienteF315ET = Cliente("Aitana Gómez", 5, "oro", familiarB)
-    clienteF316ET = Cliente("Zoe García", 17, "oro", familiarB)
+    clienteF315ET = Cliente("Aitana Gómez", 0,5,None, "oro", familiarB)
+    clienteF316ET = Cliente("Zoe García", 0,17, None,"oro", familiarB)
 
-    clienteF317ET = Cliente("Ethan Ortega", 15, "plata", familiarB)
-    clienteF318ET = Cliente("Dylan Mendoza", 13, "plata", familiarB)
+    clienteF317ET = Cliente("Ethan Ortega", 0,15,None, "plata", familiarB)
+    clienteF318ET = Cliente("Dylan Mendoza", 0,13,None, "plata", familiarB)
 
     # Inicialización de tumbas
-    tumbaF3C11E = Tumba("Tumbita Lugar de Paz", "cementerioF31Cu", 1.70, 1)
-    tumbaF3C12E = Tumba("Tumbita Descanso Eterno", "cementerioF31Cu", 1.50, 0)
-    tumbaF3C13E = Tumba("default", "cementerioF31Cu", 1.80, 0)
+    tumbaF3C11E = Tumba("Tumbita Lugar de Paz", cementerioF31Cu, 1.70, 1)
+    tumbaF3C12E = Tumba("Tumbita Descanso Eterno", cementerioF31Cu, 1.50, 0)
+    tumbaF3C13E = Tumba("default", cementerioF31Cu, 1.80, 0)
 
-    tumbaF3C14E = Tumba("Tumbita Lugar de Paz", "cementerioF31Cu", 1.70, 1)
-    tumbaF3C15E = Tumba("Tumbita Descanso Eterno", "cementerioF31Cu", 1.60, 0)
+    tumbaF3C14E = Tumba("Tumbita Lugar de Paz", cementerioF31Cu, 1.70, 1)
+    tumbaF3C15E = Tumba("Tumbita Descanso Eterno", cementerioF31Cu, 1.60, 0)
 
-    tumbaF3C21E = Tumba("Tumbita Siempre Recordado", "cementerioF32Cu", 1.70, 1)
-    tumbaF3C22E = Tumba("Tumbita En Honor a un Ser Querido", "cementerioF32Cu", 1.65, 0)
-    tumbaF3C23E = Tumba("default", "cementerioF32Cu", 1.70, 0)
+    tumbaF3C21E = Tumba("Tumbita Siempre Recordado", cementerioF32Cu, 1.70, 1)
+    tumbaF3C22E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF32Cu, 1.65, 0)
+    tumbaF3C23E = Tumba("default", cementerioF32Cu, 1.70, 0)
 
-    tumbaF3C24E = Tumba("Tumbita Siempre Recordado", "cementerioF32Cu", 1.70, 1)
-    tumbaF3C25E = Tumba("Tumbita En Honor a un Ser Querido", "cementerioF32Cu", 1.65, 0)
+    tumbaF3C24E = Tumba("Tumbita Siempre Recordado", cementerioF32Cu, 1.70, 1)
+    tumbaF3C25E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF32Cu, 1.65, 0)
 
-    tumbaF3C31E = Tumba("Tumbita Lugar de Serenidad", "cementerioF33Cu", 1.70, 1)
-    tumbaF3C32E = Tumba("Tumbita Eterna Paz", "cementerioF33Cu", 1.60, 0)
-    tumbaF3C33E = Tumba("default", "cementerioF33Cu", 1.60, 0)
+    tumbaF3C31E = Tumba("Tumbita Lugar de Serenidad", cementerioF33Cu, 1.70, 1)
+    tumbaF3C32E = Tumba("Tumbita Eterna Paz", cementerioF33Cu, 1.60, 0)
+    tumbaF3C33E = Tumba("default", cementerioF33Cu, 1.60, 0)
 
-    tumbaF3C34E = Tumba("Tumbita Lugar de Serenidad", "cementerioF33Cu", 1.70, 1)
-    tumbaF3C35E = Tumba("Tumbita Eterna Paz", "cementerioF33Cu", 1.60, 0)
+    tumbaF3C34E = Tumba("Tumbita Lugar de Serenidad", cementerioF33Cu, 1.70, 1)
+    tumbaF3C35E = Tumba("Tumbita Eterna Paz", cementerioF33Cu, 1.60, 0)
 
-    tumbaF3C41E = Tumba("Tumbita Un Alma Bella", "cementerioF34Cu", 1.70, 1)
-    tumbaF3C42E = Tumba("Tumbita En Paz y Serenidad", "cementerioF34Cu", 1.70, 0)
-    tumbaF3C43E = Tumba("default", "cementerioF34Cu", 1.50, 0)
+    tumbaF3C41E = Tumba("Tumbita Un Alma Bella", cementerioF34Cu, 1.70, 1)
+    tumbaF3C42E = Tumba("Tumbita En Paz y Serenidad", cementerioF34Cu, 1.70, 0)
+    tumbaF3C43E = Tumba("default", cementerioF34Cu, 1.50, 0)
 
-    tumbaF3C44E = Tumba("Tumbita Un Alma Bella", "cementerioF34Cu", 1.70, 1)
-    tumbaF3C45E = Tumba("Tumbita En Paz y Serenidad", "cementerioF34Cu", 1.70, 0)
+    tumbaF3C44E = Tumba("Tumbita Un Alma Bella", cementerioF34Cu, 1.70, 1)
+    tumbaF3C45E = Tumba("Tumbita En Paz y Serenidad", cementerioF34Cu, 1.70, 0)
 
-    tumbaF3C51E = Tumba("Tumbita Siempre en Nuestros Corazones", "cementerioF35Cu", 1.70, 1)
-    tumbaF3C52E = Tumba("Tumbita Aquí Descansa en Paz", "cementerioF35Cu", 1.85, 0)
-    tumbaF3C53E = Tumba("default", "cementerioF35Cu", 1.70, 0)
+    tumbaF3C51E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF35Cu, 1.70, 1)
+    tumbaF3C52E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF35Cu, 1.85, 0)
+    tumbaF3C53E = Tumba("default", cementerioF35Cu, 1.70, 0)
 
-    tumbaF3C54E = Tumba("Tumbita Siempre en Nuestros Corazones", "cementerioF35Cu", 1.70, 1)
-    tumbaF3C55E = Tumba("Tumbita Aquí Descansa en Paz", "cementerioF35Cu", 1.65, 0)
+    tumbaF3C54E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF35Cu, 1.70, 1)
+    tumbaF3C55E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF35Cu, 1.65, 0)
 
-    tumbaF3C61E = Tumba("Tumbita La Luz de Nuestra Vida", "cementerioF36Cu", 1.70, 1)
-    tumbaF3C62E = Tumba("Tumbita Aquí La Memoria Vive", "cementerioF36Cu", 1.65, 0)
-    tumbaF3C63E = Tumba("default", "cementerioF36Cu", 1.60, 0)
+    tumbaF3C61E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF36Cu, 1.70, 1)
+    tumbaF3C62E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF36Cu, 1.65, 0)
+    tumbaF3C63E = Tumba("default", cementerioF36Cu, 1.60, 0)
 
-    tumbaF3C64E = Tumba("Tumbita La Luz de Nuestra Vida", "cementerioF36Cu", 1.70, 1)
-    tumbaF3C65E = Tumba("Tumbita Aquí La Memoria Vive", "cementerioF36Cu", 1.90, 0)
+    tumbaF3C64E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF36Cu, 1.70, 1)
+    tumbaF3C65E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF36Cu, 1.90, 0)
 
     # Agregar clientes a las tumbas
     tumbaF3C11E.agregarCliente(clienteF31ET)

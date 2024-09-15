@@ -12,10 +12,8 @@ class ErrorAplicacion(Exception):
 
 class CamposIncompletos(ErrorAplicacion):
     def __init__(self, mensaje):
+        self._mensaje=mensaje
         super().__init__(self._mensaje)
-    
-    def validacion():
-        return False
     
 class errorNumeros(ErrorAplicacion):
     def __init__(self, mensaje):
