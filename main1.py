@@ -1855,6 +1855,606 @@ if __name__ == "__main__":
     tumbaF2C62E.agregarCliente(clienteF217ET)
     tumbaF2C63E.agregarCliente(clienteF218ET)
 
+
+    #Funeraria 3
+
+    cuenta21E = ("Cuenta Empleado 21", 15000)
+    cuenta22E = ("Cuenta Empleado 22", 16000)
+    cuenta23E = ("Cuenta Empleado 23", 17000)
+    cuenta24E = ("Cuenta Empleado 24", 18000)
+    cuenta25E = ("Cuenta Empleado 25", 19000)
+    cuenta26E = ("Cuenta Empleado 26", 20000)
+    cuenta27E = ("Cuenta Empleado 27", 21000)
+    cuenta28E = ("Cuenta Empleado 28", 22000)
+    cuenta29E = ("Cuenta Empleado 29", 23000)
+    cuenta30E = ("Cuenta Empleado 30", 24000)
+
+    # Definir las instancias de Empleado
+    empleadoF31S = Empleado("Nicolás Fernández", cuenta21E, "mañana", "sepulturero", 1000000, funeraria3)
+    empleadoF32S = Empleado("Alex Rivera", cuenta22E, "tarde", "sepulturero", 1000000, funeraria3)
+    empleadoF33S = Empleado("Elliot Cruz", cuenta23E, "tarde", "sepulturero", 1000000, funeraria3)
+    empleadoF34S = Empleado("Camila Silva", cuenta24E, "mañana", "sepulturero", 1000000, funeraria3)
+    empleadoF35S = Empleado("Harper Fernández", cuenta25E, "noche", "sepulturero", 1000000, funeraria3)
+
+    # Empleados cremador
+    empleadoF31C = Empleado("Jesse Jiménez", cuenta26E, "noche", "cremador", 1000000, funeraria3)
+    empleadoF32C = Empleado("Logan Mendoza", cuenta27E, "mañana", "cremador", 1000000, funeraria3)
+    empleadoF33C = Empleado("Sam Vargas", cuenta28E, "tarde", "cremador", 1000000, funeraria3)
+    empleadoF34C = Empleado("Karla Soto", cuenta29E, "mañana", "cremador", 1000000, funeraria3)
+    empleadoF35C = Empleado("Taylor López", cuenta30E, "noche", "cremador", 1000000, funeraria3)
+
+    #Agregar empleados a funeraria 3
+    funeraria3.agregarEmpleado(empleadoC1)
+    funeraria3.agregarEmpleado(empleadoC2)
+    funeraria3.agregarEmpleado(empleadoC3)
+    funeraria3.agregarEmpleado(empleadoC4)
+    funeraria3.agregarEmpleado(empleadoC5)
+    funeraria3.agregarEmpleado(empleadoC6)
+
+    funeraria3.agregarEmpleado(empleadoF1)
+    funeraria3.agregarEmpleado(empleadoF2)
+    funeraria3.agregarEmpleado(empleadoF3)
+    funeraria3.agregarEmpleado(empleadoF4)
+    funeraria3.agregarEmpleado(empleadoF5)
+    funeraria3.agregarEmpleado(empleadoF6)
+
+    funeraria3.agregarEmpleado(empleadoP1)
+    funeraria3.agregarEmpleado(empleadoP2)
+    funeraria3.agregarEmpleado(empleadoP3)
+    funeraria3.agregarEmpleado(empleadoP4)
+    funeraria3.agregarEmpleado(empleadoP5)
+    funeraria3.agregarEmpleado(empleadoP6)
+
+    funeraria3.agregarEmpleado(empleadoO1)
+    funeraria3.agregarEmpleado(empleadoO2)
+    funeraria3.agregarEmpleado(empleadoO3)
+    funeraria3.agregarEmpleado(empleadoO4)
+    funeraria3.agregarEmpleado(empleadoO5)
+    funeraria3.agregarEmpleado(empleadoO6)
+
+    # Funeraria 3
+
+    cuenta33FA = (33, "tipo33")
+    cuenta34FA = (34, "tipo34")
+    cuenta35FA = (35, "tipo35")
+    cuenta36FA = (36, "tipo36")
+    cuenta37FA = (37, "tipo37")
+    cuenta38FA = (38, "tipo38")
+    cuenta39FA = (39, "tipo39")
+    cuenta40FA = (40, "tipo40")
+    cuenta41FA = (41, "tipo41")
+    cuenta42FA = (42, "tipo42")
+    cuenta43FA = (43, "tipo43")
+    cuenta44FA = (44, "tipo44")
+    cuenta45FA = (45, "tipo45")
+    cuenta46FA = (46, "tipo46")
+    cuenta47FA = (47, "tipo47")
+
+    # Inicializar familiares con las cuentas
+    F31 = Familiar("Vanessa", 12345, 18, cuenta33FA, "conyugue", 17)
+    F32 = Familiar("Carlos", 12375, 70, cuenta34FA, "padre", 17)
+    F33 = Familiar("Camila", 0,12,None, "hijo", 0,F31)  # F21 no definido, puede asignarse más tarde
+    F34 = Familiar("Cuasquer",0, 7, None,"hermano", 0,F32)
+
+    F35 = Familiar("Carla", 12345, 18, cuenta35FA, "conyugue", 17)
+    F36 = Familiar("Catalina", 12375, 70, cuenta36FA, "padre", 17)
+    F37 = Familiar("Manuel", 0,None,12, "hijo", 0,F36)
+    F38 = Familiar("Jose", 0,7,None, "hermano", 0,F35)
+
+    F39 = Familiar("David", 12345, 18, cuenta37FA, "conyugue", 17)
+    F310 = Familiar("Esteban", 12375, 70, cuenta38FA, "padre", 17)
+    F311 = Familiar("Lucas", 0,12,None, "hijo",0, F39)
+    F312 = Familiar("Carlos", 0,7,None, "hermano", 0,F310)
+
+    F313 = Familiar("Luisa", 715, 60, cuenta39FA, "padre", 17)
+    F314 = Familiar("Maria", 716, 60, cuenta40FA, "padre", 13)
+    F315 = Familiar("Eduardo", 717, 37, cuenta41FA, "hermano", 17)
+    F316 = Familiar("Andres", 0,5, None,"hermano", 0,F314)
+
+    F317 = Familiar("Mario", 715, 60, cuenta42FA, "padre", 17)
+    F318 = Familiar("Catalina", 716, 60, cuenta43FA, "padre", 13)
+    F319 = Familiar("Hugo", 717, 37, cuenta44FA, "hermano", 17)
+    F320 = Familiar("Azul", 0,5,None, "hermano", 0,F317)
+
+    F321 = Familiar("Hugo", 715, 60, cuenta45FA, "padre", 17)
+    F322 = Familiar("Sol", 716, 60, cuenta46FA, "padre", 13)
+    F323 = Familiar("Daniel", 717, 37, cuenta47FA, "hermano", 17)
+    F324 = Familiar("Carlos", 0,5,None, "hermano", 0,F321)
+
+    #Listas de familiares
+    familiarM = [F31, F32, F33, F34]
+    familiarN = [F35, F36, F37, F38]
+    familiarO = [F39, F310, F311, F312]
+    familiarP = [F313, F314, F315, F316]
+    familiarQ = [F317, F318, F319, F320]
+    familiarR = [F321, F322, F323, F324]
+
+    cuenta76FA = (76, "FA")
+    cuenta77FA = (77, "FA")
+    cuenta78FA = (78, "FA")
+    cuenta79FA = (79, "FA")
+
+    cuenta80FA = (80, "FA")
+    cuenta81FA = (81, "FA")
+    cuenta82FA = (82, "FA")
+    cuenta83FA = (83, "FA")
+
+    cuenta84FA = (84, "FA")
+    cuenta85FA = (85, "FA")
+    cuenta86FA = (86, "FA")
+    cuenta87FA = (87, "FA")
+
+    cuenta88FA = (88, "FA")
+    cuenta89FA = (89, "FA")
+    cuenta90FA = (90, "FA")
+    cuenta91FA = (91, "FA")
+
+    # Inicializar familiares con las cuentas
+    F31M = Familiar("Carla", 715, 60, cuenta76FA, "padre", 17)
+    F32M = Familiar("Luis", 716, 60, cuenta77FA, "padre", 13)
+    F33M = Familiar("Tomas", 717, 37, cuenta78FA, "hermano", 17)
+    F34M = Familiar("Andres", 717, 37, cuenta79FA, "hermano", 17)
+
+    F35M = Familiar("Rodrigo", 715, 60, cuenta80FA, "padre", 17)
+    F36M = Familiar("Carlos", 716, 60, cuenta81FA, "padre", 13)
+    F37M = Familiar("Juan Jose", 717, 37, cuenta82FA, "hermano", 17)
+    F38M = Familiar("Nicolas", 717, 37, cuenta83FA, "hermano", 17)
+
+    F39M = Familiar("Jimena", 715, 60, cuenta84FA, "padre", 17)
+    F310M = Familiar("Maria Jose", 716, 60, cuenta85FA, "padre", 13)
+    F311M = Familiar("Esteban", 717, 37, cuenta86FA, "hermano", 17)
+    F312M = Familiar("David", 717, 37, cuenta87FA, "hermano", 17)
+
+    F313M = Familiar("David", 715, 60, cuenta88FA, "padre", 17)
+    F314M = Familiar("Carlos", 716, 60, cuenta89FA, "padre", 13)
+    F315M = Familiar("Armando", 717, 37, cuenta90FA, "hermano", 17)
+    F316M = Familiar("Carolina", 717, 37, cuenta91FA, "hermano", 17)
+    
+    familiarIM = []
+    familiarIM.append(F31M)
+    familiarIM.append(F32M)
+    familiarIM.append(F33M)
+    familiarIM.append(F34M)
+
+    familiarJM = []
+    familiarJM.append(F35M)
+    familiarJM.append(F36M)
+    familiarJM.append(F37M)
+    familiarJM.append(F38M)
+
+    familiarKM = []
+    familiarKM.append(F39M)
+    familiarKM.append(F310M)
+    familiarKM.append(F311M)
+    familiarKM.append(F312M)
+
+    familiarLM = []
+    familiarLM.append(F313M)
+    familiarLM.append(F314M)
+    familiarLM.append(F315M)
+    familiarLM.append(F316M)
+
+
+    cuenta25CE = "Cuenta_25_CE"
+    cuenta26CE = "Cuenta_26_CE"
+    cuenta27CE = "Cuenta_27_CE"
+    cuenta28CE = "Cuenta_28_CE"
+    cuenta29CE = "Cuenta_29_CE"
+    cuenta30CE = "Cuenta_30_CE"
+    cuenta31CE = "Cuenta_31_CE"
+    cuenta32CE = "Cuenta_32_CE"
+    cuenta33CE = "Cuenta_33_CE"
+    cuenta34CE = "Cuenta_34_CE"
+    cuenta35CE = "Cuenta_35_CE"
+    cuenta36CE = "Cuenta_36_CE"
+
+    # Objetos Cementerio
+    cementerioF31Ce = Cementerio("Jardín de los Ángeles", 78, cuenta25CE, "oro", None, "cenizas", funeraria3)
+    cementerioF32Ce = Cementerio("Campo de la Tranquilidad", 85, cuenta26CE, "oro", None, "cenizas", funeraria3)
+    cementerioF33Ce = Cementerio("Oasis de Paz", 79, cuenta27CE, "plata", None, "cenizas", funeraria3)
+    cementerioF34Ce = Cementerio("Colinas del Recuerdo", 78, cuenta28CE, "plata", None, "cenizas", funeraria3)
+
+    cementerioF35Ce = Cementerio("Rincón del Silencio", 50, cuenta29CE, "bronce", None, "cenizas", funeraria3)
+    cementerioF36Ce = Cementerio("Eterna Armonía", 78, cuenta30CE, "bronce", None, "cenizas", funeraria3)
+
+    # Cementerios pertenecientes a F3 --> Funeraria 3 - cuerpos
+    cementerioF31Cu = Cementerio("Bosque de los Sueños", 78, cuenta31CE, "oro", None, "cuerpos", funeraria3)
+    cementerioF32Cu = Cementerio("Pradera del Descanso", 85, cuenta32CE, "oro", None, "cuerpos", funeraria3)
+
+    cementerioF33Cu = Cementerio("Refugio de la Memoria", 50, cuenta33CE, "plata", None, "cuerpos", funeraria3)
+    cementerioF34Cu = Cementerio("Sendero de la Memoria", 78, cuenta34CE, "plata", None, "cuerpos", funeraria3)
+
+    cementerioF35Cu = Cementerio("Valle del Reposo", 78, cuenta35CE, "bronce", None, "cuerpos", funeraria3)
+    cementerioF36Cu = Cementerio("Jardines del Refugio", 78, cuenta36CE, "bronce", None, "cuerpos", funeraria3)
+
+    # Objetos Cementerio 1 Cenizas
+    urnaF3C11 = Urna("Urnita Eterna Paz", cementerioF31Ce, 80, 1, "fija")
+    urnaF3C12 = Urna("Urnita Memoria Serene", cementerioF31Ce, 70, 0, "fija")
+    urnaF3C13 = Urna("Urnita Descanso Sagrado", cementerioF31Ce, 60, 0, "ordinaria")
+    urnaF3C14 = Urna("Urnita Luz Eterna", cementerioF31Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 2 Urna Cenizas
+    urnaF3C21 = Urna("Urnita Tranquilidad Infinita", cementerioF32Ce, 50, 1, "fija")
+    urnaF3C22 = Urna("Urnita Homenaje Perpetuo", cementerioF32Ce, 80, 0, "ordinaria")
+    urnaF3C23 = Urna("Urnita Amanecer Sereno", cementerioF32Ce, 70, 0, "fija")
+    urnaF3C24 = Urna("Urnita Refugio del Alma", cementerioF32Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 3 Urna Cenizas
+    urnaF3C31 = Urna("Urnita Oasis de Recuerdo", cementerioF33Ce, 80, 1, "fija")
+    urnaF3C32 = Urna("Urnita Sombra Amada", cementerioF33Ce, 90, 0, "ordinaria")
+    urnaF3C33 = Urna("Urnita Caja de la Verdad", cementerioF33Ce, 60, 2, "ordinaria")
+    urnaF3C34 = Urna("Urnita Urna de la Democracia", cementerioF33Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 4 Urna Cenizas
+    urnaF3C41 = Urna("Urnita Voz del Pueblo", cementerioF34Ce, 70, 1, "fija")
+    urnaF3C42 = Urna("Urnita Cámara de Decisiones", cementerioF34Ce, 80, 0, "ordinaria")
+    urnaF3C43 = Urna("Urnita Bóveda de Opiniones", cementerioF34Ce, 80, 0, "ordinaria")
+    urnaF3C44 = Urna("Urnita Recinto Electoral", cementerioF34Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 5 Urna Cenizas
+    urnaF3C51 = Urna("Urnita Contenedor de Voluntades", cementerioF35Ce, 70, 1, "fija")
+    urnaF3C52 = Urna("Urnita Caja de Equidad", cementerioF35Ce, 80, 1, "ordinaria")
+    urnaF3C53 = Urna("Urnita de la Justicia", cementerioF35Ce, 90, 2, "fija")
+    urnaF3C54 = Urna("Urnita Escudo Electoral", cementerioF35Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 6 Urna Cenizas
+    urnaF3C61 = Urna("Urnita Cápsula de Sueños", cementerioF36Ce, 70, 1, "fija")
+    urnaF3C62 = Urna("Urnita Templo de Belleza", cementerioF36Ce, 120, 0, "ordinaria")
+    urnaF3C63 = Urna("Urnita Misterio Dorado", cementerioF36Ce, 90, 0, "ordinaria")
+    urnaF3C64 = Urna("Urnita Joyero de Recuerdos", cementerioF36Ce, 60, 1, "fija")
+
+    # Objetos Cementerio 1 Tumba Cuerpos
+    tumbaF3C11 = Tumba("Tumbita Aquí Reposa un Corazón Noble", cementerioF31Cu, 1.70, 1)
+    tumbaF3C12 = Tumba("Tumbita Amado por Siempre", cementerioF31Cu, 2.75, 0)
+    tumbaF3C13 = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF31Cu, 1.60, 1)
+    tumbaF3C14 = Tumba("Tumbita Un Alma Inmortal", cementerioF31Cu, 1.70, 1)
+    tumbaF3C15 = Tumba("Tumbita Tu Luz Nos Guía", cementerioF31Cu, 1.85, 2)
+    tumbaF3C16 = Tumba("Tumbita Querido y Recordado", cementerioF31Cu, 1.60, 2)
+
+    # Objetos Cementerio 2 Tumba Cuerpos
+    tumbaF3C21 = Tumba("Tumbita Descansa en Paz, Amado", cementerioF32Cu, 1.70, 0)
+    tumbaF3C22 = Tumba("Tumbita Tu Memoria Vive en Nosotros", cementerioF32Cu, 1.10, 0)
+    tumbaF3C23 = Tumba("Tumbita El Amor Trasciende", cementerioF32Cu, 1.80, 1)
+    tumbaF3C24 = Tumba("Tumbita Una Vida Lleno de Amor", cementerioF32Cu, 1.60, 1)
+    tumbaF3C25 = Tumba("Tumbita Copa del Encanto", cementerioF32Cu, 1.75, 2)
+    tumbaF3C26 = Tumba("Tumbita Portal de Arte", cementerioF32Cu, 1.50, 2)
+
+    # Objetos Cementerio 3 Tumba Cuerpos
+    tumbaF3C31 = Tumba("Tumbita Esfera de Serenidad", cementerioF33Cu, 1.70, 0)
+    tumbaF3C32 = Tumba("Tumbita Reflejo de Elegancia", cementerioF33Cu, 1.70, 0)
+    tumbaF3C33 = Tumba("Tumbita Caja de Maravillas", cementerioF33Cu, 1.60, 1)
+    tumbaF3C34 = Tumba("Tumbita Jardín del Recuerdo", cementerioF33Cu, 1.20, 1)
+    tumbaF3C35 = Tumba("Tumbita Refugio del Alma", cementerioF33Cu, 1.65, 1)
+    tumbaF3C36 = Tumba("Tumbita Lugar de Serenidad", cementerioF33Cu, 1.50, 2)
+
+    # Objetos Cementerio 4 Tumba Cuerpos
+    tumbaF3C41 = Tumba("Tumbita Eterna Luz", cementerioF34Cu, 1.70, 1)
+    tumbaF3C42 = Tumba("Tumbita Sombra Sagrada", cementerioF34Cu, 1.70, 0)
+    tumbaF3C43 = Tumba("Tumbita Cámara del Silencio", cementerioF34Cu, 1.60, 1)
+    tumbaF3C44 = Tumba("Tumbita Rincón de Paz", cementerioF34Cu, 1.87, 1)
+    tumbaF3C45 = Tumba("Tumbita Hogar de Paz", cementerioF34Cu, 1.75, 2)
+    tumbaF3C46 = Tumba("Tumbita Sendero de Tranquilidad", cementerioF34Cu, 1.67, 0)
+
+    # Objetos Cementerio 5 Tumba Cuerpos
+    tumbaF3C51 = Tumba("Tumbita Velo de Recuerdo", cementerioF35Cu, 1.70, 0)
+    tumbaF3C52 = Tumba("Tumbita Cascada de Paz", cementerioF35Cu, 1.60, 0)
+    tumbaF3C53 = Tumba("Tumbita Refugio Perpetuo", cementerioF35Cu, 1.60, 1)
+    tumbaF3C54 = Tumba("Tumbita Sombra de Amor", cementerioF35Cu, 1.70, 2)
+    tumbaF3C55 = Tumba("Tumbita Eterna Quietud", cementerioF35Cu, 1.80, 2)
+    tumbaF3C56 = Tumba("Tumbita Altar de Recuerdos", cementerioF35Cu, 1.50, 2)
+
+    # Objetos Cementerio 6 Tumba Cuerpos
+    tumbaF3C61 = Tumba("Tumbita Una Vida de Amor y Bondad", cementerioF36Cu, 1.50, 0)
+    tumbaF3C62 = Tumba("Tumbita Siempre en Nuestro Corazón y Pensamiento", cementerioF36Cu, 1.70, 0)
+    tumbaF3C63 = Tumba("Tumbita En Tu Ausencia", cementerioF36Cu, 2.30, 1)
+    tumbaF3C64 = Tumba("Tumbita Tu Presencia es Más Fuerte", cementerioF36Cu, 1.50, 1)
+    tumbaF3C65 = Tumba("Tumbita Una Vida Dedicada al Amor", cementerioF36Cu, 1.75, 2)
+    tumbaF3C66 = Tumba("Tumbita Un Alma Valiente", cementerioF36Cu, 1.89, 2)
+
+# Crematorios pertenecientes a F3 --> Funeraria 3
+
+    cuenta13CR = "valor_cuenta_13CR"
+    cuenta14CR = "valor_cuenta_14CR"
+    cuenta15CR = "valor_cuenta_15CR"
+    cuenta16CR = "valor_cuenta_16CR"
+    cuenta17CR = "valor_cuenta_17CR"
+    cuenta18CR = "valor_cuenta_18CR"
+    
+    crematorioF31 = Crematorio("Crematorio del Horizonte", 100, cuenta13CR, "oro", None, funeraria3)
+    crematorioF32 = Crematorio("Cenizas de la Eternidad", 78, cuenta14CR, "oro", None, funeraria3)
+
+    crematorioF33 = Crematorio("Refugio de la Luz", 78, cuenta15CR, "plata", None, funeraria3)
+    crematorioF34 = Crematorio("Fuego de Serenidad", 78, cuenta16CR, "plata", None, funeraria3)
+
+    crematorioF35 = Crematorio("Crematorio del Horizonte Eterno", 78, cuenta17CR, "bronce", None, funeraria3)
+    crematorioF36 = Crematorio("Crematorio Luz de la Eternidad", 78, cuenta18CR, "bronce", None, funeraria3)
+
+    cuenta13CL = "valor_cuenta_13CL"
+    cuenta14CL = "valor_cuenta_14CL"
+    cuenta15CL = "valor_cuenta_15CL"
+    cuenta16CL = "valor_cuenta_16CL"
+    cuenta17CL = "valor_cuenta_17CL"
+    cuenta18CL = "valor_cuenta_18CL"
+
+    # Inicialización de clientes mayores de edad
+    clienteF31 = Cliente("Ana Torres", 3111, 30, cuenta13CL, "oro", familiarM)
+    clienteF32 = Cliente("Beatriz Sánchez", 3112, 25, cuenta14CL, "oro", familiarN)
+
+    clienteF33 = Cliente("Alex Cruz", 3113, 90, cuenta15CL, "plata", familiarO)
+    clienteF34 = Cliente("Dani Morales", 3114, 57, cuenta16CL, "plata", familiarP)
+
+    clienteF35 = Cliente("Lucía González", 3115, 50, cuenta17CL, "bronce", familiarQ)
+    clienteF36 = Cliente("Jordan Silva", 3116, 30, cuenta18CL, "bronce", familiarR)
+
+    # Inicialización de clientes menores de edad
+    clienteF37 = Cliente("Fernanda Salazar",0, 5,None, "oro", familiarIM)
+    clienteF38 = Cliente("Carmen Vega", 0,17,None, "oro", familiarJM)
+
+    clienteF39 = Cliente("Kim Hernández", 0,15,None, "bronce", familiarKM)
+    clienteF310 = Cliente("Morgan López", 0,13,None, "bronce", familiarLM)
+
+    # Agregar clientes a la funeraria
+    funeraria3.agregarCliente(clienteF31)
+    funeraria3.agregarCliente(clienteF32)
+    funeraria3.agregarCliente(clienteF33)
+    funeraria3.agregarCliente(clienteF34)
+    funeraria3.agregarCliente(clienteF35)
+    funeraria3.agregarCliente(clienteF36)
+    funeraria3.agregarCliente(clienteF37)
+    funeraria3.agregarCliente(clienteF38)
+    funeraria3.agregarCliente(clienteF39)
+    funeraria3.agregarCliente(clienteF310)
+
+    # Inicialización de las cuentas con valores string para clientes adicionales
+    cuenta59CL = "valor_cuenta_59CL"
+    cuenta60CL = "valor_cuenta_60CL"
+    cuenta61CL = "valor_cuenta_61CL"
+    cuenta62CL = "valor_cuenta_62CL"
+    cuenta63CL = "valor_cuenta_63CL"
+    cuenta64CL = "valor_cuenta_64CL"
+    cuenta65CL = "valor_cuenta_65CL"
+    cuenta66CL = "valor_cuenta_66CL"
+    cuenta67CL = "valor_cuenta_67CL"
+    cuenta68CL = "valor_cuenta_68CL"
+
+    # Inicialización de clientes mayores de edad
+    clienteF31E = Cliente("Juan Pérez", 3212, 30, cuenta59CL, "oro", familiarA)
+    clienteF32E = Cliente("Carlos Fernández", 3213, 25, cuenta60CL, "oro", familiarA)
+
+    clienteF33E = Cliente("Miguel Rodríguez", 3213, 90, cuenta61CL, "plata", familiarC)
+    clienteF34E = Cliente("Dani Morales", 3214, 57, cuenta62CL, "plata", familiarC)
+
+    clienteF35E = Cliente("Pedro González", 3215, 50, cuenta63CL, "bronce", familiarB)
+    clienteF36E = Cliente("José Martínez", 3215, 30, cuenta64CL, "bronce", familiarA)
+
+    # Inicialización de clientes menores de edad
+    clienteF37E = Cliente("María López", 0,5,None, "oro", familiarB)
+    clienteF38E = Cliente("Carmen García", 0, 8,None, "oro", familiarB)
+
+    clienteF39E = Cliente("Ana Torres", 0,15,None, "bronce", familiarB)
+    clienteF310E = Cliente("Isabel Ramírez", 0,13,None, "bronce", familiarB)
+
+    # Inicialización de otros clientes
+    clienteF311E = Cliente("Laura Morales", 233, 90, cuenta65CL, "plata", familiarA)
+    clienteF312E = Cliente("Robert Jones", 234, 57, cuenta66CL, "plata", familiarC)
+
+    clienteF313E = Cliente("Olivia Miller", 235, 35, cuenta67CL, "bronce", familiarC)
+    clienteF314E = Cliente("Sophia Moore", 236, 50, cuenta68CL, "bronce", familiarC)
+
+    # Clientes menores de edad adicionales
+    clienteF315E = Cliente("James Smith", 0,5,None, "oro", familiarB)
+    clienteF316E = Cliente("David Brown", 0,17,None, "oro", familiarB)
+
+    clienteF317E = Cliente("John Williams", 0,15,None, "bronce", familiarB)
+    clienteF318E = Cliente("Michael Johnson", 0,13,None, "bronce", familiarB)
+
+    # Agregar clientes a la funeraria
+    funeraria3.agregarCliente(clienteF31E)
+    funeraria3.agregarCliente(clienteF32E)
+    funeraria3.agregarCliente(clienteF33E)
+    funeraria3.agregarCliente(clienteF34E)
+    funeraria3.agregarCliente(clienteF35E)
+    funeraria3.agregarCliente(clienteF36E)
+    funeraria3.agregarCliente(clienteF37E)
+    funeraria3.agregarCliente(clienteF38E)
+    funeraria3.agregarCliente(clienteF39E)
+    funeraria3.agregarCliente(clienteF310E)
+    funeraria3.agregarCliente(clienteF311E)
+    funeraria3.agregarCliente(clienteF312E)
+    funeraria3.agregarCliente(clienteF313E)
+    funeraria3.agregarCliente(clienteF314E)
+    funeraria3.agregarCliente(clienteF315E)
+    funeraria3.agregarCliente(clienteF316E)
+    funeraria3.agregarCliente(clienteF317E)
+    funeraria3.agregarCliente(clienteF318E)
+
+
+    # Inicialización de urnas con los valores dados
+    urnaF3C11E = Urna("Urnita de la Esperanza", cementerioF31Ce, 70, 1, "fija")
+    urnaF3C12E = Urna("Urnita del Futuro", cementerioF31Ce, 80, 0, "fija")
+    urnaF3C13E = Urna("default", cementerioF31Ce, 60, 0, "ordinaria")
+
+    urnaF3C14E = Urna("Urnita de la Esperanza", cementerioF31Ce, 70, 1, "fija")
+    urnaF3C15E = Urna("Urnita del Futuro", cementerioF31Ce, 80, 0, "fija")
+
+    urnaF3C21E = Urna("Urnita de la Sabiduría", cementerioF32Ce, 70, 1, "fija")
+    urnaF3C22E = Urna("Urnita de la Justicia", cementerioF32Ce, 80, 0, "ordinaria")
+    urnaF3C23E = Urna("default", cementerioF32Ce, 90, 0, "fija")
+
+    urnaF3C24E = Urna("Urnita de la Sabiduría", cementerioF32Ce, 70, 1, "fija")
+    urnaF3C25E = Urna("Urnita de la Justicia", cementerioF32Ce, 80, 0, "ordinaria")
+
+    urnaF3C31E = Urna("Urnita de la Confianza", cementerioF33Ce, 70, 1, "fija")
+    urnaF3C32E = Urna("Urnita del Progreso", cementerioF33Ce, 80, 0, "fija")
+    urnaF3C33E = Urna("default", cementerioF33Ce, 90, 0, "fija")
+
+    urnaF3C34E = Urna("Urnita de la Confianza", cementerioF33Ce, 70, 1, "fija")
+    urnaF3C35E = Urna("Urnita del Progreso", cementerioF33Ce, 80, 0, "fija")
+
+    urnaF3C41E = Urna("Urnita de la Verdadera Voz", cementerioF34Ce, 70, 1, "fija")
+    urnaF3C42E = Urna("Urnita de la Decisión", cementerioF34Ce, 80, 0, "fija")
+    urnaF3C43E = Urna("default", cementerioF34Ce, 60, 0, "fija")
+
+    urnaF3C44E = Urna("Urnita de la Verdadera Voz", cementerioF34Ce, 70, 1, "fija")
+    urnaF3C45E = Urna("Urnita de la Decisión", cementerioF34Ce, 80, 0, "fija")
+
+    urnaF3C51E = Urna("Urnita del Cambio", cementerioF35Ce, 70, 1, "fija")
+    urnaF3C52E = Urna("Urnita del Pueblo", cementerioF35Ce, 80, 0, "fija")
+    urnaF3C53E = Urna("default", cementerioF35Ce, 60, 0, "ordinaria")
+
+    urnaF3C54E = Urna("Urnita del Cambio", cementerioF35Ce, 70, 1, "fija")
+    urnaF3C55E = Urna("Urnita del Pueblo", cementerioF35Ce, 80, 0, "fija")
+
+    urnaF3C61E = Urna("Urnita de la Transparencia", cementerioF36Ce, 70, 1, "fija")
+    urnaF3C62E = Urna("Urnita del Compromiso", cementerioF36Ce, 80, 0, "fija")
+    urnaF3C63E = Urna("default", cementerioF36Ce, 60, 0, "ordinaria")
+
+    urnaF3C64E = Urna("Urnita de la Transparencia", cementerioF36Ce, 70, 1, "fija")
+    urnaF3C65E = Urna("Urnita del Compromiso", cementerioF36Ce, 80, 0, "fija")
+
+    # Agregar clientes a las urnas
+    urnaF3C11E.agregarCliente(clienteF31E)
+    urnaF3C12E.agregarCliente(clienteF32E)
+    urnaF3C13E.agregarCliente(clienteF33E)
+
+    urnaF3C21E.agregarCliente(clienteF34E)
+    urnaF3C22E.agregarCliente(clienteF35E)
+    urnaF3C23E.agregarCliente(clienteF36E)
+
+    urnaF3C31E.agregarCliente(clienteF37E)
+    urnaF3C32E.agregarCliente(clienteF38E)
+    urnaF3C33E.agregarCliente(clienteF39E)
+
+    urnaF3C41E.agregarCliente(clienteF310E)
+    urnaF3C42E.agregarCliente(clienteF311E)
+    urnaF3C43E.agregarCliente(clienteF312E)
+
+    urnaF3C51E.agregarCliente(clienteF313E)
+    urnaF3C52E.agregarCliente(clienteF314E)
+    urnaF3C53E.agregarCliente(clienteF315E)
+
+    urnaF3C61E.agregarCliente(clienteF316E)
+    urnaF3C62E.agregarCliente(clienteF317E)
+    urnaF3C63E.agregarCliente(clienteF318E)
+
+    # Cuentas para clientes
+    cuenta59CL = "CUENTA_59_CL"
+    cuenta60CL = "CUENTA_60_CL"
+    cuenta61CL = "CUENTA_61_CL"
+    cuenta62CL = "CUENTA_62_CL"
+    cuenta63CL = "CUENTA_63_CL"
+    cuenta64CL = "CUENTA_64_CL"
+    cuenta65CL = "CUENTA_65_CL"
+    cuenta66CL = "CUENTA_66_CL"
+    cuenta67CL = "CUENTA_67_CL"
+    cuenta68CL = "CUENTA_68_CL"
+    cuenta69CL = "CUENTA_69_CL"
+    cuenta70CL = "CUENTA_70_CL"
+    cuenta71CL = "CUENTA_71_CL"
+    cuenta72CL = "CUENTA_72_CL"
+    cuenta73CL = "CUENTA_73_CL"
+    cuenta74CL = "CUENTA_74_CL"
+    cuenta75CL = "CUENTA_75_CL"
+    cuenta76CL = "CUENTA_76_CL"
+    cuenta77CL = "CUENTA_77_CL"
+    cuenta78CL = "CUENTA_78_CL"
+
+    clienteF31ET = Cliente("Ezequiel Andrade", 123, 30, cuenta69CL, "oro", familiarC)
+    clienteF32ET = Cliente("Damián Vargas", 1234, 25, cuenta70CL, "oro", familiarC)
+
+    clienteF33ET = Cliente("Octavio Salazar", 1235, 90, cuenta71CL, "plata", familiarB)
+    clienteF34ET = Cliente("Leonardo Paredes", 1236, 57, cuenta72CL, "plata", familiarB)
+
+    clienteF35ET = Cliente("Ulises Ortega", 1237, 21, cuenta73CL, "bronce", familiarC)
+    clienteF36ET = Cliente("Valeria Castro", 1238, 50, cuenta74CL, "bronce", familiarC)
+
+    clienteF37ET = Cliente("Delfina Méndez", 5, "oro", familiarB)
+    clienteF38ET = Cliente("Mireya Delgado", 17, "oro", familiarB)
+
+    clienteF39ET = Cliente("Renata Aguirre", 15, "plata", familiarB)
+    clienteF310ET = Cliente("Alma Guzmán", 13, "plata", familiarB)
+
+    clienteF311ET = Cliente("Leo Cruz", 1235, 90, cuenta75CL, "plata", familiarB)
+    clienteF312ET = Cliente("Luna Martínez", 1236, 57, cuenta76CL, "plata", familiarB)
+
+    clienteF313ET = Cliente("Lucas Moreno", 1237, 21, cuenta77CL, "bronce", familiarC)
+    clienteF314ET = Cliente("Sofía Rodríguez", 1238, 50, cuenta78CL, "bronce", familiarC)
+
+    # Clientes menores de edad
+    clienteF315ET = Cliente("Aitana Gómez", 5, "oro", familiarB)
+    clienteF316ET = Cliente("Zoe García", 17, "oro", familiarB)
+
+    clienteF317ET = Cliente("Ethan Ortega", 15, "plata", familiarB)
+    clienteF318ET = Cliente("Dylan Mendoza", 13, "plata", familiarB)
+
+    # Inicialización de tumbas
+    tumbaF3C11E = Tumba("Tumbita Lugar de Paz", "cementerioF31Cu", 1.70, 1)
+    tumbaF3C12E = Tumba("Tumbita Descanso Eterno", "cementerioF31Cu", 1.50, 0)
+    tumbaF3C13E = Tumba("default", "cementerioF31Cu", 1.80, 0)
+
+    tumbaF3C14E = Tumba("Tumbita Lugar de Paz", "cementerioF31Cu", 1.70, 1)
+    tumbaF3C15E = Tumba("Tumbita Descanso Eterno", "cementerioF31Cu", 1.60, 0)
+
+    tumbaF3C21E = Tumba("Tumbita Siempre Recordado", "cementerioF32Cu", 1.70, 1)
+    tumbaF3C22E = Tumba("Tumbita En Honor a un Ser Querido", "cementerioF32Cu", 1.65, 0)
+    tumbaF3C23E = Tumba("default", "cementerioF32Cu", 1.70, 0)
+
+    tumbaF3C24E = Tumba("Tumbita Siempre Recordado", "cementerioF32Cu", 1.70, 1)
+    tumbaF3C25E = Tumba("Tumbita En Honor a un Ser Querido", "cementerioF32Cu", 1.65, 0)
+
+    tumbaF3C31E = Tumba("Tumbita Lugar de Serenidad", "cementerioF33Cu", 1.70, 1)
+    tumbaF3C32E = Tumba("Tumbita Eterna Paz", "cementerioF33Cu", 1.60, 0)
+    tumbaF3C33E = Tumba("default", "cementerioF33Cu", 1.60, 0)
+
+    tumbaF3C34E = Tumba("Tumbita Lugar de Serenidad", "cementerioF33Cu", 1.70, 1)
+    tumbaF3C35E = Tumba("Tumbita Eterna Paz", "cementerioF33Cu", 1.60, 0)
+
+    tumbaF3C41E = Tumba("Tumbita Un Alma Bella", "cementerioF34Cu", 1.70, 1)
+    tumbaF3C42E = Tumba("Tumbita En Paz y Serenidad", "cementerioF34Cu", 1.70, 0)
+    tumbaF3C43E = Tumba("default", "cementerioF34Cu", 1.50, 0)
+
+    tumbaF3C44E = Tumba("Tumbita Un Alma Bella", "cementerioF34Cu", 1.70, 1)
+    tumbaF3C45E = Tumba("Tumbita En Paz y Serenidad", "cementerioF34Cu", 1.70, 0)
+
+    tumbaF3C51E = Tumba("Tumbita Siempre en Nuestros Corazones", "cementerioF35Cu", 1.70, 1)
+    tumbaF3C52E = Tumba("Tumbita Aquí Descansa en Paz", "cementerioF35Cu", 1.85, 0)
+    tumbaF3C53E = Tumba("default", "cementerioF35Cu", 1.70, 0)
+
+    tumbaF3C54E = Tumba("Tumbita Siempre en Nuestros Corazones", "cementerioF35Cu", 1.70, 1)
+    tumbaF3C55E = Tumba("Tumbita Aquí Descansa en Paz", "cementerioF35Cu", 1.65, 0)
+
+    tumbaF3C61E = Tumba("Tumbita La Luz de Nuestra Vida", "cementerioF36Cu", 1.70, 1)
+    tumbaF3C62E = Tumba("Tumbita Aquí La Memoria Vive", "cementerioF36Cu", 1.65, 0)
+    tumbaF3C63E = Tumba("default", "cementerioF36Cu", 1.60, 0)
+
+    tumbaF3C64E = Tumba("Tumbita La Luz de Nuestra Vida", "cementerioF36Cu", 1.70, 1)
+    tumbaF3C65E = Tumba("Tumbita Aquí La Memoria Vive", "cementerioF36Cu", 1.90, 0)
+
+    # Agregar clientes a las tumbas
+    tumbaF3C11E.agregarCliente(clienteF31ET)
+    tumbaF3C12E.agregarCliente(clienteF32ET)
+    tumbaF3C13E.agregarCliente(clienteF33ET)
+
+    tumbaF3C21E.agregarCliente(clienteF34ET)
+    tumbaF3C22E.agregarCliente(clienteF35ET)
+    tumbaF3C23E.agregarCliente(clienteF36ET)
+
+    tumbaF3C31E.agregarCliente(clienteF37ET)
+    tumbaF3C32E.agregarCliente(clienteF38ET)
+    tumbaF3C33E.agregarCliente(clienteF39ET)
+
+    tumbaF3C41E.agregarCliente(clienteF310ET)
+    tumbaF3C42E.agregarCliente(clienteF311ET)
+    tumbaF3C43E.agregarCliente(clienteF312ET)
+
+    tumbaF3C51E.agregarCliente(clienteF313ET)
+    tumbaF3C52E.agregarCliente(clienteF314ET)
+    tumbaF3C53E.agregarCliente(clienteF315ET)
+
+    tumbaF3C61E.agregarCliente(clienteF316ET)
+    tumbaF3C62E.agregarCliente(clienteF317ET)
+    tumbaF3C63E.agregarCliente(clienteF318ET)
+
     ventanaInicio.ventanaInicio()
 
 
