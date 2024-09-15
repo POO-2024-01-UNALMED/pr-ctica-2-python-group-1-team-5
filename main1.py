@@ -1376,34 +1376,35 @@ if __name__ == "__main__":
 
     F21 = Familiar("Ophelia", 12345, 18, None, "conyugue", 17)
     F22 = Familiar("Atticus", 12375, 70, None, "padre", 17)
-    F23 = Familiar("Lyriel", 12, "hijo", None,0,F21)
-    F24 = Familiar("Caspian", 7, "hermano", None,0,F22)
+    F23 = Familiar("Lyriel", 0,12, None,"hijo",0,F21)
+    F24 = Familiar("Andres", 0,5, None,"hermano",0,F21)
 
     F25 = Familiar("Libia", 12345, 18, None, "conyugue", 17)
     F26 = Familiar("Armando", 12375, 70, None, "padre", 17)
-    F27 = Familiar("Geronimo", 12, "hijo", None,0,F26)
-    F28 = Familiar("Alicia", 7, "hermano", None,0,F25)
+    F27 = Familiar("Lyriel", 0,12, None,"hijo",0,F26)
+    F28 = Familiar("Andres", 0,5, None,"hermano",0,F25)
 
     F29 = Familiar("Andres", 12345, 18, None, "conyugue", 17)
     F210 = Familiar("Catalina", 12375, 70, None, "padre", 17)
-    F211 = Familiar("Lucas", 12, "hijo", None,0,F29)
-    F212 = Familiar("Caspian", 7, "hermano", None,0,F210)
+    F211 = Familiar("Lyriel", 0,12, None,"hijo",0,F29)
+    F212 = Familiar("Andres", 0,5, None,"hermano",0,F29)
 
     F213 = Familiar("Alma", 715, 60, None, "padre", 17)
     F214 = Familiar("Mar", 716, 60, None, "padre", 13)
     F215 = Familiar("Eduardo", 717, 37, None, "hermano", 17)
-    F216 = Familiar("Andres", 5, "hermano", None,0,F214)
+    F216 = Familiar("Andres", 0,5, None,"hermano",0,F214)
 
     F217 = Familiar("Carmen", 715, 60, None, "padre", 17)
     F218 = Familiar("Catalina", 716, 60, None, "padre", 13)
     F219 = Familiar("Carlos", 717, 37, None, "hermano", 17)
-    F220 = Familiar("Azul", 5, "hermano", None,0,F217)
+    F220 = Familiar("Andres", 0,5, None,"hermano",0,F217)
 
     F221 = Familiar("Pablo", 715, 60, None, "padre", 17)
     F222 = Familiar("Sol", 716, 60, None, "padre", 13)
     F223 = Familiar("Andres", 717, 37, None, "hermano", 17)
-    F224 = Familiar("Carlos", 5, "hermano",None,0, F221)
+    F224 = Familiar("Andres", 0,5, None,"hermano",0,F221)
 
+    
     # Lista de familiares G
     familiarG = [F21, F22, F23, F24]
 
@@ -1469,7 +1470,6 @@ if __name__ == "__main__":
     cuenta23CE = "cuenta23CE"
     cuenta24CE = "cuenta24CE"
 
-    funeraria2 = "Funeraria 2"  # Asumiendo que el nombre o identificador es una cadena
 
     # Cementerios pertenecientes a F2 --> Funeraria 2 - cenizas
     cementerioF21Ce = Cementerio("Cementerio del Silencio", 78, cuenta13CE, "oro", None, "cenizas", funeraria2)
@@ -1523,6 +1523,337 @@ if __name__ == "__main__":
     urnaF2C63 = Urna("Urnita Misterio Dorado", cementerioF26Ce, 40, 0, "ordinaria")
     urnaF2C64 = Urna("Urnita Joyero de Recuerdos", cementerioF26Ce, 60, 1, "fija")
 
+    # Cementerio 1 Tumbas Cuerpos
+    tumbaF2C11 = Tumba("Tumbita Aquí Reposa un Corazón Noble", cementerioF21Cu, 1.70, 1)
+    tumbaF2C12 = Tumba("Tumbita Amado por Siempre", cementerioF21Cu, 1.60, 0)
+    tumbaF2C13 = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF21Cu, 1.60, 1)
+    tumbaF2C14 = Tumba("Tumbita Un Alma Inmortal", cementerioF21Cu, 1.20, 1)
+    tumbaF2C15 = Tumba("Tumbita Tu Luz Nos Guía", cementerioF21Cu, 1.55, 2)
+    tumbaF2C16 = Tumba("Tumbita Querido y Recordado", cementerioF21Cu, 1.50, 2)
+
+    # Cementerio 2 Tumbas Cuerpos
+    tumbaF2C21 = Tumba("Tumbita Descansa en Paz, Amado", cementerioF22Cu, 1.70, 0)
+    tumbaF2C22 = Tumba("Tumbita Tu Memoria Vive en Nosotros", cementerioF22Cu, 1.60, 0)
+    tumbaF2C23 = Tumba("Tumbita El Amor Trasciende", cementerioF22Cu, 1.80, 1)
+    tumbaF2C24 = Tumba("Tumbita Una Vida Lleno de Amor", cementerioF22Cu, 1.60, 1)
+    tumbaF2C25 = Tumba("Tumbita Copa del Encanto", cementerioF22Cu, 1.75, 2)
+    tumbaF2C26 = Tumba("Tumbita Portal de Arte", cementerioF22Cu, 1.70, 2)
+
+    # Cementerio 3 Tumbas Cuerpos
+    tumbaF2C31 = Tumba("Tumbita Esfera de Serenidad", cementerioF23Cu, 1.70, 0)
+    tumbaF2C32 = Tumba("Tumbita Reflejo de Elegancia", cementerioF23Cu, 1.65, 0)
+    tumbaF2C33 = Tumba("Tumbita Caja de Maravillas", cementerioF23Cu, 1.60, 1)
+    tumbaF2C34 = Tumba("Tumbita Jardín del Recuerdo", cementerioF23Cu, 1.50, 1)
+    tumbaF2C35 = Tumba("Tumbita Refugio del Alma", cementerioF23Cu, 1.75, 1)
+    tumbaF2C36 = Tumba("Tumbita Lugar de Serenidad", cementerioF23Cu, 1.40, 2)
+
+    # Cementerio 4 Tumbas Cuerpos
+    tumbaF2C41 = Tumba("Tumbita Eterna Luz", cementerioF24Cu, 1.70, 1)
+    tumbaF2C42 = Tumba("Tumbita Sombra Sagrada", cementerioF24Cu, 1.80, 0)
+    tumbaF2C43 = Tumba("Tumbita Cámara del Silencio", cementerioF24Cu, 1.60, 1)
+    tumbaF2C44 = Tumba("Tumbita Rincón de Paz", cementerioF24Cu, 1.80, 1)
+    tumbaF2C45 = Tumba("Tumbita Hogar de Paz", cementerioF24Cu, 1.75, 2)
+    tumbaF2C46 = Tumba("Tumbita Sendero de Tranquilidad", cementerioF24Cu, 1.50, 2)
+
+    # Cementerio 5 Tumbas Cuerpos
+    tumbaF2C51 = Tumba("Tumbita Velo de Recuerdo", cementerioF25Cu, 1.70, 0)
+    tumbaF2C52 = Tumba("Tumbita Cascada de Paz", cementerioF25Cu, 1.70, 0)
+    tumbaF2C53 = Tumba("Tumbita Refugio Perpetuo", cementerioF25Cu, 1.60, 1)
+    tumbaF2C54 = Tumba("Tumbita Sombra de Amor", cementerioF25Cu, 1.65, 0)
+    tumbaF2C55 = Tumba("Tumbita Eterna Quietud", cementerioF25Cu, 1.58, 2)
+    tumbaF2C56 = Tumba("Tumbita Altar de Recuerdos", cementerioF25Cu, 1.68, 2)
+
+    # Cementerio 6 Tumbas Cuerpos
+    tumbaF2C61 = Tumba("Tumbita Una Vida de Amor y Bondad", cementerioF26Cu, 1.50, 0)
+    tumbaF2C62 = Tumba("Tumbita Siempre en Nuestro Corazón y Pensamiento", cementerioF26Cu, 1.40, 0)
+    tumbaF2C63 = Tumba("Tumbita En Tu Ausencia", cementerioF26Cu, 1.60, 1)
+    tumbaF2C64 = Tumba("Tumbita Tu Presencia es Más Fuerte", cementerioF26Cu, 1.68, 1)
+    tumbaF2C65 = Tumba("Tumbita Una Vida Dedicada al Amor", cementerioF26Cu, 1.75, 2)
+    tumbaF2C66 = Tumba("Tumbita Un Alma Valiente", cementerioF26Cu, 1.60, 2)
+
+    cuenta7CR = 7
+    cuenta8CR = 8
+    cuenta9CR = 9
+    cuenta10CR = 10
+    cuenta11CR = 11
+    cuenta12CR = 12
+
+    # Crematorios pertenecientes a F2 --> Funeraria 2
+    crematorioF21 = Crematorio("Crematorio del Silencio", 100, cuenta7CR, "oro", None, funeraria2)
+    crematorioF22 = Crematorio("Ascenso y Tranquilidad", 78, cuenta8CR, "oro", None, funeraria2)
+
+    crematorioF23 = Crematorio("Brasa de Paz", 78, cuenta9CR, "plata", None, funeraria2)
+    crematorioF24 = Crematorio("Eterna Luz Crematorio", 78, cuenta10CR, "plata", None, funeraria2)
+
+    crematorioF25 = Crematorio("Crematorio del Renacer", 78, cuenta11CR, "bronce", None, funeraria2)
+    crematorioF26 = Crematorio("Fuego y Serenidad", 78, cuenta12CR, "bronce", None, funeraria2)
+
+    cuenta7Cl = 7
+    cuenta8Cl = 8
+    cuenta9Cl = 9
+    cuenta10Cl = 10
+    cuenta11Cl = 11
+    cuenta12Cl = 12
+
+    # Creación de clientes
+    clienteF21 = Cliente("Valeria Sánchez", 231,30, cuenta7Cl, "oro", familiarG)
+    clienteF22 = Cliente("Patricia Morales", 232,25, cuenta8Cl, "oro", familiarH)
+    clienteF23 = Cliente("Gabriela García", 233,90, cuenta9Cl, "plata", familiarI)
+    clienteF24 = Cliente("Andrés Vargas", 234,57, cuenta10Cl, "plata", familiarJ)
+    clienteF25 = Cliente("Sergio Pérez", 235,35, cuenta11Cl, "bronce", familiarK)
+    clienteF26 = Cliente("Luis García", 236,50, cuenta12Cl, "bronce", familiarL)
+
+    clienteF27 = Cliente("Rafael Morales", 0,5, None, "oro", familiarEM)
+    clienteF28 = Cliente("Pablo Sánchez", 0,17, None, "oro", familiarFM)
+
+    clienteF29 = Cliente("Ana Belén Ruiz", 0,15, None, "bronce", familiarGM)
+    clienteF210 = Cliente("Claudia Romero", 0,13, None, "bronce", familiarHM)
+
+
+    # Agregar clientes a la funeraria
+    funeraria2.agregarCliente(clienteF21)
+    funeraria2.agregarCliente(clienteF22)
+    funeraria2.agregarCliente(clienteF23)
+    funeraria2.agregarCliente(clienteF24)
+    funeraria2.agregarCliente(clienteF25)
+    funeraria2.agregarCliente(clienteF26)
+    funeraria2.agregarCliente(clienteF27)
+    funeraria2.agregarCliente(clienteF28)
+    funeraria2.agregarCliente(clienteF29)
+    funeraria2.agregarCliente(clienteF210)
+
+
+    #Funcionalidad Exhumacion
+    cuenta39CL = 39
+    cuenta40CL = 40
+    cuenta41CL = 41
+    cuenta42CL = 42
+    cuenta43CL = 43
+    cuenta44CL = 44
+    cuenta45CL = 45
+    cuenta46CL = 46
+    cuenta47CL = 47
+    cuenta48CL = 48
+
+    # Crear objetos Cliente
+    clienteF21E = Cliente("Juan Pérez", 3212, 30, cuenta39CL, "oro", familiarA)
+    clienteF22E = Cliente("Carlos Fernández", 3213, 25, cuenta40CL, "oro", familiarA)
+
+    clienteF23E = Cliente("Miguel Rodríguez", 3213, 90, cuenta41CL, "plata", familiarC)
+    clienteF24E = Cliente("Dani Morales", 3214, 57, cuenta42CL, "plata", familiarC)
+
+    clienteF25E = Cliente("Pedro González", 3215, 50, cuenta43CL, "bronce", familiarB)
+    clienteF26E = Cliente("José Martínez", 3215, 30, cuenta44CL, "bronce", familiarA)
+
+    clienteF27E = Cliente("María López", 0,5,None, "oro", familiarB)
+    clienteF28E = Cliente("Carmen García", 0,17,None, "oro", familiarB)
+
+    clienteF29E = Cliente("Ana Torres", 0,15,None, "bronce", familiarB)
+    clienteF210E = Cliente("Isabel Ramírez", 0,13,None, "bronce", familiarB)
+
+    clienteF211E = Cliente("Laura Morales", 233, 90, cuenta45CL, "plata", familiarA)
+    clienteF212E = Cliente("Robert Jones", 234, 57, cuenta46CL, "plata", familiarC)
+
+    clienteF213E = Cliente("Olivia Miller", 235, 35, cuenta47CL, "bronce", familiarC)
+    clienteF214E = Cliente("Sophia Moore", 236, 50, cuenta48CL, "bronce", familiarC)
+
+    clienteF215E = Cliente("James Smith", 0,5,None, "oro", familiarB)
+    clienteF216E = Cliente("David Brown", 0,17,None, "oro", familiarB)
+
+    clienteF217E = Cliente("John Williams", 0,15,None, "bronce", familiarB)
+    clienteF218E = Cliente("Michael Johnson", 0,13,None, "bronce", familiarB)
+
+    # Cementerio 1 Cenizas
+    urnaF2C11E = Urna("Urnita de la Esperanza", cementerioF21Ce, 70, 1, "fija")
+    urnaF2C12E = Urna("Urnita del Futuro", cementerioF21Ce, 80, 0, "fija")
+    urnaF2C13E = Urna("default", cementerioF21Ce, 60, 0, "ordinaria")
+
+    urnaF2C14E = Urna("Urnita de la Esperanza", cementerioF21Ce, 70, 1, "fija")
+    urnaF2C15E = Urna("Urnita del Futuro", cementerioF21Ce, 80, 0, "fija")
+
+    # Cementerio 2 Cenizas
+    urnaF2C21E = Urna("Urnita de la Sabiduría", cementerioF22Ce, 70, 1, "fija")
+    urnaF2C22E = Urna("Urnita de la Justicia", cementerioF22Ce, 80, 0, "ordinaria")
+    urnaF2C23E = Urna("default", cementerioF22Ce, 90, 0, "fija")
+
+    urnaF2C24E = Urna("Urnita de la Sabiduría", cementerioF22Ce, 70, 1, "fija")
+    urnaF2C25E = Urna("Urnita de la Justicia", cementerioF22Ce, 80, 0, "ordinaria")
+
+    # Cementerio 3 Cenizas
+    urnaF2C31E = Urna("Urnita de la Confianza", cementerioF23Ce, 70, 1, "fija")
+    urnaF2C32E = Urna("Urnita del Progreso", cementerioF23Ce, 80, 0, "fija")
+    urnaF2C33E = Urna("default", cementerioF23Ce, 90, 1, "fija")
+
+    urnaF2C34E = Urna("Urnita de la Confianza", cementerioF23Ce, 70, 1, "fija")
+    urnaF2C35E = Urna("Urnita del Progreso", cementerioF23Ce, 80, 0, "fija")
+
+    # Cementerio 4 Cenizas
+    urnaF2C41E = Urna("Urnita de la Verdadera Voz", cementerioF24Ce, 70, 1, "fija")
+    urnaF2C42E = Urna("Urnita de la Decisión", cementerioF24Ce, 80, 0, "fija")
+    urnaF2C43E = Urna("default", cementerioF24Ce, 60, 1, "fija")
+
+    urnaF2C44E = Urna("Urnita de la Verdadera Voz", cementerioF24Ce, 70, 1, "fija")
+    urnaF2C45E = Urna("Urnita de la Decisión", cementerioF24Ce, 80, 0, "fija")
+
+    # Cementerio 5 Cenizas
+    urnaF2C51E = Urna("Urnita del Cambio", cementerioF25Ce, 70, 2, "fija")
+    urnaF2C52E = Urna("Urnita del Pueblo", cementerioF25Ce, 80, 0, "fija")
+    urnaF2C53E = Urna("default", cementerioF25Ce, 60, 1, "ordinaria")
+
+    urnaF2C54E = Urna("Urnita del Cambio", cementerioF25Ce, 70, 2, "fija")
+    urnaF2C55E = Urna("Urnita del Pueblo", cementerioF25Ce, 80, 0, "fija")
+
+    # Cementerio 6 Cenizas
+    urnaF2C61E = Urna("Urnita de la Transparencia", cementerioF26Ce, 70, 1, "fija")
+    urnaF2C62E = Urna("Urnita del Compromiso", cementerioF26Ce, 80, 0, "fija")
+    urnaF2C63E = Urna("default", cementerioF26Ce, 60, 0, "ordinaria")
+
+    urnaF2C64E = Urna("Urnita de la Transparencia", cementerioF26Ce, 70, 1, "fija")
+    urnaF2C65E = Urna("Urnita del Compromiso", cementerioF26Ce, 80, 0, "fija")
+
+    urnaF2C11E.agregarCliente(clienteF21E)
+    urnaF2C12E.agregarCliente(clienteF22E)
+    urnaF2C13E.agregarCliente(clienteF23E)
+
+    urnaF2C21E.agregarCliente(clienteF24E)
+    urnaF2C22E.agregarCliente(clienteF25E)
+    urnaF2C23E.agregarCliente(clienteF26E)
+
+    urnaF2C31E.agregarCliente(clienteF27E)
+    urnaF2C32E.agregarCliente(clienteF28E)
+    urnaF2C33E.agregarCliente(clienteF29E)
+
+    urnaF2C41E.agregarCliente(clienteF210E)
+    urnaF2C42E.agregarCliente(clienteF211E)
+    urnaF2C43E.agregarCliente(clienteF212E)
+
+    urnaF2C51E.agregarCliente(clienteF213E)
+    urnaF2C52E.agregarCliente(clienteF214E)
+    urnaF2C53E.agregarCliente(clienteF215E)
+
+    urnaF2C61E.agregarCliente(clienteF216E)
+    urnaF2C62E.agregarCliente(clienteF217E)
+    urnaF2C63E.agregarCliente(clienteF218E)
+
+    cuenta49CL = ("cuenta49CL", "oro")
+    cuenta50CL = ("cuenta50CL", "oro")
+    cuenta51CL = ("cuenta51CL", "plata")
+    cuenta52CL = ("cuenta52CL", "plata")
+    cuenta53CL = ("cuenta53CL", "bronce")
+    cuenta54CL = ("cuenta54CL", "bronce")
+
+    cuenta55CL = ("cuenta55CL", "plata")
+    cuenta56CL = ("cuenta56CL", "plata")
+    cuenta57CL = ("cuenta57CL", "bronce")
+    cuenta58CL = ("cuenta58CL", "bronce")
+
+    # Clientes para tumbas
+
+    clienteF21ET = Cliente("Ezequiel Andrade", 123, 30, cuenta49CL, "oro", familiarC)
+    clienteF22ET = Cliente("Damián Vargas", 1234, 25, cuenta50CL, "oro", familiarC)
+
+    clienteF23ET = Cliente("Octavio Salazar", 1235, 90, cuenta51CL, "plata", familiarB)
+    clienteF24ET = Cliente("Leonardo Paredes", 1236, 57, cuenta52CL, "plata", familiarB)
+
+    clienteF25ET = Cliente("Ulises Ortega", 1237, 21, cuenta53CL, "bronce", familiarC)
+    clienteF26ET = Cliente("Valeria Castro", 1238, 50, cuenta54CL, "bronce", familiarC)
+
+    clienteF27ET = Cliente("Delfina Méndez", 5, "oro", familiarB)
+    clienteF28ET = Cliente("Mireya Delgado", 17, "oro", familiarB)
+
+    clienteF29ET = Cliente("Renata Aguirre", 15, "plata", familiarB)
+    clienteF210ET = Cliente("Alma Guzmán", 13, "plata", familiarB)
+
+    clienteF211ET = Cliente("Leo Cruz", 1235, 90, cuenta55CL, "plata", familiarB)
+    clienteF212ET = Cliente("Luna Martínez", 1236, 57, cuenta56CL, "plata", familiarB)
+
+    clienteF213ET = Cliente("Lucas Moreno", 1237, 21, cuenta57CL, "bronce", familiarC)
+    clienteF214ET = Cliente("Sofía Rodríguez", 1238, 50, cuenta58CL, "bronce", familiarC)
+
+    # Clientes menores de edad
+    clienteF215ET = Cliente("Aitana Gómez", 0,5,None, "oro", familiarB)
+    clienteF216ET = Cliente("Zoe García", 0,17,None, "oro", familiarB)
+
+    clienteF217ET = Cliente("Ethan Ortega", 0,15,None, "plata", familiarB)
+    clienteF218ET = Cliente("Dylan Mendoza", 0,13,None, "plata", familiarB)
+
+    # Cementerio 1
+    tumbaF2C11E = Tumba("Tumbita Lugar de Paz", cementerioF21Cu, 1.70, 1)
+    tumbaF2C12E = Tumba("Tumbita Descanso Eterno", cementerioF21Cu, 1.50, 0)
+    tumbaF2C13E = Tumba("default", cementerioF21Cu, 1.60, 0)
+
+    tumbaF2C14E = Tumba("Tumbita Lugar de Paz", cementerioF21Cu, 1.70, 1)
+    tumbaF2C15E = Tumba("Tumbita Descanso Eterno", cementerioF21Cu, 1.50, 0)
+
+    # Cementerio 2
+    tumbaF2C21E = Tumba("Tumbita Siempre Recordado", cementerioF22Cu, 1.70, 1)
+    tumbaF2C22E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF22Cu, 1.50, 0)
+    tumbaF2C23E = Tumba("default", cementerioF22Cu, 1.50, 0)
+
+    tumbaF2C24E = Tumba("Tumbita Siempre Recordado", cementerioF22Cu, 1.70, 1)
+    tumbaF2C25E = Tumba("Tumbita En Honor a un Ser Querido", cementerioF22Cu, 1.50, 0)
+
+    # Cementerio 3
+    tumbaF2C31E = Tumba("Tumbita Lugar de Serenidad", cementerioF23Cu, 1.70, 1)
+    tumbaF2C32E = Tumba("Tumbita Eterna Paz", cementerioF23Cu, 1.50, 0)
+    tumbaF2C33E = Tumba("default", cementerioF23Cu, 1.60, 0)
+
+    tumbaF2C34E = Tumba("Tumbita Lugar de Serenidad", cementerioF23Cu, 1.70, 1)
+    tumbaF2C35E = Tumba("Tumbita Eterna Paz", cementerioF23Cu, 1.50, 0)
+
+    # Cementerio 4
+    tumbaF2C41E = Tumba("Tumbita Un Alma Bella", cementerioF24Cu, 1.70, 1)
+    tumbaF2C42E = Tumba("Tumbita En Paz y Serenidad", cementerioF24Cu, 1.50, 0)
+    tumbaF2C43E = Tumba("default", cementerioF24Cu, 1.70, 0)
+
+    tumbaF2C44E = Tumba("Tumbita Un Alma Bella", cementerioF24Cu, 1.70, 1)
+    tumbaF2C45E = Tumba("Tumbita En Paz y Serenidad", cementerioF24Cu, 1.50, 0)
+
+    # Cementerio 5
+    tumbaF2C51E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF25Cu, 1.70, 1)
+    tumbaF2C52E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF25Cu, 1.50, 0)
+    tumbaF2C53E = Tumba("default", cementerioF25Cu, 1.90, 0)
+
+    tumbaF2C54E = Tumba("Tumbita Siempre en Nuestros Corazones", cementerioF25Cu, 1.70, 1)
+    tumbaF2C55E = Tumba("Tumbita Aquí Descansa en Paz", cementerioF25Cu, 1.50, 0)
+
+    # Cementerio 6
+    tumbaF2C61E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF26Cu, 1.70, 1)
+    tumbaF2C62E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF26Cu, 1.50, 0)
+    tumbaF2C63E = Tumba("default", cementerioF26Cu, 1.60, 0)
+
+    tumbaF2C64E = Tumba("Tumbita La Luz de Nuestra Vida", cementerioF26Cu, 1.70, 1)
+    tumbaF2C65E = Tumba("Tumbita Aquí La Memoria Vive", cementerioF26Cu, 1.50, 0)
+    
+    # Cementerio 1
+    tumbaF2C11E.agregarCliente(clienteF21ET)
+    tumbaF2C12E.agregarCliente(clienteF22ET)
+    tumbaF2C13E.agregarCliente(clienteF23ET)
+
+    # Cementerio 2
+    tumbaF2C21E.agregarCliente(clienteF24ET)
+    tumbaF2C22E.agregarCliente(clienteF25ET)
+    tumbaF2C23E.agregarCliente(clienteF26ET)
+
+    # Cementerio 3
+    tumbaF2C31E.agregarCliente(clienteF27ET)
+    tumbaF2C32E.agregarCliente(clienteF28ET)
+    tumbaF2C33E.agregarCliente(clienteF29ET)
+
+    # Cementerio 4
+    tumbaF2C41E.agregarCliente(clienteF210ET)
+    tumbaF2C42E.agregarCliente(clienteF211ET)
+    tumbaF2C43E.agregarCliente(clienteF212ET)
+
+    # Cementerio 5
+    tumbaF2C51E.agregarCliente(clienteF213ET)
+    tumbaF2C52E.agregarCliente(clienteF214ET)
+    tumbaF2C53E.agregarCliente(clienteF215ET)
+
+    # Cementerio 6
+    tumbaF2C61E.agregarCliente(clienteF216ET)
+    tumbaF2C62E.agregarCliente(clienteF217ET)
+    tumbaF2C63E.agregarCliente(clienteF218ET)
 
     ventanaInicio.ventanaInicio()
 
