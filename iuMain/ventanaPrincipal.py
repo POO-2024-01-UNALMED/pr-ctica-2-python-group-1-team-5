@@ -4,6 +4,8 @@ from iuMain.funcionalidades import cremacion
 from iuMain.funcionalidades import exhumacion
 from iuMain.funcionalidades import entierro
 
+from iuMain.funcionalidades import finanzas
+
 #Regresar a la ventana de inicio
 def irVentanaInicio():
     ventana.destroy()
@@ -86,6 +88,7 @@ def ventanaPrincipal():
     procesos.add_command(label="Cremación",command=lambda:cremacion.funcionalidadCrematorio(zona2))
     procesos.add_command(label="Exhumacion",command=lambda:exhumacion.funcionalidadExhumacion(zona2))
     procesos.add_command(label="Cementerio",command=lambda:entierro.funcionalidadEntierro(zona2))
+    procesos.add_command(label="Finanzas",command=lambda:finanzas.funcionalidadFinanzas(zona2))
 
     #Menú ayuda
     ayuda=tk.Menu(menuPrincipal,tearoff=0)

@@ -769,37 +769,69 @@ if __name__ == "__main__":
 
     # Empleados generales
 
+    #Cuenta empleados conductor
+    cuentaEC1 = CuentaBancaria(148689, "Bruno Salgado",banco1, 1293433)
+    cuentaEC2 = CuentaBancaria(145646, "Bárbara López",banco2, 129343)
+    cuentaEC3 = CuentaBancaria(123450, "Óscar Morales",banco3, 12934)
+    cuentaEC4 = CuentaBancaria(406864, "Dulce María Reyes",banco4, 12933)
+    cuentaEC5 = CuentaBancaria(496345, "Evelyn Rodríguez",banco5, 12933)
+    cuentaEC6 = CuentaBancaria(694969, "Kevin Castillo",banco1, 1293)
+   
     # Empleados conductor
-    empleadoC1 = Empleado("Bruno Salgado", None, "mañana", "conductor", 10000, funeraria1)
-    empleadoC2 = Empleado("Bárbara López", None, "mañana", "conductor", 10000, funeraria1)
-    empleadoC3 = Empleado("Óscar Morales", None, "tarde", "conductor", 10000, funeraria1)
-    empleadoC4 = Empleado("Dulce María Reyes", None, "tarde", "conductor", 10000, funeraria1)
-    empleadoC5 = Empleado("Evelyn Rodríguez", None, "noche", "conductor", 10000, funeraria1)
-    empleadoC6 = Empleado("Kevin Castillo", None, "noche", "conductor", 10000, funeraria1)
-
+    empleadoC1 = Empleado("Bruno Salgado", cuentaEC1, "mañana", "conductor", 10000, funeraria1)
+    empleadoC2 = Empleado("Bárbara López", cuentaEC2, "mañana", "conductor", 10000, funeraria1)
+    empleadoC3 = Empleado("Óscar Morales", cuentaEC3, "tarde", "conductor", 10000, funeraria1)
+    empleadoC4 = Empleado("Dulce María Reyes", cuentaEC4, "tarde", "conductor", 10000, funeraria1)
+    empleadoC5 = Empleado("Evelyn Rodríguez", cuentaEC5, "noche", "conductor", 10000, funeraria1)
+    empleadoC6 = Empleado("Kevin Castillo", cuentaEC6, "noche", "conductor", 10000, funeraria1)
+    
+    #Cuenta empleados forense
+    cuentaEF1 = CuentaBancaria(135439, "Ana García",banco1, 1293433)
+    cuentaEF2 = CuentaBancaria(147788, "Luca Rossi",banco2, 129343)
+    cuentaEF3 = CuentaBancaria(188867, "Ayesha Khan",banco3, 12934)
+    cuentaEF4 = CuentaBancaria(445556, "Jorge Martínez",banco4, 12933)
+    cuentaEF5 = CuentaBancaria(492345, "Sofia Petrov",banco5, 12933)
+    cuentaEF6 = CuentaBancaria(696788, "Haruto Tanaka",banco1, 1293)
+   
     # Empleados forense
-    empleadoF1 = Empleado("Ana García", None, "mañana", "forense", 1000, funeraria1)
-    empleadoF2 = Empleado("Luca Rossi", None, "mañana", "forense", 1000, funeraria1)
-    empleadoF3 = Empleado("Ayesha Khan", None, "tarde", "forense", 1000, funeraria1)
-    empleadoF4 = Empleado("Jorge Martínez", None, "tarde", "forense", 1000, funeraria1)
-    empleadoF5 = Empleado("Sofia Petrov", None, "noche", "forense", 1000, funeraria1)
-    empleadoF6 = Empleado("Haruto Tanaka", None, "noche", "forense", 1000, funeraria1)
+    empleadoF1 = Empleado("Ana García", cuentaEF1, "mañana", "forense", 1000, funeraria1)
+    empleadoF2 = Empleado("Luca Rossi", cuentaEF2, "mañana", "forense", 1000, funeraria1)
+    empleadoF3 = Empleado("Ayesha Khan", cuentaEF3, "tarde", "forense", 1000, funeraria1)
+    empleadoF4 = Empleado("Jorge Martínez", cuentaEF4, "tarde", "forense", 1000, funeraria1)
+    empleadoF5 = Empleado("Sofia Petrov", cuentaEF5, "noche", "forense", 1000, funeraria1)
+    empleadoF6 = Empleado("Haruto Tanaka", cuentaEF6, "noche", "forense", 1000, funeraria1)
 
+    #Cuenta empleados padre
+    cuentaEP1 = CuentaBancaria(675768, "Elena Inanova",banco1, 1293433)
+    cuentaEP2 = CuentaBancaria(143445, "Amir Reza",banco2, 129343)
+    cuentaEP3 = CuentaBancaria(187899, "Mia Eriksson",banco3, 12934)
+    cuentaEP4 = CuentaBancaria(442342, "Dulce María Reyes",banco4, 12933)
+    cuentaEP5 = CuentaBancaria(413244, "Nina Jovanović",banco5, 12933)
+    cuentaEP6 = CuentaBancaria(697899, "Kevin Castillo",banco1, 1293)
+    
     # Empleados padre
-    empleadoP1 = Empleado("Elena Ivanova", None, "mañana", "padre", 1000, funeraria1)
-    empleadoP2 = Empleado("Amir Reza", None, "mañana", "padre", 1000, funeraria1)
-    empleadoP3 = Empleado("Mia Eriksson", None, "tarde", "padre", 1000, funeraria1)
-    empleadoP4 = Empleado("Dulce María Reyes", None, "tarde", "padre", 1000, funeraria1)
-    empleadoP5 = Empleado("Nina Jovanović", None, "noche", "padre", 1000, funeraria1)
-    empleadoP6 = Empleado("Kevin Castillo", None, "noche", "padre", 1000, funeraria1)
+    empleadoP1 = Empleado("Elena Ivanova", cuentaEP1, "mañana", "padre", 1000, funeraria1)
+    empleadoP2 = Empleado("Amir Reza", cuentaEP2, "mañana", "padre", 1000, funeraria1)
+    empleadoP3 = Empleado("Mia Eriksson", cuentaEP3, "tarde", "padre", 1000, funeraria1)
+    empleadoP4 = Empleado("Dulce María Reyes", cuentaEP4, "tarde", "padre", 1000, funeraria1)
+    empleadoP5 = Empleado("Nina Jovanović", cuentaEP5, "noche", "padre", 1000, funeraria1)
+    empleadoP6 = Empleado("Kevin Castillo", cuentaEP6, "noche", "padre", 1000, funeraria1)
 
+    #Cuenta empleados obispo
+    cuentaEO1 = CuentaBancaria(123122, "Eli Cohen",banco1, 1293433)
+    cuentaEO2 = CuentaBancaria(244433, "Bárbara López",banco2, 129343)
+    cuentaEO3 = CuentaBancaria(456666, "Marco Bianchi",banco3, 12934)
+    cuentaEO4 = CuentaBancaria(423444, "Zara Ahmed",banco4, 12933)
+    cuentaEO5 = CuentaBancaria(488707, "Evelyn Rodríguez",banco5, 12933)
+    cuentaEO6 = CuentaBancaria(707070, "Raj Patel",banco1, 1293)
+    
     # Empleados obispo
-    empleadoO1 = Empleado("Eli Cohen", None, "mañana", "obispo", 1000, funeraria1)
-    empleadoO2 = Empleado("Bárbara López", None, "mañana", "obispo", 1000, funeraria1)
-    empleadoO3 = Empleado("Marco Bianchi", None, "tarde", "obispo", 1000, funeraria1)
-    empleadoO4 = Empleado("Zara Ahmed", None, "tarde", "obispo", 1000, funeraria1)
-    empleadoO5 = Empleado("Evelyn Rodríguez", None, "noche", "obispo", 1000, funeraria1)
-    empleadoO6 = Empleado("Raj Patel", None, "noche", "obispo", 1000, funeraria1)
+    empleadoO1 = Empleado("Eli Cohen", cuentaEO1, "mañana", "obispo", 1000, funeraria1)
+    empleadoO2 = Empleado("Bárbara López", cuentaEO2, "mañana", "obispo", 1000, funeraria1)
+    empleadoO3 = Empleado("Marco Bianchi", cuentaEO3, "tarde", "obispo", 1000, funeraria1)
+    empleadoO4 = Empleado("Zara Ahmed", cuentaEO4, "tarde", "obispo", 1000, funeraria1)
+    empleadoO5 = Empleado("Evelyn Rodríguez", cuentaEO5, "noche", "obispo", 1000, funeraria1)
+    empleadoO6 = Empleado("Raj Patel", cuentaEO6, "noche", "obispo", 1000, funeraria1)
 
     # Agregar empleados a funeraria 2
     funeraria2.agregarEmpleado(empleadoC1)
@@ -1033,23 +1065,42 @@ if __name__ == "__main__":
     #Funcionalidad exhumacion
 
     #Familiares
+
+    #Cuentas familiares mujeres
+    cuentaFAM1 = CuentaBancaria(274784,"Mario",banco1,123543)
+    cuentaFAM2 = CuentaBancaria(273454,"Alberto",banco2,12354)
+    cuentaFAM3 = CuentaBancaria(234556,"Carlos",banco3,1235)
+    cuentaFAM4 = CuentaBancaria(273456,"Samantha",banco4,123543)
+
     # Familiares Mujeres
-    F11 = Familiar("Mario", 711, 50, None, "padre", 17)
-    F12 = Familiar("Alberto", 712, 32, None, "conyuge", 13)
-    F13 = Familiar("Carlos", 713, 37, None, "hermano", 17)
-    F14 = Familiar("Samantha", 714, 50, None, "padre", 17)
+    F11 = Familiar("Mario", 711, 50, cuentaFAM1, "padre", 17)
+    F12 = Familiar("Alberto", 712, 32, cuentaFAM2, "conyuge", 13)
+    F13 = Familiar("Carlos", 713, 37, cuentaFAM3, "hermano", 17)
+    F14 = Familiar("Samantha", 714, 50, cuentaFAM4, "padre", 17)
+
+    #Cuentas familiares para todos
+    cuentaFAM1 = CuentaBancaria(274566,"Samuel",banco1,12354)
+    cuentaFAM2 = CuentaBancaria(345500,"Alma",banco2,123543)
+    cuentaFAM3 = CuentaBancaria(325605,"Eduardo",banco3,1235333)
+    cuentaFAM4 = CuentaBancaria(223805,"Maria",banco4,123543)
 
     # Familiares para todos
-    F15 = Familiar("Samuel", 715, 60, None, "padre", 17)
-    F16 = Familiar("Alma", 716, 60, None, "padre", 13)
-    F17 = Familiar("Eduardo", 717, 37, None, "hermano", 17)
-    F18 = Familiar("Maria", 0,5,None, "hermano", F17)
-
+    F15 = Familiar("Samuel", 715, 60, cuentaFAM1, "padre", 17)
+    F16 = Familiar("Alma", 716, 60, cuentaFAM2, "padre", 13)
+    F17 = Familiar("Eduardo", 717, 37, cuentaFAM3, "hermano", 17)
+    F18 = Familiar("Maria", 0,5,cuentaFAM4, "hermano", F17)
+ 
+    #Cuentas familiares hombre
+    cuentaFAH1 = CuentaBancaria(274567,"Armando",banco1,123544)
+    cuentaFAH2 = CuentaBancaria(345345,"Catalina",banco2,12355)
+    cuentaFAH3 = CuentaBancaria(324567,"Sebastian",banco3,12353)
+    cuentaFAH4 = CuentaBancaria(212333,"Alba",banco4,123543)
+    
     # Familiares Hombres
-    F19 = Familiar("Armando", 718, 50, None, "padre", 17)
-    F110 = Familiar("Catalina", 719, 32, None, "conyuge", 13)
-    F111 = Familiar("Sebastian", 7110, 37, None, "hermano", 17)
-    F112 = Familiar("Alba", 7111, 25, None, "hijo", 17)
+    F19 = Familiar("Armando", 718, 50, cuentaFAH1, "padre", 17)
+    F110 = Familiar("Catalina", 719, 32, cuentaFAH2, "conyuge", 13)
+    F111 = Familiar("Sebastian", 7110, 37, cuentaFAH3, "hermano", 17)
+    F112 = Familiar("Alba", 7111, 25, cuentaFAH4, "hijo", 17)
     
     #Listas de familiares A
     familiarA=[]
@@ -1072,16 +1123,26 @@ if __name__ == "__main__":
     familiarC.append(F111)
     familiarC.append(F112)
 	
+    #Cuenta clientes urnas
+    cuentaCU1 = CuentaBancaria(223455, "Juan Pérez", banco1, 2252545)
+    cuentaCU2 = CuentaBancaria(233211, "Carlos Fernández", banco2, 225245)
+    cuentaCU3 = CuentaBancaria(123462, "Miguel Rodríguez", banco3, 22525)
+    cuentaCU4 = CuentaBancaria(256788, "Dani Morales", banco4, 22525)
+    cuentaCU5 = CuentaBancaria(238558, "Pedro González", banco5, 225254)
+    cuentaCU6 = CuentaBancaria(678086, "José Martínez", banco1, 225254)
+    cuentaCU11 = CuentaBancaria(223456, "Laura Morales", banco1, 22525)
+    cuentaCU12 = CuentaBancaria(245678, "Robert Jones", banco2, 225254)
+    cuentaCU13 = CuentaBancaria(267899, "Olivia Miller", banco3, 2252545)
+    cuentaCU14 = CuentaBancaria(223677, "Sophia Moore", banco4, 225254)
 
+    clienteF11E = Cliente("Juan Pérez", 511, 30, cuentaCU1, "oro", FamiliarF11)
+    clienteF12E = Cliente("Carlos Fernández", 512, 25, cuentaCU2, "oro", FamiliarF11)
 
-    clienteF11E = Cliente("Juan Pérez", 511, 30, None, "oro", FamiliarF11)
-    clienteF12E = Cliente("Carlos Fernández", 512, 25, None, "oro", FamiliarF11)
+    clienteF13E = Cliente("Miguel Rodríguez", 513, 90, cuentaCU3, "plata", FamiliarF11)
+    clienteF14E = Cliente("Dani Morales", 514, 57, cuentaCU4, "plata", FamiliarF11)
 
-    clienteF13E = Cliente("Miguel Rodríguez", 513, 90, None, "plata", FamiliarF11)
-    clienteF14E = Cliente("Dani Morales", 514, 57, None, "plata", FamiliarF11)
-
-    clienteF15E = Cliente("Pedro González", 515, 50, None, "bronce", FamiliarF11)
-    clienteF16E = Cliente("José Martínez", 516, 30, None, "bronce", FamiliarF11)
+    clienteF15E = Cliente("Pedro González", 515, 50, cuentaCU5, "bronce", FamiliarF11)
+    clienteF16E = Cliente("José Martínez", 516, 30, cuentaCU6, "bronce", FamiliarF11)
 
     clienteF17E = Cliente("María López",0,5,None,"oro",familiarB)
     clienteF18E = Cliente("Carmen García",0,17,None,"oro",familiarB)
@@ -1089,11 +1150,11 @@ if __name__ == "__main__":
     clienteF19E = Cliente("Ana Torres",0,15,None,"bronce",familiarB)
     clienteF110E = Cliente("Isabel Ramírez",0,13,None,"bronce",familiarB)
 		
-    clienteF111E = Cliente("Laura Morales",5111,90,None,"plata",familiarA)
-    clienteF112E = Cliente("Robert Jones",5112,57,None,"plata",familiarC)
+    clienteF111E = Cliente("Laura Morales",5111,90,cuentaCU11,"plata",familiarA)
+    clienteF112E = Cliente("Robert Jones",5112,57,cuentaCU12,"plata",familiarC)
 								
-    clienteF113E = Cliente("Olivia Miller",5113,35,None, "bronce",familiarC)
-    clienteF114E = Cliente("Sophia Moore",5114,50,None, "bronce",familiarC)
+    clienteF113E = Cliente("Olivia Miller",5113,35,cuentaCU13, "bronce",familiarC)
+    clienteF114E = Cliente("Sophia Moore",5114,50,cuentaCU14, "bronce",familiarC)
 		
     clienteF115E = Cliente("James Smith",0,5,None,"oro",familiarB)
     clienteF116E = Cliente("David Brown",0,17,None,"oro",familiarB)
@@ -1179,17 +1240,27 @@ if __name__ == "__main__":
     urnaF1C62E.agregarCliente(clienteF117E)
     urnaF1C63E.agregarCliente(clienteF118E)
 
-
+    #Cuentas clientes tumbas 
+    cuentaCT1 = CuentaBancaria(174647,"Ezequiel Andrade", banco1, 463483)
+    cuentaCT2 = CuentaBancaria(172356,"Damián Vargas", banco1, 46348)
+    cuentaCT3 = CuentaBancaria(134667,"Octavio Salazar", banco1, 463483)
+    cuentaCT4 = CuentaBancaria(578678,"Leonardo Paredes", banco1, 46348)
+    cuentaCT5 = CuentaBancaria(134506,"Ulises Ortega", banco1, 46383)
+    cuentaCT6 = CuentaBancaria(139600,"Valeria Castro", banco1, 46383)
+    cuentaCT7 = CuentaBancaria(172567,"Leo Cruz", banco1, 463483)
+    cuentaCT8 = CuentaBancaria(112444,"Luna Martínez", banco1, 4634354)
+    cuentaCT9 = CuentaBancaria(134585,"Lucas Moreno", banco1, 46383)
+    cuentaCT10 = CuentaBancaria(384848,"Sofía Rodríguez", banco1, 63483)
     # Clientes para tumbas
 
-    clienteF11ET = Cliente("Ezequiel Andrade", 611, 30, None, "oro", familiarC)
-    clienteF12ET = Cliente("Damián Vargas", 612, 25, None, "oro", familiarC)
+    clienteF11ET = Cliente("Ezequiel Andrade", 611, 30, cuentaCT1, "oro", familiarC)
+    clienteF12ET = Cliente("Damián Vargas", 612, 25, cuentaCT2, "oro", familiarC)
 
-    clienteF13ET = Cliente("Octavio Salazar", 613, 90, None, "plata", familiarB)
-    clienteF14ET = Cliente("Leonardo Paredes", 614, 57, None, "plata", familiarB)
+    clienteF13ET = Cliente("Octavio Salazar", 613, 90, cuentaCT3, "plata", familiarB)
+    clienteF14ET = Cliente("Leonardo Paredes", 614, 57, cuentaCT4, "plata", familiarB)
 
-    clienteF15ET = Cliente("Ulises Ortega", 615, 21, None, "bronce", familiarC)
-    clienteF16ET = Cliente("Valeria Castro", 616, 50, None, "bronce", familiarC)
+    clienteF15ET = Cliente("Ulises Ortega", 615, 21, cuentaCT5, "bronce", familiarC)
+    clienteF16ET = Cliente("Valeria Castro", 616, 50, cuentaCT6, "bronce", familiarC)
 
     clienteF17ET = Cliente("Delfina Méndez", 0,5, None,"oro", familiarB)
     clienteF18ET = Cliente("Mireya Delgado", 0,17,None, "oro", familiarB)
@@ -1197,11 +1268,11 @@ if __name__ == "__main__":
     clienteF19ET = Cliente("Renata Aguirre",0, None,15, "plata", familiarB)
     clienteF110ET = Cliente("Alma Guzmán", 0, None,13, "plata", familiarB)
 
-    clienteF111ET = Cliente("Leo Cruz", 6111, 90, None, "plata", familiarB)
-    clienteF112ET = Cliente("Luna Martínez", 6112, 57, None, "plata", familiarB)
+    clienteF111ET = Cliente("Leo Cruz", 6111, 90, cuentaCT7, "plata", familiarB)
+    clienteF112ET = Cliente("Luna Martínez", 6112, 57, cuentaCT8, "plata", familiarB)
 
-    clienteF113ET = Cliente("Lucas Moreno", 6113, 21, None, "bronce", familiarC)
-    clienteF114ET = Cliente("Sofía Rodríguez", 1238, 50, None, "bronce", familiarC)
+    clienteF113ET = Cliente("Lucas Moreno", 6113, 21, cuentaCT9, "bronce", familiarC)
+    clienteF114ET = Cliente("Sofía Rodríguez", 1238, 50, cuentaCT10, "bronce", familiarC)
 
     # Clientes F1 - Menores de edad
     clienteF115ET = Cliente("Aitana Gómez", 0,5,None, "oro", familiarB)
