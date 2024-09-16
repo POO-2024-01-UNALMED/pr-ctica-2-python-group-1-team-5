@@ -757,9 +757,9 @@ if __name__ == "__main__":
 
     #Cuentas Bancarias funerarias
     # Cuentas corrientes
-    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 100000, 100000, 100000, 10000)
-    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 100000, 100000, 100000, 10000)
-    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 100000, 100000, 100000, 10000)
+    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 500000, 500000, 500000, 500000,500000)
+    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 500000, 500000, 500000, 500000,500000)
+    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 500000, 500000, 500000, 500000,500000)
     
     #Cuenta ahorros
     cuentaF4= CuentaBancaria(135635, "Todas",banco4, 2030203)
@@ -2740,25 +2740,50 @@ if __name__ == "__main__":
     clienteF318ET.getListadoFacturas().append(facturaCF318ET)
 
     #Proveedores
-    cuentalocal5 = CuentaBancaria(124799,"Yamaha Vehiculos",banco1,273648)
+    cuentalocal1 = CuentaBancaria(134635,"D1 productos",banco1,273648)
+    cuentalocal2 = CuentaBancaria(535636,"ARA productos",banco2,273648)
+    cuentalocal3 = CuentaBancaria(567897,"JUSTO Y BUENO productos",banco3,273648)
+    cuentalocal4 = CuentaBancaria(495769,"HOMECENTER productos",banco4,273648)
+    cuentalocal5 = CuentaBancaria(124799,"Yamaha Vehiculos",banco5,273648)
     cuentalocal6 = CuentaBancaria(138474,"BMW Vehiculos",banco2,273648)
-    cuentalocal7 = CuentaBancaria(384649,"AUDI Vehiculos",banco3,273648)
+    cuentalocal7 = CuentaBancaria(384649,"AUDI Vehiculos",banco2,273648)
 
+    local1 = Establecimiento("D1 productos",500,cuentalocal1)
+    local2 = Establecimiento("ARA productos",500,cuentalocal2)
+    local3 = Establecimiento("JUSTO Y BUENO productos",500,cuentalocal3)
+    local4 = Establecimiento("HOMECENTER productos",500,cuentalocal4)
     local5 = Establecimiento("Yamaha Vehiculos",500,cuentalocal5)
-    local6 = Establecimiento("BMW Vehiculos",500,cuentalocal5)
-    local7 = Establecimiento("AUDI Vehiculos",500,cuentalocal6)
-    funeraria1.getListadoProveedoresVehiculos().append(local5)
-    funeraria1.getListadoProveedoresVehiculos().append(local6)
-    funeraria1.getListadoProveedoresVehiculos().append(local7)
+    local6 = Establecimiento("BMW Vehiculos",500,cuentalocal6)
+    local7 = Establecimiento("AUDI Vehiculos",500,cuentalocal7)
+    
+    funeraria1.getListadoProveedores().extend([local1,local2,local3,local4,])
+    funeraria1.getListadoProveedoresVehiculos().extend([local5,local6,local7])
     	
-    funeraria2.getListadoProveedoresVehiculos().append(local5)
-    funeraria2.getListadoProveedoresVehiculos().append(local6)
-    funeraria2.getListadoProveedoresVehiculos().append(local7)
-    	
-    funeraria3.getListadoProveedoresVehiculos().append(local5)
-    funeraria3.getListadoProveedoresVehiculos().append(local6)
-    funeraria3.getListadoProveedoresVehiculos().append(local7)
+    funeraria2.getListadoProveedores().extend([local1,local2,local3,local4,])
+    funeraria2.getListadoProveedoresVehiculos().extend([local5,local6,local7])
 
+    funeraria3.getListadoProveedores().extend([local1,local2,local3,local4,])
+    funeraria3.getListadoProveedoresVehiculos().extend([local5,local6,local7])
+    
+    #Productos Inventario
+    productoI1 =  Producto("Urnas",10000,6,0,local1)
+    productoI2 =  Producto("Urnas",10000,3,0,local1)
+    productoI3 =  Producto("Urnas",10000,6,0,local2)
+    productoI4 =  Producto("Urnas",10000,2,0,local2)
+    productoI5 =  Producto("Tumbas",15000,7,0,local3)
+    productoI6 =  Producto("Tumbas",15000,3,0,local3)
+    productoI7 =  Producto("Tumbas",15000,8,0,local4)
+    productoI8 =  Producto("Tumbas",15000,2,0,local4)
+
+    #Productos establecimiento 		
+    productoE1 =  Producto("Tarifa de cremacion",1000,1,0,local1)
+    productoE2 =  Producto("Derechos de uso  de instalaciones",10000,1,0,local1)
+    productoE3 =  Producto("Tarifa de inhumacion",1500,1,local2)
+    productoE4 =  Producto("Derechos del uso de nicho o sepultura",1000,1,0,local2)
+    productoE5 =  Producto("Mantenimiento y conservacion",15000,1,0,local3)
+    productoE6 =  Producto("Ofrenda o donacion",500,1,0,local3)
+    productoE7 =  Producto("Tarifa de uso de instalaciones",500,1,0,local1)
+   
     #Facturas Funeraria 1
 
     #Vehiculos
@@ -2791,7 +2816,31 @@ if __name__ == "__main__":
     factura4VF1 = Factura(servicio="vehiculo",lista_productos=vehiculos4F1)
 
     funeraria1.getFacturasPorPagar().extend([factura1VF1,factura2VF1,factura3VF1,factura4VF1])
-       
+
+    #Inventario
+    urnas1F1 = [productoI1,productoI2]
+    urnas2F1 = [productoI3,productoI4]
+    tumbas1F1 = [productoI5,productoI6]
+    tumbas2F1 = [productoI7,productoI8]
+
+    factura1IF1 = Factura(servicio="inventario",lista_productos=urnas1F1)
+    factura2IF1 = Factura(servicio="inventario",lista_productos=urnas2F1)
+    factura3IF1 = Factura(servicio="inventario",lista_productos=tumbas1F1)
+    factura4IF1 = Factura(servicio="inventario",lista_productos=tumbas2F1)
+        
+    funeraria1.getFacturasPorPagar().extend([factura1IF1,factura2IF1,factura3IF1,factura4IF1])
+
+    #Establecimiento
+    servicios1F1 = [productoE1,productoE2,productoE3]
+    servicios2F1 = [productoE4,productoE5]
+    servicios3F1 = [productoE6,productoE7]
+
+    factura1EF1 = Factura(servicio="establecimiento",lista_productos=servicios1F1)
+    factura2EF1 = Factura(servicio="establecimiento",lista_productos=servicios2F1)
+    factura3EF1 = Factura(servicio="establecimiento",lista_productos=servicios3F1)
+
+    funeraria1.getFacturasPorPagar().extend([factura1EF1,factura2EF1,factura3EF1])
+
     #Facturas Funeraria 2
 
     #Vehiculos
@@ -2813,10 +2862,10 @@ if __name__ == "__main__":
     producto7F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F1)
     producto8F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F1)
 
-    vehiculos1F2 = [producto1F1, producto2F2]
-    vehiculos2F2 = [producto3F1, producto4F2]
-    vehiculos3F2 = [producto5F1, producto6F2]
-    vehiculos4F2 = [producto7F1, producto8F2]
+    vehiculos1F2 = [producto1F1, producto8F2]
+    vehiculos2F2 = [producto3F1, producto7F2]
+    vehiculos3F2 = [producto5F1, producto2F2]
+    vehiculos4F2 = [producto4F1, producto6F2]
 
     factura1VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos1F2)
     factura2VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos2F2)
@@ -2825,6 +2874,30 @@ if __name__ == "__main__":
 
     funeraria2.getFacturasPorPagar().extend([factura1VF2,factura2VF2,factura3VF2,factura4VF2])
    
+    #Inventario
+    urnas1F2 = [productoI1,productoI3]
+    urnas2F2 = [productoI2,productoI4]
+    tumbas1F2 = [productoI5,productoI7]
+    tumbas2F2 = [productoI6,productoI8]
+
+    factura1IF2 = Factura(servicio="inventario",lista_productos=urnas1F2)
+    factura2IF2 = Factura(servicio="inventario",lista_productos=urnas2F2)
+    factura3IF2 = Factura(servicio="inventario",lista_productos=tumbas1F2)
+    factura4IF2 = Factura(servicio="inventario",lista_productos=tumbas2F2)
+        
+    funeraria2.getFacturasPorPagar().extend([factura1IF2,factura2IF2,factura3IF2,factura4IF2])
+ 
+    #Establecimiento
+    servicios1F2 = [productoE1,productoE4,productoE6]
+    servicios2F2 = [productoE2,productoE5]
+    servicios3F2 = [productoE3,productoE7]
+
+    factura1EF2 = Factura(servicio="establecimiento",lista_productos=servicios1F2)
+    factura2EF2 = Factura(servicio="establecimiento",lista_productos=servicios2F2)
+    factura3EF2 = Factura(servicio="establecimiento",lista_productos=servicios3F2)
+
+    funeraria2.getFacturasPorPagar().extend([factura1EF2,factura2EF2,factura3EF2])
+     
     #Facturas Funeraria 3
 
     #Vehiculos
@@ -2846,10 +2919,10 @@ if __name__ == "__main__":
     producto7F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
     producto8F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
 
-    vehiculos1F3 = [producto1F3, producto2F3]
-    vehiculos2F3 = [producto3F3, producto4F3]
-    vehiculos3F3 = [producto5F3, producto6F3]
-    vehiculos4F3 = [producto7F3, producto8F3]
+    vehiculos1F3 = [producto1F3, producto5F3]
+    vehiculos2F3 = [producto3F3, producto6F3]
+    vehiculos3F3 = [producto8F3, producto2F3]
+    vehiculos4F3 = [producto4F3, producto7F3]
 
     factura1VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos1F3)
     factura2VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos2F3)
@@ -2858,6 +2931,31 @@ if __name__ == "__main__":
 
     funeraria3.getFacturasPorPagar().extend([factura1VF3,factura2VF3,factura3VF3,factura4VF3])
 
+    #Inventario
+    urnas1F3 = [productoI1,productoI4]
+    urnas2F3 = [productoI2,productoI3]
+    tumbas1F3 = [productoI5,productoI8]
+    tumbas2F3 = [productoI6,productoI7]
+
+    factura1IF3 = Factura(servicio="inventario",lista_productos=urnas1F3)
+    factura2IF3 = Factura(servicio="inventario",lista_productos=urnas2F3)
+    factura3IF3 = Factura(servicio="inventario",lista_productos=tumbas1F3)
+    factura4IF3 = Factura(servicio="inventario",lista_productos=tumbas2F3)
+        
+    funeraria3.getFacturasPorPagar().extend([factura1IF3,factura2IF3,factura3IF3,factura4IF3])
+
+    #Establecimiento
+    servicios1F3 = [productoE7,productoE5,productoE6]
+    servicios2F3 = [productoE4,productoE2]
+    servicios3F3 = [productoE3,productoE1]
+
+    factura1EF3 = Factura(servicio="establecimiento",lista_productos=servicios1F3)
+    factura2EF3 = Factura(servicio="establecimiento",lista_productos=servicios2F3)
+    factura3EF3 = Factura(servicio="establecimiento",lista_productos=servicios3F3)
+
+    funeraria3.getFacturasPorPagar().extend([factura1EF3,factura2EF3,factura3EF3])
+     
+  
     ventanaInicio.ventanaInicio()
 
 

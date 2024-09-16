@@ -242,5 +242,11 @@ class Establecimiento:
 
     def setListadoProveedoresVehiculos(self,listado):
         self._listadoProveedoresVehiculos = listado
+    
+    def getListadoProveedores(self):
+        return self._listadoProveedores
+
+    def setListadoProveedores(self,lista):
+        self._listadoProveedores = lista
 
     

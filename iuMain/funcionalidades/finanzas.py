@@ -54,7 +54,7 @@ def funcionalidadFinanzas(frame):
 
             
             elif indiceServicios == "Pago empleados":
-                pass
+                pagoEmpleados(frame,funeraria)
             
             btnContinuar.destroy()
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda:datosInicio())
@@ -117,7 +117,7 @@ def pagoFacturas(frame, funeraria):
     titulo(frame, "Pago Facturas")
     texto= tk.Label(frame,text=f"Las facturas disponibles para la funeraria {funeraria.getNombre()} son:")
     texto.pack(side="top",pady=5)
-    facturas = funeraria.getFacturasPorPagar()
+    facturas1 = funeraria.getFacturasPorPagar()
     global current_frame,separador
     if current_frame:
         current_frame.destroy()
@@ -125,22 +125,27 @@ def pagoFacturas(frame, funeraria):
         separador.destroy()
     frameSeparador=tk.Frame(frame)
     frameSeparador.pack(pady=10)
-    if(len(facturas) > 0):
-        valorFactura = frame1(frame,["Facturas"],[facturas])
+    if(len(facturas1) > 0):
+        valorFactura = frame1(frame,["Facturas"],[facturas1])
+        def facturas():
+            factura = facturas1[(valorFactura.getValores())[0]]
+            texto = funeraria.cobroFacturas(factura)
+            tk.messagebox.showinfo("",texto)
+            funcionalidadFinanzas(frame)
+            
+            
 
     else:
         tk.messagebox.showinfo("", "No hay facturas disponibles en la funeraria")
         funcionalidadFinanzas(frame)
 
-    btnContinuar= tk.Button(frame,text="Continuar",)
+    btnContinuar= tk.Button(frame,text="Continuar",command=lambda:facturas())
     btnContinuar.pack(side="top",pady=10)
 
-
-
+def pagoEmpleados(frame,funeraria):
     
 
-def pagoEmpleados(frame,funeraria):
-    pass
+    
 def credito(frame,funeraria):
     pass
 def reajusteDinero(frame,funeraria):
