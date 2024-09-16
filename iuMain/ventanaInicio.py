@@ -13,24 +13,20 @@ def irVentanaPrincipal():
 def salir():
     ventana.quit()
 
+def descripcion(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+        
+    tk.Label(frame,text="Funeraria Rosario te brinda un servicio de calidad en tus ceremonias fúnebres").pack(pady=4)
+
+
 def ventanaInicio():
 
     #Objeto tipo ventana
     global ventana , indiceValor, button100, imagenes, hojasVida, label00, label01, label10, label11, indiceImagenes, imagenesProyecto, indiceImagenP4, labelP4
     ventana = tk.Tk()
     ventana.geometry("600x400")
-    #Objeto de menú
-    menuPrincipal= tk.Menu(ventana)
 
-    #Asocial el objeto
-    ventana.config(menu = menuPrincipal)
-
-    #Crear menu opciones
-    opciones = tk.Menu(menuPrincipal, tearoff=0)
-    menuPrincipal.add_cascade(label="Opciones",menu=opciones)
-    opciones.add_command(label="Descripcion") #,command=mostrarDescripcion)
-    opciones.add_separator()
-    opciones.add_command(label="Salir",command=salir)
 
     #Generacion de los contenedores principales 
     #Frame principal izquierda (P1)
@@ -65,10 +61,27 @@ def ventanaInicio():
         font=("Helvetica", 14, "bold"),  # Fuente más elegante
         wraplength=250,  # Limitar el largo del texto
         justify="center",
-        padx=30,  # Padding interno para más espacio
-        pady=30
+        padx=20,  # Padding interno para más espacio
+        pady=20
     )
+
     label_bienvenida.pack(expand=True,fill = "both", padx=10, pady=10)
+
+    #Objeto de menú
+    menuPrincipal= tk.Menu(ventana)
+
+    #Asocial el objeto
+    ventana.config(menu = menuPrincipal)
+
+    frmDescripcion =tk.Frame(frameArribaIzquierda)
+    frmDescripcion.pack(pady=2)
+
+    #Crear menu opciones
+    opciones = tk.Menu(menuPrincipal, tearoff=0)
+    menuPrincipal.add_cascade(label="Opciones",menu=opciones)
+    opciones.add_command(label="Descripcion",command=lambda:descripcion(frmDescripcion)) #,command=mostrarDescripcion)
+    opciones.add_separator()
+    opciones.add_command(label="Salir",command=salir)
     
 
     #Frame secundario abajo izquierda (P4)

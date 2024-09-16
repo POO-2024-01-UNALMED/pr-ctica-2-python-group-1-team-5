@@ -36,7 +36,7 @@ class FieldFrame(Frame):
             entry = Entry(entrada)
             
             # Configurar el valor por defecto
-            #entry.insert(0, valor)
+            entry.insert(0, valor)
             
             # Configurar si es editable o no
             entry.config(state=tk.NORMAL if editable else tk.DISABLED)
@@ -150,13 +150,13 @@ class tablas(Frame):
     def widget(self):
         # Crear encabezados de columna
         for i, c in enumerate(self.etiquetas):
-            etiqueta = Label(self.secundario, text=c,borderwidth=2, relief="solid", width=13, height=2, bg="lightgray", font=('Helvetica', 11, 'bold'))
+            etiqueta = Label(self.secundario, text=c,borderwidth=2, relief="solid", width=12, height=1, bg="lightgray", font=('Helvetica', 11, 'bold'))
             etiqueta.grid(row=i,column=0,padx=2,pady=3)
 
         # Crear filas de valores
         for a, fila in enumerate(self.valores):
             for i, valor in enumerate(fila):
-                valor_label = Label(self.secundario, text=valor, borderwidth=1, relief="solid", width=15, height=2)
+                valor_label = Label(self.secundario, text=valor, borderwidth=1, relief="solid", width=25, height=1)
                 valor_label.grid(row=a, column=i+1, padx=2, pady=1)
 
  

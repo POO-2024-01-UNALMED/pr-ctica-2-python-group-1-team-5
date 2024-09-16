@@ -338,6 +338,7 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
                     pass
                 if len(nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)) ==1:
                     tk.messagebox.showinfo("Inventario Disponible", f"El cementerio seleccionado solo tiene una {tipo2} disponible\n El cliente {cliente} se agregará a la {tipo2} {nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]}")
+                    organizarIglesia(frame,nuevoCementerio,cliente)
                 else:
                     respuesta = tk.messagebox.askyesno("Inventario Recomendado", f"Se encontró la opción más adecuada en cuanto a tamaño \n Desea agregar trasladar al cliente a esta {tipo2}")
                     ventanaInventario = tk.Toplevel()
@@ -349,7 +350,7 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
                         urna =nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
                         print(urna)
                         tablas(ventanaInventario,[f"{tipo2}","Tipo"],[[urna],[urna.getTipo()]])
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarIglesia(frame,nuevoCementerio,cliente))
+                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarIglesia(frame,nuevoCementerio,cliente,ventanaInventario))
                         btnContinuar.pack(side="top",pady=10)
                     else:
                         dispoInventario = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
@@ -361,7 +362,7 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
                         IDs=list(p for p in range(0,len(dispoInventario)))
                         tablas(ventanaInventario,[f"{tipo2}","Tipo","IDs"],[dispoInventario,tipos,IDs])
                         
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda: organizarIglesia(frame,nuevoCementerio,cliente))
+                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda: organizarIglesia(frame,nuevoCementerio,cliente,ventanaInventario))
                         btnContinuar.pack(side="top",pady=10)
                         
 
@@ -371,7 +372,10 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
     btnContinuar.pack(side="top",pady=10)
 
 
-def organizarIglesia(frame,nuevoCementerio,cliente):
+def organizarIglesia(frame,nuevoCementerio,cliente,ventanaInventario=None):
+
+    if ventanaInventario!=None:
+        ventanaInventario.destroy()
         
     titulo(frame,"Organización de los familiares dentro de la iglesia")
     iglesia =nuevoCementerio.organizarIglesia(cliente)

@@ -16,8 +16,33 @@ def framePrincipal(frame):
     for widget in frame.winfo_children():
         widget.destroy()
     
-    etiquetaInicial = tk.Label(frame,text="Inicio aplicación")
-    etiquetaInicial.pack(pady=20)
+    etiquetaInicial = tk.Label(frame, 
+                 text="Funeraria Rosario, su muerte mi salario",
+                 bg="#92abc3",   # Color de fondo de la etiqueta
+                 fg="#333333",   # Color del texto
+                 font=("Helvetica", 16, "bold"),  # Tipo y tamaño de fuente
+                 padx=10,        # Espacio interno horizontal
+                 pady=10,        # Espacio interno vertical
+                 relief="raised",  # Estilo del borde
+                 borderwidth=2)  # Ancho del borde
+    etiquetaInicial.pack(pady=10)
+
+    tk.Label(frame,text="Lo invitamos a consultar nuestros servicios en el menú de Procesos y consultas",
+                 bg="#8ad0b2",   # Color de fondo de la etiqueta
+                 fg="#333333",   # Color del texto
+                 font=("Helvetica", 16, "bold"),  # Tipo y tamaño de fuente
+                 padx=10,        # Espacio interno horizontal
+                 pady=10,        # Espacio interno vertical
+                 relief="raised",  # Estilo del borde
+                 borderwidth=2).pack(pady=6) 
+
+
+
+
+
+
+def ayudaFunct():
+    tk.messagebox.showinfo("Ayuda", "Nombres desarrolladores: \n-Violeta Gomez\n-Andres Perez\n-Sebastian Guerra")
 
 
 #Aplicacion
@@ -87,13 +112,17 @@ def ventanaPrincipal():
 
     menuPrincipal.add_cascade(label="Procesos y consultas",menu=procesos)
     procesos.add_command(label="Cremación",command=lambda:cremacion.funcionalidadCrematorio(zona2))
+    procesos.add_separator()
     procesos.add_command(label="Exhumacion",command=lambda:exhumacion.funcionalidadExhumacion(zona2))
+    procesos.add_separator()
     procesos.add_command(label="Entierro",command=lambda:entierro.funcionalidadEntierro(zona2))
+    procesos.add_separator()
     procesos.add_command(label="Finanzas",command=lambda:finanzas.funcionalidadFinanzas(zona2))
 
     #Menú ayuda
     ayuda=tk.Menu(menuPrincipal,tearoff=0)
 
     menuPrincipal.add_cascade(label="Ayuda",menu=ayuda)
+    ayuda.add_command(label="Informacion",command=ayudaFunct)    
 
     framePrincipal(zona2)
