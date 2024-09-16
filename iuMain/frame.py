@@ -113,7 +113,7 @@ class frame1(Frame):
             etiqueta = Label(self.secundario, text=etiquetaFor)
             etiqueta.grid(row=i,column=0,padx=5,pady=5,sticky="e")
             self.etiquetasAlmacenadas.append(etiqueta) 
-            opciones = ttk.Combobox(self.secundario, values=self.opciones[i], state="readonly")
+            opciones = ttk.Combobox(self.secundario, values=self.opciones[i], state="readonly",width=30)
             opciones.grid(row=i,column=1,padx=5,pady=5,sticky="w")
             self.opcionesAlmacenadas.append(opciones)
             

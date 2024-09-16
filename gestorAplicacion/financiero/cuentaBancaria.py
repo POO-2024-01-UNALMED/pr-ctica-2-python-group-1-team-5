@@ -238,5 +238,7 @@ Porcentaje por pagar: {}""".format(
         self._saldo = (self._bolsilloTrabajadores + self._bolsilloInventario +
                       self._bolsilloTransporte + self._bolsilloEstablecimientos +
                       self._bolsilloPagoCredito)
-
+   
+    def obtenerSaldo(self):
+        return self._saldo
     

@@ -25,6 +25,7 @@ class Factura():
         self._listaProductos = lista_productos if lista_productos else []
         self._porcentajeCreditoPorPagar = 1.0
         self._servicio = servicio
+        self._nombre = f"Factura con ID: {self.getID()}"
         
         if not lista_productos:
             self.calcularTotal()
@@ -77,7 +78,9 @@ class Factura():
         
         self._listaProductos = productos
 
-    
+    def __str__(self):
+        return self._nombre
+        
     # Getters para atributos de clase
     @classmethod
     def getIVA(cls):
@@ -174,3 +177,9 @@ class Factura():
     
     def setValorInicial(self, valorInicial):
         self._valorInicial = valorInicial
+
+    def getNombre(self):
+        return self._nombre
+
+    def setNombre(self,nombre):
+        self._nombre = nombre

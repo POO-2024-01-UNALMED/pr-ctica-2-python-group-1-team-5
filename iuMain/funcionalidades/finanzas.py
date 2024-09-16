@@ -48,6 +48,13 @@ def funcionalidadFinanzas(frame):
             print(indiceServicios)
             if indiceServicios == "Cobro clientes":
                 cobroClientes(frame,funeraria)
+
+            elif indiceServicios == "Pagar Facturas":
+                pagoFacturas(frame,funeraria)
+
+            
+            elif indiceServicios == "Pago empleados":
+                pass
             
             btnContinuar.destroy()
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda:datosInicio())
@@ -67,42 +74,77 @@ def cobroClientes(frame,funeraria):
     frameSeparador=tk.Frame(frame)
     frameSeparador.pack(pady=10)
     valorCementerio = frame1(frame,etiqueta,[cementerios])
-    def clientes():
-        indice1000 = 0
-        cementerio1 = cementerios[(valorCementerio.getValores())[0]]
-        print(cementerio1)
-        clientes = cementerio1.getClientes()
-        clientesFacturas = []
-        if(len(clientes) > 0):
-            for cliente in clientes:
-                if(len(cliente.getListadoFacturas()) > 0):
-                    indice1000 += 1
-                    clientesFacturas.append(cliente)
+    def clientes(boton):
+        if valorCementerio.continuar():
+            valorCementerio.bloquearOpciones()
+            boton.destroy()
+            indice1000 = 0
+            cementerio1 = cementerios[(valorCementerio.getValores())[0]]
+            print(cementerio1)
+            clientes = cementerio1.getClientes()
+            clientesFacturas = []
+            if(len(clientes) > 0):
+                for cliente in clientes:
+                    if(len(cliente.getListadoFacturas()) > 0):
+                        indice1000 += 1
+                        clientesFacturas.append(cliente)
         
-        if(indice1000 == 0):
-            tk.messagebox.showinfo("", "No hay clientes con facturas disponibles")
-            funcionalidadFinanzas(frame)
-
-        else:
-            valoresClientes=frame1(frame,["Clientes"],[clientesFacturas])
-            frameSeparador=tk.Frame(frame)
-            frameSeparador.pack(pady=10)
-            def cobroCliente():
-                cliente = clientesFacturas[(valoresClientes.getValores())[0]]
-                funeraria.cobroServiciosClientes(cliente)
-                texto = "Cobro de  facturas del cliente: "+ cliente.getNombre()+", realizado correctamente"
-                tk.messagebox.showinfo("",texto)
+            if(indice1000 == 0):
+                tk.messagebox.showinfo("", "No hay clientes con facturas disponibles")
                 funcionalidadFinanzas(frame)
 
+            else:
+                texto= tk.Label(frame,text=f"Los clientes disponibles para el cementerio {cementerio1.getNombre()} son:")
+                texto.pack(side="top",pady=5)
+                valoresClientes=frame1(frame,["Clientes"],[clientesFacturas])
+                frameSeparador=tk.Frame(frame)
+                frameSeparador.pack(pady=10)
+                def cobroCliente():
+                    cliente = clientesFacturas[(valoresClientes.getValores())[0]]
+                    funeraria.cobroServiciosClientes(cliente)
+                    texto = "Cobro de  facturas del cliente: "+ cliente.getNombre()+", realizado correctamente"
+                    tk.messagebox.showinfo("",texto)
+                    funcionalidadFinanzas(frame)
 
-            btnContinuar= tk.Button(valoresClientes,text="Continuar", command=lambda:cobroCliente())
-            btnContinuar.grid(row=1, column=2)
+
+                btnContinuar= tk.Button(valoresClientes,text="Continuar", command=lambda:cobroCliente())
+                btnContinuar.grid(row=1, column=2)
         
-
-        
-
-    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:clientes())
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:clientes(btnContinuar))
     btnContinuar.pack(side="top",pady=10)
+
+def pagoFacturas(frame, funeraria):
+    titulo(frame, "Pago Facturas")
+    texto= tk.Label(frame,text=f"Las facturas disponibles para la funeraria {funeraria.getNombre()} son:")
+    texto.pack(side="top",pady=5)
+    facturas = funeraria.getFacturasPorPagar()
+    global current_frame,separador
+    if current_frame:
+        current_frame.destroy()
+    if separador:
+        separador.destroy()
+    frameSeparador=tk.Frame(frame)
+    frameSeparador.pack(pady=10)
+    if(len(facturas) > 0):
+        valorFactura = frame1(frame,["Facturas"],[facturas])
+
+    else:
+        tk.messagebox.showinfo("", "No hay facturas disponibles en la funeraria")
+        funcionalidadFinanzas(frame)
+
+    btnContinuar= tk.Button(frame,text="Continuar",)
+    btnContinuar.pack(side="top",pady=10)
+
+
+
+    
+
+def pagoEmpleados(frame,funeraria):
+    pass
+def credito(frame,funeraria):
+    pass
+def reajusteDinero(frame,funeraria):
+    pass
 
 
 

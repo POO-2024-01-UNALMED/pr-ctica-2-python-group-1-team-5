@@ -237,4 +237,10 @@ class Establecimiento:
     def setHorarioEventos(self, horarioEventos: List[str]):
         self.horarioEventos = horarioEventos
 
+    def getListadoProveedoresVehiculos(self):
+        return self._listadoProveedoresVehiculos
+
+    def setListadoProveedoresVehiculos(self,listado):
+        self._listadoProveedoresVehiculos = listado
+
     

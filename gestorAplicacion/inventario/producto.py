@@ -18,6 +18,12 @@ class Producto():
         self._urna = urna
         self._tumba = tumba
         Producto._productos.append(self)
+        if self._vehiculo != None:
+            self._precio = vehiculo.getTipoVehiculo().getPrecio()
+            self._nombre = vehiculo.getTipoVehiculo().name
+            self._cantidad = 1
+
+
     
     def evento(self, cliente) :
         concepto = None

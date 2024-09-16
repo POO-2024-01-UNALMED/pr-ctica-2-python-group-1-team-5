@@ -17,6 +17,8 @@ from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.inventario.producto import Producto
+from gestorAplicacion.inventario.tipoVehiculo import TipoVehiculo
+from gestorAplicacion.inventario.vehiculo import Vehiculo
 
 from iuMain.funcionalidades import cremacion
 from iuMain.funcionalidades import exhumacion
@@ -2736,6 +2738,125 @@ if __name__ == "__main__":
     clienteF316ET.getListadoFacturas().append(facturaCF316ET)
     clienteF317ET.getListadoFacturas().append(facturaCF317ET)
     clienteF318ET.getListadoFacturas().append(facturaCF318ET)
+
+    #Proveedores
+    cuentalocal5 = CuentaBancaria(124799,"Yamaha Vehiculos",banco1,273648)
+    cuentalocal6 = CuentaBancaria(138474,"BMW Vehiculos",banco2,273648)
+    cuentalocal7 = CuentaBancaria(384649,"AUDI Vehiculos",banco3,273648)
+
+    local5 = Establecimiento("Yamaha Vehiculos",500,cuentalocal5)
+    local6 = Establecimiento("BMW Vehiculos",500,cuentalocal5)
+    local7 = Establecimiento("AUDI Vehiculos",500,cuentalocal6)
+    funeraria1.getListadoProveedoresVehiculos().append(local5)
+    funeraria1.getListadoProveedoresVehiculos().append(local6)
+    funeraria1.getListadoProveedoresVehiculos().append(local7)
+    	
+    funeraria2.getListadoProveedoresVehiculos().append(local5)
+    funeraria2.getListadoProveedoresVehiculos().append(local6)
+    funeraria2.getListadoProveedoresVehiculos().append(local7)
+    	
+    funeraria3.getListadoProveedoresVehiculos().append(local5)
+    funeraria3.getListadoProveedoresVehiculos().append(local6)
+    funeraria3.getListadoProveedoresVehiculos().append(local7)
+
+    #Facturas Funeraria 1
+
+    #Vehiculos
+    vehiculo1F1 = Vehiculo(TipoVehiculo.BERLINA, funeraria1, "Rojo", "HGF372",70000,4)
+    vehiculo2F1 = Vehiculo(TipoVehiculo.CARROZA, funeraria1, "Verde", "HGF374",150000,6)
+    vehiculo3F1 = Vehiculo(TipoVehiculo.FAETON, funeraria1, "Amarillo", "HSF374",120000,4)
+    vehiculo4F1 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, funeraria1, "Naranja", "HTR374",80000,1)
+    vehiculo5F1 = Vehiculo(TipoVehiculo.BUS, funeraria1, "Negro", "HGF374",50000,6)
+    vehiculo6F1 = Vehiculo(TipoVehiculo.COCHERESPETO, funeraria1, "Cafe", "HYJ374",75000,8)
+    vehiculo7F1 = Vehiculo(TipoVehiculo.CUPE, funeraria1, "Blanco", "HRG374",65000,4)
+    vehiculo8F1 = Vehiculo(TipoVehiculo.CAMION, funeraria1, "Violeta", "DFG374",69000,5)
+    
+    producto1F1 = Producto(establecimiento=local5,vehiculo=vehiculo1F1)
+    producto2F1 = Producto(establecimiento=local5,vehiculo=vehiculo2F1)
+    producto3F1 = Producto(establecimiento=local5,vehiculo=vehiculo3F1)
+    producto4F1 = Producto(establecimiento=local6,vehiculo=vehiculo4F1)
+    producto5F1 = Producto(establecimiento=local6,vehiculo=vehiculo5F1)
+    producto6F1 = Producto(establecimiento=local6,vehiculo=vehiculo6F1)
+    producto7F1 = Producto(establecimiento=local7,vehiculo=vehiculo7F1)
+    producto8F1 = Producto(establecimiento=local7,vehiculo=vehiculo8F1)
+
+    vehiculos1F1 = [producto1F1, producto2F1]
+    vehiculos2F1 = [producto3F1, producto4F1]
+    vehiculos3F1 = [producto5F1, producto6F1]
+    vehiculos4F1 = [producto7F1, producto8F1]
+
+    factura1VF1 = Factura(servicio="vehiculo",lista_productos=vehiculos1F1)
+    factura2VF1 = Factura(servicio="vehiculo",lista_productos=vehiculos2F1)
+    factura3VF1 = Factura(servicio="vehiculo",lista_productos=vehiculos3F1)
+    factura4VF1 = Factura(servicio="vehiculo",lista_productos=vehiculos4F1)
+
+    funeraria1.getFacturasPorPagar().extend([factura1VF1,factura2VF1,factura3VF1,factura4VF1])
+       
+    #Facturas Funeraria 2
+
+    #Vehiculos
+    vehiculo1F2 = Vehiculo(TipoVehiculo.BERLINA, funeraria2, "Rojo", "HGF372",70000,4)
+    vehiculo2F2 = Vehiculo(TipoVehiculo.CARROZA, funeraria2, "Verde", "HGF374",150000,6)
+    vehiculo3F2 = Vehiculo(TipoVehiculo.FAETON, funeraria2, "Amarillo", "HSF374",120000,4)
+    vehiculo4F2 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, funeraria2, "Naranja", "HTR374",80000,1)
+    vehiculo5F2 = Vehiculo(TipoVehiculo.BUS, funeraria2, "Negro", "HGF374",50000,6)
+    vehiculo6F2 = Vehiculo(TipoVehiculo.COCHERESPETO, funeraria2, "Cafe", "HYJ374",75000,8)
+    vehiculo7F2 = Vehiculo(TipoVehiculo.CUPE, funeraria2, "Blanco", "HRG374",65000,4)
+    vehiculo8F2 = Vehiculo(TipoVehiculo.CAMION, funeraria2, "Violeta", "DFG374",69000,5)
+    
+    producto1F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto2F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto3F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto4F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto5F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto6F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F2)
+    producto7F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F1)
+    producto8F2 = Producto(establecimiento=local5,vehiculo=vehiculo1F1)
+
+    vehiculos1F2 = [producto1F1, producto2F2]
+    vehiculos2F2 = [producto3F1, producto4F2]
+    vehiculos3F2 = [producto5F1, producto6F2]
+    vehiculos4F2 = [producto7F1, producto8F2]
+
+    factura1VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos1F2)
+    factura2VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos2F2)
+    factura3VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos3F2)
+    factura4VF2 = Factura(servicio="vehiculo",lista_productos=vehiculos4F2)
+
+    funeraria2.getFacturasPorPagar().extend([factura1VF2,factura2VF2,factura3VF2,factura4VF2])
+   
+    #Facturas Funeraria 3
+
+    #Vehiculos
+    vehiculo1F3 = Vehiculo(TipoVehiculo.BERLINA, funeraria3, "Rojo", "HGF372",70000,4)
+    vehiculo2F3 = Vehiculo(TipoVehiculo.CARROZA, funeraria3, "Verde", "HGF374",150000,6)
+    vehiculo3F3 = Vehiculo(TipoVehiculo.FAETON, funeraria3, "Amarillo", "HSF374",120000,4)
+    vehiculo4F3 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, funeraria3, "Naranja", "HTR374",80000,1)
+    vehiculo5F3 = Vehiculo(TipoVehiculo.BUS, funeraria3, "Negro", "HGF374",50000,6)
+    vehiculo6F3 = Vehiculo(TipoVehiculo.COCHERESPETO, funeraria3, "Cafe", "HYJ374",75000,8)
+    vehiculo7F3 = Vehiculo(TipoVehiculo.CUPE, funeraria3, "Blanco", "HRG374",65000,4)
+    vehiculo8F3 = Vehiculo(TipoVehiculo.CAMION, funeraria3, "Violeta", "DFG374",69000,5)
+    
+    producto1F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto2F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto3F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto4F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto5F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto6F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto7F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+    producto8F3 = Producto(establecimiento=local5,vehiculo=vehiculo1F3)
+
+    vehiculos1F3 = [producto1F3, producto2F3]
+    vehiculos2F3 = [producto3F3, producto4F3]
+    vehiculos3F3 = [producto5F3, producto6F3]
+    vehiculos4F3 = [producto7F3, producto8F3]
+
+    factura1VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos1F3)
+    factura2VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos2F3)
+    factura3VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos3F3)
+    factura4VF3 = Factura(servicio="vehiculo",lista_productos=vehiculos4F3)
+
+    funeraria3.getFacturasPorPagar().extend([factura1VF3,factura2VF3,factura3VF3,factura4VF3])
 
     ventanaInicio.ventanaInicio()
 
