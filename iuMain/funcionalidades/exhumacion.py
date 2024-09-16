@@ -98,6 +98,8 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
                 cementerios.remove(auxCementerio)
 
         frameCementerios=frame1(frame,[f"Cementerios {tipo}","Opciones para traslado"],[cementerios,opciones])
+
+    
     
     def porInventario(entradaInventario,inventarioDefault,traslado):
         if entradaInventario.continuar():
@@ -110,7 +112,8 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
                 num=1
 
             except:
-                errorNumeros(entradaInventario.getValores()[0],"El ID ingresado no es correcto")
+                
+                errorIds(entradaInventario.getValores()[0],"El ID ingresado no es correcto")
                 entradaInventario.borrar()
             if num==1:
                 texto=f"Has seleccionado al cliente {cliente}\n ¿Deseas continuar?"
@@ -235,8 +238,8 @@ def siguiente(frame, cliente,traslado):
             
                 pesoEstatura1=float(datosPesoEstatura.getValores()[0])
                 if traslado=="cenizas":
-                    if float(pesoEstatura)>120 or float(pesoEstatura)<0:
-                        errorPeso(pesoEstatura,120)
+                    if float(pesoEstatura1)>120 or float(pesoEstatura1)<0:
+                        errorPeso(pesoEstatura1,120)
                 else:
                     if float(pesoEstatura)>2 or float(pesoEstatura)<0:
                         errorEstatura(pesoEstatura,2)

@@ -75,7 +75,3 @@ class errorEstatura(errorNumeros):
             raise super().__init__("El valor de la estatura del cliente no es correcta")
 
         
-
-
-    
-    

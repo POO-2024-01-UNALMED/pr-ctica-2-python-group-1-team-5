@@ -10,6 +10,9 @@ def irVentanaPrincipal():
     ventana.destroy()
     ventanaPrincipal.ventanaPrincipal()
 
+def salir():
+    ventana.quit()
+
 def ventanaInicio():
 
     #Objeto tipo ventana
@@ -27,7 +30,7 @@ def ventanaInicio():
     menuPrincipal.add_cascade(label="Opciones",menu=opciones)
     opciones.add_command(label="Descripcion") #,command=mostrarDescripcion)
     opciones.add_separator()
-    opciones.add_command(label="Salir")
+    opciones.add_command(label="Salir",command=salir)
 
     #Generacion de los contenedores principales 
     #Frame principal izquierda (P1)

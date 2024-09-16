@@ -19,6 +19,7 @@ def framePrincipal(frame):
     etiquetaInicial = tk.Label(frame,text="Inicio aplicación")
     etiquetaInicial.pack(pady=20)
 
+
 #Aplicacion
 def aplicacion():
     ventanaDescripcion = tk.Toplevel()
@@ -87,7 +88,7 @@ def ventanaPrincipal():
     menuPrincipal.add_cascade(label="Procesos y consultas",menu=procesos)
     procesos.add_command(label="Cremación",command=lambda:cremacion.funcionalidadCrematorio(zona2))
     procesos.add_command(label="Exhumacion",command=lambda:exhumacion.funcionalidadExhumacion(zona2))
-    procesos.add_command(label="Cementerio",command=lambda:entierro.funcionalidadEntierro(zona2))
+    procesos.add_command(label="Entierro",command=lambda:entierro.funcionalidadEntierro(zona2))
     procesos.add_command(label="Finanzas",command=lambda:finanzas.funcionalidadFinanzas(zona2))
 
     #Menú ayuda

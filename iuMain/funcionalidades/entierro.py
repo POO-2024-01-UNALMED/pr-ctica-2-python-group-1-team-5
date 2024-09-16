@@ -24,7 +24,7 @@ def titulo(frame,titulo):
 
 def funcionalidadEntierro(frame):
 
-    titulo(frame,"Servicio de Cremación")
+    titulo(frame,"Servicio de Entierro")
 
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
     listaCliente=["Mayor de edad","Menor de edad"]
