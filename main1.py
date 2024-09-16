@@ -757,9 +757,9 @@ if __name__ == "__main__":
 
     #Cuentas Bancarias funerarias
     # Cuentas corrientes
-    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 2000000, 500000, 500000, 500000,500000)
-    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 2000000, 500000, 500000, 500000,500000)
-    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 2000000, 500000, 500000, 500000,500000)
+    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 2000000, 500000, 500000, 500000,1000000)
+    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 2000000, 500000, 500000, 500000,1000000)
+    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 2000000, 500000, 500000, 500000,1000000)
     
     #Cuenta ahorros
     cuentaF4= CuentaBancaria(135635, "Todas",banco4, 2030203)
@@ -2955,7 +2955,51 @@ if __name__ == "__main__":
 
     funeraria3.getFacturasPorPagar().extend([factura1EF3,factura2EF3,factura3EF3])
      
-  
+    #Facturas pagadas Funerarias
+
+    vehiculo100F1 = Vehiculo(TipoVehiculo.BERLINA, funeraria1, "Rojo", "HGF372",70000,4)
+    vehiculo100F2 = Vehiculo(TipoVehiculo.CARROZA, funeraria2, "Verde", "HGF374",150000,6)
+    vehiculo100F3 = Vehiculo(TipoVehiculo.FAETON, funeraria3, "Amarillo", "HSF374",120000,4)
+
+    producto100F1 =  Producto(vehiculo=vehiculo100F1,establecimiento= local5)
+    producto100F2 =  Producto(vehiculo=vehiculo100F2,establecimiento= local6)
+    producto100F3 =  Producto(vehiculo=vehiculo100F3,establecimiento= local7)
+		
+    vehiculos100F1 = [producto100F1]
+    vehiculos100F2 = [producto100F2]
+    vehiculos100F3 = [producto100F3]
+
+    factura100VF1 = Factura(lista_productos=vehiculos100F1, servicio="vehiculo")
+    factura100VF2 = Factura(lista_productos=vehiculos100F2, servicio="vehiculo")
+    factura100VF3 = Factura(lista_productos=vehiculos100F3, servicio="vehiculo")
+		
+    servicios100F1 = [productoE7]
+    servicios100F2 = [productoE4]
+    servicios100F3 = [productoE3]
+
+    factura100EF1 = Factura(servicio="establecimiento",lista_productos=servicios100F1)
+    factura100EF2 = Factura(servicio="establecimiento",lista_productos=servicios100F2)
+    factura100EF3 = Factura(servicio="establecimiento",lista_productos=servicios100F3)
+
+    urnas100F1 = [productoI1]
+    urnas100F2 = [productoI2]
+    urnas100F3 = [productoI3]
+    tumbas100F1 = [productoI5]
+    tumbas100F2 = [productoI6]
+    tumbas100F3 = [productoI7]
+    
+    factura100I1F1 = Factura(servicio="inventario",lista_productos=urnas100F1)
+    factura100I2F1 = Factura(servicio="inventario",lista_productos=tumbas100F1)
+    factura100I1F2 = Factura(servicio="inventario",lista_productos=urnas100F2)
+    factura100I2F2 = Factura(servicio="inventario",lista_productos=tumbas100F2)
+    factura100I1F3 = Factura(servicio="inventario",lista_productos=urnas100F3)
+    factura100I2F3 = Factura(servicio="inventario",lista_productos=tumbas100F3)
+
+
+    funeraria1.getListadoFacturas().extend([factura100VF1,factura100EF1,factura100I1F1,factura100I2F1])
+    funeraria2.getListadoFacturas().extend([factura100VF2,factura100EF2,factura100I1F2,factura100I2F2])
+    funeraria3.getListadoFacturas().extend([factura100VF3,factura100EF3,factura100I1F3,factura100I2F3])
+
     ventanaInicio.ventanaInicio()
 
 

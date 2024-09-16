@@ -56,6 +56,12 @@ def funcionalidadFinanzas(frame):
             elif indiceServicios == "Pago empleados":
                 pagoEmpleados(frame,funeraria)
             
+            elif indiceServicios == "Credito":
+                sCredito(frame,funeraria)
+
+            elif indiceServicios == "Reajuste de dinero":
+                reajusteDinero(frame,funeraria)
+            
             btnContinuar.destroy()
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda:datosInicio())
     btnContinuar.pack(side="top",pady=10)
@@ -178,16 +184,143 @@ def pagoEmpleados(frame,funeraria):
     btnContinuar.pack(side="top",pady=10)
     
 
+def sCredito(frame,funeraria):
+    titulo(frame, "Credito")
+    texto= tk.Label(frame,text=f"Los servicios de credito disponibles en la funeraria {funeraria.getNombre()} son:")
+    texto.pack(side="top",pady=5)
+    global current_frame,separador
+    if current_frame:
+        current_frame.destroy()
+    if separador:
+        separador.destroy()
+    frameSeparador=tk.Frame(frame)
+    frameSeparador.pack(pady=10)
+    listaServiciosCredito=["Pedir credito","Pago credito","Ver credito"]
+    valoresCredito = frame1(frame,["Servicios credito: "],[listaServiciosCredito])
+    def opciones(boton):
+        if valoresCredito.continuar():
+            valoresCredito.bloquearOpciones()
+            boton.destroy()
+            indiceServiciosCredito = listaServiciosCredito[valoresCredito.getValores()[0]]
+            if indiceServiciosCredito == "Pedir credito":
+                texto = funeraria.pedirCredito()
+                tk.messagebox.showinfo("",texto)
+                funcionalidadFinanzas(frame)
+            
+            elif indiceServiciosCredito == "Pago credito":
 
+                creditos = funeraria.getCuentaCorriente().getCredito()
 
+                if len(creditos) > 0:
+                    texto= tk.Label(frame,text=f"Los creditos activos en la {funeraria.getNombre()} son:")
+                    texto.pack(side="top",pady=5)
+                    facturasCredito = frame1(frame,["Credito activos: "],[creditos])
+                    def pC(boton):
+                        facturasCredito.bloquearOpciones()
+                        boton.destroy()
+                        credito = creditos[(facturasCredito.getValores())[0]]
+                        texto= tk.Label(frame,text=f"Que porcentaje del credito desea pagar ")
+                        texto.pack(side="top",pady=5)
+                        listaPorcentajes=["100%","80%","60%","40%","20%"]
+                        valoresPorcentajes = frame1(frame,["Servicios credito: "],[listaPorcentajes])
+                        def pCA(boton):
+                            facturasCredito.bloquearOpciones()
+                            boton.destroy()
+                            indicePorcentaje = listaPorcentajes[(valoresPorcentajes.getValores())[0]]
+                            iC = creditos.index(credito)
+                            if indicePorcentaje == "100%":
+                                texto = funeraria.pagarCredito(iC,1.0)
+                                tk.messagebox.showinfo("",texto)
 
-    
+                            elif indicePorcentaje == "80%":
+                                texto = funeraria.pagarCredito(iC,0.8)
+                                tk.messagebox.showinfo("",texto)
 
-    
-def credito(frame,funeraria):
-    pass
+                            elif indicePorcentaje == "60%":
+                                texto = funeraria.pagarCredito(iC,0.6)
+                                tk.messagebox.showinfo("",texto)
+
+                            elif indicePorcentaje == "40%":
+                                texto = funeraria.pagarCredito(iC,0.4)
+                                tk.messagebox.showinfo("",texto)
+
+                            elif indicePorcentaje == "20%":
+                                texto = funeraria.pagarCredito(iC,0.2)
+                                tk.messagebox.showinfo("",texto)
+                            
+                            funcionalidadFinanzas(frame)
+
+                        btnContinuar= tk.Button(frame,text="Continuar",command=lambda:pCA(btnContinuar))
+                        btnContinuar.pack(side="top",pady=10)
+
+                    btnContinuar1= tk.Button(frame,text="Continuar",command=lambda:pC(btnContinuar1))
+                    btnContinuar1.pack(side="top",pady=10)
+                 
+                else: 
+                    tk.messagebox.showinfo("","No hay creditos activos en la funeraria")
+                    funcionalidadFinanzas(frame)
+           
+            elif indiceServiciosCredito == "Ver credito":
+
+                creditos = funeraria.getCuentaCorriente().getCredito()
+
+                if len(creditos) > 0:
+                    texto= tk.Label(frame,text=f"Los creditos activos en la {funeraria.getNombre()} son:")
+                    texto.pack(side="top",pady=5)
+                    facturasCredito2 = frame1(frame,["Credito activos: "],[creditos])
+                    def credito3(boton):
+                        facturasCredito2.bloquearOpciones()
+                        boton.destroy()
+                        credito = creditos[(facturasCredito2.getValores())[0]]
+                        iC2 = creditos.index(credito)
+                        texto = funeraria.getCuentaCorriente().infoCredito(iC2)
+                        tk.messagebox.showinfo("Informe Credito",texto)
+                        funcionalidadFinanzas(frame)
+
+                    btnContinuar1= tk.Button(frame,text="Continuar",command=lambda:credito3(btnContinuar1))
+                    btnContinuar1.pack(side="top",pady=10)
+                 
+                else: 
+                 
+                    tk.messagebox.showinfo("","No hay creditos activos en la funeraria")
+                    funcionalidadFinanzas(frame)
+
+    btnContinuar= tk.Button(frame,text="Continuar",command=lambda:opciones(btnContinuar))
+    btnContinuar.pack(side="top",pady=10)
+
 def reajusteDinero(frame,funeraria):
-    pass
+    titulo(frame, "Reajuste de dinero")
+    texto= tk.Label(frame,text=f"Los servicios de reajuste de dinero disponibles en la {funeraria.getNombre()} son:")
+    texto.pack(side="top",pady=5)
+    global current_frame,separador
+    if current_frame:
+        current_frame.destroy()
+    if separador:
+        separador.destroy()
+    frameSeparador=tk.Frame(frame)
+    frameSeparador.pack(pady=10)
+    listaServiciosAjusteDinero=["Ver informe gastos","Reajuste"]
+    valoresAjusteDinero = frame1(frame,["Servicios reajuste dinero: "],[listaServiciosAjusteDinero])
+    def ajusteDinero():
+        if valoresAjusteDinero.continuar():
+            indiceServiciosReajuste = listaServiciosAjusteDinero[valoresAjusteDinero.getValores()[0]]
+
+            if indiceServiciosReajuste == "Ver informe gastos":
+                texto = funeraria.informeGastosFacturas()
+                tk.messagebox.showinfo("Informe gastos",texto)
+                funcionalidadFinanzas(frame)
+            
+            elif indiceServiciosReajuste == "Reajuste":
+                texto = funeraria.reajusteDinero()
+                tk.messagebox.showinfo("Informe reajuste de dinero",texto)
+                funcionalidadFinanzas(frame)
+
+
+    btnContinuar= tk.Button(frame,text="Continuar",command=lambda:ajusteDinero())
+    btnContinuar.pack(side="top",pady=10)
+
+    
+
 
 
 
