@@ -133,8 +133,6 @@ def pagoFacturas(frame, funeraria):
             tk.messagebox.showinfo("",texto)
             funcionalidadFinanzas(frame)
             
-            
-
     else:
         tk.messagebox.showinfo("", "No hay facturas disponibles en la funeraria")
         funcionalidadFinanzas(frame)
@@ -143,6 +141,46 @@ def pagoFacturas(frame, funeraria):
     btnContinuar.pack(side="top",pady=10)
 
 def pagoEmpleados(frame,funeraria):
+    titulo(frame,"Pago empleados")
+    texto= tk.Label(frame,text=f"Las empleados a los que se les puede liquidar su pago en la funeraria {funeraria.getNombre()} son:")
+    texto.pack(side="top",pady=5)
+    empleados = funeraria.getEmpleados()
+    global current_frame,separador
+    if current_frame:
+        current_frame.destroy()
+    if separador:
+        separador.destroy()
+    frameSeparador=tk.Frame(frame)
+    frameSeparador.pack(pady=10)
+    empleadosDispo = []
+    hayEmpleadosDispo = False
+
+    for i in range(len(empleados)):
+        empleado = empleados[i]
+        if(empleado.getTrabajosHechos() > 0):
+            empleadosDispo.append(empleado) 
+            hayEmpleadosDispo = True
+
+    if not hayEmpleadosDispo:
+        tk.messagebox.showinfo("", "No hay empleados a los que se les pueda liquidar su pago en la funeraria")
+        funcionalidadFinanzas(frame)
+    
+    else:
+        valoresEmpleados=frame1(frame,["Empleados"],[empleadosDispo])
+        def pago():
+            empleado = empleadosDispo[(valoresEmpleados.getValores())[0]]
+            texto = funeraria.pagoTrabajadores(empleado)
+            tk.messagebox.showinfo("",texto)
+            funcionalidadFinanzas(frame)
+
+    
+    btnContinuar= tk.Button(frame,text="Continuar",command=lambda:pago())
+    btnContinuar.pack(side="top",pady=10)
+    
+
+
+
+
     
 
     
