@@ -1,7 +1,7 @@
 class Vehiculo:
     _vehiculos = []
 
-    def __init__(self, tipoVehiculo, funeraria, color, placa, precio, capacidad):
+    def __init__(self, tipoVehiculo, funeraria= None, color= None, placa= None, precio= None, capacidad= None):
         self._tipoVehiculo = tipoVehiculo
         self._funeraria = funeraria
         self._color = color
@@ -11,8 +11,8 @@ class Vehiculo:
         self._estado = True  # True si está disponible, False si no lo está
         self._conductor = None
         self._pasajeros = []
-        
-        funeraria.agregarVehiculo(self)
+        if funeraria != None:
+            funeraria.agregarVehiculo(self)
         Vehiculo._vehiculos.append(self)
 
     def agregarPasajeros(self, familiares):

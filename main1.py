@@ -3199,37 +3199,37 @@ if __name__ == "__main__":
 
     # Creación de 24 objetos de la clase Vehiculo
     
-    """vehiculoProveedor1 = Vehiculo(TipoVehiculo.BERLINA, None, "Negro", "ABC123", 70000, 0)
-    vehiculoProveedor2 = Vehiculo(TipoVehiculo.BERLINA, None, "Blanco", "DEF456", 70000, 0)
-    vehiculoProveedor3 = Vehiculo(TipoVehiculo.BERLINA, None, "Gris", "GHI789", 70000, 0)
+    vehiculoProveedor1 = Vehiculo(TipoVehiculo.BERLINA, None, "Negro", "BERLINA", 70000, 0)
+    vehiculoProveedor2 = Vehiculo(TipoVehiculo.BERLINA, None, "Blanco", "CAMION", 70000, 0)
+    vehiculoProveedor3 = Vehiculo(TipoVehiculo.BERLINA, None, "Gris", "COCHERESPETO", 70000, 0)
 
-    vehiculoProveedor4 = Vehiculo(TipoVehiculo.CARROZA, None, "Negro", "JKL101", 150000, 0)
-    vehiculoProveedor5 = Vehiculo(TipoVehiculo.CARROZA, None, "Blanco", "MNO102", 150000, 0)
-    vehiculoProveedor6 = Vehiculo(TipoVehiculo.CARROZA, None, "Gris", "PQR103", 150000, 0)
+    vehiculoProveedor4 = Vehiculo(TipoVehiculo.CARROZA, None, "Negro", "CUPE", 150000, 0)
+    vehiculoProveedor5 = Vehiculo(TipoVehiculo.CARROZA, None, "Blanco", "COCHERESPETO", 150000, 0)
+    vehiculoProveedor6 = Vehiculo(TipoVehiculo.CARROZA, None, "Gris", "COCHEFUNEBRE", 150000, 0)
 
-    vehiculoProveedor7 = Vehiculo(TipoVehiculo.FAETON, None, "Negro", "STU104", 120000, 0)
-    vehiculoProveedor8 = Vehiculo(TipoVehiculo.FAETON, None, "Blanco", "VWX105", 120000, 0)
-    vehiculoProveedor9 = Vehiculo(TipoVehiculo.FAETON, None, "Gris", "YZA106", 120000, 0)
+    vehiculoProveedor7 = Vehiculo(TipoVehiculo.FAETON, None, "Negro", "COCHERESPETO", 120000, 0)
+    vehiculoProveedor8 = Vehiculo(TipoVehiculo.FAETON, None, "Blanco", "COCHEFUNEBRE", 120000, 0)
+    vehiculoProveedor9 = Vehiculo(TipoVehiculo.FAETON, None, "Gris", "BUS", 120000, 0)
 
-    vehiculoProveedor10 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Negro", "BCD107", 80000, 0)
+    vehiculoProveedor10 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Negro", "CARROZA", 80000, 0)
     vehiculoProveedor11 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Blanco", "EFG108", 80000, 0)
-    vehiculoProveedor12 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Gris", "HIJ109", 80000, 0)
+    vehiculoProveedor12 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Gris", "CARROZA", 80000, 0)
 
     vehiculoProveedor13 = Vehiculo(TipoVehiculo.BUS, None, "Negro", "KLM110", 50000, 0)
-    vehiculoProveedor14 = Vehiculo(TipoVehiculo.BUS, None, "Blanco", "NOP111", 50000, 0)
+    vehiculoProveedor14 = Vehiculo(TipoVehiculo.BUS, None, "Blanco", "BERLINA", 50000, 0)
     vehiculoProveedor15 = Vehiculo(TipoVehiculo.BUS, None, "Gris", "QRS112", 50000, 0)
 
-    vehiculoProveedor16 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Negro", "TUV113", 75000, 0)
-    vehiculoProveedor17 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Blanco", "WXY114", 75000, 0)
-    vehiculoProveedor18 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Gris", "ZAB115", 75000, 0)
+    vehiculoProveedor16 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Negro", "FAETON", 75000, 0)
+    vehiculoProveedor17 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Blanco", "CARROZA", 75000, 0)
+    vehiculoProveedor18 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Gris", "CARROZA", 75000, 0)
 
-    vehiculoProveedor19 = Vehiculo(TipoVehiculo.CUPE, None, "Negro", "CDE116", 65000, 0)
-    vehiculoProveedor20 = Vehiculo(TipoVehiculo.CUPE, None, "Blanco", "FGH117", 65000, 0)
-    vehiculoProveedor21 = Vehiculo(TipoVehiculo.CUPE, None, "Gris", "IJK118", 65000, 0)
+    vehiculoProveedor19 = Vehiculo(TipoVehiculo.CUPE, None, "Negro", "CAMION", 65000, 0)
+    vehiculoProveedor20 = Vehiculo(TipoVehiculo.CUPE, None, "Blanco", "COCHEFUNEBRE", 65000, 0)
+    vehiculoProveedor21 = Vehiculo(TipoVehiculo.CUPE, None, "Gris", "COCHEFUNEBRE", 65000, 0)
 
-    vehiculoProveedor22 = Vehiculo(TipoVehiculo.CAMION, None, "Negro", "LMN119", 69000, 0)
-    vehiculoProveedor23 = Vehiculo(TipoVehiculo.CAMION, None, "Blanco", "OPQ120", 69000, 0)
-    vehiculoProveedor24 = Vehiculo(TipoVehiculo.CAMION, None, "Gris", "RST121", 69000, 0)
+    vehiculoProveedor22 = Vehiculo(TipoVehiculo.CAMION, None, "Negro", "CUPE", 69000, 0)
+    vehiculoProveedor23 = Vehiculo(TipoVehiculo.CAMION, None, "Blanco", "CAMION", 69000, 0)
+    vehiculoProveedor24 = Vehiculo(TipoVehiculo.CAMION, None, "Gris", "CUPE", 69000, 0)
 
     establecimientoProveedor9.agregarVehiculo(vehiculoProveedor1)
     establecimientoProveedor9.agregarVehiculo(vehiculoProveedor2)
@@ -3254,7 +3254,7 @@ if __name__ == "__main__":
     establecimientoProveedor11.agregarVehiculo(vehiculoProveedor15)
     establecimientoProveedor11.agregarVehiculo(vehiculoProveedor22)
     establecimientoProveedor11.agregarVehiculo(vehiculoProveedor23)
-    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor24)"""
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor24)
     
 
     trajesCaballeroF1 =  Producto("Trajes de caballero", 998.0, 22, 10, None, None,None,None)
