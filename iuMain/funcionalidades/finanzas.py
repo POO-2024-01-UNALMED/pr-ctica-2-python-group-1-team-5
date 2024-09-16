@@ -290,9 +290,37 @@ def sCredito(frame,funeraria):
 
 def reajusteDinero(frame,funeraria):
     titulo(frame, "Reajuste de dinero")
-    texto= tk.Label(frame,text=f"Las empleados a los que se les puede liquidar su pago en la funeraria {funeraria.getNombre()} son:")
+    texto= tk.Label(frame,text=f"Los servicios de reajuste de dinero disponibles en la {funeraria.getNombre()} son:")
     texto.pack(side="top",pady=5)
-    pass
+    global current_frame,separador
+    if current_frame:
+        current_frame.destroy()
+    if separador:
+        separador.destroy()
+    frameSeparador=tk.Frame(frame)
+    frameSeparador.pack(pady=10)
+    listaServiciosAjusteDinero=["Ver informe gastos","Reajuste"]
+    valoresAjusteDinero = frame1(frame,["Servicios reajuste dinero: "],[listaServiciosAjusteDinero])
+    def ajusteDinero():
+        if valoresAjusteDinero.continuar():
+            indiceServiciosReajuste = listaServiciosAjusteDinero[valoresAjusteDinero.getValores()[0]]
+
+            if indiceServiciosReajuste == "Ver informe gastos":
+                texto = funeraria.informeGastosFacturas()
+                tk.messagebox.showinfo("Informe gastos",texto)
+                funcionalidadFinanzas(frame)
+            
+            elif indiceServiciosReajuste == "Reajuste":
+                texto = funeraria.reajusteDinero()
+                tk.messagebox.showinfo("Informe reajuste de dinero",texto)
+                funcionalidadFinanzas(frame)
+
+
+    btnContinuar= tk.Button(frame,text="Continuar",command=lambda:ajusteDinero())
+    btnContinuar.pack(side="top",pady=10)
+
+    
+
 
 
 

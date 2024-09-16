@@ -205,7 +205,7 @@ class Funeraria(Establecimiento):
                 facturasTransporte += 1
             elif factura._servicio == "establecimiento":
                 bolsilloEstablecimientos += factura._total
-                facturas_establecimientos += 1
+                facturasEstablecimientos += 1
             elif factura._servicio == "empleado":
                 bolsilloTrabajadores += factura._total
                 facturasTrabajadores += 1
@@ -227,8 +227,8 @@ class Funeraria(Establecimiento):
 
     def reajusteDinero(self):
         funerarias = Establecimiento.filtrarEstablecimiento("funeraria")
-        inventarioMax = 0
         resultado = ""
+        inventarioMax = 0
         transporteMax = 0
         establecimientoMax = 0
         trabajadoresMax = 0
@@ -259,7 +259,7 @@ class Funeraria(Establecimiento):
                     bolsilloPagoCredito += factura._total
 
             if bolsilloInventario > inventarioMax:
-                #inventario_max = bolsillo_inventario
+                inventarioMax = bolsilloInventario
                 inventario = funeraria
             if bolsilloTransporte > transporteMax:
                 transporteMax = bolsilloTransporte
@@ -317,7 +317,7 @@ class Funeraria(Establecimiento):
                 paga += paga * 0.05
             self._cuentaCorriente.transaccion(paga, empleado._cuentaBancaria, "bolsilloTrabajadores")
             empleado._trabajosHechos = 0
-            self._listaFacturas.append(Factura("FacturaTrabajador", paga, "2024", self, "empleado"))
+            self._listaFacturas.append(Factura(precio=paga,servicio="empleado"))
             return (f"El trabajador ha hecho: {trabajos} trabajos,\n"
                     f"Y tiene una calificacion de: {calificacion}\n"
                     f"por lo que obtuvo una paga de: {paga}")
@@ -374,7 +374,7 @@ class Funeraria(Establecimiento):
                 self._cuentaCorriente.depositar(div, "bolsilloEstablecimientos")
 
                 montoCredito += (self._cuentaCorriente._interes * montoCredito)
-                credito = Factura("credito", montoCredito, "2024", self, "credito")
+                credito = Factura(precio=montoCredito,servicio="credito")
                 self._cuentaCorriente._credito.append(credito)
                 return "Credito aceptado"
             else:
