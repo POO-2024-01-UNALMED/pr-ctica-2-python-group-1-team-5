@@ -443,8 +443,8 @@ class Funeraria(Establecimiento):
                 return vehiculo
         return None
     
-    def identificarProductosFaltantes(funeraria):
-        productos_vendidos = Funeraria.calcular_productos_vendidos(funeraria)
+    def identificarProductosFaltantes(self,funeraria):
+        productos_vendidos = Funeraria.calcularProductosVendidos(funeraria)
         productos_faltantes = []
 
         for producto in productos_vendidos:
@@ -461,7 +461,7 @@ class Funeraria(Establecimiento):
                    productos_vendidos.append(producto)
         return productos_vendidos
     
-    def agregarProducto(productos_vendidos, nuevo_producto):
+    def agregarProductoV(productos_vendidos, nuevo_producto):
     # Recorre la lista de productos vendidos para encontrar si el producto ya existe
         for producto in productos_vendidos:
         # Compara el nombre del producto existente con el nuevo producto
@@ -481,6 +481,9 @@ class Funeraria(Establecimiento):
 
     def agregarEmpleado(self, empleado):
         self._empleados.append(empleado)
+    
+    def agregarProductoF(self,producto):
+        super().agregarProducto(producto)
 
 
 
@@ -568,3 +571,24 @@ class Funeraria(Establecimiento):
         self._listaFacturas = listaFacturas
     def getCuentaAhorros(self):
         return self._cuentaAhorros
+    
+    def agregarProveedorVehiculoF(self,Proveedor):
+        super().agregarProveedorVehiculo(Proveedor)
+
+    def agregarProveedorF(self,proveedor):
+        super().agregarProveedor(proveedor)
+
+    def agregarProveedorEmpleadoF(self,proveedor):
+        super().agregarProveedorEmpleado(proveedor)
+    
+    def getListadoProveedoresF(self):
+       return super().getListadoProveedores()
+    
+    def agregarFacturapagada(self,factura):
+        self._listaFacturas.append(factura)
+
+    def getListadoProductosF(self):
+        return super().getListadoProductos()
+    
+    def getListadoProveedoresEmpleadosF(self):
+        return super().getListadoProveedoresEmpleados()

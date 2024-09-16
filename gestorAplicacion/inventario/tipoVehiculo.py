@@ -17,7 +17,7 @@ class TipoVehiculo(Enum):
         self._precio = precio
 
     def __str__(self):
-        return f"Vehiculo tipo {self.name} - Capacidad: {self.capacidad}"
+        return f"Vehículo tipo {self.name} - Capacidad: {self.getCapacidad()}"
     
     #getters 
     

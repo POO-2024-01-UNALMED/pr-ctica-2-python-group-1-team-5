@@ -55,10 +55,10 @@ class Factura():
     def calcularTotal(self):
         self._total = self._precio + (self._precio * self._IVA)
 
-    def agregar_producto(self, producto):
-        self.lista_productos.append(producto)
-        self.precio += producto.getPrecio() * producto.getCantidad()
-        self.calcular_total()
+    def agregarProducto(self, producto):
+        self._listaProductos.append(producto)
+        self._precio += producto.getPrecio() * producto.getCantidad()
+        self.calcularTotal()
     
     def ajustarProductos(self):
         # Nueva lista de productos
