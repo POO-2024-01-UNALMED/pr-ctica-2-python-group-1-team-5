@@ -20,6 +20,7 @@ class Funeraria(Establecimiento):
         self._vehiculos = []
         self._listaFacturasPorPagar = []
         self._listaFacturas = []
+        self._listaFacturasInventario = [] 
 
     def buscarEstablecimientos(self, tipoEstablecimiento: str, cliente):
         establecimientosEvaluar = Establecimiento.buscarPorFuneraria(self, tipoEstablecimiento)
@@ -443,22 +444,25 @@ class Funeraria(Establecimiento):
                 return vehiculo
         return None
     
-    def identificarProductosFaltantes(self,funeraria):
+    def identificarProductosFaltantes(self, funeraria):
+        from gestorAplicacion.inventario.producto import Producto
         productos_vendidos = Funeraria.calcularProductosVendidos(funeraria)
         productos_faltantes = []
 
+        # Filtrar solo productos que son instancias de la clase Producto
         for producto in productos_vendidos:
-            if producto.getCantidadVendida() < 10:
-               productos_faltantes.append(producto)
+            if isinstance(producto, Producto) and producto.getCantidad() < 10:
+                productos_faltantes.append(producto)
 
         return productos_faltantes
     
     def calcularProductosVendidos(funeraria):
+        from gestorAplicacion.inventario.producto import Producto
         productos_vendidos = []
-        for factura in funeraria.getListadoFacturas():
+        for factura in funeraria.getListaFacturasInventario():
             for producto in factura.getListaProductos():
-                if producto not in productos_vendidos:
-                   productos_vendidos.append(producto)
+                if isinstance(producto, Producto) and producto not in productos_vendidos:
+                    productos_vendidos.append(producto)
         return productos_vendidos
     
     def agregarProductoV(productos_vendidos, nuevo_producto):
@@ -552,6 +556,12 @@ class Funeraria(Establecimiento):
             indice += 1
 
         return gestionTransporte
+    def getListaFacturasInventario(self):
+        return self._listaFacturasInventario
+    def set_listaFacturasInventario(self, listaFacturasInventario):
+        self._listaFacturasInventario = listaFacturasInventario
+    def agregarFacturaInventario(self, factura):
+        self._listaFacturasInventario.append(factura)
 
     def getEmpleados(self):
         return self._empleados

@@ -3373,10 +3373,10 @@ if __name__ == "__main__":
         # productos para las facturas de la funeraria 1
       
         
-    trajesCaballeroVendidosF1 =  Producto("Trajes de caballero", 998.0, 10, 10)
-    vestidosDamaVendidosF1 =  Producto("Vestidos de dama", 1200.0, 20, 20)
+    trajesCaballeroVendidosF1 =  Producto("Trajes de caballero", 998.0, 1, 10)
+    vestidosDamaVendidosF1 =  Producto("Vestidos de dama", 1200.0, 2, 20)
     recuerdoVendidosF1 =  Producto("Medalla conmemorativa", 100.0, 12, 12) 
-    recuerdo2VendidosF1 =  Producto("Joyas conmemorativas", 250.0, 15, 15) 
+    recuerdo2VendidosF1 =  Producto("Joyas conmemorativas", 250.0, 5, 15) 
     recuerdo3VendidosF1 =  Producto("Álbumes de fotos", 300.0, 18, 18) 
     recuerdo4VendidosF1 =  Producto("Portarretratos digitales", 120.0, 45, 45) 
     velasRojasVendidosF1 =  Producto("Velas rojas", 300.0, 5, 5) 
@@ -3394,12 +3394,12 @@ if __name__ == "__main__":
         # productos para las facturas de la funeraria 2
     trajesCaballeroVendidosF2 =  Producto("Trajes de caballero", 998.0, 25, 25) 
     vestidosDamaVendidosF2 =  Producto("Vestidos de dama", 1200.0, 9, 9) 
-    recuerdoVendidosF2 =  Producto("Medalla conmemorativa", 100.0, 20, 20)
+    recuerdoVendidosF2 =  Producto("Medalla conmemorativa", 100.0, 2, 20)
     recuerdo2VendidosF2 =  Producto("Joyas conmemorativas", 250.0, 10, 10) 
-    recuerdo3VendidosF2 =  Producto("Álbumes de fotos", 300.0, 12, 12) 
+    recuerdo3VendidosF2 =  Producto("Álbumes de fotos", 300.0, 3, 12) 
     recuerdo4VendidosF2 =  Producto("Portarretratos digitales", 120.0, 45, 45)
     velasRojasVendidosF2 =  Producto("Velas rojas", 300.0, 20, 20) 
-    velasBlancasVendidosF2 =  Producto("Velas blancas", 300.0, 40, 40) 
+    velasBlancasVendidosF2 =  Producto("Velas blancas", 300.0, 9, 40) 
     facturaF2_1.agregarProducto(trajesCaballeroVendidosF2)
     facturaF2_2.agregarProducto(vestidosDamaVendidosF2)
     facturaF2_3.agregarProducto(recuerdoVendidosF2)
@@ -3415,10 +3415,10 @@ if __name__ == "__main__":
     vestidosDamaVendidosF3 =  Producto("Vestidos de dama", 1200.0, 12, 12) 
     recuerdoVendidosF3 =  Producto("Medalla conmemorativa", 100.0, 25, 25)
     recuerdo2VendidosF3 =  Producto("Joyas conmemorativas", 250.0, 18, 18)
-    recuerdo3VendidosF3 =  Producto("Álbumes de fotos", 300.0, 15, 15)
-    recuerdo4VendidosF3 =  Producto("Portarretratos digitales", 120.0, 35, 35) 
-    velasRojasVendidosF3 =  Producto("Velas rojas", 300.0, 10, 10) 
-    velasBlancasVendidosF3 =  Producto("Velas blancas", 300.0, 50, 50) 
+    recuerdo3VendidosF3 =  Producto("Álbumes de fotos", 300.0, 10, 15)
+    recuerdo4VendidosF3 =  Producto("Portarretratos digitales", 120.0, 5, 35) 
+    velasRojasVendidosF3 =  Producto("Velas rojas", 300.0, 0, 10) 
+    velasBlancasVendidosF3 =  Producto("Velas blancas", 300.0, 0, 50) 
         
     facturaF3_1.agregarProducto(trajesCaballeroVendidosF3)
     facturaF3_2.agregarProducto(vestidosDamaVendidosF3)
@@ -3501,6 +3501,33 @@ if __name__ == "__main__":
     establecimientoProveedor4.agregarProducto(recuerdo4Locales)
     establecimientoProveedor4.agregarProducto(velasRojasLocales)
     establecimientoProveedor4.agregarProducto(velasBlancasLocales)
+
+    funeraria1.agregarFacturaInventario(facturaF1_1)
+    funeraria1.agregarFacturaInventario(facturaF1_2)
+    funeraria1.agregarFacturaInventario(facturaF1_3)
+    funeraria1.agregarFacturaInventario(facturaF1_4)
+    funeraria1.agregarFacturaInventario(facturaF1_5)
+    funeraria1.agregarFacturaInventario(facturaF1_6)
+    funeraria1.agregarFacturaInventario(facturaF1_7)
+    funeraria1.agregarFacturaInventario(facturaF1_8)
+
+    funeraria2.agregarFacturaInventario(facturaF2_1)
+    funeraria2.agregarFacturaInventario(facturaF2_2)
+    funeraria2.agregarFacturaInventario(facturaF2_3)
+    funeraria2.agregarFacturaInventario(facturaF2_4)
+    funeraria2.agregarFacturaInventario(facturaF2_5)
+    funeraria2.agregarFacturaInventario(facturaF2_6)
+    funeraria2.agregarFacturaInventario(facturaF2_7)
+    funeraria2.agregarFacturaInventario(facturaF2_8)
+
+    funeraria3.agregarFacturaInventario(facturaF3_1)
+    funeraria3.agregarFacturaInventario(facturaF3_2)
+    funeraria3.agregarFacturaInventario(facturaF3_3)
+    funeraria3.agregarFacturaInventario(facturaF3_4)
+    funeraria3.agregarFacturaInventario(facturaF3_5)
+    funeraria3.agregarFacturaInventario(facturaF3_6)
+    funeraria3.agregarFacturaInventario(facturaF3_7)
+    funeraria3.agregarFacturaInventario(facturaF3_8)
 
 #______________________________________________________________________________________________________________
 

@@ -69,12 +69,22 @@ def analisisMercadeo(funeraria, master_frame):
     # Limpiar el frame anterior
     for widget in master_frame.winfo_children():
         widget.destroy()
-    
-    # Obtener los productos vendidos
-    productos_vendidos = Funeraria.calcularProductosVendidos(funeraria)
-    
+
+    productos_vendidos = funeraria.calcularProductosVendidos()
+    productos_vendidos = [p for p in productos_vendidos if isinstance(p, Producto)]  # Filtrar solo productos
+
+    # Validar que los productos tengan una cantidad vendida válida
+    productos_vendidos = [p for p in productos_vendidos if isinstance(p.getCantidadVendida(), (int, float))]
+
     # Preparar los datos para mostrar
     productos_mas_vendidos = sorted(productos_vendidos, key=lambda p: p.getCantidadVendida(), reverse=True)
+    
+    if not productos_vendidos:
+        tk.messagebox.showinfo("Información", "No hay productos vendidos para analizar.")
+        return
+
+    # Ordenar los productos por la cantidad vendida
+    
     
     # Crear un nuevo frame para mostrar la información
     analisis_frame = Frame(master_frame)
@@ -342,6 +352,8 @@ def comprar_productos(frame, funeraria):
 
     # Mostrar productos con menos de 10 existencias
     productos_faltantes = funeraria.identificarProductosFaltantes(funeraria)
+    productos_faltantes = [p for p in productos_faltantes if isinstance(p, Producto)]
+    productos_faltantes = [p for p in productos_faltantes if isinstance(p.getCantidadVendida(), (int, float))]
 
     if not productos_faltantes:
         mensaje_label = tk.Label(frame_compra, text="No hay productos con menos de 10 existencias.", font=('Helvetica', 12))
