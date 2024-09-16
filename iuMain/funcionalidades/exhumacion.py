@@ -9,6 +9,9 @@ from iuMain.frame import frame1
 from iuMain.frame import FieldFrame
 from iuMain.frame import tablas
 from iuMain.manejoErrores.errorAplicacion import errorNumeros
+from iuMain.manejoErrores.errorAplicacion import errorIds
+from iuMain.manejoErrores.errorAplicacion import errorPeso
+from iuMain.manejoErrores.errorAplicacion import errorEstatura
 # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
 
 def titulo(frame,titulo):
@@ -101,6 +104,8 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
             num=0
             try:             
                 urnaTumba=inventarioDefault[int(entradaInventario.getValores()[0])]
+                if int(entradaInventario.getValores()[0])<0:
+                        errorIds(inventarioDefault[int(entradaInventario.getValores()[0])],"El ID ingresado es incorrecto",0,len(urnaTumba)-1)
                 cliente=urnaTumba.getCliente()
                 num=1
 
@@ -227,7 +232,14 @@ def siguiente(frame, cliente,traslado):
         if datosPesoEstatura.continuar() and valorIglesia.continuar():
             num=0
             try:
+            
                 pesoEstatura1=float(datosPesoEstatura.getValores()[0])
+                if traslado=="cenizas":
+                    if float(pesoEstatura)>120 or float(pesoEstatura)<0:
+                        errorPeso(pesoEstatura,120)
+                else:
+                    if float(pesoEstatura)>2 or float(pesoEstatura)<0:
+                        errorEstatura(pesoEstatura,2)
                 num=1
             except:
                 errorNumeros(datosPesoEstatura.getValores()[0],f"{pesoEstatura} tiene un valor inválido")

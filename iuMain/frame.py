@@ -75,7 +75,7 @@ class FieldFrame(Frame):
             entrada.delete(0, tk.END)
             entrada.insert(0, valor)
             entrada.config(state=tk.NORMAL if entrada.cget('state') == tk.NORMAL else tk.DISABLED)
-    def continuar(self,mensaje="faltante"):
+    def continuar(self,mensaje=""):
         # Verifica que todos los campos no estén vacíos
         for entrada in self.entries:
             if entrada.get().strip() == '':

@@ -65,7 +65,7 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
         clientes=funeraria.buscarCliente("niño")
         for auxCliente in clientes:
             familiar=auxCliente.designarFamiliar(auxCliente.getFamiliares())
-            responsables.append(familiar)
+            responsables.append(familiar.getNombre())
             parentescos.append(familiar.getParentesco())
             IDs.append(id)
             id+=1
@@ -138,7 +138,7 @@ def organizacionCementerio(frame,cliente,cementerio,estatura):
         if datoTumba.continuar():
             tumba=inventarioDisponible[datoTumba.getValores()[0]]
             tumba.agregarCliente(cliente)
-            factura(cliente)
+            factura(frame,cliente)
 
     def organizacionTumba():
         titulo(frame,"Organización Tumba")
@@ -153,11 +153,32 @@ def organizacionCementerio(frame,cliente,cementerio,estatura):
     btnContinuar= tk.Button(frameApoyo,text="Continuar", command=lambda:organizacionTumba())
     btnContinuar.pack(side="top",pady=10)
 
-def factura(cliente):
-    print("Resumen de los datos de entierro")
-    #print("De acuerdo a la categoria de su tumba ("+cliente.getInventario().getCategoria()+") se agregarán los adornos del cliente para el entierro")
-    print("Se generó la siguiente factura:")
-    print(cliente.pagoInmediato("flores"))
+def factura(frame,cliente):
+
+    titulo(frame,"Detalle final")
+    tk.Label(frame,text="Resumen de los datos de entierro").pack(pady=5)
+    tk.Label(frame,text="Se generó la siguiente factura:").pack(pady=5)
+
+    # Frame principal
+    
+    # Frame de Título
+    tituloFrame = tk.Frame(frame, bg="#4a90e2")
+    tituloFrame.pack(fill=tk.X, pady=(0, 10))
+    
+    tk.Label(tituloFrame, text="FACTURA", font=("Arial", 24), bg="#4a90e2", fg="white").pack(pady=10)
+    
+    # Frame de Contenido
+    contenido = tk.Frame(frame, bg="#ffffff", bd=1, relief=tk.SOLID)
+    contenido.pack(fill=tk.BOTH, expand=True, pady=(0, 10))
+    
+    # Contenido del Frame
+    tk.Label(contenido, text=cliente.pagoInmediato("flores"), font=("Arial", 16), bg="#ffffff").pack(pady=5)
+
+    from iuMain.ventanaPrincipal import framePrincipal
+    boton_regresar = tk.Button(contenido, text="Regresar", command=lambda: framePrincipal(frame))
+    boton_regresar.pack()
+
+   
 
 
 
