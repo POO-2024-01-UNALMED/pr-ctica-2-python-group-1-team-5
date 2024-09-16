@@ -85,7 +85,7 @@ def ventanaInicio():
     
 
     #Frame secundario abajo izquierda (P4)
-    imagenesProyecto = ["iuMain/imagenes/imagen1F.png","iuMain/imagenes/imagen2F.png","iuMain/imagenes/imagen3F.png"]
+    imagenesProyecto = ["iuMain/imagenes/imagen1F.png","iuMain/imagenes/imagen2F.png","iuMain/imagenes/imagen3F.png","iuMain/imagenes/imagen4F.png","iuMain/imagenes/imagen5F.png"]
     indiceImagenP4 = 0
     imagen1 = Image.open(imagenesProyecto[0])
     imagen1 = ImageTk.PhotoImage(imagen1)

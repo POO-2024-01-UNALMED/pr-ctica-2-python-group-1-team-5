@@ -757,9 +757,9 @@ if __name__ == "__main__":
 
     #Cuentas Bancarias funerarias
     # Cuentas corrientes
-    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 2000000, 500000, 500000, 500000,500000)
-    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 2000000, 500000, 500000, 500000,500000)
-    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 2000000, 500000, 500000, 500000,500000)
+    cuentaF1= CuentaBancaria(100203, "Eterna Paz",banco1, 0, 2000000, 500000, 500000, 500000,1000000)
+    cuentaF2= CuentaBancaria(100564, "Camino de Luz", banco2, 0, 2000000, 500000, 500000, 500000,1000000)
+    cuentaF3= CuentaBancaria(100233, "Recuerdos Eternos",banco3, 0, 2000000, 500000, 500000, 500000,1000000)
     
     #Cuenta ahorros
     cuentaF4= CuentaBancaria(135635, "Todas",banco4, 2030203)
