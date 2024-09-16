@@ -12,6 +12,7 @@ from iuMain.manejoErrores.errorAplicacion import errorNumeros
 from iuMain.manejoErrores.errorAplicacion import errorIds
 from iuMain.manejoErrores.errorAplicacion import errorPeso
 from iuMain.manejoErrores.errorAplicacion import errorEstatura
+from iuMain.manejoErrores.errorAplicacion import clienteIncompleto
 # Se usa para borrar lo que hay en el frame y mostrar el titulo de la funcionalidad
 
 def titulo(frame,titulo):
@@ -121,7 +122,7 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
                 if result:
                     siguiente(frame,cliente,traslado)
                 else:
-                    tk.messagebox.showinfo("", "No es posible continuar con el proceso sin asignar un Cliente")
+                    clienteIncompleto()
                     frameCementerios.desbloquearOpciones()
                 
     def establecerCliente():
@@ -129,7 +130,7 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
             if frameCliente.continuar():
                 frameCliente.bloquearOpciones()
                 cliente=clientes[(frameCliente.getValores())[0]]
-                texto=f"Has seleccionado al cliente {cliente} desde cementerio {tipo}: {(cliente.getInventario()).getCementerio()}\n ¿Deseas continuar?"
+                texto=f"Has seleccionado al cliente {cliente} desde cementerio: {(cliente.getInventario()).getCementerio()}\n ¿Deseas continuar?"
                 result = tk.messagebox.askyesno("Confirmar Datos",texto)
 
                 traslado=None
@@ -142,7 +143,7 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
                 if result:
                     siguiente(frame,cliente,traslado)
                 else:
-                    tk.messagebox.showinfo("", "No es posible continuar con el proceso sin asignar un Cliente")
+                    clienteIncompleto()
                     frameCliente.desbloquearOpciones()
                    
         else:
@@ -245,7 +246,7 @@ def siguiente(frame, cliente,traslado):
                         errorEstatura(pesoEstatura,2)
                 num=1
             except:
-                errorNumeros(datosPesoEstatura.getValores()[0],f"{pesoEstatura} tiene un valor inválido")
+                errorPeso(datosPesoEstatura.getValores()[0],120)
             num=0
             try: 
                 print(iglesias)
@@ -255,7 +256,7 @@ def siguiente(frame, cliente,traslado):
                 
                 num=1
             except:
-                errorNumeros(valorIglesia.getValores()[0],"El ID ingresado no es válido")
+                errorIds(valorIglesia.getValores()[0],"El ID ingresado no es válido")
         
             if num==1:
                 nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura1)
@@ -286,7 +287,7 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
         cementeriosPorTipo.remove(cementerio)
     except:
         pass
-
+    print("Cementerios por tipo",cementeriosPorTipo)
     cementerios = []
 
     for auxCementerio in cementeriosPorTipo:
@@ -328,7 +329,7 @@ def nuevoCementerio(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
                 nuevoCementerio=cementerios[int(valorCementerio.getValores()[0])]
                 num=1
             except:
-                errorNumeros(valorCementerio.getValores()[0],"Id incorrecta")
+                errorIds(valorCementerio.getValores()[0],"Id incorrecta",0,1)
             
             if num==1:
                 # Eliminar cliente

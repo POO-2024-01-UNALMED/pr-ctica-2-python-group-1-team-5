@@ -13,7 +13,11 @@ class ErrorAplicacion(Exception):
 class CamposIncompletos(ErrorAplicacion):
     def __init__(self, mensaje):
         self._mensaje=mensaje
-        super().__init__(f"Campos incompletos {self._mensaje}")
+        super().__init__(f"Campo incompleto {self._mensaje}")
+
+class clienteIncompleto(CamposIncompletos):
+    def __init__(self):
+        super().__init__("No es posible continuar sin un Cliente")
 
 
 
@@ -42,16 +46,14 @@ class errorNumeros(ErrorAplicacion):
             raise ErrorAplicacion("Debes ingresar un dígito")
 
 class errorIds(errorNumeros):
-    def __init__(self, valor, mensaje=None, valMin=0, valMax=0):
+    def __init__(self, valor, mensaje=None,valMin=0, valMax=0):
         self.numeroEntero(valor)
           # Inicializa la clase base
           # Verifica si el valor es un número
         
         # Verifica si el valor es mayor o igual al valor mínimo
-        if int(valor)<valMin:
-            raise super().__init__("El número ingresado es menor al valor mínimo")
-        elif int(valor)>valMax:
-            raise super().__init__("El número ingresado es mayor al valor máximo")
+        if int(valor)<valMin or int(valor)>valMax:
+            raise super().__init__("Id incorrecta")
         else:
             super().__init__(mensaje)
             
