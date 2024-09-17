@@ -38,7 +38,7 @@ def analisisMercadeo(funeraria, master_frame):
         widget.destroy()
     
     # Obtener los productos vendidos
-    productos_vendidos = Funeraria.calcularProductosVendidos(funeraria)
+    productos_vendidos = funeraria.calcularProductosVendidos(funeraria)
     
     # Preparar los datos para mostrar
     productos_mas_vendidos = sorted(productos_vendidos, key=lambda p: p.getCantidadVendida(), reverse=True)
