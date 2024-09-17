@@ -301,6 +301,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
         tipo = tiposUrnas[0]
         urna = Urna("default", cementerio, float(peso), int(categoria), tipo)
         producto(frame,cliente, urna, crematorio)
+        btnContinuar.destroy()
 
     else:
         cementerios= list(map(lambda p: p.getCementerio().getNombre(), urnas))
@@ -310,7 +311,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
 
         entradaUrna=FieldFrame(frame,[],["Indique el ID de la Urna"])
 
-    def datosCrematorio():
+    def datosCrematorio(entradaUrna):
 
         if entradaUrna.continuar():
             num=0
@@ -327,7 +328,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
                 tk.messagebox.showinfo("Información", f"Ha seleccionado la Urna {urna}")
                 producto(frame,cliente,urna,crematorio)
     
-    btnContinuar= tk.Button(frame,text="Continuar", command=datosCrematorio)
+    btnContinuar= tk.Button(frame,text="Continuar", command=lambda: datosCrematorio(entradaUrna))
     btnContinuar.pack(pady=5,padx=10)
 
 
