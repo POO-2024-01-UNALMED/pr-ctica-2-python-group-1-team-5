@@ -396,39 +396,35 @@ def comprar_productos(frame, funeraria):
 
         try:
             # Validar que la cantidad sea un número entero
-            errorNumeros("Validación cantidad").numeroEntero(cantidad_comprada)
-
+            if not cantidad_comprada.isdigit():
+                raise ValueError("La cantidad debe ser un número entero.")
+        
             cantidad_comprada = int(cantidad_comprada)  # Convertir a entero si es válido
 
-            # Verificar si la cantidad comprada es válida y menor o igual al stock disponible
+            # Verificar que la cantidad comprada sea mayor que cero
             if cantidad_comprada <= 0:
                 raise ValueError("La cantidad debe ser mayor que cero.")
 
             if producto_seleccionado and proveedor_seleccionado:
-                # Actualizar el stock del producto
+                # Obtener el nombre del producto y buscar en el stock
                 nombre_producto = producto_seleccionado.split(" (")[0]
-                producto_en_stock = None
-
-                for p in productos_faltantes:
-                    if p.getNombre() == nombre_producto:
-                        producto_en_stock = p
-                        break
+                producto_en_stock = next((p for p in productos_faltantes if p.getNombre() == nombre_producto), None)
 
                 if producto_en_stock is None:
                     raise ValueError("El producto seleccionado no está disponible.")
 
-                # Verificar si hay suficiente stock
+            # Verificar si hay suficiente stock
                 if cantidad_comprada > producto_en_stock.getCantidad():
                     raise ValueError("La cantidad comprada excede el stock disponible.")
 
                 # Si todo está bien, actualizar el stock
-                producto_en_stock.setCantidad(producto_en_stock.getCantidad() + cantidad_comprada)
-                tk.messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {nombre_producto} realizada con éxito.")
+                producto_en_stock.setCantidad(producto_en_stock.getCantidad() - cantidad_comprada)
+                messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {nombre_producto} realizada con éxito.")
             else:
-                tk.messagebox.showerror("Error", "Debe seleccionar un producto y un proveedor.")
+                messagebox.showerror("Error", "Debe seleccionar un producto y un proveedor.")
 
         except (ValueError, ErrorAplicacion) as e:
-            tk.messagebox.showerror("Error", str(e))
+            messagebox.showerror("Error", str(e))
 
     btn_confirmar_compra = tk.Button(frame_compra, text="Confirmar Compra", command=confirmar_compra)
     btn_confirmar_compra.pack(pady=10)
