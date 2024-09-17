@@ -222,7 +222,7 @@ def sCredito(frame,funeraria):
                         texto= tk.Label(frame,text=f"Que porcentaje del credito desea pagar ")
                         texto.pack(side="top",pady=5)
                         listaPorcentajes=["100%","80%","60%","40%","20%"]
-                        valoresPorcentajes = frame1(frame,["Servicios credito: "],[listaPorcentajes])
+                        valoresPorcentajes = frame1(frame,["Porcentaje Credito: "],[listaPorcentajes])
                         def pCA(boton):
                             facturasCredito.bloquearOpciones()
                             boton.destroy()
