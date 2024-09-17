@@ -19,6 +19,9 @@ from tkinter import ttk
 from tkinter import Frame, Label, Button
 from iuMain.manejoErrores.errorAplicacion import ErrorAplicacion
 from iuMain.manejoErrores.errorAplicacion import errorNumeros
+from iuMain.manejoErrores.errorAplicacion import CalificacionIncompleta
+from iuMain.manejoErrores.errorAplicacion import DescripcionIncompleta 
+from iuMain.manejoErrores.errorAplicacion import CamposIncompletos
 from iuMain.frame import frame1
 from iuMain.frame import tablas
 from iuMain.frame import FieldFrame
@@ -411,11 +414,14 @@ def comprar_productos(frame, funeraria):
     btn_confirmar_compra.pack(pady=10)
 
     # Botón para finalizar la compra
-    def finalizar_compra():
+    def finalizar_compra(master_frame, funeraria):
         tk.messagebox.showinfo("Compra Finalizada", "La compra se ha completado exitosamente.")
-        frame_compra.destroy()
+        for widget in master_frame.winfo_children():
+            widget.destroy()
+        calificarProceso(frame, funeraria)
+        
 
-    btn_finalizar = tk.Button(frame_compra, text="Finalizar Compra", command=finalizar_compra)
+    btn_finalizar = tk.Button(frame_compra, text="Finalizar Compra",command=lambda: finalizar_compra(frame, funeraria))
     btn_finalizar.pack(pady=10)
 
     # Botón para cancelar
@@ -444,7 +450,7 @@ def contratarEmpleados(frame, funeraria):
     frame_contratar = tk.Frame(frame)
     frame_contratar.pack(fill=tk.BOTH, expand=True)
 
-    # Título de la contratación
+    # Titulo de la contratacion
     titulo_label = tk.Label(frame_contratar, text="Contratar Empleados", font=('Helvetica', 16, 'bold'))
     titulo_label.pack(pady=10)
 
@@ -473,7 +479,7 @@ def contratarEmpleados(frame, funeraria):
     lista_empleados = ttk.Combobox(frame_contratar, textvariable=lista_empleados_var, state="readonly")
     lista_empleados.pack(pady=10)
 
-    # Función para mostrar empleados según el proveedor seleccionado
+    # Funcion para mostrar empleados según el proveedor seleccionado
     def mostrar_empleados():
         proveedor_seleccionado = lista_proveedores_var.get()
 
@@ -625,3 +631,53 @@ def comprarVehiculos(frame, funeraria):
 
     btn_cancelar = tk.Button(frame_comprar, text="Cancelar", command=cancelar_compra)
     btn_cancelar.pack(pady=5)
+
+def calificarProceso(frame, funeraria):
+    # Crear un frame para el proceso de calificación
+    frame_calificacion = tk.Frame(frame)
+    frame_calificacion.pack(fill=tk.BOTH, expand=True)
+
+    # Título de la calificación
+    titulo_label = tk.Label(frame_calificacion, text="Calificación del Proceso", font=('Helvetica', 16, 'bold'))
+    titulo_label.pack(pady=10)
+
+    # Campo para la calificación (nota)
+    calificacion_var = tk.StringVar()
+    calificacion_label = tk.Label(frame_calificacion, text="Calificación (1-10):")
+    calificacion_label.pack(pady=5)
+    calificacion_entry = tk.Entry(frame_calificacion, textvariable=calificacion_var)
+    calificacion_entry.pack(pady=5)
+
+    # Campo para la descripción
+    descripcion_label = tk.Label(frame_calificacion, text="Descripción del proceso:")
+    descripcion_label.pack(pady=5)
+    
+    descripcion_text = tk.Text(frame_calificacion, height=5, width=40)  
+    descripcion_text.pack(pady=5)
+
+    # Función para validar y finalizar la calificación
+    def finalizar_calificacion():
+        calificacion = calificacion_var.get()
+        descripcion = descripcion_text.get("1.0", tk.END).strip()
+
+        try:
+            # Validar que haya una calificación
+            if not calificacion:
+                raise CalificacionIncompleta()
+
+            # Validar que haya una descripción
+            if not descripcion:
+                raise DescripcionIncompleta()
+
+            
+            funeraria.setCalificacion(calificacion) 
+            funeraria.setDescripcion(descripcion)
+
+            tk.messagebox.showinfo("Finalizado", "Gracias por calificar el proceso. Proceso finalizado.")
+            frame_calificacion.destroy()  # Destruir el frame al finalizar
+        except CamposIncompletos as e:
+            tk.messagebox.showerror("Error", str(e))
+
+    
+    btn_finalizar = tk.Button(frame_calificacion, text="Finalizar", command=finalizar_calificacion)
+    btn_finalizar.pack(pady=10)

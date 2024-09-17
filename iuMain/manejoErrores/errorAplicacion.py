@@ -19,6 +19,15 @@ class clienteIncompleto(CamposIncompletos):
     def __init__(self):
         super().__init__("No es posible continuar sin un Cliente")
 
+class CalificacionIncompleta(CamposIncompletos):
+    def __init__(self):
+        super().__init__("No se puede continuar sin una calificación")
+
+
+class DescripcionIncompleta(CamposIncompletos):
+    def __init__(self):
+        super().__init__("No se puede continuar sin una descripción")
+
 
 
 
