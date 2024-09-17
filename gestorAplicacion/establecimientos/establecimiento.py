@@ -266,3 +266,5 @@ class Establecimiento:
     
     def getListadoProductos(self):
         return self._productos
+    def setDescripcion(self,descripcion):
+        self._descripcionCalificacion = descripcion
