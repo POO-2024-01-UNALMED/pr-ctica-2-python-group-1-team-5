@@ -8,7 +8,7 @@ import tkinter as tk
 from iuMain.frame import frame1
 from iuMain.frame import FieldFrame
 from iuMain.frame import tablas
-from iuMain.manejoErrores.errorAplicacion import errorNumeros
+from iuMain.manejoErrores.errorAplicacion import cementeriosFaltantes
 from iuMain.manejoErrores.errorAplicacion import errorIds
 from iuMain.manejoErrores.errorAplicacion import errorPeso
 from iuMain.manejoErrores.errorAplicacion import errorEstatura
@@ -108,11 +108,11 @@ def seleccionCliente(frame,funeraria,buscar,tipoCliente):
             try:             
                 urnaTumba=inventarioDefault[int(entradaInventario.getValores()[0])]
                 if int(entradaInventario.getValores()[0])<0:
-                        errorIds(inventarioDefault[int(entradaInventario.getValores()[0])],"El ID ingresado es incorrecto",0,len(urnaTumba)-1)
+                        raise errorIds(inventarioDefault[int(entradaInventario.getValores()[0])],"El ID ingresado es incorrecto",0,len(urnaTumba)-1)
                 cliente=urnaTumba.getCliente()
                 num=1
 
-            except:
+            except ValueError:
                 
                 errorIds(entradaInventario.getValores()[0],"El ID ingresado no es correcto")
                 entradaInventario.borrar()
@@ -238,13 +238,13 @@ def siguiente(frame, cliente,traslado):
                 pesoEstatura1=float(datosPesoEstatura.getValores()[0])
                 if traslado=="cenizas":
                     if float(pesoEstatura1)>120 or float(pesoEstatura1)<0:
-                        errorPeso(pesoEstatura1,120)
+                        raise errorPeso(pesoEstatura1,120)
                 else:
                     if float(pesoEstatura1)>2 or float(pesoEstatura1)<0:
-                        errorEstatura(pesoEstatura1,2)
+                        raise errorEstatura(pesoEstatura1,2)
                 num=1
-            except:
-                errorPeso(datosPesoEstatura.getValores()[0],120)
+            except ValueError:
+                raise errorPeso(datosPesoEstatura.getValores()[0],120)
             num=0
             try: 
             
@@ -252,7 +252,7 @@ def siguiente(frame, cliente,traslado):
                 
                 num=1
             except:
-                errorIds(valorIglesia.getValores()[0],"El ID ingresado no es válido")
+                raise errorIds(valorIglesia.getValores()[0],"El ID ingresado no es válido")
         
             if num==1:
                 nuevoCementerio1(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura1)
@@ -273,102 +273,105 @@ def nuevoCementerio1(frame,cliente,tipo1,tipo2,iglesia,pesoEstatura):
     tk.Label(frame,text=f"El cliente {cliente} cuenta con una afiliación {cliente.getAfiliacion()}")
 
     cementeriosPorTipo = cementerio.getFuneraria().buscarCementerios(tipo1, cliente)
-
-   
-
     # Elimino el cementerio en el que actualmente está el cliente
     try:
         cementeriosPorTipo.remove(cementerio)
     except:
         pass
-    
-    cementerios = []
-
-    for auxCementerio in cementeriosPorTipo:
-        auxCementerio.setIglesia(iglesia)
-        if len(auxCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)) != 0:
-            cementerios.append(auxCementerio)
-           
-
-    
-    if len(cementerios) == 0:
-
-        for auxCementerio in cementeriosPorTipo:
-            if tipo1 == "cenizas":
-                auxCementerio.agregarInventario(Urna("default", auxCementerio, pesoEstatura, edad, "fija"))
-
-            else:
-                auxCementerio.agregarInventario(Tumba("default", auxCementerio, pesoEstatura, edad))
-            cementerios.append(auxCementerio)
-           
-        tk.messagebox.showinfo("Inventario disponible", "No se encontró inventario disponible para el cliente \n se deberá añadir inventario default")
-
-
-    tk.Label(frame,text="Escoja ")
-    inventarioDisponible= list(len(a.disponibilidadInventario(tipo2,pesoEstatura,edad)) for a in cementerios)
-    IDs= list(map(lambda x: x, range(0, len(cementerios))))
-    tablas(frame,["Cementerio","Inventario dispo","ID"],[cementerios,inventarioDisponible,IDs])
-    valorCementerio=FieldFrame(frame,[],["Indique el ID del Cementerio"])
-
-
-    def organizarDatos(cementerios):
-        if valorCementerio.continuar():
-            num=0
-           
-            try:
-                
-                nuevoCementerio=cementerios[int(valorCementerio.getValores()[0])]
-                num=1
-            except:
-                errorIds(valorCementerio.getValores()[0],"Id incorrecta",0,1)
-            
-            if num==1:
-                # Eliminar cliente
-                try:
-                    (nuevoCementerio.getClientes()).remove(cliente)
-                except:
-                    pass
-                if len(nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)) ==1:
-                    tk.messagebox.showinfo("Inventario Disponible", f"El cementerio seleccionado solo tiene una {tipo2} disponible\n El cliente {cliente} se agregará a la {tipo2} {nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]}")
-                    inventarioescogido=nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]
-                    organizarIglesia1(frame,nuevoCementerio,cliente,inventarioescogido)
-                    
-                else:
-                    respuesta = tk.messagebox.askyesno("Inventario Recomendado", f"Se encontró la opción más adecuada en cuanto a tamaño \n Desea agregar trasladar al cliente a esta {tipo2}")
-                    ventanaInventario = tk.Toplevel()
-                    ventanaInventario.title("Funeraria Rosario")
-                    ventanaInventario.geometry("400x200")
-                    label = tk.Label(ventanaInventario, text=f"Cementerio {nuevoCementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
-                    label.pack(pady=2)
-                    if respuesta:
-                        urna =nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
-                        print("Urnaaa",urna)
-                        tablas(ventanaInventario,[f"{tipo2}","Tipo"],[[urna],[urna.getTipo()]])
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarIglesia1(frame,nuevoCementerio,cliente,urna,ventanaInventario))
-                        btnContinuar.pack(side="top",pady=10)
-                    else:
-                        dispoInventario = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
-                        urna=nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
-                        (dispoInventario).remove(urna)
-
-                        cementerios= list(map(lambda p: p.getCementerio().getNombre(), dispoInventario))
-                        tipos = list(map(lambda e: e.getTipo(),dispoInventario))
-                        IDs=list(p for p in range(0,len(dispoInventario)))
-                        tablas(ventanaInventario,[f"{tipo2}","Tipo","IDs"],[dispoInventario,tipos,IDs])
-                        inventarioescogido = frame1(ventanaInventario,[f"Indique {tipo2} deseada"],[IDs])
-
-                        btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda: organizarIglesia1(frame,nuevoCementerio,cliente,inventarioescogido,ventanaInventario))
-                        btnContinuar.pack(side="top",pady=10)
-                        
-
 
    
-    btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizarDatos(cementerios))
-    btnContinuar.pack(side="top",pady=10)
+    if len(cementeriosPorTipo)==0:
+        cementeriosFaltantes()
+        funcionalidadExhumacion(frame)
+    else:
+    
+        cementerios = []
+
+        for auxCementerio in cementeriosPorTipo:
+            auxCementerio.setIglesia(iglesia)
+            if len(auxCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)) != 0:
+                cementerios.append(auxCementerio)
+            
+
+        
+        if len(cementerios) == 0:
+
+            for auxCementerio in cementeriosPorTipo:
+                if tipo1 == "cenizas":
+                    auxCementerio.agregarInventario(Urna("default", auxCementerio, pesoEstatura, edad, "fija"))
+
+                else:
+                    auxCementerio.agregarInventario(Tumba("default", auxCementerio, pesoEstatura, edad))
+                cementerios.append(auxCementerio)
+            
+            tk.messagebox.showinfo("Inventario disponible", "No se encontró inventario disponible para el cliente \n se deberá añadir inventario default")
+
+
+        tk.Label(frame,text="Escoja ")
+        inventarioDisponible= list(len(a.disponibilidadInventario(tipo2,pesoEstatura,edad)) for a in cementerios)
+        IDs= list(map(lambda x: x, range(0, len(cementerios))))
+        tablas(frame,["Cementerio","Inventario dispo","ID"],[cementerios,inventarioDisponible,IDs])
+        valorCementerio=FieldFrame(frame,[],["Indique el ID del Cementerio"])
+
+
+        def organizarDatos(cementerios):
+            if valorCementerio.continuar():
+                num=0
+            
+                try:
+                    
+                    nuevoCementerio=cementerios[int(valorCementerio.getValores()[0])]
+                    num=1
+                except:
+                    errorIds(valorCementerio.getValores()[0],"Id incorrecta",0,1)
+                
+                if num==1:
+                    # Eliminar cliente
+                    try:
+                        (nuevoCementerio.getClientes()).remove(cliente)
+                    except:
+                        pass
+                    if len(nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)) ==1:
+                        tk.messagebox.showinfo("Inventario Disponible", f"El cementerio seleccionado solo tiene una {tipo2} disponible\n El cliente {cliente} se agregará a la {tipo2} {nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]}")
+                        inventarioescogido=nuevoCementerio.disponibilidadInventario(tipo2,pesoEstatura,edad)[0]
+                        organizarIglesia1(frame,nuevoCementerio,cliente,inventarioescogido)
+                        
+                    else:
+                        respuesta = tk.messagebox.askyesno("Inventario Recomendado", f"Se encontró la opción más adecuada en cuanto a tamaño \n Desea agregar trasladar al cliente a esta {tipo2}")
+                        ventanaInventario = tk.Toplevel()
+                        ventanaInventario.title("Funeraria Rosario")
+                        ventanaInventario.geometry("400x200")
+                        label = tk.Label(ventanaInventario, text=f"Cementerio {nuevoCementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
+                        label.pack(pady=2)
+                        if respuesta:
+                            urna =nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+                           
+                            tablas(ventanaInventario,[f"{tipo2}","Tipo"],[[urna],[urna.getTipo()]])
+                            btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda:organizarIglesia1(frame,nuevoCementerio,cliente,urna,ventanaInventario))
+                            btnContinuar.pack(side="top",pady=10)
+                        else:
+                            dispoInventario = nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad)
+                            urna=nuevoCementerio.inventarioRecomendado(nuevoCementerio.disponibilidadInventario(tipo2, pesoEstatura, edad))
+                            (dispoInventario).remove(urna)
+
+                            cementerios= list(map(lambda p: p.getCementerio().getNombre(), dispoInventario))
+                            tipos = list(map(lambda e: e.getTipo(),dispoInventario))
+                            IDs=list(p for p in range(0,len(dispoInventario)))
+                            tablas(ventanaInventario,[f"{tipo2}","Tipo","IDs"],[dispoInventario,tipos,IDs])
+                            inventarioescogido = frame1(ventanaInventario,[f"Indique {tipo2} deseada"],[IDs])
+
+                            btnContinuar= tk.Button(ventanaInventario,text="Continuar", command=lambda: organizarIglesia1(frame,nuevoCementerio,cliente,inventarioescogido,ventanaInventario))
+                            btnContinuar.pack(side="top",pady=10)
+                            
+
+
+    
+        btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizarDatos(cementerios))
+        btnContinuar.pack(side="top",pady=10)
 
 
 def organizarIglesia1(frame,nuevoCementerio,cliente,inventarioEscogido,ventanaInventario=None):
-    
+   
     try:
         inventarioEscogido.agregarCliente()
     except:
@@ -379,14 +382,17 @@ def organizarIglesia1(frame,nuevoCementerio,cliente,inventarioEscogido,ventanaIn
         
     titulo(frame,"Organización de los familiares dentro de la iglesia")
     iglesia =nuevoCementerio.organizarIglesia(cliente)
-
-    frameApoyo = tk.Frame(frame, bg="#772d2d")
-    frameApoyo.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
-    invitacion = tk.Label(frameApoyo, text=iglesia,font=("Comic Sans MS", 14, "italic"), bg="white")
-    invitacion.pack(pady=50)
+    if iglesia !="":
+        frameApoyo = tk.Frame(frame, bg="#772d2d")
+        frameApoyo.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        invitacion = tk.Label(frameApoyo, text=iglesia,font=("Comic Sans MS", 14, "italic"), bg="white")
+        invitacion.pack(pady=50)
+    
+    else:
+        tk.messagebox.showinfo("Organización iglesia",f"El cliente {cliente} no cuenta con parientes que lo puedan acompañar a la ceremonia")
 
     from iuMain.ventanaPrincipal import framePrincipal
-    boton_regresar = tk.Button(frameApoyo, text="Regresar", command=lambda: framePrincipal(frame))
+    boton_regresar = tk.Button(frame, text="Regresar", command=lambda: framePrincipal(frame))
     boton_regresar.pack()
 
    

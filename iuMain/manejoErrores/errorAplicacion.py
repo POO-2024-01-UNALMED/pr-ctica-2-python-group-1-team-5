@@ -12,8 +12,8 @@ class ErrorAplicacion(Exception):
 
 class CamposIncompletos(ErrorAplicacion):
     def __init__(self, mensaje):
-        self._mensaje=mensaje
-        super().__init__(f"Campo incompleto {self._mensaje}")
+        mensaje_completo = f"Campo incompleto {mensaje}"
+        super().__init__(mensaje_completo)
 
 class clienteIncompleto(CamposIncompletos):
     def __init__(self):
@@ -28,12 +28,13 @@ class DescripcionIncompleta(CamposIncompletos):
     def __init__(self):
         super().__init__("No se puede continuar sin una descripción")
 
+class cementeriosFaltantes(CamposIncompletos):
+    def __init__(self):
+        super().__init__("No se encontraron cementerios adecuados para el cliente")
+
     
 class errorNumeros(ErrorAplicacion):
     def __init__(self, mensaje):
-       
-        self._mensaje = mensaje
-        self._verificar = True
         super().__init__(f"Error números {mensaje}")
 
     def numeroEntero(self,valor):
@@ -59,7 +60,7 @@ class errorIds(errorNumeros):
         
         # Verifica si el valor es mayor o igual al valor mínimo
         if int(valor)<valMin or int(valor)>valMax:
-            raise super().__init__("Id incorrecta")
+            super().__init__("Id incorrecta")
         else:
             super().__init__(mensaje)
             
@@ -70,7 +71,7 @@ class errorPeso(errorNumeros):
 
         # Verifica si el valor es mayor o igual al valor mínimo
         if float(valor)<pesoMin or float(valor)>pesoMax:
-            raise super().__init__("El valor del peso del cliente no es correcto")
+            super().__init__("El valor del peso del cliente no es correcto")
 
 
 
@@ -80,6 +81,6 @@ class errorEstatura(errorNumeros):
 
         # Verifica si el valor es mayor o igual al valor mínimo
         if float(valor)<estaturaMin or float(valor)>estaturaMax:
-            raise super().__init__("El valor de la estatura del cliente no es correcta")
+            super().__init__("El valor de la estatura del cliente no es correcta")
 
         

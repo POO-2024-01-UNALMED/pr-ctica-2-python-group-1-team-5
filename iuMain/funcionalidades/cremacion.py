@@ -155,7 +155,7 @@ def seleccionCliente(frame,valores):
                     valMin=1
                     iglesia=iglesias[int(valorIglesia.getValores()[0])-1]
                     if int(valorIglesia.getValores()[0])<valMin:
-                        errorIds(iglesias[int(valorIglesia.getValores()[0])],"El ID ingresado es incorrecto",1)
+                        raise errorIds(iglesias[int(valorIglesia.getValores()[0])],"El ID ingresado es incorrecto",1)
                     #Crear ventana para determinar la hora del crematorio
                     ventanaHoras = tk.Toplevel()
                     ventanaHoras.title("Funeraria Rosario")
@@ -271,16 +271,16 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
             try:
                 int(categoria)
                 if int(categoria)<0 or int(categoria)>2:
-                    errorIds(int(categoria),"La categoria ingresada no es correcta",0,2)
-            except:
-                errorIds(categoria,"La categoria ingresada no es correcta",0,2)
+                    raise errorIds(int(categoria),"La categoria ingresada no es correcta",0,2)
+            except ValueError:
+                raise errorIds(categoria,"La categoria ingresada no es correcta",0,2)
             try:
                 float(peso)
-                if float(peso)>=120 or float(peso)<0:
-                    errorPeso(peso,120)
+                if float(peso)>120 or float(peso)<0:
+                    raise errorPeso(peso,120)
                 num=1
-            except:
-                errorPeso(peso,120)
+            except ValueError:
+                raise errorPeso(peso,120)
         if num==1:
             valoresUrna.bloquear()
             btnContinuar.destroy()
@@ -325,7 +325,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
             try:
                 urna=urnas[int(entradaUrna.getValores()[0])]  
                 if int(entradaUrna.getValores()[0])<0:
-                    errorIds(urnas[int(entradaUrna.getValores()[0])],"El ID ingresado es incorrecto",0)
+                    raise errorIds(urnas[int(entradaUrna.getValores()[0])],"El ID ingresado es incorrecto",0)
                
                 num=1
             except:

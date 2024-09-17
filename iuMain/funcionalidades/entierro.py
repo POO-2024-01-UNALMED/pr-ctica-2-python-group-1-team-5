@@ -97,9 +97,9 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
                 float(datoEstatura.getValores()[0])
                 estatura=float(datoEstatura.getValores()[0])
                 if estatura>2 or estatura <0:
-                    errorEstatura(estatura,2)
+                    raise errorEstatura(estatura,2)
                 num=1
-            except:
+            except ValueError:
                 errorEstatura((datoEstatura.getValores()[0]),2)
                 datoEstatura.borrar()
             if num==1:
