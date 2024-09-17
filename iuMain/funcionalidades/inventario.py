@@ -400,17 +400,34 @@ def comprar_productos(frame, funeraria):
 
             cantidad_comprada = int(cantidad_comprada)  # Convertir a entero si es válido
 
-            if producto_seleccionado and proveedor_seleccionado and cantidad_comprada > 0:
+            # Verificar si la cantidad comprada es válida y menor o igual al stock disponible
+            if cantidad_comprada <= 0:
+                raise ValueError("La cantidad debe ser mayor que cero.")
+
+            if producto_seleccionado and proveedor_seleccionado:
                 # Actualizar el stock del producto
                 nombre_producto = producto_seleccionado.split(" (")[0]
+                producto_en_stock = None
+
                 for p in productos_faltantes:
                     if p.getNombre() == nombre_producto:
-                        p.setCantidad(p.getCantidad() + cantidad_comprada)
-                        tk.messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {nombre_producto} realizada con éxito.")
+                        producto_en_stock = p
                         break
+
+                if producto_en_stock is None:
+                    raise ValueError("El producto seleccionado no está disponible.")
+
+                # Verificar si hay suficiente stock
+                if cantidad_comprada > producto_en_stock.getCantidad():
+                    raise ValueError("La cantidad comprada excede el stock disponible.")
+
+                # Si todo está bien, actualizar el stock
+                producto_en_stock.setCantidad(producto_en_stock.getCantidad() + cantidad_comprada)
+                tk.messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {nombre_producto} realizada con éxito.")
             else:
-                tk.messagebox.showerror("Error", "Debe seleccionar un producto, un proveedor y una cantidad válida.")
-        except ErrorAplicacion as e:
+                tk.messagebox.showerror("Error", "Debe seleccionar un producto y un proveedor.")
+
+        except (ValueError, ErrorAplicacion) as e:
             tk.messagebox.showerror("Error", str(e))
 
     btn_confirmar_compra = tk.Button(frame_compra, text="Confirmar Compra", command=confirmar_compra)
