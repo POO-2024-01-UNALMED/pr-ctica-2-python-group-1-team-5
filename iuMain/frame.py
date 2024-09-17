@@ -1,7 +1,25 @@
+#Autores 
+# Violeta Gomez
+# Sebastian Guerra
+
+
 from tkinter import ttk, Label, Frame, Button, Entry
 import tkinter as tk
 from iuMain.manejoErrores.errorAplicacion import CamposIncompletos
 
+
+
+"""
+    Clase que crea un formulario con etiquetas y campos de entrada.
+    Incluye un botón para resetear los valores de los campos.
+
+    Attributes:
+        master (tk.Widget): Widget contenedor principal.
+        nombresEtiquetas (list of str): Lista de nombres para las etiquetas (no utilizada directamente).
+        etiquetas (list of str): Lista de textos para las etiquetas.
+        valores (list of str, optional): Valores predeterminados para los campos de entrada.
+        editables (list of bool, optional): Estado de editabilidad de los campos de entrada.
+"""
 
 class FieldFrame(Frame):
     def __init__(self, master, nombresEtiquetas, etiquetas,valores=None, editables=None):
@@ -28,6 +46,7 @@ class FieldFrame(Frame):
 
 
     def widget(self):
+        #Crea y organiza las etiquetas y campos de entrada en el formulario.
         self.entries=[]
         # Crear etiquetas y cajas de texto
         for etiqueta, valor, editable in zip(self.etiquetas, self.valores, self.editables):
@@ -64,16 +83,18 @@ class FieldFrame(Frame):
             self.btnBorrar.destroy()
     
     def getValores(self):
-
+        #retorna los indices de las variables
         valores = [entrada.get() for entrada in self.entries]
         return valores
     
     def borrar(self):
+        #Borra todos los campos del formulario
         for entrada, valor in zip(self.entries, self.valores):
             entrada.config(state=tk.NORMAL)
             entrada.delete(0, tk.END)
             entrada.insert(0, valor)
             entrada.config(state=tk.NORMAL if entrada.cget('state') == tk.NORMAL else tk.DISABLED)
+    
     def continuar(self,mensaje=""):
         # Verifica que todos los campos no estén vacíos
         for entrada in self.entries:
@@ -81,6 +102,16 @@ class FieldFrame(Frame):
                 CamposIncompletos(mensaje)
                 return False
         return True
+    
+
+"""
+    Clase que crea un formulario con etiquetas y comboboxes (menús desplegables).
+
+    Attributes:
+        master (tk.Widget): Widget contenedor principal.
+        etiquetas (list of str): Lista de textos para las etiquetas.
+        opciones (list of list of str): Opciones disponibles para cada combobox.
+"""
 
 
 class frame1(Frame):
@@ -98,7 +129,8 @@ class frame1(Frame):
         self.secundario.grid(row=0, column=0)
 
         self.widget()
-        #btnContinuar=Button()
+        
+
     def continuar(self,mensaje="faltante"):
         seleccionados = all(combobox.get() for combobox in self.opcionesAlmacenadas)
         if seleccionados:
@@ -108,6 +140,8 @@ class frame1(Frame):
             return False
 
     def widget(self):
+        #Crea y organiza las etiquetas y comboboxes en el formulario.
+        
         for i,etiquetaFor in enumerate(self.etiquetas):
             etiqueta = Label(self.secundario, text=etiquetaFor)
             etiqueta.grid(row=i,column=0,padx=5,pady=5,sticky="e")
@@ -128,15 +162,27 @@ class frame1(Frame):
         return listaIndices
     
     def bloquearOpciones(self):
+        #Bloquea las opciones del combobox
         for opcion in self.opcionesAlmacenadas:
             opcion.config(state='disabled')
 
     def desbloquearOpciones(self):
+        #Desbloquea las opciones del combobox
         for opcion in self.opcionesAlmacenadas:
             opcion.config(state="normal")
+
+"""
+    Clase que muestra una tabla con encabezados y valores.
+
+    Attributes:
+        master (tk.Widget): Widget contenedor principal.
+        etiquetas (list of str): Lista de encabezados de columna.
+        valores (list of list of str): Valores a mostrar en la tabla.
+"""
     
 class tablas(Frame):
     def __init__(self,master,etiquetas, valores):
+        
         super().__init__(master)
         self.pack()
         self.etiquetas=etiquetas

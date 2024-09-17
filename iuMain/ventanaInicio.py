@@ -1,3 +1,8 @@
+#Autores 
+# Violeta Gomez
+# Sebastian Guerra
+# Andres Perez 
+
 import tkinter as tk
 from iuMain import ventanaPrincipal
 from PIL import Image,ImageTk
@@ -11,9 +16,11 @@ def irVentanaPrincipal():
     ventanaPrincipal.ventanaPrincipal()
 
 def salir():
+    #Boton para salir del programa
     ventana.quit()
 
 def descripcion(frame):
+    #Etiqueta de descripcion
     for widget in frame.winfo_children():
         widget.destroy()
         

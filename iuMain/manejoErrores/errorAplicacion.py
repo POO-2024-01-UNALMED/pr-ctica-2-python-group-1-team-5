@@ -10,7 +10,10 @@ class ErrorAplicacion(Exception):
     def enviarMensaje(self):
         messagebox.showerror("Error", self._mensaje)
 
+
+#"Muestra un mensaje de error cuando hay campos incompletos.
 class CamposIncompletos(ErrorAplicacion):
+    
     def __init__(self, mensaje):
         mensaje_completo = f"Campo incompleto {mensaje}"
         super().__init__(mensaje_completo)

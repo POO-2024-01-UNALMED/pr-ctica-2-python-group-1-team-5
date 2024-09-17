@@ -1,20 +1,12 @@
+#Autores 
+# Violeta Gomez
+
+
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
-#from gestorAplicacion.establecimientos.cementerio import Cementerio
-#from gestorAplicacion.establecimientos.crematorio import Crematorio
-#from gestorAplicacion.establecimientos.funeraria import Funeraria
 from gestorAplicacion.establecimientos.iglesia import Iglesia
-
-#from gestorAplicacion.financiero.banco import Banco
-#from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
-
-#from gestorAplicacion.personas.persona import Persona
-#from gestorAplicacion.personas.cliente import Cliente
-#from gestorAplicacion.personas.empleado import Empleado
-#from gestorAplicacion.personas.familiar import Familiar
-
 from gestorAplicacion.inventario.inventario import Inventario
 from gestorAplicacion.inventario.urna import Urna
-#from gestorAplicacion.inventario.tumba import Tumba
+
 from gestorAplicacion.inventario.producto import Producto
 import tkinter as tk
 

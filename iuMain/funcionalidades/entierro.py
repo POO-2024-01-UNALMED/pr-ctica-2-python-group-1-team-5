@@ -1,3 +1,7 @@
+#Autores 
+# Violeta Gomez
+
+
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento
 
 from gestorAplicacion.establecimientos.iglesia import Iglesia
@@ -24,6 +28,10 @@ def titulo(frame,titulo):
 
 def funcionalidadEntierro(frame):
 
+    """Configura el formulario para el servicio de entierro, incluyendo selección de funeraria, 
+        tipo de cliente y religión, y posteriormente permite seleccionar cliente y cementerio.
+    """
+
     titulo(frame,"Servicio de Entierro")
 
     funerarias= Establecimiento.filtrarEstablecimiento("funeraria")
@@ -38,6 +46,7 @@ def funcionalidadEntierro(frame):
     datosCliente=frame1(frame,["Funeraria","Cliente","Religión cliente"],[funerarias,listaCliente,iglesiasReligion])
 
     def organizacion():
+         #Procesa la selección del cliente y organiza la continuación del proceso.
          if datosCliente.continuar():
               funeraria=funerarias[datosCliente.getValores()[0]]
               #Indice cliente, si indice == 0 -> Mayor de edad, si índice == 1 -> Menor de edad
@@ -119,7 +128,7 @@ def seleccionCliente(frame,funeraria,indiceCliente,iglesia):
     btnContinuar= tk.Button(frame,text="Continuar", command=lambda:organizacion())
     btnContinuar.pack(side="top",pady=10)
 
-
+# Configura el formulario para la selección de cliente y la entrada de datos adicionales.
 def organizacionCementerio(frame,cliente,cementerio,estatura):
     titulo(frame,"Organizacion cementerio")
 

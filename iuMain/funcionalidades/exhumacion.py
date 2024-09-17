@@ -1,3 +1,5 @@
+#Autores 
+# Violeta Gomez
 from gestorAplicacion.inventario.urna import Urna
 from gestorAplicacion.inventario.tumba import Tumba
 from gestorAplicacion.establecimientos.establecimiento import Establecimiento

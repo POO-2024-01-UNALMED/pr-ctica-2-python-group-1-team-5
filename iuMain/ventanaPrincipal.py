@@ -1,3 +1,8 @@
+#Autores 
+# Violeta Gomez
+# Sebastian Guerra
+# Andres Perez 
+
 import tkinter as tk
 from iuMain import ventanaInicio
 from iuMain.funcionalidades import cremacion
@@ -14,6 +19,7 @@ def irVentanaInicio():
 
 
 def framePrincipal(frame):
+    #Organizacion del frame principal al entrar a la ventana principal
     for widget in frame.winfo_children():
         widget.destroy()
     
@@ -43,6 +49,7 @@ def framePrincipal(frame):
 
 
 def ayudaFunct():
+    #mensaje que aparece al activar el botón de ayuda
     tk.messagebox.showinfo("Ayuda", "Nombres desarrolladores: \n-Violeta Gomez\n-Andres Perez\n-Sebastian Guerra")
 
 
