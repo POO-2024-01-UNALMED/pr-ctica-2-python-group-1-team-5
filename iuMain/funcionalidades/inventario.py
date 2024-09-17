@@ -1,3 +1,4 @@
+from tkinter import messagebox
 from gestorAplicacion.financiero.banco import Banco
 from gestorAplicacion.financiero.cuentaBancaria import CuentaBancaria
 from gestorAplicacion.financiero.factura import Factura
@@ -401,29 +402,17 @@ def comprar_productos(frame, funeraria):
         
             cantidad_comprada = int(cantidad_comprada)  # Convertir a entero si es válido
 
-            # Verificar que la cantidad comprada sea mayor que cero
-            if cantidad_comprada <= 0:
-                raise ValueError("La cantidad debe ser mayor que cero.")
+            # Comprobar que la cantidad no sea mayor a 100
+            if cantidad_comprada > 100:
+                raise ValueError("La cantidad comprada no puede ser mayor de 100.")
 
             if producto_seleccionado and proveedor_seleccionado:
-                # Obtener el nombre del producto y buscar en el stock
-                nombre_producto = producto_seleccionado.split(" (")[0]
-                producto_en_stock = next((p for p in productos_faltantes if p.getNombre() == nombre_producto), None)
-
-                if producto_en_stock is None:
-                    raise ValueError("El producto seleccionado no está disponible.")
-
-            # Verificar si hay suficiente stock
-                if cantidad_comprada > producto_en_stock.getCantidad():
-                    raise ValueError("La cantidad comprada excede el stock disponible.")
-
-                # Si todo está bien, actualizar el stock
-                producto_en_stock.setCantidad(producto_en_stock.getCantidad() - cantidad_comprada)
-                messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {nombre_producto} realizada con éxito.")
+                # Aquí podrías hacer algo más si fuera necesario
+                messagebox.showinfo("Éxito", f"Compra de {cantidad_comprada} unidades de {producto_seleccionado} realizada con éxito.")
             else:
                 messagebox.showerror("Error", "Debe seleccionar un producto y un proveedor.")
 
-        except (ValueError, ErrorAplicacion) as e:
+        except ValueError as e:
             messagebox.showerror("Error", str(e))
 
     btn_confirmar_compra = tk.Button(frame_compra, text="Confirmar Compra", command=confirmar_compra)
