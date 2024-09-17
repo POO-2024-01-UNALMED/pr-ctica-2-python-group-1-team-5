@@ -2954,6 +2954,586 @@ if __name__ == "__main__":
     factura3EF3 = Factura(servicio="establecimiento",lista_productos=servicios3F3)
 
     funeraria3.getFacturasPorPagar().extend([factura1EF3,factura2EF3,factura3EF3])
+
+    #______________________________________________________________________________________________________________
+    #Objetos funcionalidad Gestion Inventario
+    cuentaLocal1 = CuentaBancaria("0001", "Juan Pérez", banco1)
+    EmpleadoJefe1 = Empleado("Juan Pérez", cuentaLocal1, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor1 = Establecimiento("Disfuncol", 100, cuentaLocal1, None, EmpleadoJefe1)
+
+    cuentaLocal2 = CuentaBancaria("0002", "Ana Gómez", banco1)
+    EmpleadoJefe2 = Empleado("Ana Gómez", cuentaLocal2, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor2 = Establecimiento("Ebay", 110, cuentaLocal2, None, EmpleadoJefe2)
+
+    cuentaLocal3 = CuentaBancaria("0003", "Pedro Rodríguez", banco1)
+    EmpleadoJefe3 = Empleado("Pedro Rodríguez", cuentaLocal3, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor3 = Establecimiento("Amazon", 120, cuentaLocal3, None, EmpleadoJefe3)
+
+    cuentaLocal4 = CuentaBancaria("0004", "Lucía Fernández", banco1)
+    EmpleadoJefe4 = Empleado("Lucía Fernández", cuentaLocal4, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor4 = Establecimiento("Mercado Libre", 130, cuentaLocal4, None, EmpleadoJefe4)
+
+    cuentaLocal5 = CuentaBancaria("0005", "Carlos Ruiz", banco1)
+    EmpleadoJefe5 = Empleado("Carlos Ruiz", cuentaLocal5, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor5 = Establecimiento("Establecimiento 5", 140, cuentaLocal5, None, EmpleadoJefe5)
+
+    cuentaLocal6 = CuentaBancaria("0006", "María López", banco1)
+    EmpleadoJefe6 = Empleado("María López", cuentaLocal6, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor6 = Establecimiento("Establecimiento 6", 150, cuentaLocal6, None, EmpleadoJefe6)
+
+    cuentaLocal7 = CuentaBancaria("0007", "Luis Castro", banco1)
+    EmpleadoJefe7 = Empleado("Luis Castro", cuentaLocal7, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor7 = Establecimiento("Establecimiento 7", 160, cuentaLocal7, None, EmpleadoJefe7)
+
+    cuentaLocal8 = CuentaBancaria("0008", "Sofía Martínez", banco1)
+    EmpleadoJefe8 = Empleado("Sofía Martínez", cuentaLocal8, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor8 = Establecimiento("Establecimiento 8", 170, cuentaLocal8, None, EmpleadoJefe8)
+
+    cuentaLocal9 = CuentaBancaria("0009", "Andrés Torres", banco1)
+    EmpleadoJefe9 = Empleado("Andrés Torres", cuentaLocal9, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor9 = Establecimiento("KTM", 180, cuentaLocal9, None, EmpleadoJefe9)
+
+    cuentaLocal10 = CuentaBancaria("0010", "Isabel Morales", banco1)
+    EmpleadoJefe10 = Empleado("Isabel Morales", cuentaLocal10, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor10 = Establecimiento("AUTECO", 190, cuentaLocal10, None, EmpleadoJefe10)
+
+    cuentaLocal11 = CuentaBancaria("0011", "José Díaz", banco1)
+    EmpleadoJefe11 = Empleado("José Díaz", cuentaLocal11, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor11 = Establecimiento("AUDI", 200, cuentaLocal11, None, EmpleadoJefe11)
+
+    cuentaLocal12 = CuentaBancaria("0012", "Elena García", banco1)
+    EmpleadoJefe12 = Empleado("Elena García", cuentaLocal12, "Completa", "Jefe", 5000, None)
+    establecimientoProveedor12 = Establecimiento("Establecimiento 12", 210, cuentaLocal12, None, EmpleadoJefe12)
+
+
+    funeraria1.agregarProveedorF(establecimientoProveedor1)
+    funeraria1.agregarProveedorF(establecimientoProveedor2)
+    funeraria1.agregarProveedorF(establecimientoProveedor3)
+    funeraria1.agregarProveedorF(establecimientoProveedor4)
+
+    funeraria2.agregarProveedorF(establecimientoProveedor1)
+    funeraria2.agregarProveedorF(establecimientoProveedor2)
+    funeraria2.agregarProveedorF(establecimientoProveedor3)
+    funeraria2.agregarProveedorF(establecimientoProveedor4)
+
+    funeraria3.agregarProveedorF(establecimientoProveedor1)
+    funeraria3.agregarProveedorF(establecimientoProveedor2)
+    funeraria3.agregarProveedorF(establecimientoProveedor3)
+    funeraria3.agregarProveedorF(establecimientoProveedor4)
+
+    funeraria1.agregarProveedorEmpleadoF(establecimientoProveedor5)
+    funeraria1.agregarProveedorEmpleadoF(establecimientoProveedor6)
+    funeraria1.agregarProveedorEmpleadoF(establecimientoProveedor7)
+    funeraria1.agregarProveedorEmpleadoF(establecimientoProveedor8)
+
+    funeraria2.agregarProveedorEmpleadoF(establecimientoProveedor5)
+    funeraria2.agregarProveedorEmpleadoF(establecimientoProveedor6)
+    funeraria2.agregarProveedorEmpleadoF(establecimientoProveedor7)
+    funeraria2.agregarProveedorEmpleadoF(establecimientoProveedor8)
+
+    funeraria3.agregarProveedorEmpleadoF(establecimientoProveedor5)
+    funeraria3.agregarProveedorEmpleadoF(establecimientoProveedor6)
+    funeraria3.agregarProveedorEmpleadoF(establecimientoProveedor7)
+    funeraria3.agregarProveedorEmpleadoF(establecimientoProveedor8)
+
+    funeraria1.agregarProveedorVehiculoF(establecimientoProveedor9)
+    funeraria1.agregarProveedorVehiculoF(establecimientoProveedor10)
+    funeraria1.agregarProveedorVehiculoF(establecimientoProveedor11)
+    
+
+    funeraria2.agregarProveedorVehiculoF(establecimientoProveedor9)
+    funeraria2.agregarProveedorVehiculoF(establecimientoProveedor10)
+    funeraria2.agregarProveedorVehiculoF(establecimientoProveedor11)
+    
+
+    funeraria3.agregarProveedorVehiculoF(establecimientoProveedor9)
+    funeraria3.agregarProveedorVehiculoF(establecimientoProveedor10)
+    funeraria3.agregarProveedorVehiculoF(establecimientoProveedor11)
+    
+
+    # Objetos de tipo Empleado
+
+    cuenta1 = CuentaBancaria("0013", "Fernando Ruiz", banco1)
+    empleadoLocal1 = Empleado("Fernando Ruiz", cuenta1, "Mañana", "Sepulturero", 3000, None, experiencia=5)
+
+    cuenta2 = CuentaBancaria("0014", "Sara Montoya", banco1)
+    empleadoLocal2 = Empleado("Sara Montoya", cuenta2, "Tarde", "Cremador", 3200, None, experiencia=3)
+
+    cuenta3 = CuentaBancaria("0015", "Luis López", banco1)
+    empleadoLocal3 = Empleado("Luis López", cuenta3, "Noche", "Conductor", 2800, None, experiencia=7)
+
+    cuenta4 = CuentaBancaria("0016", "Gabriela Torres", banco1)
+    empleadoLocal4 = Empleado("Gabriela Torres", cuenta4, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta5 = CuentaBancaria("0017", "Jorge Méndez", banco1)
+    empleadoLocal5 = Empleado("Jorge Méndez", cuenta5, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta6 = CuentaBancaria("0018", "Clara Soto", banco1)
+    empleadoLocal6 = Empleado("Clara Soto", cuenta6, "Noche", "Conductor", 2900, None, experiencia=8)
+
+    cuenta7 = CuentaBancaria("0019", "Pablo García", banco1)
+    empleadoLocal7 = Empleado("Pablo García", cuenta7, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta8 = CuentaBancaria("0020", "Andrea Gómez", banco1)
+    empleadoLocal8 = Empleado("Andrea Gómez", cuenta8, "Tarde", "Cremador", 3400, None, experiencia=3)
+
+    cuenta9 = CuentaBancaria("0021", "David Salazar", banco1)
+    empleadoLocal9 = Empleado("David Salazar", cuenta9, "Noche", "Conductor", 3000, None, experiencia=7)
+
+    cuenta10 = CuentaBancaria("0022", "Carolina Díaz", banco1)
+    empleadoLocal10 = Empleado("Carolina Díaz", cuenta10, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta11 = CuentaBancaria("0023", "Manuel Reyes", banco1)
+    empleadoLocal11 = Empleado("Manuel Reyes", cuenta11, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta12 = CuentaBancaria("0024", "Patricia Varela", banco1)
+    empleadoLocal12 = Empleado("Patricia Varela", cuenta12, "Noche", "Conductor", 2800, None, experiencia=8)
+
+    cuenta13 = CuentaBancaria("0025", "Francisco Gutiérrez", banco1)
+    empleadoLocal13 = Empleado("Francisco Gutiérrez", cuenta13, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta14 = CuentaBancaria("0026", "Isabel Ramírez", banco1)
+    empleadoLocal14 = Empleado("Isabel Ramírez", cuenta14, "Tarde", "Cremador", 3400, None, experiencia=3)
+
+    cuenta15 = CuentaBancaria("0027", "Miguel Pérez", banco1)
+    empleadoLocal15 = Empleado("Miguel Pérez", cuenta15, "Noche", "Conductor", 3000, None, experiencia=7)
+
+    cuenta16 = CuentaBancaria("0028", "Ana Castillo", banco1)
+    empleadoLocal16 = Empleado("Ana Castillo", cuenta16, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta17 = CuentaBancaria("0029", "Rodrigo Ochoa", banco1)
+    empleadoLocal17 = Empleado("Rodrigo Ochoa", cuenta17, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta18 = CuentaBancaria("0030", "Laura Herrera", banco1)
+    empleadoLocal18 = Empleado("Laura Herrera", cuenta18, "Noche", "Conductor", 2800, None, experiencia=8)
+
+    cuenta19 = CuentaBancaria("0031", "Carlos Muñoz", banco1)
+    empleadoLocal19 = Empleado("Carlos Muñoz", cuenta19, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta20 = CuentaBancaria("0032", "Marta Silva", banco1)
+    empleadoLocal20 = Empleado("Marta Silva", cuenta20, "Tarde", "Cremador", 3400, None, experiencia=3)# Objetos de tipo Empleado
+
+    cuenta1 = CuentaBancaria("0013", "Fernando Ruiz", banco1)
+    empleadoLocal1 = Empleado("Fernando Ruiz", cuenta1, "Mañana", "Sepulturero", 3000, None, experiencia=5)
+
+    cuenta2 = CuentaBancaria("0014", "Sara Montoya", banco1)
+    empleadoLocal2 = Empleado("Sara Montoya", cuenta2, "Tarde", "Cremador", 3200, None, experiencia=3)
+
+    cuenta3 = CuentaBancaria("0015", "Luis López", banco1)
+    empleadoLocal3 = Empleado("Luis López", cuenta3, "Noche", "Conductor", 2800, None, experiencia=7)
+
+    cuenta4 = CuentaBancaria("0016", "Gabriela Torres", banco1)
+    empleadoLocal4 = Empleado("Gabriela Torres", cuenta4, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta5 = CuentaBancaria("0017", "Jorge Méndez", banco1)
+    empleadoLocal5 = Empleado("Jorge Méndez", cuenta5, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta6 = CuentaBancaria("0018", "Clara Soto", banco1)
+    empleadoLocal6 = Empleado("Clara Soto", cuenta6, "Noche", "Conductor", 2900, None, experiencia=8)
+
+    cuenta7 = CuentaBancaria("0019", "Pablo García", banco1)
+    empleadoLocal7 = Empleado("Pablo García", cuenta7, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta8 = CuentaBancaria("0020", "Andrea Gómez", banco1)
+    empleadoLocal8 = Empleado("Andrea Gómez", cuenta8, "Tarde", "Cremador", 3400, None, experiencia=3)
+
+    cuenta9 = CuentaBancaria("0021", "David Salazar", banco1)
+    empleadoLocal9 = Empleado("David Salazar", cuenta9, "Noche", "Conductor", 3000, None, experiencia=7)
+
+    cuenta10 = CuentaBancaria("0022", "Carolina Díaz", banco1)
+    empleadoLocal10 = Empleado("Carolina Díaz", cuenta10, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta11 = CuentaBancaria("0023", "Manuel Reyes", banco1)
+    empleadoLocal11 = Empleado("Manuel Reyes", cuenta11, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta12 = CuentaBancaria("0024", "Patricia Varela", banco1)
+    empleadoLocal12 = Empleado("Patricia Varela", cuenta12, "Noche", "Conductor", 2800, None, experiencia=8)
+
+    cuenta13 = CuentaBancaria("0025", "Francisco Gutiérrez", banco1)
+    empleadoLocal13 = Empleado("Francisco Gutiérrez", cuenta13, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta14 = CuentaBancaria("0026", "Isabel Ramírez", banco1)
+    empleadoLocal14 = Empleado("Isabel Ramírez", cuenta14, "Tarde", "Cremador", 3400, None, experiencia=3)
+
+    cuenta15 = CuentaBancaria("0027", "Miguel Pérez", banco1)
+    empleadoLocal15 = Empleado("Miguel Pérez", cuenta15, "Noche", "Conductor", 3000, None, experiencia=7)
+
+    cuenta16 = CuentaBancaria("0028", "Ana Castillo", banco1)
+    empleadoLocal16 = Empleado("Ana Castillo", cuenta16, "Mañana", "Sepulturero", 3100, None, experiencia=6)
+
+    cuenta17 = CuentaBancaria("0029", "Rodrigo Ochoa", banco1)
+    empleadoLocal17 = Empleado("Rodrigo Ochoa", cuenta17, "Tarde", "Cremador", 3300, None, experiencia=4)
+
+    cuenta18 = CuentaBancaria("0030", "Laura Herrera", banco1)
+    empleadoLocal18 = Empleado("Laura Herrera", cuenta18, "Noche", "Conductor", 2800, None, experiencia=8)
+
+    cuenta19 = CuentaBancaria("0031", "Carlos Muñoz", banco1)
+    empleadoLocal19 = Empleado("Carlos Muñoz", cuenta19, "Mañana", "Sepulturero", 3200, None, experiencia=5)
+
+    cuenta20 = CuentaBancaria("0032", "Marta Silva", banco1)
+    empleadoLocal20 = Empleado("Marta Silva", cuenta20, "Tarde", "Cremador", 3400, None, experiencia=3)
+
+
+    establecimientoProveedor5.agregarEmpleado(empleadoLocal1)
+    establecimientoProveedor5.agregarEmpleado(empleadoLocal2)
+    establecimientoProveedor5.agregarEmpleado(empleadoLocal3)
+    establecimientoProveedor5.agregarEmpleado(empleadoLocal4)
+    establecimientoProveedor5.agregarEmpleado(empleadoLocal5)
+    establecimientoProveedor6.agregarEmpleado(empleadoLocal6)
+    establecimientoProveedor6.agregarEmpleado(empleadoLocal7)
+    establecimientoProveedor6.agregarEmpleado(empleadoLocal8)
+	
+    establecimientoProveedor6.agregarEmpleado(empleadoLocal9)
+    establecimientoProveedor6.agregarEmpleado(empleadoLocal10)
+    establecimientoProveedor7.agregarEmpleado(empleadoLocal11)
+    establecimientoProveedor7.agregarEmpleado(empleadoLocal12)
+    establecimientoProveedor7.agregarEmpleado(empleadoLocal13)
+    establecimientoProveedor7.agregarEmpleado(empleadoLocal14)
+    establecimientoProveedor7.agregarEmpleado(empleadoLocal15)
+    establecimientoProveedor8.agregarEmpleado(empleadoLocal16)
+    establecimientoProveedor8.agregarEmpleado(empleadoLocal17)
+    establecimientoProveedor8.agregarEmpleado(empleadoLocal18)
+    establecimientoProveedor8.agregarEmpleado(empleadoLocal19)
+    establecimientoProveedor8.agregarEmpleado(empleadoLocal20)
+
+
+    # Creación de 24 objetos de la clase Vehiculo
+    
+    vehiculoProveedor1 = Vehiculo(TipoVehiculo.BERLINA, None, "Negro", "BERLINA", 70000, 0)
+    vehiculoProveedor2 = Vehiculo(TipoVehiculo.BERLINA, None, "Blanco", "CAMION", 70000, 0)
+    vehiculoProveedor3 = Vehiculo(TipoVehiculo.BERLINA, None, "Gris", "COCHERESPETO", 70000, 0)
+
+    vehiculoProveedor4 = Vehiculo(TipoVehiculo.CARROZA, None, "Negro", "CUPE", 150000, 0)
+    vehiculoProveedor5 = Vehiculo(TipoVehiculo.CARROZA, None, "Blanco", "COCHERESPETO", 150000, 0)
+    vehiculoProveedor6 = Vehiculo(TipoVehiculo.CARROZA, None, "Gris", "COCHEFUNEBRE", 150000, 0)
+
+    vehiculoProveedor7 = Vehiculo(TipoVehiculo.FAETON, None, "Negro", "COCHERESPETO", 120000, 0)
+    vehiculoProveedor8 = Vehiculo(TipoVehiculo.FAETON, None, "Blanco", "COCHEFUNEBRE", 120000, 0)
+    vehiculoProveedor9 = Vehiculo(TipoVehiculo.FAETON, None, "Gris", "BUS", 120000, 0)
+
+    vehiculoProveedor10 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Negro", "CARROZA", 80000, 0)
+    vehiculoProveedor11 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Blanco", "EFG108", 80000, 0)
+    vehiculoProveedor12 = Vehiculo(TipoVehiculo.COCHEFUNEBRE, None, "Gris", "CARROZA", 80000, 0)
+
+    vehiculoProveedor13 = Vehiculo(TipoVehiculo.BUS, None, "Negro", "KLM110", 50000, 0)
+    vehiculoProveedor14 = Vehiculo(TipoVehiculo.BUS, None, "Blanco", "BERLINA", 50000, 0)
+    vehiculoProveedor15 = Vehiculo(TipoVehiculo.BUS, None, "Gris", "QRS112", 50000, 0)
+
+    vehiculoProveedor16 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Negro", "FAETON", 75000, 0)
+    vehiculoProveedor17 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Blanco", "CARROZA", 75000, 0)
+    vehiculoProveedor18 = Vehiculo(TipoVehiculo.COCHERESPETO, None, "Gris", "CARROZA", 75000, 0)
+
+    vehiculoProveedor19 = Vehiculo(TipoVehiculo.CUPE, None, "Negro", "CAMION", 65000, 0)
+    vehiculoProveedor20 = Vehiculo(TipoVehiculo.CUPE, None, "Blanco", "COCHEFUNEBRE", 65000, 0)
+    vehiculoProveedor21 = Vehiculo(TipoVehiculo.CUPE, None, "Gris", "COCHEFUNEBRE", 65000, 0)
+
+    vehiculoProveedor22 = Vehiculo(TipoVehiculo.CAMION, None, "Negro", "CUPE", 69000, 0)
+    vehiculoProveedor23 = Vehiculo(TipoVehiculo.CAMION, None, "Blanco", "CAMION", 69000, 0)
+    vehiculoProveedor24 = Vehiculo(TipoVehiculo.CAMION, None, "Gris", "CUPE", 69000, 0)
+
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor1)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor2)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor3)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor4)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor5)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor16)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor17)
+    establecimientoProveedor9.agregarVehiculo(vehiculoProveedor18)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor6)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor7)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor8)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor9)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor10)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor19)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor20)
+    establecimientoProveedor10.agregarVehiculo(vehiculoProveedor21)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor11)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor12)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor13)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor14)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor15)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor22)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor23)
+    establecimientoProveedor11.agregarVehiculo(vehiculoProveedor24)
+    
+
+    trajesCaballeroF1 =  Producto("Trajes de caballero", 998.0, 22, 10, None, None,None,None)
+    vestidosDamaF1 =  Producto("Vestidos de dama", 1200.0, 6, 20, None, None,None,None)
+    recuerdoF1 =  Producto("Medalla conmemorativa", 100.0, 5, 12, None, None,None,None) # Menos de 10 unidades
+    recuerdo2F1 =  Producto("Joyas conmemorativas", 250.0, 0, 15, None, None,None,None) # Sin stock
+    recuerdo3F1 =  Producto("Álbumes de fotos", 300.0, 30, 18, None, None,None,None) # Más stock
+    recuerdo4F1 =  Producto("Portarretratos digitales", 120.0, 0, 45, None, None,None,None) # Sin stock
+    velasRojasF1 =  Producto("Velas rojas", 300.0, 7, 5, None, None,None,None) # Menos de 10 unidades
+    velasBlancasF1 =  Producto("Velas blancas", 300.0, 20, 30, None, None,None,None) # Más stock
+    funeraria1.agregarProductoF(trajesCaballeroF1)
+    funeraria1.agregarProductoF(vestidosDamaF1)
+    funeraria1.agregarProductoF(recuerdoF1)
+    funeraria1.agregarProductoF(recuerdo2F1)
+    funeraria1.agregarProductoF(recuerdo3F1)
+    funeraria1.agregarProductoF(recuerdo4F1)
+    funeraria1.agregarProductoF(velasRojasF1)
+    funeraria1.agregarProductoF(velasBlancasF1)
+        
+      #productos que tiene la Funeraria 2
+        
+    trajesCaballeroF2 =  Producto("Trajes de caballero", 998.0, 6, 25, None, None,None,None) # Menos de 10 unidades
+    vestidosDamaF2 =  Producto("Vestidos de dama", 1200.0, 18, 9, None, None,None,None) 
+    recuerdoF2 =  Producto("Medalla conmemorativa", 100.0, 10, 20, None, None,None,None)
+    recuerdo2F2 =  Producto("Joyas conmemorativas", 250.0, 25, 10, None, None,None,None) # Más stock
+    recuerdo3F2 =  Producto("Álbumes de fotos", 300.0, 9, 12, None, None,None,None) # Menos de 10 unidades
+    recuerdo4F2 =  Producto("Portarretratos digitales", 120.0, 15, 45, None, None,None,None)
+    velasRojasF2 =  Producto("Velas rojas", 300.0, 7, 20, None, None,None,None) # Menos de 10 unidades
+    velasBlancasF2 =  Producto("Velas blancas", 300.0, 0, 40, None, None,None,None) # Sin stock
+    funeraria2.agregarProductoF(trajesCaballeroF2)
+    funeraria2.agregarProductoF(vestidosDamaF2)
+    funeraria2.agregarProductoF(recuerdoF2)
+    funeraria2.agregarProductoF(recuerdo2F2)
+    funeraria2.agregarProductoF(recuerdo3F2)
+    funeraria2.agregarProductoF(recuerdo4F2)
+    funeraria2.agregarProductoF(velasRojasF2)
+    funeraria2.agregarProductoF(velasBlancasF2)
+        
+      #productos que tiene la Funeraria 3
+        
+    trajesCaballeroF3 =  Producto("Trajes de caballero", 998.0, 6, 30,  None, None,None,None) # Menos de 10 unidades
+    vestidosDamaF3 =  Producto("Vestidos de dama", 1200.0, 8, 12, None, None,None,None) # Menos de 10 unidades
+    recuerdoF3 =  Producto("Medalla conmemorativa", 100.0, 10, 25, None, None,None,None)
+    recuerdo2F3 =  Producto("Joyas conmemorativas", 250.0, 0, 18, None, None,None,None) # Sin stock
+    recuerdo3F3 =  Producto("Álbumes de fotos", 300.0, 30, 15, None, None,None,None)
+    recuerdo4F3 =  Producto("Portarretratos digitales", 120.0, 35, 35, None, None,None,None) # Más stock
+    velasRojasF3 =  Producto("Velas rojas", 300.0, 7, 10, None, None,None,None) # Menos de 10 unidades
+    velasBlancasF3 =  Producto("Velas blancas", 300.0, 0, 50, None, None,None,None) # Sin stock
+    funeraria3.agregarProductoF(trajesCaballeroF3)
+    funeraria3.agregarProductoF(vestidosDamaF3)
+    funeraria3.agregarProductoF(recuerdoF3)
+    funeraria3.agregarProductoF(recuerdo2F3)
+    funeraria3.agregarProductoF(recuerdo3F3)
+    funeraria3.agregarProductoF(recuerdo4F3)
+    funeraria3.agregarProductoF(velasRojasF3)
+    funeraria3.agregarProducto(velasBlancasF3)
+
+    #Facturas para funeraria 1
+    facturaF1_1 =  Factura("Trajes de caballero")
+    facturaF1_2 =  Factura("Vestidos de dama")
+    facturaF1_3 =  Factura("Medalla conmemorativa")
+    facturaF1_4 =  Factura("Joyas conmemorativas")
+    facturaF1_5 =  Factura("Álbumes de fotos")
+    facturaF1_6 =  Factura("Portarretratos digitales")
+    facturaF1_7 =  Factura("Velas rojas")
+    facturaF1_8 =  Factura("Velas blancas")
+    funeraria1.agregarFacturapagada(facturaF1_1)
+    funeraria1.agregarFacturapagada(facturaF1_2)
+    funeraria1.agregarFacturapagada(facturaF1_3)
+    funeraria1.agregarFacturapagada(facturaF1_4)
+    funeraria1.agregarFacturapagada(facturaF1_5)
+    funeraria1.agregarFacturapagada(facturaF1_6)
+    funeraria1.agregarFacturapagada(facturaF1_7)
+    funeraria1.agregarFacturapagada(facturaF1_8)
+
+        
+        # facturas para funeraria 2
+    facturaF2_1 =  Factura("Trajes de caballero")
+    facturaF2_2 =  Factura("Vestidos de dama")
+    facturaF2_3 =  Factura("Medalla conmemorativa")
+    facturaF2_4 =  Factura("Joyas conmemorativas")
+    facturaF2_5 =  Factura("Álbumes de fotos")
+    facturaF2_6 =  Factura("Portarretratos digitales")
+    facturaF2_7 =  Factura("Velas rojas")
+    facturaF2_8 =  Factura("Velas blancas")
+    funeraria2.agregarFacturapagada(facturaF2_1)
+    funeraria2.agregarFacturapagada(facturaF2_2)
+    funeraria2.agregarFacturapagada(facturaF2_3)
+    funeraria2.agregarFacturapagada(facturaF2_4)
+    funeraria2.agregarFacturapagada(facturaF2_5)
+    funeraria2.agregarFacturapagada(facturaF2_6)
+    funeraria2.agregarFacturapagada(facturaF2_7)
+    funeraria2.agregarFacturapagada(facturaF2_8)
+
+        
+        # facturas para funerarias 3
+    facturaF3_1 =  Factura("Trajes de caballero")
+    facturaF3_2 =  Factura("Vestidos de dama")
+    facturaF3_3 =  Factura("Medalla conmemorativa")
+    facturaF3_4 =  Factura("Joyas conmemorativas")
+    facturaF3_5 =  Factura("Álbumes de fotos")
+    facturaF3_6 =  Factura("Portarretratos digitales")
+    facturaF3_7 =  Factura("Velas rojas")
+    facturaF3_8 =  Factura("Velas blancas")
+    funeraria3.agregarFacturapagada(facturaF3_1)
+    funeraria3.agregarFacturapagada(facturaF3_2)
+    funeraria3.agregarFacturapagada(facturaF3_3)
+    funeraria3.agregarFacturapagada(facturaF3_4)
+    funeraria3.agregarFacturapagada(facturaF3_5)
+    funeraria3.agregarFacturapagada(facturaF3_6)
+    funeraria3.agregarFacturapagada(facturaF3_7)
+    funeraria3.agregarFacturapagada(facturaF3_8)
+
+ 
+        
+        # productos para las facturas de la funeraria 1
+      
+        
+    trajesCaballeroVendidosF1 =  Producto("Trajes de caballero", 998.0, 1, 10)
+    vestidosDamaVendidosF1 =  Producto("Vestidos de dama", 1200.0, 2, 20)
+    recuerdoVendidosF1 =  Producto("Medalla conmemorativa", 100.0, 12, 12) 
+    recuerdo2VendidosF1 =  Producto("Joyas conmemorativas", 250.0, 5, 15) 
+    recuerdo3VendidosF1 =  Producto("Álbumes de fotos", 300.0, 18, 18) 
+    recuerdo4VendidosF1 =  Producto("Portarretratos digitales", 120.0, 45, 45) 
+    velasRojasVendidosF1 =  Producto("Velas rojas", 300.0, 5, 5) 
+    velasBlancasVendidosF1 =  Producto("Velas blancas", 300.0, 30, 30) 
+    facturaF1_1.agregarProducto(trajesCaballeroVendidosF1)
+    facturaF1_2.agregarProducto(vestidosDamaVendidosF1)
+    facturaF1_3.agregarProducto(recuerdoVendidosF1)
+    facturaF1_4.agregarProducto(recuerdo2VendidosF1)
+    facturaF1_5.agregarProducto(recuerdo3VendidosF1)
+    facturaF1_6.agregarProducto(recuerdo4VendidosF1)
+    facturaF1_7.agregarProducto(velasRojasVendidosF1)
+    facturaF1_8.agregarProducto(velasBlancasVendidosF1)
+        
+    
+        # productos para las facturas de la funeraria 2
+    trajesCaballeroVendidosF2 =  Producto("Trajes de caballero", 998.0, 25, 25) 
+    vestidosDamaVendidosF2 =  Producto("Vestidos de dama", 1200.0, 9, 9) 
+    recuerdoVendidosF2 =  Producto("Medalla conmemorativa", 100.0, 2, 20)
+    recuerdo2VendidosF2 =  Producto("Joyas conmemorativas", 250.0, 10, 10) 
+    recuerdo3VendidosF2 =  Producto("Álbumes de fotos", 300.0, 3, 12) 
+    recuerdo4VendidosF2 =  Producto("Portarretratos digitales", 120.0, 45, 45)
+    velasRojasVendidosF2 =  Producto("Velas rojas", 300.0, 20, 20) 
+    velasBlancasVendidosF2 =  Producto("Velas blancas", 300.0, 9, 40) 
+    facturaF2_1.agregarProducto(trajesCaballeroVendidosF2)
+    facturaF2_2.agregarProducto(vestidosDamaVendidosF2)
+    facturaF2_3.agregarProducto(recuerdoVendidosF2)
+    facturaF2_4.agregarProducto(recuerdo2VendidosF2)
+    facturaF2_5.agregarProducto(recuerdo3VendidosF2)
+    facturaF2_6.agregarProducto(recuerdo4VendidosF2)
+    facturaF2_7.agregarProducto(velasRojasVendidosF2)
+    facturaF2_8.agregarProducto(velasBlancasVendidosF2)
+        
+        # productos para las facturas de la funeraria 3
+
+    trajesCaballeroVendidosF3 =  Producto("Trajes de caballero", 998.0, 30, 30) 
+    vestidosDamaVendidosF3 =  Producto("Vestidos de dama", 1200.0, 12, 12) 
+    recuerdoVendidosF3 =  Producto("Medalla conmemorativa", 100.0, 25, 25)
+    recuerdo2VendidosF3 =  Producto("Joyas conmemorativas", 250.0, 18, 18)
+    recuerdo3VendidosF3 =  Producto("Álbumes de fotos", 300.0, 10, 15)
+    recuerdo4VendidosF3 =  Producto("Portarretratos digitales", 120.0, 5, 35) 
+    velasRojasVendidosF3 =  Producto("Velas rojas", 300.0, 0, 10) 
+    velasBlancasVendidosF3 =  Producto("Velas blancas", 300.0, 0, 50) 
+        
+    facturaF3_1.agregarProducto(trajesCaballeroVendidosF3)
+    facturaF3_2.agregarProducto(vestidosDamaVendidosF3)
+    facturaF3_3.agregarProducto(recuerdoVendidosF3)
+    facturaF3_4.agregarProducto(recuerdo2VendidosF3)
+    facturaF3_5.agregarProducto(recuerdo3VendidosF3)
+    facturaF3_6.agregarProducto(recuerdo4VendidosF3)
+    facturaF3_7.agregarProducto(velasRojasVendidosF3)
+    facturaF3_8.agregarProducto(velasBlancasVendidosF3)
+
+# PRODUCTOS LOCALES
+    trajesCaballeroLocales =  Producto("Trajes de caballero", 998.0, 100, 0) 
+    vestidosDamaLocales =  Producto("Vestidos de dama", 1200.0, 100, 0) 
+    recuerdoLocales =  Producto("Medalla conmemorativa", 100.0, 100, 0)
+    recuerdo2Locales =  Producto("Joyas conmemorativas", 250.0, 100, 0)
+    recuerdo3Locales =  Producto("Álbumes de fotos", 300.0, 100, 0)
+    recuerdo4Locales =  Producto("Portarretratos digitales", 120.0, 100, 0) 
+    velasRojasLocales =  Producto("Velas rojas", 300.0, 100, 0) 
+    velasBlancasLocales =  Producto("Velas blancas", 300.0, 100, 0)
+        
+    establecimientoProveedor1.agregarProducto(trajesCaballeroLocales)
+    establecimientoProveedor1.agregarProducto(vestidosDamaLocales)
+    establecimientoProveedor1.agregarProducto(recuerdoLocales)
+    establecimientoProveedor1.agregarProducto(recuerdo2Locales)
+    establecimientoProveedor1.agregarProducto(recuerdo3Locales)
+    establecimientoProveedor1.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor1.agregarProducto(velasRojasLocales)
+    establecimientoProveedor1.agregarProducto(velasBlancasLocales)
+        
+    trajesCaballeroLocales2 =  Producto("Trajes de caballero", 998.0, 100, 0) 
+    vestidosDamaLocales2 =  Producto("Vestidos de dama", 1200.0, 100, 0) 
+    recuerdoLocales2 =  Producto("Medalla conmemorativa", 100.0, 100, 0)
+    recuerdo2Locales2 =  Producto("Joyas conmemorativas", 250.0, 100, 0)
+    recuerdo3Locales2 =  Producto("Álbumes de fotos", 300.0, 100, 0)
+    recuerdo4Locales2 =  Producto("Portarretratos digitales", 120.0, 100, 0) 
+    velasRojasLocales2 =  Producto("Velas rojas", 300.0, 100, 0) 
+    velasBlancasLocales2 =  Producto("Velas blancas", 300.0, 100, 0)
+        
+    establecimientoProveedor2.agregarProducto(trajesCaballeroLocales)
+    establecimientoProveedor2.agregarProducto(vestidosDamaLocales)
+    establecimientoProveedor2.agregarProducto(recuerdoLocales)
+    establecimientoProveedor2.agregarProducto(recuerdo2Locales)
+    establecimientoProveedor2.agregarProducto(recuerdo3Locales)
+    establecimientoProveedor2.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor2.agregarProducto(velasRojasLocales)
+    establecimientoProveedor2.agregarProducto(velasBlancasLocales)
+        
+    trajesCaballeroLocales3 =  Producto("Trajes de caballero", 998.0, 100, 0) 
+    vestidosDamaLocales3 =  Producto("Vestidos de dama", 1200.0, 100, 0) 
+    recuerdoLocales3 =  Producto("Medalla conmemorativa", 100.0, 100, 0)
+    recuerdo2Locales3 =  Producto("Joyas conmemorativas", 250.0, 100, 0)
+    recuerdo3Locales3 =  Producto("Álbumes de fotos", 300.0, 100, 0)
+    recuerdo4Locales3 =  Producto("Portarretratos digitales", 120.0, 100, 0) 
+    velasRojasLocales3 =  Producto("Velas rojas", 300.0, 100, 0) 
+    velasBlancasLocales3 =  Producto("Velas blancas", 300.0, 100, 0)
+        
+    establecimientoProveedor3.agregarProducto(trajesCaballeroLocales)
+    establecimientoProveedor3.agregarProducto(vestidosDamaLocales)
+    establecimientoProveedor3.agregarProducto(recuerdoLocales)
+    establecimientoProveedor3.agregarProducto(recuerdo3Locales)
+    establecimientoProveedor3.agregarProducto(recuerdo3Locales)
+    establecimientoProveedor3.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor3.agregarProducto(velasRojasLocales)
+    establecimientoProveedor3.agregarProducto(velasBlancasLocales)
+		
+    trajesCaballeroLocales4 =  Producto("Trajes de caballero", 998.0, 100, 0) 
+    vestidosDamaLocales4 =  Producto("Vestidos de dama", 1200.0, 100, 0) 
+    recuerdoLocales4 =  Producto("Medalla conmemorativa", 100.0, 100, 0)
+    recuerdo2Locales4 =  Producto("Joyas conmemorativas", 250.0, 100, 0)
+    recuerdo3Locales4=  Producto("Álbumes de fotos", 300.0, 100, 0)
+    recuerdo4Locales4 =  Producto("Portarretratos digitales", 120.0, 100, 0) 
+    velasRojasLocales4 =  Producto("Velas rojas", 300.0, 100, 0) 
+    velasBlancasLocales4 =  Producto("Velas blancas", 300.0, 100, 0)
+        
+    establecimientoProveedor4.agregarProducto(trajesCaballeroLocales)
+    establecimientoProveedor4.agregarProducto(vestidosDamaLocales)
+    establecimientoProveedor4.agregarProducto(recuerdoLocales)
+    establecimientoProveedor4.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor4.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor4.agregarProducto(recuerdo4Locales)
+    establecimientoProveedor4.agregarProducto(velasRojasLocales)
+    establecimientoProveedor4.agregarProducto(velasBlancasLocales)
+
+    funeraria1.agregarFacturaInventario(facturaF1_1)
+    funeraria1.agregarFacturaInventario(facturaF1_2)
+    funeraria1.agregarFacturaInventario(facturaF1_3)
+    funeraria1.agregarFacturaInventario(facturaF1_4)
+    funeraria1.agregarFacturaInventario(facturaF1_5)
+    funeraria1.agregarFacturaInventario(facturaF1_6)
+    funeraria1.agregarFacturaInventario(facturaF1_7)
+    funeraria1.agregarFacturaInventario(facturaF1_8)
+
+    funeraria2.agregarFacturaInventario(facturaF2_1)
+    funeraria2.agregarFacturaInventario(facturaF2_2)
+    funeraria2.agregarFacturaInventario(facturaF2_3)
+    funeraria2.agregarFacturaInventario(facturaF2_4)
+    funeraria2.agregarFacturaInventario(facturaF2_5)
+    funeraria2.agregarFacturaInventario(facturaF2_6)
+    funeraria2.agregarFacturaInventario(facturaF2_7)
+    funeraria2.agregarFacturaInventario(facturaF2_8)
+
+    funeraria3.agregarFacturaInventario(facturaF3_1)
+    funeraria3.agregarFacturaInventario(facturaF3_2)
+    funeraria3.agregarFacturaInventario(facturaF3_3)
+    funeraria3.agregarFacturaInventario(facturaF3_4)
+    funeraria3.agregarFacturaInventario(facturaF3_5)
+    funeraria3.agregarFacturaInventario(facturaF3_6)
+    funeraria3.agregarFacturaInventario(facturaF3_7)
+    funeraria3.agregarFacturaInventario(facturaF3_8)
+
+#______________________________________________________________________________________________________________
+
+    	
+
+
      
     #Facturas pagadas Funerarias
 

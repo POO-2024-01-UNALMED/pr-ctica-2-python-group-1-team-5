@@ -98,7 +98,7 @@ class Establecimiento:
         return cliente
 
     def agregarVehiculo(self, vehiculo):
-        self.vehiculos.append(vehiculo)
+        self._vehiculos.append(vehiculo)
 
     def generarHoras(self):
         if not self.getHorarioEventos():
@@ -248,5 +248,21 @@ class Establecimiento:
 
     def setListadoProveedores(self,lista):
         self._listadoProveedores = lista
+        
+    def agregarProveedorEmpleado(self,proveedor):
+        self._listadoProveedoresEmpleados.append(proveedor)
 
+    def agregarProveedorVehiculo(self,Proveedor):
+        self._listadoProveedoresVehiculos.append(Proveedor)
+
+    def agregarProveedor(self,proveedor):
+        self._listadoProveedores.append(proveedor)
     
+    def getListadoProveedoresEmpleados(self):
+        return self._listadoProveedoresEmpleados
+    
+    def agregarProducto(self, producto):
+        self._productos.append(producto)
+    
+    def getListadoProductos(self):
+        return self._productos

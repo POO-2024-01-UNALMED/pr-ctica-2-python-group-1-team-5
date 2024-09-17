@@ -20,6 +20,7 @@ class Funeraria(Establecimiento):
         self._vehiculos = []
         self._listaFacturasPorPagar = []
         self._listaFacturas = []
+        self._listaFacturasInventario = [] 
 
     def buscarEstablecimientos(self, tipoEstablecimiento: str, cliente):
         establecimientosEvaluar = Establecimiento.buscarPorFuneraria(self, tipoEstablecimiento)
@@ -443,25 +444,28 @@ class Funeraria(Establecimiento):
                 return vehiculo
         return None
     
-    def identificarProductosFaltantes(funeraria):
-        productos_vendidos = Funeraria.calcular_productos_vendidos(funeraria)
+    def identificarProductosFaltantes(self, funeraria):
+        from gestorAplicacion.inventario.producto import Producto
+        productos_vendidos = Funeraria.calcularProductosVendidos(funeraria)
         productos_faltantes = []
 
+        # Filtrar solo productos que son instancias de la clase Producto
         for producto in productos_vendidos:
-            if producto.getCantidadVendida() < 10:
-               productos_faltantes.append(producto)
+            if isinstance(producto, Producto) and producto.getCantidad() < 10:
+                productos_faltantes.append(producto)
 
         return productos_faltantes
     
     def calcularProductosVendidos(funeraria):
+        from gestorAplicacion.inventario.producto import Producto
         productos_vendidos = []
-        for factura in funeraria.getListadoFacturas():
+        for factura in funeraria.getListaFacturasInventario():
             for producto in factura.getListaProductos():
-                if producto not in productos_vendidos:
-                   productos_vendidos.append(producto)
+                if isinstance(producto, Producto) and producto not in productos_vendidos:
+                    productos_vendidos.append(producto)
         return productos_vendidos
     
-    def agregarProducto(productos_vendidos, nuevo_producto):
+    def agregarProductoV(productos_vendidos, nuevo_producto):
     # Recorre la lista de productos vendidos para encontrar si el producto ya existe
         for producto in productos_vendidos:
         # Compara el nombre del producto existente con el nuevo producto
@@ -481,6 +485,9 @@ class Funeraria(Establecimiento):
 
     def agregarEmpleado(self, empleado):
         self._empleados.append(empleado)
+    
+    def agregarProductoF(self,producto):
+        super().agregarProducto(producto)
 
 
 
@@ -549,6 +556,12 @@ class Funeraria(Establecimiento):
             indice += 1
 
         return gestionTransporte
+    def getListaFacturasInventario(self):
+        return self._listaFacturasInventario
+    def set_listaFacturasInventario(self, listaFacturasInventario):
+        self._listaFacturasInventario = listaFacturasInventario
+    def agregarFacturaInventario(self, factura):
+        self._listaFacturasInventario.append(factura)
 
     def getEmpleados(self):
         return self._empleados
@@ -568,3 +581,24 @@ class Funeraria(Establecimiento):
         self._listaFacturas = listaFacturas
     def getCuentaAhorros(self):
         return self._cuentaAhorros
+    
+    def agregarProveedorVehiculoF(self,Proveedor):
+        super().agregarProveedorVehiculo(Proveedor)
+
+    def agregarProveedorF(self,proveedor):
+        super().agregarProveedor(proveedor)
+
+    def agregarProveedorEmpleadoF(self,proveedor):
+        super().agregarProveedorEmpleado(proveedor)
+    
+    def getListadoProveedoresF(self):
+       return super().getListadoProveedores()
+    
+    def agregarFacturapagada(self,factura):
+        self._listaFacturas.append(factura)
+
+    def getListadoProductosF(self):
+        return super().getListadoProductos()
+    
+    def getListadoProveedoresEmpleadosF(self):
+        return super().getListadoProveedoresEmpleados()

@@ -5,6 +5,7 @@ from iuMain.funcionalidades import exhumacion
 from iuMain.funcionalidades import entierro
 
 from iuMain.funcionalidades import finanzas
+from iuMain.funcionalidades import inventario
 
 #Regresar a la ventana de inicio
 def irVentanaInicio():
@@ -118,6 +119,8 @@ def ventanaPrincipal():
     procesos.add_command(label="Entierro",command=lambda:entierro.funcionalidadEntierro(zona2))
     procesos.add_separator()
     procesos.add_command(label="Finanzas",command=lambda:finanzas.funcionalidadFinanzas(zona2))
+    procesos.add_separator()
+    procesos.add_command(label="Gestion de inventario",command=lambda:inventario.funcionalidadGestionInventario(zona2))
 
     #Menú ayuda
     ayuda=tk.Menu(menuPrincipal,tearoff=0)
