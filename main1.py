@@ -183,14 +183,14 @@ if __name__ == "__main__":
     cuentaF1Cr6= CuentaBancaria(156707, "Fuego y Serenidad",banco5, 20302)
 
     #Crematorio Funeraria 1
-    crematorioF21 = Crematorio("Crematorio del Silencio", 100, cuentaF1Cr1, "oro", None, funeraria1)
-    crematorioF22 = Crematorio("Ascenso y Tranquilidad", 78, cuentaF1Cr2, "oro", None, funeraria1)
+    crematorioF11 = Crematorio("Crematorio del Silencio", 100, cuentaF1Cr1, "oro", None, funeraria1)
+    crematorioF12 = Crematorio("Ascenso y Tranquilidad", 78, cuentaF1Cr2, "oro", None, funeraria1)
 
-    crematorioF23 = Crematorio("Brasa de Paz", 78, cuentaF1Cr3, "plata", None, funeraria1)
-    crematorioF24 = Crematorio("Eterna Luz Crematorio", 78, cuentaF1Cr4, "plata", None, funeraria1)
+    crematorioF13 = Crematorio("Brasa de Paz", 78, cuentaF1Cr3, "plata", None, funeraria1)
+    crematorioF14 = Crematorio("Eterna Luz Crematorio", 78, cuentaF1Cr4, "plata", None, funeraria1)
 
-    crematorioF25 = Crematorio("Crematorio del Renacer", 78, cuentaF1Cr5, "bronce", None, funeraria1)
-    crematorioF26 = Crematorio("Fuego y Serenidad", 78, cuentaF1Cr6, "bronce", None, funeraria1)
+    crematorioF15 = Crematorio("Crematorio del Renacer", 78, cuentaF1Cr5, "bronce", None, funeraria1)
+    crematorioF16 = Crematorio("Fuego y Serenidad", 78, cuentaF1Cr6, "bronce", None, funeraria1)
 
     #Cuentas Cementerios Funeraria 1
     cuentaF1Ce1= CuentaBancaria(104525, "Jardín de la Eternidad",banco5, 2030)
@@ -362,16 +362,16 @@ if __name__ == "__main__":
     F14 = Familiar("Samantha", 714, 50, cuentaFAM4, "padre", 17)
 
     #Cuentas familiares para todos
-    cuentaFAM1 = CuentaBancaria(274566,"Samuel",banco1,12354)
-    cuentaFAM2 = CuentaBancaria(345500,"Alma",banco2,123543)
-    cuentaFAM3 = CuentaBancaria(325605,"Eduardo",banco3,1235333)
-    cuentaFAM4 = CuentaBancaria(223805,"Maria",banco4,123543)
+    cuentaFAT1 = CuentaBancaria(274566,"Samuel",banco1,12354)
+    cuentaFAT2 = CuentaBancaria(345500,"Alma",banco2,123543)
+    cuentaFAT3 = CuentaBancaria(325605,"Eduardo",banco3,1235333)
+    cuentaFAT4 = CuentaBancaria(223805,"Maria",banco4,123543)
 
     # Familiares para todos
-    F15 = Familiar("Samuel", 715, 60, cuentaFAM1, "padre", 17)
-    F16 = Familiar("Alma", 716, 60, cuentaFAM2, "padre", 13)
-    F17 = Familiar("Eduardo", 717, 37, cuentaFAM3, "hermano", 17)
-    F18 = Familiar("Maria", 0,5,cuentaFAM4, "hermano", F17)
+    F15 = Familiar("Samuel", 715, 60, cuentaFAT1, "padre", 17)
+    F16 = Familiar("Alma", 716, 60, cuentaFAT2, "padre", 13)
+    F17 = Familiar("Eduardo", 717, 37, cuentaFAT3, "hermano", 17)
+    F18 = Familiar("Maria", 0,5,cuentaFAT4, "hermano", F17)
  
     #Cuentas familiares hombre
     cuentaFAH1 = CuentaBancaria(274567,"Armando",banco1,123544)
@@ -2036,14 +2036,14 @@ if __name__ == "__main__":
     local6 = Establecimiento("BMW Vehiculos",500,cuentalocal6)
     local7 = Establecimiento("AUDI Vehiculos",500,cuentalocal7)
     
-    funeraria1.getListadoProveedores().extend([local1,local2,local3,local4,])
-    funeraria1.getListadoProveedoresVehiculos().extend([local5,local6,local7])
+    #funeraria1.getListadoProveedores().extend([local1,local2,local3,local4,])
+    #funeraria1.getListadoProveedoresVehiculos().extend([local5,local6,local7])
     	
-    funeraria2.getListadoProveedores().extend([local1,local2,local3,local4,])
-    funeraria2.getListadoProveedoresVehiculos().extend([local5,local6,local7])
+    #funeraria2.getListadoProveedores().extend([local1,local2,local3,local4,])
+    #funeraria2.getListadoProveedoresVehiculos().extend([local5,local6,local7])
 
-    funeraria3.getListadoProveedores().extend([local1,local2,local3,local4,])
-    funeraria3.getListadoProveedoresVehiculos().extend([local5,local6,local7])
+    #funeraria3.getListadoProveedores().extend([local1,local2,local3,local4,])
+    #funeraria3.getListadoProveedoresVehiculos().extend([local5,local6,local7])
     
     #Productos Inventario
     productoI1 =  Producto("Urnas",10000,6,0,local1)
