@@ -82,11 +82,10 @@ def seleccionCliente(frame,valores):
           
         def datosCliente():
             if valorCliente.continuar(etiquetaCliente[0]):
-                print(valorCliente.getValores()[0])
-                print(listaClientes)
+               
                 
                 cliente=listaClientes[(valorCliente.getValores())[0]]
-                print(cliente.getNombre())
+               
                 texto=f"Has seleccionado al cliente {cliente} \n ¿Deseas continuar?"
                 result = tk.messagebox.askyesno("Confirmar Datos",texto)
                 
@@ -142,9 +141,7 @@ def seleccionCliente(frame,valores):
             valMinIglesia=1
             if valoresCrematorio.continuar() and valorIglesia.continuar():
                 crematorio=crematorios[(valoresCrematorio.getValores())[0]]
-                #print(crematorio)
-                #print(int(valorIglesia.getValores()[0])-1)
-                #print(iglesias)
+               
 
                 def cambiarHoras(horas):
                     if horas.continuar():
@@ -166,15 +163,14 @@ def seleccionCliente(frame,valores):
                     label = tk.Label(ventanaHoras, text=f"Crematorio {crematorio.getNombre()}", padx=10, anchor="w", wraplength=480)
                     label.pack(pady=2)
                     crematorio.generarHoras()
-                    print(crematorio.generarHoras())
+                    
                     horarios = crematorio.getHorarioEventos()
-                    print(horarios)
+                   
                     horasGenereadas= lambda horarios: [f"{hora} {'Pm' if int(hora[:2]) >= 12 else 'Am'}"for i, hora in enumerate(horarios)]
                     horariosFormateados = horasGenereadas(horarios)
-                    print(horariosFormateados)
+                  
                     horas = frame1(ventanaHoras,[f"Horarios disponibles:"],[horariosFormateados])
-                    
-                    print(horas)
+                  
                     btnContinuar = tk.Button(ventanaHoras, text="Continuar",command=lambda: cambiarHoras(horas))
                     btnContinuar.pack(pady=20)
 
@@ -212,9 +208,9 @@ def cementerios(frame,crematorio,iglesia,cliente):
         if valores.continuar():
     
             cementerio=cementerios[(valores.getValores())[1]]
-            print(cementerio.getNombre())
+         
             empleado=empleados[(valores.getValores())[0]]
-            print(empleado)
+          
 
             def cambiarHoras(horas):
                 if horas.continuar():
@@ -237,15 +233,15 @@ def cementerios(frame,crematorio,iglesia,cliente):
                 label = tk.Label(ventanaHoras, text=f"Cementerio {cementerio.getNombre()}", padx=10, anchor="w", wraplength=480)
                 label.pack(pady=2)
                 #crematorio.generarHoras()
-                #print(crematorio.generarHoras())
+         
                 horarios = cementerio.getHorarioEventos()
-                print(horarios)
+             
                 horasGenereadas= lambda horarios: [f"{hora} {'Pm' if int(hora[:2]) >= 12 else 'Am'}"for i, hora in enumerate(horarios)]
                 horariosFormateados = horasGenereadas(horarios)
-                print(horariosFormateados)
+              
                 horas = frame1(ventanaHoras,[f"Horarios disponibles:"],[horariosFormateados])
                 
-                print(horas)
+               
                 btnContinuar1 = tk.Button(ventanaHoras, text="Continuar",command=lambda: cambiarHoras(horas))
                 btnContinuar1.pack(pady=20)
 
@@ -263,15 +259,13 @@ def urnas(frame,cementerio,crematorio,cliente,valores):
     valoresUrna=FieldFrame(frame,[],["Categoria urna (0-2)","Peso cliente (0-120)kg"],[0,0])
     
 
-    #categoria =(valoresUrna.getValores()[0])
-    #print("Categoria   eee",categoria)
-    #peso = ((valoresUrna.getValores())[1])
+    
     num=0
     def validarUrnas(valoresUrna):
         num=0
         if valoresUrna.continuar():
             categoria =(valoresUrna.getValores()[0])
-            print("Categoria   eee",categoria)
+            
             peso = (valoresUrna.getValores()[1])
 
             try:
@@ -332,8 +326,7 @@ def tablaUrnas(frame,cementerio,crematorio,cliente,valores,categoria,peso):
                 urna=urnas[int(entradaUrna.getValores()[0])]  
                 if int(entradaUrna.getValores()[0])<0:
                     errorIds(urnas[int(entradaUrna.getValores()[0])],"El ID ingresado es incorrecto",0)
-                print(urna)
-                print(urnas)
+               
                 num=1
             except:
                 errorIds(entradaUrna.getValores()[0],"El ID ingresado no es correcto",0,len(urnas)-1)
@@ -363,16 +356,7 @@ def producto(frame, cliente, urna,crematorio):
     boton_regresar = tk.Button(frameApoyo, text="Regresar", command=lambda: framePrincipal(frame))
     boton_regresar.pack()
 
-    """indice = 1
-    for auxEmpleado in empleados:
-        print(f"[{indice}] {auxEmpleado}")
-        indice += 1
-
- 
-
-    # Solicitar al usuario que ingrese el índice del empleado deseado
-    indice = int(input("Ingrese el índice del empleado deseado: "))
-    crematorio.setEmpleado(empleados[indice-1])"""
+   
 
 #_________________________________________________________________________________________________
 				
@@ -391,151 +375,4 @@ def producto(frame, cliente, urna,crematorio):
 #_________________________________________________________________________________________________
 
 
-    #indice = 1
-    # Se imprimen los cementerios
-    #print("Cementerios disponibles")
-
-    #for auxCementerio in cementerios:
-        #print(f"[{indice}] {auxCementerio} - Horarios disponibles {len(auxCementerio.getHorarioEventos())}")
-        #indice += 1
-
-    #indice = int(input("Indique el índice del cementerio: "))
-
-    # Se agrega el cementerio seleccionado
-    #cementerio = cementerios[indice - 1]
-    # Se añade la iglesia seleccionada al cementerio
-    #cementerio.setIglesia(iglesia)
-
-    # Escoger horario para el cementerio
-
-    """indice = 1
-    for hora in cementerio.getHorarioEventos():
-        indicador = "Pm" if int(hora[:2]) >= 12 else "Am"
-        horaFormateada = hora  # Formato 12-horas con AM/PM
-        print(f"[{indice}] {horaFormateada} {indicador}")
-        indice += 1
-
-    # Solicitar al usuario que ingrese el índice
-    indice = int(input("Ingrese el índice para escoger el horario: "))
-
-    #Se cambia el horario de crematorio
-    cementerio.setHoraEvento(cementerio.getHorarioEventos()[indice-1])
-    #Se elimina el horario de Horario eventos
-    cementerio.eliminarHorario(cementerio.getHorarioEventos()[indice-1])
-
-
-    iglesia = crematorio.getIglesia()
-    tiposUrnas = iglesia.getTipoUrna()
-    
-    # Mostrar tipos de urnas
-    print("El tipo de urnas disponibles para su religión son: ")
-    for tipo in tiposUrnas:
-        print(tipo)
-    
-    # Solicitar peso del cliente
-    peso = float(input("Ingrese un número de 0 a 120 que indique el peso en kg del cliente: "))
-    
-    # Selección de categoría
-    print("Seleccione la categoría para la urna del cliente")
-    print("[0] Se puede escoger un arreglo floral")
-    print("[1] Se pueden escoger tres arreglos florales")
-    print("[2] Se pueden escoger tres arreglos florales y material para la Urna")
-    
-    while True:
-        try:
-            categoria = int(input("Indique el índice de la categoría deseada: "))
-            if 0 <= categoria <= 2:
-                break
-            else:
-                print("El índice ingresado está fuera de rango.")
-        except ValueError:
-            print("Entrada inválida. Ingrese un número válido.")
-    
-    # Filtrar urnas
-    urnas = cementerio.disponibilidadInventario("urna", peso, categoria)
-    
-    urna = None
-    
-    if not urnas:
-        print("No se encontraron urnas disponibles para el cliente, se deberá añadir una provisional")
-        tipo = tiposUrnas[0]
-        urna = Urna("default", cementerio, peso, categoria, tipo)
-        print(f"Urna {urna} añadida")
-        
-        # Agregar cliente a la urna
-        urna.agregarCliente(cliente)
-        
-    else:
-        # Mostrar urnas disponibles
-        print("Escoja la urna de su preferencia: ")
-        for idx, auxUrna in enumerate(urnas, start=1):
-            print(f"[{idx}] {auxUrna}")
-        
-        while True:
-            try:
-                indice = int(input("Indique el índice de la Urna: "))
-                if 1 <= indice <= len(urnas):
-                    break
-                else:
-                    print("El índice ingresado está fuera de rango.")
-            except ValueError:
-                print("Entrada inválida. Ingrese un número válido.")
-        
-        # Designar urna para el cliente
-        urna = urnas[indice - 1]
-        urna.agregarCliente(cliente)
-    
-    # Generar adornos
-    urna.generarAdornos("flores")
-    urna.generarAdornos("material")
-
-    # Obtener el inventario de flores y materiales disponibles
-    flores = Inventario.flores
-    materiales = Inventario.material
-
-    print("Seleccione las flores que adornarán la urna")
-
-    numero = 0
-
-    # Si la categoría es 0, solo se podrán escoger 2 flores del arreglo
-    if categoria == 0:
-        numero = 1
-    else:
-        numero = 3
-        urna.setMaterialSeleccionado(None)  # Cambiar materialSeleccionado a None
-
-    while numero > 0:
-        indice = 1
-        for flor in flores:
-            # Contar la cantidad de cada una de las flores
-            print(f"[{indice}] {flor} cantidad disponible: {urna.contarAdorno(flor, 'flores')}")
-            indice += 1
-        indice = int(input("Indique el índice de las flores que quiere agregar: "))
-
-
-        # Agregar las flores seleccionadas y eliminarlas del inventario
-        urna.agregarAdorno(flores[indice - 1], "flores")
-        numero -= 1
-
-    # Salto
-    print()
-
-    indice = 1
-    if urna.getMaterialSeleccionado() is None:
-        print("Indique el material de su preferencia")
-        for material in materiales:
-            # Contar la cantidad de cada uno de los materiales
-            print(f"[{indice}] {material} cantidad disponible: {urna.contarAdorno(material, 'material')}")
-            indice += 1
-        indice = int(input("Indique el índice del material que quiere agregar: "))
-
-    # Validación
-    while indice < 1 or indice > len(materiales):
-        indice = int(input("El índice ingresado está fuera de rango. Ingrese nuevamente un índice: "))
-
-    # Agregar el material seleccionado y eliminarlo del inventario
-    urna.agregarAdorno(materiales[indice - 1], "material")
-
-    # Imprimir flores y material seleccionados
-    print("Flores seleccionadas:", urna.getFloresSeleccionadas())
-    print("Material seleccionado:", urna.getMaterialSeleccionado())"""
+   

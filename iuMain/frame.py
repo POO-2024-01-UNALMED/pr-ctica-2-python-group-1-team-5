@@ -66,7 +66,6 @@ class FieldFrame(Frame):
     def getValores(self):
 
         valores = [entrada.get() for entrada in self.entries]
-        print(f"Valores obtenidos: {valores}")
         return valores
     
     def borrar(self):

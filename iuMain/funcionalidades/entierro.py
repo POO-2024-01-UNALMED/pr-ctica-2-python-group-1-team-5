@@ -128,7 +128,7 @@ def organizacionCementerio(frame,cliente,cementerio,estatura):
     productoCementerio.setEstablecimiento(cementerio)
     #Invitación para Entierro
     producto=productoCementerio.evento(cliente)
-    print(producto)
+   
     frameApoyo = tk.Frame(frame, bg="#772d2d")
     frameApoyo.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
     invitacion = tk.Label(frameApoyo, text=producto,font=("Comic Sans MS", 14, "italic"), bg="white")
@@ -144,7 +144,7 @@ def organizacionCementerio(frame,cliente,cementerio,estatura):
         titulo(frame,"Organización Tumba")
         inventarioDisponible=cementerio.disponibilidadInventario("tumba", estatura, cliente.getEdad())
         IDs = [a for a in range(len(inventarioDisponible))]
-        print(IDs)
+       
         tablas(frame,["Tumba","ID"],[inventarioDisponible,IDs])
         datoTumba=frame1(frame,["Seleccione el ID de la tumba:"],[IDs])
         btnContinuar1= tk.Button(frame,text="Continuar", command=lambda:agregarTumba(datoTumba,inventarioDisponible))
