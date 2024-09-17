@@ -28,9 +28,6 @@ class DescripcionIncompleta(CamposIncompletos):
     def __init__(self):
         super().__init__("No se puede continuar sin una descripción")
 
-
-
-
     
 class errorNumeros(ErrorAplicacion):
     def __init__(self, mensaje):
