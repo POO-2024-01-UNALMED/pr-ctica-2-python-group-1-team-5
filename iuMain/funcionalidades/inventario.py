@@ -26,11 +26,14 @@ from iuMain.frame import frame1
 from iuMain.frame import tablas
 from iuMain.frame import FieldFrame
 
-# Configuración de la ventana principal
+
 
 selected_funeraria = None
 
 def funcionalidadGestionInventario(frame):
+    for widget in frame.winfo_children():
+        widget.destroy()
+
     seleccionar_funeraria(frame)
 
 def seleccionar_funeraria(frame):
