@@ -37,6 +37,13 @@ if __name__ == "__main__":
             if isinstance(item,Establecimiento):
                 Establecimiento._establecimientos.append(item)
     
+    indice=0
+    for sublist in objetos1:
+        for item in sublist:
+            if isinstance(item,CuentaBancaria):
+                if item.getTitular()=="Todas":
+                    Funeraria._cuentaAhorros = item 
+                    
     ventanaInicio.ventanaInicio()
 
     portafolio = open("baseDatos/objetos","wb")
